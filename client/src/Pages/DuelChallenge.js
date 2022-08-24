@@ -200,18 +200,18 @@ return (
                       <div className='col-md-6 tab-left'>
                       <div className='dchallenge-rt-1'>
 
-                        <div className='dule-img1'>
                         {
                           arr.map((items,index)=>{
                             return(
                               <>
+                              <div className='dule-img1'>
                                 <img src={items} alt="img"/>   
+                             </div>
 
                               </>
                             )
                           })
                         }
-                        </div>
                               {/* <div className='dule-img1'> 
                                 <img src="./NFT img1.png" alt="img"/>
                                </div>
