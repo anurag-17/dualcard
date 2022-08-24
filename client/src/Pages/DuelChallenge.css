@@ -134,3 +134,71 @@
     font-style: italic;
     font-size: 14px;
 }
+
+/* plus button */
+
+
+.button {
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .icon-plus {
+    position: relative;
+    border-radius: 10%;
+    color: #282054;
+    height: 100px;
+    width: 100px;
+    line-height: 90px;
+    font-size: 96px;
+    text-align: center;
+    transition: all .3s;
+    z-index: 1;
+    /* margin: 2.5em auto; */
+    position: relative;
+    left: 48px;
+   top: 60px;
+  }
+  
+  .icon-plus:before {
+    background-color: #43387f;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 20%;
+    transform: translateX(-50%);
+    transition: all .3s;
+    z-index: -1;
+
+  }
+  
+  .icon-plus:after {
+    background-color: #43387f;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    height: 20%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    transition: all .3s;
+    z-index: -1;
+  }
+  
+  .icon-plus:hover {
+    color: #555;
+  }
+  
+  .icon-plus:hover:before {
+    border-radius: 10%;
+    width: 100%;
+  }
+  
+  .icon-plus:hover:after {
+    border-radius: 10%;
+    height: 100%;
+  }

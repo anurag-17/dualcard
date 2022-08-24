@@ -5,11 +5,13 @@ import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { register } from '../actions/userAction';
+import {useAlert} from "react-alert"
 
 
 export const Register = () => {
 
     const dispatch = useDispatch();
+    const alert = useAlert()
 	const navigate = useNavigate()
     const [inputvalue,setInputvalue] = useState({
 		username:"",
@@ -34,8 +36,6 @@ myForm.set("password", inputvalue.password);
 myForm.set("dob", inputvalue.dob);
 
 // dispatch(register(myForm))
-
-
 // const res = await fetch("http://localhost:5000/api/auth/register",{
 // 	method:"POST",
 // 	headers:{
@@ -53,6 +53,15 @@ myForm.set("dob", inputvalue.dob);
 const res = await axios.post("http://localhost:5000/api/auth/register",inputvalue)
 
 localStorage.setItem("nftuser",JSON.stringify({...res.data}))
+
+
+if(localStorage.getItem("nftuser")){
+    alert.success("login successfull")
+    navigate("/profile")
+    
+}else{
+    alert.error("login unsuccessfull")
+}
 
   setInputvalue({
 	  username:"",

@@ -48,7 +48,7 @@ localStorage.setItem("nftuser", JSON.stringify({ ...res.data}))
 
 	useEffect(()=>{
 if(error){
-	alert.eror(error)
+	alert.error(error)
 }
 	},[error])
 

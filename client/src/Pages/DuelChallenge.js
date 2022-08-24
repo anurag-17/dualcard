@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import './DuelChallenge.css';
 
 const DuelChallenge = () => {
@@ -8,9 +10,28 @@ const DuelChallenge = () => {
     url:"",
     userId:"",
   });
+  const [userdata,setUserdata] = useState([])
   const [userId, setUserId] = useState("");
   const [userprofiledata, setUserprofiledata] = useState([]);
+  const [show, setShow] = useState(false);
 
+
+
+
+  const handleClose = () =>{
+    setShow(false);
+
+
+  }
+  const handleShow = () => setShow(true);
+
+
+  const getuserdata = async()=>{
+    const res = await axios.get("http://localhost:5000/api/auth/getuserdata")
+    setUserdata(res.data)
+  }
+  
+  
   const handleupload = async(e)=>{
     console.log(e.target.value)
 
@@ -23,45 +44,45 @@ setUserId(userdata.user._id);
 
 
 const handlesubmit = async()=>{
-
   let data = new FormData()
-data.append("file",image)
-data.append("upload_preset","nftimg")
-data.append("cloud_name","degu3b9yz")
+  data.append("file",image)
+  data.append("upload_preset","nftimg")
+  data.append("cloud_name","degu3b9yz")
   
-await fetch("https://api.cloudinary.com/v1_1/degu3b9yz/image/upload", {
-  method: "POST",
-  body: data,
-}).then((res)=>res.json()).then((data)=>{
-  const imgUrl = data.imgUrl
-  setUrl(imgUrl)
+  await fetch("https://api.cloudinary.com/v1_1/degu3b9yz/image/upload", {
+    method: "POST",
+    body: data,
+  }).then((res)=>res.json()).then((data)=>{
+  const imgUrl = data.url
+  setUrl(data.url)
   imgdata.userId = userId;
   imgdata.url = url;
+
+  console.log(imgdata)
   
 }).catch((err)=>{
   console.log(err)
 })
 
+if (url) {
+  fetch("http://localhost:5000/upload",{
+    method: "POST",
+    headers:{
+      "Content-Type":"application/json",
+    },
+    body:JSON.stringify(imgdata),
+  });
 }
 
-const uploadimage = async()=>{
-  if(url){
-    await fetch("http://localhost:5000/upload",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(imgdata)
-    })
-  }
+// setShow(false);
 }
 
 useEffect(()=>{
-uploadimage()
-},[imgdata])
+  getuserdata()
+},[])
 
-  return (
-    <div>
+return (
+  <div>
         <div className='duelchalenge-sec'>
             <div className='container'>
                <div className='section-title'>
@@ -72,10 +93,17 @@ uploadimage()
           
                 <div className='tab-section'> 
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
+                    {
+                      userdata.map((items,index)=>{
+                        return(
                       <li className="nav-item" role="presentation">
-                          <button className="nav-link active tab-btn" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">  <img src="./User_avatar.png" alt="img"/> Laurie</button>
+                          <button className="nav-link active tab-btn" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">  <img src="./User_avatar.png" alt="img"/>{items.username}</button>
                       </li>
-                      <li className="nav-item" role="presentation">
+
+                        )
+                      })
+                    }
+                      {/* <li className="nav-item" role="presentation">
                           <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#Stephen" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-2.png" alt="img"/> Stephen</button>
                       </li>
                       <li className="nav-item" role="presentation">
@@ -89,10 +117,10 @@ uploadimage()
                       </li>
                       <li className="nav-item" role="presentation">
                           <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-6.png" alt="img"/> Albert</button>
-                      </li>
+                      </li> */}
                      
                   </ul>
-                  <ul className="nav nav-tabs" id="myTab" role="tablist">
+                  {/* <ul className="nav nav-tabs" id="myTab" role="tablist">
                        <li className="nav-item" role="presentation">
                           <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-7.png" alt="img"/> Ernest</button>
                       </li>
@@ -109,7 +137,7 @@ uploadimage()
                       <li className="nav-item" role="presentation">
                           <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon11.png" alt="img"/> Andrina</button>
                       </li>                       
-                  </ul>
+                  </ul> */}
                   <div className="tab-content" id="myTabContent">
                   <div className="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div className='tab-cont'>
@@ -126,7 +154,6 @@ uploadimage()
                                  <img src="./NFT img2.png" alt="img"/>
                                  </div>
                                  <div className='dule-img1'>
-                                 <input type="file"/>
                           
                                     
                                  </div>                                
@@ -165,7 +192,7 @@ uploadimage()
                     </div>
                   </div>
 
-                  <div className="tab-pane fade" id="Stephen" role="tabpanel" aria-labelledby="Stephen-tab">
+                  <div className="" id="Stephen" aria-labelledby="Stephen-tab">
                   <div className='tab-cont'>
                       <div className='row tabct-main gx-5'>
                       <div className='col-md-6 tab-left'>
@@ -180,8 +207,7 @@ uploadimage()
                                  <img src="./NFT img2.png" alt="img"/>
                                  </div>
                                  <div className='dule-img1'>
-                                    <input type="file" onChange={handleupload}/>
-                                     <input type="submit" onClick={handlesubmit}/>
+                                 <div onClick={handleShow} class="icon-plus button">+</div>
                                  </div>                                
                                 </div>
                                 <div className='btn-duel-right'>
@@ -217,6 +243,23 @@ uploadimage()
                         </div>
                     </div>
                   </div>
+
+
+                  <Modal style = {{height:"800px"}} show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+
+<input onChange={handleupload} type="file" name="" id="" />
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handlesubmit}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
                   <div className="tab-pane fade" id="Nick" role="tabpanel" aria-labelledby="Nick-tab">
                   <div className='tab-cont'>
