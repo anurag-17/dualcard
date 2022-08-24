@@ -6,7 +6,8 @@ import './DuelChallenge.css';
 const DuelChallenge = () => {
   const [image,setImage] = useState("")
   const [url,setUrl] = useState("")
-  const [imgdata, setImgdata] = useState({
+  const [arr,setArr] = useState([])
+    const [imgdata, setImgdata] = useState({
     url:"",
     userId:"",
   });
@@ -55,6 +56,7 @@ const handlesubmit = async()=>{
   }).then((res)=>res.json()).then((data)=>{
   const imgUrl = data.url
   setUrl(data.url)
+  arr.push(imgUrl)
   imgdata.userId = userId;
   imgdata.url = url;
 
@@ -68,13 +70,13 @@ if (url) {
   fetch("http://localhost:5000/upload",{
     method: "POST",
     headers:{
-      "Content-Type":"application/json",
+      "Content-Type":"Application/Json",
     },
     body:JSON.stringify(imgdata),
   });
 }
 
-// setShow(false);
+setShow(false);
 }
 
 useEffect(()=>{
@@ -197,17 +199,30 @@ return (
                       <div className='row tabct-main gx-5'>
                       <div className='col-md-6 tab-left'>
                       <div className='dchallenge-rt-1'>
-                             <div className='dule-img1'>
-                                <img src="./NFT img1.png" alt="img"/>   
-                              </div>
-                              <div className='dule-img1'> 
+
+                        <div className='dule-img1'>
+                        {
+                          arr.map((items,index)=>{
+                            return(
+                              <>
+                                <img src={items} alt="img"/>   
+
+                              </>
+                            )
+                          })
+                        }
+                        </div>
+                              {/* <div className='dule-img1'> 
                                 <img src="./NFT img1.png" alt="img"/>
                                </div>
                                <div className='dule-img1'>
                                  <img src="./NFT img2.png" alt="img"/>
-                                 </div>
+                                 </div> */}
                                  <div className='dule-img1'>
+                                   {
                                  <div onClick={handleShow} class="icon-plus button">+</div>
+                                   }
+                                
                                  </div>                                
                                 </div>
                                 <div className='btn-duel-right'>
@@ -266,6 +281,8 @@ return (
                       <div className='row tabct-main gx-5'>
                       <div className='col-md-6 tab-left'>
                       <div className='dchallenge-rt-1'>
+
+                       
                              <div className='dule-img1'>
                                 <img src="./NFT img1.png" alt="img"/>   
                               </div>
