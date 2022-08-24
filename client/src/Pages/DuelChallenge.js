@@ -17,15 +17,10 @@ const DuelChallenge = () => {
   const [show, setShow] = useState(false);
 
 
-
-
   const handleClose = () =>{
     setShow(false);
-
-
   }
   const handleShow = () => setShow(true);
-
 
   const getuserdata = async()=>{
     const res = await axios.get("http://localhost:5000/api/auth/getuserdata")
@@ -58,7 +53,7 @@ const handlesubmit = async()=>{
   setUrl(data.url)
   arr.push(imgUrl)
   imgdata.userId = userId;
-  imgdata.url = url;
+  imgdata.url =data.url;
 
   console.log(imgdata)
   
@@ -66,22 +61,29 @@ const handlesubmit = async()=>{
   console.log(err)
 })
 
-if (url) {
-  fetch("http://localhost:5000/upload",{
-    method: "POST",
-    headers:{
-      "Content-Type":"Application/Json",
-    },
-    body:JSON.stringify(imgdata),
-  });
-}
 
 setShow(false);
 }
 
+
+function postImageUrl(){
+  if (imgdata.url) {
+    fetch("http://localhost:5000/upload",{
+      method: "POST",
+      headers:{
+        "Content-Type":"Application/Json",
+      },
+      body:JSON.stringify(imgdata),
+    });
+  }
+  console.log("data")
+
+}
+
 useEffect(()=>{
+  postImageUrl()
   getuserdata()
-},[])
+},[imgdata.url])
 
 return (
   <div>
@@ -206,7 +208,7 @@ return (
                               <>
                               <div className='dule-img1'>
                                 <img src={items} alt="img"/>   
-                             </div>
+                        </div>
 
                               </>
                             )

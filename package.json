@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
-    "build": "npm install --prefix --f client && npm run build --prefix client"
+    "build": "npm install -f --prefix client && npm run build --prefix client"
   },
   "keywords": [
     "example",
