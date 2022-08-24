@@ -1,25 +1,25 @@
 const User = require("../models/User");
+const Image = require("../models/Image")
 const crypto = require("crypto");
 const ErrorResponse = require("../utlis/errorresponse.js");
 const sendEmail = require("../utlis/sendEmail.js");
 const user = require("../models/User");
 const emailValidator = require("deep-email-validator");
-const { setTimeout } = require("timers");
+
 
 async function isEmailValid(email) {
     return emailValidator.validate(email)
   }
 exports.register = async (req, res, next) => {
    
-  const { username, email, password,dob,gender } = req.body;
-  if(password.length<6){
-      return res.status(400).json("password must be 6 character long")
+  const { username, email, password,dob} = req.body;
 
-
-  }
+  // if(password.length<6){
+  //     return res.status(400).json("password must be 6 character long")
+  // }
 
   try {
-    User.findOne({ email}, async (err, user) => {
+  await  User.findOne({ email}, async (err, user) => {
       
       const {valid, reason, validators} = await isEmailValid(email);
       console.log(validators)
@@ -31,15 +31,18 @@ exports.register = async (req, res, next) => {
         return res.status(500).json("user already registered")
       }
        else {
+        
         const user = await User.create({
           username,
           email,
           password,
           dob,
-          gender,
+          avatar:[
+            {url:"https://res.cloudinary.com/degu3b9yz/image/upload/v1660723144/giphy_jcbcps.gif"}
+          ]
         });
 
-        sendToken(user, 201, res);
+      sendToken(user, 200, res);
       }
 
      
@@ -63,17 +66,56 @@ return res.status(500).json("invalid credentials user not found")
     }
     const isMatch = await user.matchPasswords(password);
     if (!isMatch) {
-   return res.status(500).json("password is not vallid please register")
- 
+   return res.status(500).json("password is not valid please register")
+
     }
         // res.status(201).json(user)
 
     sendToken(user, 200, res);
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({ success: false, error: error.message});
   }
 };
 
+
+exports.isAuthuser =async (req, res, next) => {
+  const { token } = req.cookies;
+  console.log("hii");
+  if (!token) {
+    return next(new ErrorResponse("plese login to access this resource", 401));
+  }
+  const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+  req.user = await User.findById(decodedData.id);
+  next();
+};
+exports.dashboard = async (req, res, next) => {
+  if (req.session) {
+    console.log(req.session.email);
+  }
+  const user = await User.findById(req.user.id);
+  
+  res.status(200).json({
+    sucess: true,
+    user,
+
+    // productCount,
+  });
+  // console.log("user");
+  // console.log({token});
+}
+
+
+exports.getdata  = async(req,res)=>{
+
+  let imgdata = await Image.find()
+  
+ return res.json(imgdata)
+}
+
+exports.getuserdata  = async(req,res)=>{
+  let userdata = await User.find()
+ return res.json(userdata)
+}
 
 
 
@@ -154,5 +196,14 @@ return res.status(500).json("invalid credentials user not found")
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
-  res.status(statusCode).json({ success: true, token,user});
+//options for cookies
+  const options = {
+    expire: new Date(Date.now + 24 * 60 * 60 * 1000),
+    httpOnly: true,
+  };
+  res.status(statusCode).cookie("token", token, options).json({
+    success: true,
+    user,
+    token,
+  });
 };

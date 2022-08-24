@@ -21,24 +21,17 @@ const userSchema = new mongoose.Schema({
     type:Date,
     required:[true,"please provide date of birth"],
   },
-  gender:{
-    type:String,
-  },
 
-//   avatar:{
-        
-//     public_id:{
-//         type:String,
-//         required:true
 
-//     },
-//    url :{
-//         type:String,
-//         required:true
-
-//     },
+  avatar:[
+      {
+ url :{
+              type:String,
+              required:true
+          },
+        }
     
-// },
+  ],
 
   // package: {
   //   type: String,
@@ -77,7 +70,7 @@ userSchema.methods.getresetPasswordToken = function () {
 
 
 
-const user = mongoose.model("userLOgin", userSchema);
+const user = mongoose.model("nftuser", userSchema);
 module.exports = user;
 
 

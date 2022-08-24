@@ -3,13 +3,31 @@ dotenv.config({ path: "./config.env" });
 const express = require("express");
 const connectDB =require("./config/db")
 const path = require("path")
+const cors = require("cors")
+const cloudinary=require("cloudinary")
+const Image = require("./models/Image")
 connectDB()
 
 const app = express();
 
 app.use(express.json())
+app.use(cors())
 app.use('/api/auth', require('./routes/auth'))
 const PORT = process.env.PORT ||5000;
+
+
+
+app.post("/upload",(req,res)=>{
+  
+  const image = new Image({
+    url:req.body.url,
+    userId:req.body.userId
+  })
+  
+  image.save()
+
+  return res.json({success:"data added successfully"})
+})
 
 
 // --------------------------deployment------------------------------
@@ -28,6 +46,15 @@ else {
 
 
 // --------------------------deployment------------------------------
+
+//----------------------cloundinary-----------------------------
+
+cloudinary.config({
+  cloud_name:process.env.CLOUDINARY_NAME,
+  api_key:process.env.CLOUDINARY_API_KEY,
+  api_secret:process.env.CLOUDINARY_API_SECRET,
+  secure:true
+});
 
 
 
