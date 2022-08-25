@@ -73,8 +73,6 @@ console.log(res.data)
 
 
 
-
-  
   const handleupload = async(e)=>{
 const files = e.target.files[0]
 setFiledata(files)
@@ -103,17 +101,13 @@ const handlesubmit = async()=>{
 //   console.log(imgdata)
   
 // }).catch((err)=>{
-//   console.log(err)
+//   console.log(err)`
 // })
 
 setShow(false)
 }
 async function postImageUrl(){
-  if (image){
-    const data = await axios.post("http://localhost:5000/upload",{userId,image})
-    console.log(data)
-    // arr.push(data)
-  }
+ 
 
   imgdata.userId = userId;
   imgdata.url =image;
@@ -124,6 +118,12 @@ async function postImageUrl(){
       const localimages = JSON.parse(localStorage.getItem("userImages"))
       console.log(localimages)
       finalimagedata.push(localimages)
+    }
+    
+    if (image){
+      const data = await axios.post("http://localhost:5000/upload",{userId,image})
+      console.log(data)
+      // arr.push(data)
     }
 }
 const submitCards = async()=>{
