@@ -6,9 +6,16 @@ const path = require("path")
 const cors = require("cors")
 const cloudinary=require("cloudinary")
 const Image = require("./models/Image")
+const cookiesparser = require("cookie-parser");
+const app = express();
+const bodyparser = require("body-parser");
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "500kb", extended: true }));
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(cookiesparser());
+
 connectDB()
 
-const app = express();
 
 app.use(express.json())
 app.use(cors())
@@ -30,18 +37,18 @@ app.post("/upload",(req,res)=>{
 
 
 // --------------------------deployment------------------------------
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "./client/build")));
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "./client/build")));
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-  );
-} 
-else {
-  app.get("/", (req, res) => {
-    res.send("API is running..");
-  });
-}
+//   app.get("*", (req, res) =>
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+//   );
+// } 
+// else {
+//   app.get("/", (req, res) => {
+//     res.send("API is running..");
+//   });
+// }
 
 
 // --------------------------deployment------------------------------

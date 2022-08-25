@@ -5,6 +5,8 @@ const ErrorResponse = require("../utlis/errorresponse.js");
 const sendEmail = require("../utlis/sendEmail.js");
 const user = require("../models/User");
 const emailValidator = require("deep-email-validator");
+const cookiesparser = require("cookie-parser");
+
 
 
 async function isEmailValid(email) {
@@ -44,7 +46,7 @@ exports.register = async (req, res, next) => {
      
     });
   }catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    // res.status(500).json({ success: false });
   }
 };
 
@@ -68,28 +70,31 @@ return res.status(500).json("invalid credentials user not found")
         // res.status(201).json(user)
 
     sendToken(user, 200, res);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message});
+  } catch (err) {
+    res.status(500).json({ success: false});
   }
 };
 
 
-exports.isAuthuser =async (req, res, next) => {
+exports.isAuthuser = (async (req, res, next) => {
   const { token } = req.cookies;
-  console.log("hii");
+  // console.log(token);
   if (!token) {
     return next(new ErrorResponse("plese login to access this resource", 401));
   }
   const decodedData = jwt.verify(token, process.env.JWT_SECRET);
   req.user = await User.findById(decodedData.id);
   next();
-};
-exports.dashboard = async (req, res, next) => {
+});
+exports.dashboard = (async (req, res, next) => {
   if (req.session) {
     console.log(req.session.email);
   }
   const user = await User.findById(req.user.id);
-  
+  // const productCount = await Product.countDocuments()
+  // if (!products) {
+  //   return next(new ErrorResponse("product not found", 404));
+  // }
   res.status(200).json({
     sucess: true,
     user,
@@ -98,19 +103,35 @@ exports.dashboard = async (req, res, next) => {
   });
   // console.log("user");
   // console.log({token});
-}
+});
 
 
 exports.getdata=async(req,res)=>{
-  let imgdata = await Image.find()
+  // req.body.userimg
+  // console.log(req.body.user._id);
+  let imgdata = await Image.find({userId:req.body.user._id})
+ console.log(imgdata);
  return res.json(imgdata)
 }
 
 exports.getuserdata  = async(req,res)=>{
   let userdata = await User.find()
- return res.json(userdata)
+  res.status(200).send(userdata)
 }
 
+const sendToken = (user, statusCode, res) => {
+  const token = user.getSignedToken();
+//options for cookies
+  const options = {
+    expire: new Date(Date.now + 24 * 60 * 60 * 1000),
+    httpOnly: true,
+  };
+  res.status(statusCode).cookie("token", token, options).json({
+    success: true,
+    user,
+    token,
+  });
+};
 
 
 //forget password
@@ -188,16 +209,4 @@ exports.getuserdata  = async(req,res)=>{
 //   }
 // };
 
-const sendToken = (user, statusCode, res) => {
-  const token = user.getSignedToken();
-//options for cookies
-  const options = {
-    expire: new Date(Date.now + 24 * 60 * 60 * 1000),
-    httpOnly: true,
-  };
-  res.status(statusCode).cookie("token", token, options).json({
-    success: true,
-    user,
-    token,
-  });
-};
+
