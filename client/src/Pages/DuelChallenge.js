@@ -2,16 +2,28 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import './DuelChallenge.css';
+import {useDispatch,useSelector} from "react-redux"
+import { postimage } from '../actions/apiAction';
+import img1 from "../images/Plus.png"
+
+
 
 const DuelChallenge = () => {
-  const [image,setImage] = useState("")
+  const{image,isImage,loading} = useSelector((state)=>state.image)
+  const dispatch = useDispatch()
+  const [targetname,settargetname] = useState("")
   const [url,setUrl] = useState("")
+  const [newarr,setNewarr] = useState([])
+  const [filedata,setFiledata] = useState("")
+  const [finalimagedata,setfinalimagedata] = useState([])
   const [arr,setArr] = useState([])
     const [imgdata, setImgdata] = useState({
     url:"",
     userId:"",
   });
   const [userdata,setUserdata] = useState([])
+  const [localuser,setlocaluser]= useState("")
+  const [newuserdata,setnewuserdata] = useState([])
   const [userId, setUserId] = useState("");
   const [userprofiledata, setUserprofiledata] = useState([]);
   const [show, setShow] = useState(false);
@@ -25,65 +37,93 @@ const DuelChallenge = () => {
   const getuserdata = async()=>{
     const res = await axios.get("http://localhost:5000/api/auth/getuserdata")
     setUserdata(res.data)
+    const localdata = JSON.parse(localStorage.getItem("nftuser"))
+    
+const filtereduser =  userdata.filter((items,index)=>{
+    
+  return(
+  items._id!==localdata.user._id
+  )
+
+    })
+
+    setnewuserdata(filtereduser)
   }
+  getuserdata()  
+
+
+  async function getimages(){
+  //   const res= await axios.get("http://localhost:5000/api/auth/getdata")
+  // setArr([res.data])
+  // const newimagedata=arr.filter((items,index)=>{
+  // return(
+  //   items.userId===userId
+  //   )
+  // })
+  // setfinalimagedata(newimagedata)
+  // // console.log(setfinalimagedata)
+  }
+
   
   
   const handleupload = async(e)=>{
-    console.log(e.target.value)
-
 const files = e.target.files[0]
-setImage(files)
+setFiledata(files)
 const userdata = JSON.parse(localStorage.getItem("nftuser"))
 setUserprofiledata([userdata]);
 setUserId(userdata.user._id);
+setlocaluser(userdata.user.username)
+
   }
-
-
 const handlesubmit = async()=>{
   let data = new FormData()
-  data.append("file",image)
+  data.append("file",filedata)
   data.append("upload_preset","nftimg")
   data.append("cloud_name","degu3b9yz")
+  dispatch(postimage(data,userId))
+ 
+//   await fetch("https://api.cloudinary.com/v1_1/degu3b9yz/image/upload", {
+//     method: "POST",
+//     body: data,
+//   }).then((res)=>res.json()).then((data)=>{
+//   const imgUrl = data.url
+//   setUrl(data.url)
+//   arr.push(imgUrl)
+
+
+//   console.log(imgdata)
   
-  await fetch("https://api.cloudinary.com/v1_1/degu3b9yz/image/upload", {
-    method: "POST",
-    body: data,
-  }).then((res)=>res.json()).then((data)=>{
-  const imgUrl = data.url
-  setUrl(data.url)
-  arr.push(imgUrl)
-  imgdata.userId = userId;
-  imgdata.url =data.url;
-
-  console.log(imgdata)
-  
-}).catch((err)=>{
-  console.log(err)
-})
+// }).catch((err)=>{
+//   console.log(err)
+// })
 
 
-setShow(false);
+
+setShow(false)
 }
+async function postImageUrl(){
+  // if (image){
+  //   const data = await axios.post("http://localhost:5000/upload",{userId,image})
+  //   console.log(data)
+  //   // arr.push(data)
+  // }
 
-
-function postImageUrl(){
-  if (imgdata.url) {
-    fetch("http://localhost:5000/upload",{
-      method: "POST",
-      headers:{
-        "Content-Type":"Application/Json",
-      },
-      body:JSON.stringify(imgdata),
-    });
-  }
-  console.log("data")
-
+  imgdata.userId = userId;
+  imgdata.url =image;
+  console.log(imgdata)
+  newarr.push(imgdata)
+    if(image){
+      localStorage.setItem("userImages",JSON.stringify(newarr))
+      const localimages =  JSON.parse(localStorage.getItem("userImages"))
+      console.log(localimages)
+      finalimagedata.push(localimages)
+    }
 }
 
 useEffect(()=>{
   postImageUrl()
-  getuserdata()
-},[imgdata.url])
+  getimages()
+},[image])
 
 return (
   <div>
@@ -92,16 +132,28 @@ return (
                <div className='section-title'>
                     <h2>Commence Duel/Challenge</h2>
                 </div>
+
+                <div className='search-bar'>
+           <div class="input-group md-form form-sm form-2 pl-0">
+            <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search"/>
+            <div class="input-group-append">
+              <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                  aria-hidden="true"></i></span>
+            </div>
+          </div>
+           </div>
+
+
                 <div className='row'>
                 <div className='tab-challange'>
           
                 <div className='tab-section'> 
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
                     {
-                      userdata.map((items,index)=>{
+                      newuserdata.map((items,index)=>{
                         return(
                       <li className="nav-item" role="presentation">
-                          <button className="nav-link active tab-btn" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">  <img src="./User_avatar.png" alt="img"/>{items.username}</button>
+                          <button value={items.username} onClick={(e)=>settargetname(e.target.value)} className="nav-link active tab-btn" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">  <img src={require(`../images/tabicon-${index+1}.png`)} alt="img"/>{items.username}</button>
                       </li>
 
                         )
@@ -203,12 +255,13 @@ return (
                       <div className='dchallenge-rt-1'>
 
                         {
-                          arr.map((items,index)=>{
+                          finalimagedata.map((items,index)=>{
+                            console.log()
                             return(
                               <>
                               <div className='dule-img1'>
-                                <img src={items} alt="img"/>   
-                        </div>
+                                <img src={items[index].url} alt="nftimages"/>   
+                             </div>
 
                               </>
                             )
@@ -220,9 +273,11 @@ return (
                                <div className='dule-img1'>
                                  <img src="./NFT img2.png" alt="img"/>
                                  </div> */}
-                                 <div className='dule-img1'>
+                                 <div style={{border:"2px dashed #4A6BBC",height:"250px",borderRadius:"16px"}} className='dule-img1'>
                                    {
-                                 <div onClick={handleShow} class="icon-plus button">+</div>
+                                 <div style={{textAlign:"center",position:"relative",top:"65px",left:"20px"}}  onClick={handleShow} class="icon-plus button">
+                                  <img src = {img1}/>
+                                 </div>
                                    }
                                 
                                  </div>                                
@@ -235,7 +290,7 @@ return (
                             <div className='dule-rt-2'>
                                 <div class="clearfix">
                                        <img src="./tabicon-2.png" alt="img"/>
-                                    <button type="button" class="btn float-end">Stephen</button>
+                                    <button type="button" class="btn float-end">{targetname}</button>
                                  </div> 
                                 </div>
                                 <div className='challenge-list'>

@@ -18,15 +18,14 @@ const PORT = process.env.PORT ||5000;
 
 
 app.post("/upload",(req,res)=>{
-  
   const image = new Image({
-    url:req.body.url,
-    userId:req.body.userId
+    userId:req.body.userId,
+    url:req.body.image
   })
   
   image.save()
 
-  return res.json({success:"data added successfully"})
+  return res.json(image)
 })
 
 

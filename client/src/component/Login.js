@@ -31,7 +31,7 @@ localStorage.setItem("nftuser", JSON.stringify({ ...res.data}))
 		console.log(res.data)
 		if(localStorage.getItem("nftuser")){
 			alert.success("login successfull")
-			navigate("/profile")
+			navigate("/DuelSomeone")
 			
 		}else{
 			alert.error("login unsuccessfull")

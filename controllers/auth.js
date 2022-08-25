@@ -14,9 +14,6 @@ exports.register = async (req, res, next) => {
    
   const { username, email, password,dob} = req.body;
 
-  // if(password.length<6){
-  //     return res.status(400).json("password must be 6 character long")
-  // }
 
   try {
   await  User.findOne({ email}, async (err, user) => {
@@ -41,14 +38,13 @@ exports.register = async (req, res, next) => {
             {url:"https://res.cloudinary.com/degu3b9yz/image/upload/v1660723144/giphy_jcbcps.gif"}
           ]
         });
-
       sendToken(user, 200, res);
       }
 
      
     });
   }catch (err) {
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({ success: false, error: err.message });
   }
 };
 
@@ -105,10 +101,8 @@ exports.dashboard = async (req, res, next) => {
 }
 
 
-exports.getdata  = async(req,res)=>{
-
+exports.getdata=async(req,res)=>{
   let imgdata = await Image.find()
-  
  return res.json(imgdata)
 }
 

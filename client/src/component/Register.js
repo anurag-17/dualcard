@@ -18,6 +18,7 @@ export const Register = () => {
         email:"",
         password:"",
 		dob:"",
+        avatar:""
     })
     
     const handleChange = async(event) => {
@@ -34,6 +35,7 @@ myForm.set("username", inputvalue.username);
 myForm.set("email", inputvalue.email);
 myForm.set("password", inputvalue.password);
 myForm.set("dob", inputvalue.dob);
+myForm.set("avatar",inputvalue.avatar)
 
 // dispatch(register(myForm))
 // const res = await fetch("http://localhost:5000/api/auth/register",{
@@ -67,7 +69,8 @@ if(localStorage.getItem("nftuser")){
 	  username:"",
 	  email: "",
 	  password:"",
-	  dob:""
+	  dob:"",
+      avatar:"",
   });
 
     }

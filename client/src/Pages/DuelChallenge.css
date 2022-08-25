@@ -40,7 +40,6 @@
 }
 
 .dule-img1:nth-child(4) {
-    border: 1px dashed #4A6BBC;
     border-radius: 20px;
     opacity: 1;
 }
@@ -141,9 +140,11 @@
 .button {
     cursor: pointer;
     text-align: center;
+    width:150px;
+    height:150px
   }
   
-  .icon-plus {
+  /* .icon-plus {
     position: relative;
     border-radius: 10%;
     color: #282054;
@@ -154,11 +155,11 @@
     text-align: center;
     transition: all .3s;
     z-index: 1;
-    /* margin: 2.5em auto; */
+  
     position: relative;
     left: 48px;
-   top: 12px;
-  }
+   top: 50px;
+  } */
   
   .icon-plus:before {
     background-color: #43387f;
