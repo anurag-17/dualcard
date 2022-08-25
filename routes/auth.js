@@ -6,7 +6,7 @@ router.route("/register").post(register);
 
 router.route("/login").post(login);
 
-router.route("/getdata").get(getdata)
+router.route("/getdata").post(getdata)
 
 router.route("/getuserdata").get(getuserdata)
 

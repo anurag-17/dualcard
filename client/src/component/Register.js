@@ -52,8 +52,11 @@ myForm.set("avatar",inputvalue.avatar)
 // })
 
 
-const res = await axios.post("http://localhost:5000/api/auth/register",inputvalue)
-
+const res = await axios.post("http://localhost:5000/api/auth/register",inputvalue).then((data)=>{
+    alert.success("signup successfull")
+}).catch((error)=>{
+    alert.error()
+})
 localStorage.setItem("nftuser",JSON.stringify({...res.data}))
 
 

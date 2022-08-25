@@ -5,6 +5,8 @@ const ErrorResponse = require("../utlis/errorresponse.js");
 const sendEmail = require("../utlis/sendEmail.js");
 const user = require("../models/User");
 const emailValidator = require("deep-email-validator");
+const bodyParser = require("body-parser")
+
 
 
 async function isEmailValid(email) {
@@ -28,7 +30,6 @@ exports.register = async (req, res, next) => {
         return res.status(500).json("user already registered")
       }
        else {
-        
         const user = await User.create({
           username,
           email,
@@ -44,7 +45,7 @@ exports.register = async (req, res, next) => {
      
     });
   }catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    // res.status(500).json("");
   }
 };
 
@@ -102,7 +103,8 @@ exports.dashboard = async (req, res, next) => {
 
 
 exports.getdata=async(req,res)=>{
-  let imgdata = await Image.find()
+  console.log(req.body.user)
+let imgdata = await Image.find({userId:req.body.userId})
  return res.json(imgdata)
 }
 

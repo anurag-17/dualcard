@@ -9,6 +9,8 @@ import img1 from "../images/Plus.png"
 
 
 const DuelChallenge = () => {
+
+const data = localStorage.getItem("nftuser")
   const{image,isImage,loading} = useSelector((state)=>state.image)
   const dispatch = useDispatch()
   const [targetname,settargetname] = useState("")
@@ -27,6 +29,7 @@ const DuelChallenge = () => {
   const [userId, setUserId] = useState("");
   const [userprofiledata, setUserprofiledata] = useState([]);
   const [show, setShow] = useState(false);
+  const [userimagedata, setuserimagedata]= useState([])
 
 
   const handleClose = () =>{
@@ -35,7 +38,7 @@ const DuelChallenge = () => {
   const handleShow = () => setShow(true);
 
   const getuserdata = async()=>{
-    const res = await axios.get("http://localhost:5000/api/auth/getuserdata")
+    const res = await axios.post("http://localhost:5000/api/auth/getuserdata")
     setUserdata(res.data)
     const localdata = JSON.parse(localStorage.getItem("nftuser"))
     
@@ -46,25 +49,31 @@ const filtereduser =  userdata.filter((items,index)=>{
   )
 
     })
-
+    
+    
     setnewuserdata(filtereduser)
+
+    console.log(newuserdata)
   }
   getuserdata()  
 
-
-  async function getimages(){
-  //   const res= await axios.get("http://localhost:5000/api/auth/getdata")
-  // setArr([res.data])
-  // const newimagedata=arr.filter((items,index)=>{
-  // return(
-  //   items.userId===userId
-  //   )
-  // })
+getimages()
+ async function getimages(){
+      const res= await axios.post("http://localhost:5000/api/auth/getdata",data).then((data)=>{
+        console.log(data)
+      }).catch((err)=>{
+        console.log(err)
+      })
+console.log(res.data)
+  setuserimagedata(res)
+ 
   // setfinalimagedata(newimagedata)
-  // // console.log(setfinalimagedata)
+  // console.log(setfinalimagedata)
   }
 
-  
+
+
+
   
   const handleupload = async(e)=>{
 const files = e.target.files[0]
@@ -97,16 +106,14 @@ const handlesubmit = async()=>{
 //   console.log(err)
 // })
 
-
-
 setShow(false)
 }
 async function postImageUrl(){
-  // if (image){
-  //   const data = await axios.post("http://localhost:5000/upload",{userId,image})
-  //   console.log(data)
-  //   // arr.push(data)
-  // }
+  if (image){
+    const data = await axios.post("http://localhost:5000/upload",{userId,image})
+    console.log(data)
+    // arr.push(data)
+  }
 
   imgdata.userId = userId;
   imgdata.url =image;
@@ -114,15 +121,20 @@ async function postImageUrl(){
   newarr.push(imgdata)
     if(image){
       localStorage.setItem("userImages",JSON.stringify(newarr))
-      const localimages =  JSON.parse(localStorage.getItem("userImages"))
+      const localimages = JSON.parse(localStorage.getItem("userImages"))
       console.log(localimages)
       finalimagedata.push(localimages)
     }
 }
+const submitCards = async()=>{
+  
+  
+}
+
+
 
 useEffect(()=>{
   postImageUrl()
-  getimages()
 },[image])
 
 return (
@@ -215,7 +227,8 @@ return (
                                  </div>                                
                                 </div>
                                 <div className='btn-duel-right'>
-                                    <button className='hero-btn'>SELECT CARDS</button>
+                                    <button onClick={submitCards} className='hero-btn'>SELECT CARDS</button>
+
                                 </div>
                    </div>                            
                   <div className='col-md-6 tab-right'>
@@ -315,6 +328,8 @@ return (
                         </div>
                     </div>
                   </div>
+            
+
 
 
                   <Modal style = {{height:"800px"}} show={show} onHide={handleClose}>
