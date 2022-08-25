@@ -47,7 +47,7 @@ const DuelChallenge = () => {
     setnewuserdata(filtereduser);
   };
   getuserdata();
-
+  
   async function getimages() {
     const res = await axios.post(
       "http://localhost:5000/api/auth/getdata",
@@ -109,6 +109,10 @@ const DuelChallenge = () => {
   //     finalimagedata.push(localimages);
   //   }
   // }
+  useEffect(() => {
+    getimages()
+  }, [])
+  
 
   return (
     <div>
@@ -117,7 +121,7 @@ const DuelChallenge = () => {
           <div className="section-title">
             <h2>Commence Duel/Challenge</h2>
           </div>
-          <button onClick={getimages}>sfjahdfkhaksd</button>
+          {/* <button onClick={getimages}>sfjahdfkhaksd</button> */}
 
           <div className="search-bar">
             <div class="input-group md-form form-sm form-2 pl-0">
@@ -267,7 +271,7 @@ const DuelChallenge = () => {
                         <div className="col-md-6 tab-left">
                           <div className="dchallenge-rt-1">
                             {finalimagedata.map((items, index) => {
-                              console.log(finalimagedata);
+                              // console.log(finalimagedata);
                               return (
                                 <>
                                   <div className="dule-img1">
