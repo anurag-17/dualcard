@@ -8,13 +8,16 @@ import Home from './Pages/Home';
 import Header from "./component/Header"
 import Footer from "./component/Footer"
 import BuyDuelCard from "./Pages/BuyDuelCard"
-import DuelSomeone from "./Pages/DuelSomeone"
 import DuelChallenge from './Pages/DuelChallenge';
 import ICOInformation from "./Pages/ICOInformation"
 import Marketplace from "./Pages/Marketplace"
 import DuelReceived from "./component/DuelReceived"
 import DuelAccepted from "./component/DuelAccepted"
 import Auction from "./component/Auction"
+import Winner from "./Pages/Winner"
+import Leaderboard from "./Pages/Leaderboard"
+import AboutRules from "./Pages/AboutRules"
+
 
 
 
@@ -28,12 +31,15 @@ function App() {
         <Route path ="/register" element={<PrivateRoute><Register/></PrivateRoute>}/>
         <Route path ="/profile" element={<Dashboard/>}/>
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
+        <Route path = "/winner" element = {<Winner/>}/>
         <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/>
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
+        <Route path = "/AboutRules" element = {<AboutRules/>}/>
         <Route path = "/Marketplace" element = {<Marketplace/>}/>
         <Route path = "/DuelReceived" element = {<DuelReceived/>}/>
         <Route path = "/DuelAccepted" element = {<DuelAccepted/>}/>
         <Route path = "/Auction" element = {<Auction/>}/>
+        <Route path = "/leaderboard" element = {<Leaderboard/>}/>
       </Routes>
     <Footer/>
     </div>

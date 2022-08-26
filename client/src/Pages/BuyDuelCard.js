@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 const BuyDuelCard = () => {
   return (
-    <div>
+    <div className='body-main'>
       <div className='buyduelcard'>
         <div className='container'>
           <div className='section-title'>
@@ -15,7 +15,7 @@ const BuyDuelCard = () => {
             <div className='buydue-bg'>
               <div className='buy-cont'>
                 <div className='buyduel-img'>
-                  <img src="/challenge-img/1.jpg" alt="img"/> 
+                  <img src="./challenge-img/1.jpg" alt="img"/> 
                 </div>
                 <div className='buy-newimg'>
                   <div className='buy-new1'> <img src="./Binancelogo.png" alt="img"/></div>

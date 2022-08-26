@@ -3,8 +3,10 @@ import './Auction.css';
 import Form from 'react-bootstrap/Form';
 
 export const Auction = () => {
+ 
+
   return (
-    <div>
+    <div className='body-main'>
         <div className='auction-sec'>
             <div className='container'>
                 <div className='section-title'>
@@ -17,35 +19,35 @@ export const Auction = () => {
                         </div>
                         <div className='auction-grid'>
                                 <div className='auction-img1'>
-                                  <img src="./auctionimg/auction-img1.png" alt="img"/>
+                                <img src="./challenge-img/1.jpg" alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                  <img src="./auctionimg/auction-img2.png" alt="img"/>
+                                <img src="./challenge-img/2.jpg" alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                  <img src="./auctionimg/auction-img3.png" alt="img"/>
+                                <img src="./challenge-img/3.jpg" alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                  <img src="./auctionimg/auction-img4.png" alt="img"/>
+                                <img src="./challenge-img/4.jpg" alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                  <img src="./auctionimg/auction-img5.png" alt="img"/>
+                                <img src="./challenge-img/5.jpg" alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                  <img src="./auctionimg/auction-img6.png" alt="img"/>
+                                <img src="./challenge-img/6.jpg" alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                  <img src="./auctionimg/auction-img7.png" alt="img"/>
+                                <img src="./challenge-img/7.jpg" alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                  <img src="./auctionimg/auction-img8.png" alt="img"/>
+                                <img src="./challenge-img/8.jpg" alt="img"/>
                                 </div>                                
                         </div>
 
                     </div>
                     <div className='col-md-4 col-sm-4 aut-right'>
                         <div className='auction-profile'>
-                          <img src="./auctionimg/auction-img1.png" alt="img"/>
+                        <img src="./challenge-img/1.jpg" alt="img"/>
                         </div>
                         <div className='auction-ct'>
                             <div class='actprize-btn1'>
@@ -55,13 +57,13 @@ export const Auction = () => {
                             </Form.Group>
                             </div>
                             <div class='actprize-btn1'>
-                                <h5>currency</h5>
-                                <Form.Select aria-label="Default select example">
-                                    <option>Open this select menu</option>
-                                    <option value="1">BTC</option>
-                                    <option value="2">BTC</option>
-                                    <option value="3">BTC</option>
-                                </Form.Select>
+                                <h5>currency</h5>                               
+                                <select class="form-select" aria-label="Floating label select example" id="id_select2_example">
+                                    <option  value="Required" data-img_src="">Open this select menu</option>
+                                    <option data-img_src="./Bitcoin-icon.png">BTC</option>
+                                    <option data-img_src="./Bitcoin-icon.png">BTC</option>
+                                    <option data-img_src="./Bitcoin-icon.png">BTC</option>
+                                  </select>
                             </div>
                         </div>
                         <div className='btn-duel-right'>

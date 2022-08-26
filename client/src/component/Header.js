@@ -28,27 +28,34 @@ console.log(data)
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-menu">
-                <li className="nav-item" to="/">                    
-                    <Link  to="BuyDuelCard" className="nav-link" aria-current="page">BuyDuelCard</Link>
-                    </li>                    
-                    <li className="nav-item" onClick={()=>navigate("/Marketplace")} to='/Marketplace'>                                        
-                    <Link  to="Marketplace" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Marketplace</Link>
-                    </li>     
-                    <li className="nav-item" onClick={()=>navigate("/DuelSomeone")} to='/DuelReceived'>                                        
-                    <Link  to="/DuelSomeone" className="nav-link"  data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Duel Someone</Link>
+                    <li className="nav-item" to="/">                    
+                       <Link  to="BuyDuelCard" className="nav-link" aria-current="page">BuyDuelCard</Link>
+                    </li>    
+                    <li class="nav-item dropdown">
+                        <Link class="nav-link dropdown-toggle" to="/Marketplace" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Marketplace
+                        </Link>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li>
+                          <Link to="Marketplace" class="dropdown-item">Marketplace</Link>
+                          </li> 
+                          <li>
+                            <Link to="Auction" class="dropdown-item">Auction Your Cards</Link>
+                          </li>
+                          <li>
+                          <Link to="Leaderboard" class="dropdown-item">Leaderboards</Link>
+                          </li>     
+                        </ul>
+                      </li>    
+                    <li className="nav-item" onClick={()=>navigate("/DuelSomeone")} to='/DuelSomeone'>                                        
+                    <Link  to="/DuelSomeone" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Duel Someone</Link>
                     </li> 
                     <li className="nav-item" onClick={()=>navigate("/AboutRules")} to='/AboutRules'>                                        
-                    <Link  to="/AboutRules" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">About / Rules</Link>
+                    <Link  to="AboutRules" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">About / Rules</Link>
                     </li>  
                     <li className="nav-item" onClick={()=>navigate("/ICOInformation")} to='/ICOInformation'>                                        
                     <Link  to="ICOInformation" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">ICO Information</Link>
-                    </li>  
-                    <li className="nav-item" onClick={()=>navigate("/DuelAccepted")} to='/DuelAccepted'>                                        
-                    <Link  to="DuelAccepted" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">DuelAccepted</Link>
-                    </li>      
-                    <li className="nav-item" onClick={()=>navigate("/Auction")} to='/Auction'>                                        
-                    <Link  to="Auction" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Auction</Link>
-                    </li>                                 
+                    </li>                                                    
                      
                 </ul>
                 <form className="d-flex">  
