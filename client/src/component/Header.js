@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { Link , useNavigate} from "react-router-dom";
+// import imga from "../images/Logo.png"
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Container from 'react-bootstrap/Container';
 import { Card, Form } from "react-bootstrap";
@@ -25,7 +26,7 @@ const logoutuser = () => {
          <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container-fluid">
                 <Link className="navbar-brand" to = "/">
-                    <img src='/Logo.png'></img>
+                    <img src={'/Logo.png'} alt=""></img>
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
