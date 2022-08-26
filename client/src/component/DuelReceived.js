@@ -80,7 +80,7 @@ getuserchallenge()
                                 challengeuser.map((items,index)=>{
                                     return(
                                         items.player_1.map((item,i)=>{
-                                           console.log(item.text)
+                                           console.log(item)
                                            return(
                                                <>
                                    <h4>TERMS</h4>
