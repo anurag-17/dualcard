@@ -10,7 +10,6 @@ import img1 from "../images/Plus.png"
 
 const DuelChallenge = () => {
 
-const data = localStorage.getItem("nftuser")
   const{image,isImage,loading} = useSelector((state)=>state.image)
   const dispatch = useDispatch()
   const [targetname,settargetname] = useState("")
@@ -59,6 +58,8 @@ const filtereduser =  userdata.filter((items,index)=>{
 
 getimages()
  async function getimages(){
+const data = JSON.parse(localStorage.getItem("nftuser"))
+console.log()
       const res= await axios.post("http://localhost:5000/api/auth/getdata",data).then((data)=>{
         console.log(data)
       }).catch((err)=>{

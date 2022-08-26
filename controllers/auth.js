@@ -103,8 +103,8 @@ exports.dashboard = async (req, res, next) => {
 
 
 exports.getdata=async(req,res)=>{
-  console.log(req.body.user)
-let imgdata = await Image.find({userId:req.body.userId})
+  console.log(req.body)
+let imgdata = await Image.find({userId:req.body.user._id})
  return res.json(imgdata)
 }
 
