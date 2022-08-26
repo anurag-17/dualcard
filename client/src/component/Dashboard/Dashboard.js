@@ -83,10 +83,10 @@ useEffect(() => {
   };
 
 
-  const logoutuser = () => {
-    localStorage.removeItem("nftuser");
-    navigate("/register");
-  };
+  // const logoutuser = () => {
+  //   localStorage.removeItem("nftuser");
+  //   navigate("/register");
+  // };
 
   return (
     <>
@@ -94,10 +94,7 @@ useEffect(() => {
         {userprofiledata.map((items, index) => {
           return (
             <>
-              <Card md={6} style={{ border: "2px solid black" }}>
-                <h2> Welcome! {items.user.username}</h2>
-                <button onClick={logoutuser}>logout</button>
-              </Card>
+              
             
 {userdata.map((items,index)=>{
   return(

@@ -15,6 +15,7 @@ import Marketplace from "./Pages/Marketplace"
 import DuelReceived from "./component/DuelReceived"
 import DuelAccepted from "./component/DuelAccepted"
 import Auction from "./component/Auction"
+import { Thankyou } from './Thankyou';
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path = "/DuelReceived" element = {<DuelReceived/>}/>
         <Route path = "/DuelAccepted" element = {<DuelAccepted/>}/>
         <Route path = "/Auction" element = {<Auction/>}/>
+        <Route path = "/Thankyou" element = {<Thankyou/>}/>
       </Routes>
     <Footer/>
     </div>

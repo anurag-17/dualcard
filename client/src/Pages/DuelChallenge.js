@@ -351,7 +351,7 @@ console.log(e)
                             </div>
                           </div>
                           <div className="btn-duel-right challenge">
-                            <Link to = "/DuelReceived">
+                            <Link to = "/Thankyou">
                             <button
                               onClick={sendValue}
                               className="hero-btn challenge"

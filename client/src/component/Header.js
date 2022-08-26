@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Link , useNavigate} from "react-router-dom";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Container from 'react-bootstrap/Container';
-import { Form } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -12,6 +12,10 @@ const [show,setShow] = useState(false)
 const navigate  = useNavigate()
 const data = JSON.parse(localStorage.getItem("nftuser"))
 console.log(data)
+const logoutuser = () => {
+  localStorage.removeItem("nftuser");
+  navigate("/register");
+};
 
 
   return (
@@ -55,14 +59,21 @@ console.log(data)
               
                   {
                     localStorage.getItem("nftuser")?
+                    <div>
+
                     <Link to="/profile">
                       
                     <button className="btn btn-outline head-btn" type="submit">{data.user.username}</button>
                     </Link>
+                    <button className="btn btn-outline head-btn" style={{marginLeft:"10px"}}  onClick={logoutuser}>logout</button>
+                    {/* <button onClick={logoutuser}>logout</button> */}
+                    </div>
                     :
                     <Link to="/register">
-                    <button className="btn btn-outline head-btn" type="submit">SignIn btn</button>
+                    <button className="btn btn-outline head-btn" type="submit">SignIn </button>
                     </Link>
+                  
+                    
                   }
                              
                 </form>
