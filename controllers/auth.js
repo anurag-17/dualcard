@@ -115,8 +115,7 @@ exports.sendchallange = async (req, res) => {
       {
         text: req.body.playeronetext,
         images: {
-          public_id: req.body.playeronepublic_id,
-          url: req.body.playeronesecure_url,
+          url: req.body.playerone_url,
         },
         userId:req.body.playeroneuserid
       },
@@ -125,8 +124,7 @@ exports.sendchallange = async (req, res) => {
       {
         text: req.body.playertwotext,
         images: {
-          public_id: req.body.playertwopublic_id,
-          url: req.body.playertwosecure_url,
+          url: req.body.playertwo_url,
         },
         userId:req.body.playertwouserid
       },

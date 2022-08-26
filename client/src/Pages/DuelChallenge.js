@@ -8,11 +8,10 @@ import img1 from "../images/Plus.png";
 import { Link } from "react-router-dom";
 
 const DuelChallenge = () => {
-  const { image, isImage, loading } = useSelector((state) => state.image);
+  const { image, isImage, loading} = useSelector((state) => state.image);
   const dispatch = useDispatch();
   const [targetname, settargetname] = useState("");
   const [textvalue, setTextvalue] = useState("");
-  const [url, setUrl] = useState("");
   const [newarr, setNewarr] = useState([]);
   const [filedata, setFiledata] = useState("");
   const [finalimagedata, setfinalimagedata] = useState([]);
@@ -27,6 +26,18 @@ const DuelChallenge = () => {
   const [userprofiledata, setUserprofiledata] = useState([]);
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
+
+  const[challenge,setchallenge] = useState({
+
+    playeronetext:"",
+    playerone_url:"",
+    playeroneuserid:"",
+    userId:"",
+    playertwotext:"",
+    playertwo_url:"",
+    playertwouserid:"" 
+    
+  })
 
   // console.log(targetname)
   const handleClose = () => {
@@ -47,14 +58,13 @@ const DuelChallenge = () => {
     
   };
   getuserdata();
-
   getimages();
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
 
     console.log();
     const res = await axios
-      .post("http://localhost:5000/api/auth/getdata", data)
+      .post("http://localhost:5000/api/auth/getdata",data)
       .then((data) => {
         setuserimagedata(data.data);
       })
@@ -131,6 +141,7 @@ console.log(e)
 
   useEffect(() => {
     postImageUrl();
+
   }, [image]);
 
   return (
