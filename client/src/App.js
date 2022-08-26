@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Login } from './component/Login';
 import { Register } from './component/Register';
-import {Routes,Route} from "react-router-dom"
+import {Routes,Route, Navigate} from "react-router-dom"
 import { Dashboard } from './component/Dashboard/Dashboard';
 import Home from './Pages/Home';
 import Header from "./component/Header"
@@ -28,7 +28,7 @@ function App() {
         <Route path ="/register" element={<Register/>}/>
         <Route path ="/profile" element={<Dashboard/>}/>
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
-        <Route path = "/DuelSomeone" element = {<DuelChallenge/>}/>
+        <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/>
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/Marketplace" element = {<Marketplace/>}/>
         <Route path = "/DuelReceived" element = {<DuelReceived/>}/>
@@ -38,6 +38,18 @@ function App() {
     <Footer/>
     </div>
   );
+}
+
+
+export function ProtectedRoute(props){
+
+  if(!localStorage.getItem("nftuser"))
+  {
+    <Navigate to="/register"/>
+  }else{
+    return props.children
+  }
+
 }
 
 export default App;

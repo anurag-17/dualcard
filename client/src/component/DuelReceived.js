@@ -29,6 +29,15 @@ getuserchallenge()
                             <div className='duel-sldier'>
 
                             <Carousel>
+{
+    challengeuser.map((items,index)=>{
+        return(
+            items.player_1.map((item,i)=>{
+                console.log(item.images[0].url)
+            })
+        )
+    })
+}
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
@@ -63,7 +72,7 @@ getuserchallenge()
                             </div>
                             <div className='duel-des'>
                               <div class="clearfix">
-                                <img src="./tabicon8.png" alt="img"/>
+                                <img src="./tabicon8.png" alt="newimg"/>
                                 <button type="button" class="btn float-end">Estebana</button>
                               </div>  
                               <div className='duel-leftgreen-text mt-3'>
@@ -80,7 +89,7 @@ getuserchallenge()
                                 challengeuser.map((items,index)=>{
                                     return(
                                         items.player_1.map((item,i)=>{
-                                           console.log(item)
+                                           console.log(item.images)
                                            return(
                                                <>
                                    <h4>TERMS</h4>
@@ -89,7 +98,6 @@ getuserchallenge()
                                            )
        
                                         })
-
                                     )
                                 })
                             }
