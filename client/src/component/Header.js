@@ -6,6 +6,7 @@ import { Form } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import logo from "../images/Logo.png"
 
 const Header = () => {
 const [show,setShow] = useState(false)
@@ -21,7 +22,7 @@ console.log(data)
          <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container-fluid">
                 <Link className="navbar-brand" to = "/">
-                    <img src='/Logo.png'></img>
+                    <img src={logo}></img>
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
