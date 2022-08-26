@@ -37,7 +37,7 @@ const DuelChallenge = () => {
   const handleShow = () => setShow(true);
 
   const getuserdata = async()=>{
-    const res = await axios.post("http://localhost:5000/api/auth/getuserdata")
+    const res = await axios.get("http://localhost:5000/api/auth/getuserdata")
     setUserdata(res.data)
     const localdata = JSON.parse(localStorage.getItem("nftuser"))
     
@@ -51,23 +51,26 @@ const filtereduser =  userdata.filter((items,index)=>{
     
     
     setnewuserdata(filtereduser)
-
-    console.log(newuserdata)
   }
   getuserdata()  
 
-getimages()
+
+  getimages()
  async function getimages(){
 const data = JSON.parse(localStorage.getItem("nftuser"))
+
 console.log()
       const res= await axios.post("http://localhost:5000/api/auth/getdata",data).then((data)=>{
-        console.log(data)
+      
+        setuserimagedata(data.data)
       }).catch((err)=>{
-        console.log(err)
+        if(err){
+          console.log(err)
+        }
       })
-console.log(res.data)
-  setuserimagedata(res)
- 
+
+  
+//  console.log(userimagedata)
   // setfinalimagedata(newimagedata)
   // console.log(setfinalimagedata)
   }
@@ -269,12 +272,12 @@ return (
                       <div className='dchallenge-rt-1'>
 
                         {
-                          finalimagedata.map((items,index)=>{
-                            console.log()
+                          userimagedata.map((items,index)=>{
+                          
                             return(
                               <>
                               <div className='dule-img1'>
-                                <img src={items[index].url} alt="nftimages"/>   
+                                <img src={items.url} alt="nftimages"/>   
                              </div>
 
                               </>

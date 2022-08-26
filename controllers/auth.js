@@ -8,7 +8,6 @@ const emailValidator = require("deep-email-validator");
 const bodyParser = require("body-parser")
 
 
-
 async function isEmailValid(email) {
     return emailValidator.validate(email)
   }
@@ -103,7 +102,7 @@ exports.dashboard = async (req, res, next) => {
 
 
 exports.getdata=async(req,res)=>{
-  console.log(req.body)
+  // console.log(req.body)
 let imgdata = await Image.find({userId:req.body.user._id})
  return res.json(imgdata)
 }
