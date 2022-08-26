@@ -21,7 +21,7 @@ console.log(data)
          <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container-fluid">
                 <Link className="navbar-brand" to = "/">
-                    <img src='./Logo.png'></img>
+                    <img src='/Logo.png'></img>
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -56,6 +56,7 @@ console.log(data)
                   {
                     localStorage.getItem("nftuser")?
                     <Link to="/profile">
+                      
                     <button className="btn btn-outline head-btn" type="submit">{data.user.username}</button>
                     </Link>
                     :

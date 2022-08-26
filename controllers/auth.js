@@ -1,80 +1,74 @@
 const User = require("../models/User");
-const Image = require("../models/Image")
+const Image = require("../models/Image");
 const crypto = require("crypto");
 const ErrorResponse = require("../utlis/errorresponse.js");
 const sendEmail = require("../utlis/sendEmail.js");
 const user = require("../models/User");
 const emailValidator = require("deep-email-validator");
-const bodyParser = require("body-parser")
-
+const bodyParser = require("body-parser");
+const Challenge = require("../models/challenge");
 
 async function isEmailValid(email) {
-    return emailValidator.validate(email)
-  }
+  return emailValidator.validate(email);
+}
 exports.register = async (req, res, next) => {
-   
-  const { username, email, password,dob} = req.body;
-
+  const { username, email, password, dob } = req.body;
 
   try {
-  await  User.findOne({ email}, async (err, user) => {
-      
-      const {valid, reason, validators} = await isEmailValid(email);
-      console.log(validators)
+    await User.findOne({ email }, async (err, user) => {
+      const { valid, reason, validators } = await isEmailValid(email);
+      console.log(validators);
 
-      if(!valid){
- return res.status(500).json("email is invalid please enter a valid email")
-        
-      }else if(user){
-        return res.status(500).json("user already registered")
-      }
-       else {
+      if (!valid) {
+        return res
+          .status(500)
+          .json("email is invalid please enter a valid email");
+      } else if (user) {
+        return res.status(500).json("user already registered");
+      } else {
         const user = await User.create({
           username,
           email,
           password,
           dob,
-          avatar:[
-            {url:"https://res.cloudinary.com/degu3b9yz/image/upload/v1660723144/giphy_jcbcps.gif"}
-          ]
+          avatar: [
+            {
+              url: "https://res.cloudinary.com/degu3b9yz/image/upload/v1660723144/giphy_jcbcps.gif",
+            },
+          ],
         });
-      sendToken(user, 200, res);
+        sendToken(user, 200, res);
       }
-
-     
     });
-  }catch (err) {
+  } catch (err) {
     // res.status(500).json("");
   }
 };
-
 
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return next(new ErrorResponse("please provide email&password", 400));
   }
- 
+
   try {
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-return res.status(500).json("invalid credentials user not found")
+      return res.status(500).json("invalid credentials user not found");
     }
     const isMatch = await user.matchPasswords(password);
     if (!isMatch) {
-   return res.status(500).json("password is not valid please register")
-
+      return res.status(500).json("password is not valid please register");
     }
-        // res.status(201).json(user)
+    // res.status(201).json(user)
 
     sendToken(user, 200, res);
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message});
+    res.status(500).json({ success: false, error: error.message });
   }
 };
 
-
-exports.isAuthuser =async (req, res, next) => {
+exports.isAuthuser = async (req, res, next) => {
   const { token } = req.cookies;
   console.log("hii");
   if (!token) {
@@ -89,7 +83,7 @@ exports.dashboard = async (req, res, next) => {
     console.log(req.session.email);
   }
   const user = await User.findById(req.user.id);
-  
+
   res.status(200).json({
     sucess: true,
     user,
@@ -98,21 +92,48 @@ exports.dashboard = async (req, res, next) => {
   });
   // console.log("user");
   // console.log({token});
-}
+};
 
-
-exports.getdata=async(req,res)=>{
+exports.getdata = async (req, res) => {
   // console.log(req.body)
-let imgdata = await Image.find({userId:req.body.user._id})
- return res.json(imgdata)
-}
+  let imgdata = await Image.find({ userId: req.body.user._id });
+  return res.json(imgdata);
+};
 
-exports.getuserdata  = async(req,res)=>{
-  let userdata = await User.find()
- return res.json(userdata)
-}
+exports.getuserdata = async (req, res) => {
+  let userdata = await User.find();
+  return res.json(userdata);
+};
 
-
+exports.sendchallange = async (req, res) => {
+  const { recieved, accept, decline } = req.body;
+  let challenge = await Challenge.create({
+    recieved:req.body.recieved,
+    accept,
+    decline,
+    player_1: [
+      {
+        text: req.body.playeronetext,
+        images: {
+          public_id: req.body.playeronepublic_id,
+          url: req.body.playeronesecure_url,
+        },
+        userId:req.body.playeroneuserid
+      },
+    ],
+    player_2: [
+      {
+        text: req.body.playertwotext,
+        images: {
+          public_id: req.body.playertwopublic_id,
+          url: req.body.playertwosecure_url,
+        },
+        userId:req.body.playertwouserid
+      },
+    ],
+  });
+  return res.json(challenge)
+};
 
 //forget password
 
@@ -150,8 +171,6 @@ exports.getuserdata  = async(req,res)=>{
 //     return next(new ErrorResponse("Email could not be send", 500));
 //   }
 // };
-
-
 
 //  // Reset Password
 
@@ -191,7 +210,7 @@ exports.getuserdata  = async(req,res)=>{
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
-//options for cookies
+  //options for cookies
   const options = {
     expire: new Date(Date.now + 24 * 60 * 60 * 1000),
     httpOnly: true,
