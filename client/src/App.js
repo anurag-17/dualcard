@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path ="/" element={<Home/>}/>
         <Route path ="/login" element={<Login/>}/>
-        <Route path ="/register" element={<Register/>}/>
+        <Route path ="/register" element={<PrivateRoute><Register/></PrivateRoute>}/>
         <Route path ="/profile" element={<Dashboard/>}/>
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
         <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/>
@@ -43,13 +43,24 @@ function App() {
 
 export function ProtectedRoute(props){
 
-  if(!localStorage.getItem("nftuser"))
+  const userdata = localStorage.getItem("nftuser")
+
+  if(userdata)
   {
-    <Navigate to="/register"/>
-  }else{
     return props.children
+  }else{
+   return <Navigate to="/login"/>
   }
 
 }
 
+
+
+export function PrivateRoute(props){
+  if(!localStorage.getItem("nftuser")){
+    return props.children
+  }else{
+    return <Navigate to ="/DuelSomeone"/>
+  }
+}
 export default App;
