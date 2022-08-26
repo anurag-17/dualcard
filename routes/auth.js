@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const{ register, login, forgetpassword, resetpassword,getdata, getuserdata, isAuthuser, dashboard, sendchallange }= require('../controllers/auth')
+const{ register, login, forgetpassword, resetpassword,getdata, getuserdata, isAuthuser, dashboard, sendchallange, getchallenge }= require('../controllers/auth')
 router.route("/register").post(register);
 
 router.route("/login").post(login);
@@ -12,6 +12,7 @@ router.route("/getuserdata").get(getuserdata)
 
 router.route("/me").get(isAuthuser,dashboard)
 router.route("/sendchal").post(sendchallange)
+router.route("/challengedata").get(getchallenge)
 
 // router.route("/forgetpassword").post(forgetpassword);
 

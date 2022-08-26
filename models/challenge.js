@@ -14,24 +14,16 @@ const challengeSchema = new mongoose.Schema({
     type: String,
     // default: true,
   },
-  player_1: [
+  player_1:[
     {
       text: {
         type: String,
       },
-      images: [
-        {
-          public_id: {
-            type: String,
-            // required: true,
-          },
-          url: {
-            type: String,
-            // required: true,
-          },
+      images:{
+            type:Array,
+            // required: true,  
         },
-      ],
-
+        
       userId: {
         type: String,
       },
@@ -42,18 +34,10 @@ const challengeSchema = new mongoose.Schema({
       text: {
         type: String,
       },
-      images: [
-        {
-          public_id: {
-            type: String,
-            // required: true,
-          },
-          url: {
-            type: String,
-            // required: true,
-          },
-        },
-      ],
+      images:{
+        type:Array,
+        // required: true,  
+    },
       userId: {
         type: String,
       },

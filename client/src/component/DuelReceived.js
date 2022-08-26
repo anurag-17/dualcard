@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DuelReceived.css';
 import Carousel from 'react-bootstrap/Carousel';
+import axios from 'axios';
 
 const DuelReceived = () => {
+
+
+const [challengeuser,setChallengeUser] = useState([])
+
+
+const getuserchallenge = async()=>{
+  const  res =  await axios.get("http://localhost:5000/api/auth/challengedata")
+  console.log(res.data)
+  setChallengeUser(res.data)
+}
+getuserchallenge()
+
   return (
     <div>
         <div className='DuelRec-sec'> 
@@ -63,6 +76,11 @@ const DuelReceived = () => {
                             
                         </div>
                         <div className='dule-cont'>
+                            {
+                                challengeuser.map((items,index)=>{
+                                 
+                                })
+                            }
                             <h4>TERMS</h4>
                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
                                  vero eos et accusam et justo duo dolores et ea rebum.</p>

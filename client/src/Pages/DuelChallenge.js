@@ -26,11 +26,8 @@ const DuelChallenge = () => {
   const [userprofiledata, setUserprofiledata] = useState([]);
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
-
   const[challenge,setchallenge] = useState({
-
     playeronetext:"",
-    playerone_url:"",
     playeroneuserid:"",
     userId:"",
     playertwotext:"",
@@ -38,7 +35,7 @@ const DuelChallenge = () => {
     playertwouserid:"" 
     
   })
-
+ 
   // console.log(targetname)
   const handleClose = () => {
     setShow(false);
@@ -129,7 +126,14 @@ const DuelChallenge = () => {
   }
   const submitCards = async () => {};
 
-  const sendValue = () => {
+  const sendValue = async() => {
+
+const res = await  axios.post("http://localhost:5000/api/auth/sendchal",
+{ playerone_url:userimagedata,playeronetext:textvalue,userId:userId},
+)
+
+console.log(res.data)
+
 
   };
 const handleuserclick = async(e)=>{
