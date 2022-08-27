@@ -14,6 +14,12 @@ const navigate  = useNavigate()
 const data = JSON.parse(localStorage.getItem("nftuser"))
 console.log(data)
 
+const logoutuser = () => {
+  localStorage.removeItem("nftuser");
+  navigate("/register");
+};
+
+
 
   return (
     <div>
@@ -60,19 +66,24 @@ console.log(data)
                      
                 </ul>
                 <form className="d-flex">  
-              
-                  {
+                {
                     localStorage.getItem("nftuser")?
+                    <div>
+
                     <Link to="/profile">
                       
                     <button className="btn btn-outline head-btn" type="submit">{data.user.username}</button>
                     </Link>
+                    <button className="btn btn-outline head-btn" style={{marginLeft:"10px"}}  onClick={logoutuser}>logout</button>
+                    {/* { <button onClick={logoutuser}>logout</button> } */}
+                    </div>
                     :
                     <Link to="/register">
-                    <button className="btn btn-outline head-btn" type="submit">SignIn btn</button>
+                    <button className="btn btn-outline head-btn" type="submit">SignIn </button>
                     </Link>
-                  }
-                             
+                  
+                    
+                  }         
                 </form>
                 </div>
             </div>

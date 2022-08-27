@@ -24,11 +24,13 @@ export const Login = () => {
 		e.preventDefault()
     dispatch(login(inputdata))
 		
-const res = await axios.post("http://localhost:5000/api/auth/login",inputdata)
+const res = await axios.post("http://localhost:5000/api/auth/login",inputdata).then((data)=>{
+	console.log(data)
+	localStorage.setItem("nftuser", JSON.stringify({ ...data.data}))
+}).catch((error)=>{
+	console.log(error)
+})
 
-localStorage.setItem("nftuser", JSON.stringify({ ...res.data}))
-
-		console.log(res.data)
 		if(localStorage.getItem("nftuser")){
 			alert.success("login successfull")
 			navigate("/DuelSomeone")
