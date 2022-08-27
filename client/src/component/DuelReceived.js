@@ -10,7 +10,7 @@ const [challengeuser,setChallengeUser] = useState([])
 
 
 const getuserchallenge = async()=>{
-  const  res =  await axios.get("http://localhost:5000/api/auth/challengedata")
+  const  res =  await axios.get("/api/auth/challengedata")
   console.log(res.data)
   setChallengeUser(res.data)
 }
