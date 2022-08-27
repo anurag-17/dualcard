@@ -25,7 +25,9 @@ export const Login = () => {
     dispatch(login(inputdata))
 		
 const res = await axios.post("/api/auth/login",inputdata)
-
+if(isAuthenticated){
+	navigate("/")
+}
 localStorage.setItem("nftuser", JSON.stringify({ ...res.data}))
 
 		console.log(res.data)
