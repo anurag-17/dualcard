@@ -13,8 +13,8 @@ export const Thankyou = () => {
   <div className="wrapper-1">
     <div className="wrapper-2" style={{textAlign:"center"}}>
       <h1>Thank you !</h1>
-      <p>wait for accepting reqest</p>
-      <p>you should receive a confirmation email soon</p>
+      <p style={{color:"black"}}>wait for accepting reqest</p>
+      <p style={{color:"black"}}>you should receive a confirmation email soon</p>
       <Link to ="/">
       <button className="go-home">
       go home
