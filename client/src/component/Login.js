@@ -24,7 +24,7 @@ export const Login = () => {
 		e.preventDefault()
     dispatch(login(inputdata))
 		
-const res = await axios.post("http://localhost:5000/api/auth/login",inputdata)
+const res = await axios.post("/api/auth/login",inputdata)
 
 localStorage.setItem("nftuser", JSON.stringify({ ...res.data}))
 
