@@ -38,7 +38,7 @@ myForm.set("dob", inputvalue.dob);
 myForm.set("avatar",inputvalue.avatar)
 
 // dispatch(register(myForm))
-// const res = await fetch("http://localhost:5000/api/auth/register",{
+// const res = await fetch("/auth/register",{
 // 	method:"POST",
 // 	headers:{
 // 		'Content-Type':'application/json'
@@ -52,7 +52,7 @@ myForm.set("avatar",inputvalue.avatar)
 // })
 
 
-const res = await axios.post("http://localhost:5000/api/auth/register",inputvalue).then((data)=>{
+const res = await axios.post("/auth/register",inputvalue).then((data)=>{
     alert.success("signup successfull")
     localStorage.setItem("nftuser",JSON.stringify({...data.data}))
     navigate("/DuelSomeone")
