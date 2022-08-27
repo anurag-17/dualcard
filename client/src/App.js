@@ -17,6 +17,7 @@ import Auction from "./component/Auction"
 import Winner from "./Pages/Winner"
 import Leaderboard from "./Pages/Leaderboard"
 import AboutRules from "./Pages/AboutRules"
+import { Thankyou } from './Thankyou';
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path = "/DuelAccepted" element = {<DuelAccepted/>}/>
         <Route path = "/Auction" element = {<Auction/>}/>
         <Route path = "/leaderboard" element = {<Leaderboard/>}/>
+        <Route path = "/thankyou" element = {<Thankyou/>}/>
       </Routes>
     <Footer/>
     </div>

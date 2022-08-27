@@ -310,7 +310,7 @@ console.log(e)
                                   onClick={handleShow}
                                   class="icon-plus button"
                                 >
-                                  <img src={img1} />
+                                  <img src={img1} alt="" />
                                 </div>
                               }
                             </div>
@@ -351,7 +351,7 @@ console.log(e)
                             </div>
                           </div>
                           <div className="btn-duel-right challenge">
-                            <Link to = "/DuelReceived">
+                            <Link to = "/thankyou">
                             <button
                               onClick={sendValue}
                               className="hero-btn challenge"
