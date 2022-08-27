@@ -25,7 +25,7 @@ export const login = (userdata) => async (dispatch, getState) => {
   console.log(userdata);
   try {
     dispatch({ type: LOGIN_REQUEST });
-    const { data } = await axios.post(`http://localhost:5000/api/auth/login`,userdata);
+    const { data } = await axios.post(`5000/api/auth/login`,userdata);
 
     dispatch({ type:LOGIN_SUCCESS, payload: data.user});
     console.log(data);
@@ -43,7 +43,7 @@ export const register = (userData) => async (dispatch) => {
 
     // const config = { headers: { "Content-Type": "Application/json" } };
 
-    const { data } = await axios.post(`http://localhost:5000/api/auth/register`,userData);
+    const { data } = await axios.post(`5000/api/auth/register`,userData);
         
   
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });

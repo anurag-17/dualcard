@@ -52,7 +52,7 @@ myForm.set("avatar",inputvalue.avatar)
 // })
 
 
-const res = await axios.post("/auth/register",inputvalue).then((data)=>{
+const res = await axios.post("5000/auth/register",inputvalue).then((data)=>{
     alert.success("signup successfull")
     localStorage.setItem("nftuser",JSON.stringify({...data.data}))
     navigate("/DuelSomeone")
