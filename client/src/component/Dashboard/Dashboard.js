@@ -21,7 +21,7 @@ export const Dashboard = () => {
 
 
   const getimages = async()=>{
-    const res= await axios.get("/auth/getdata")
+    const res= await axios.get("api/auth/getdata")
 setImagedata(res.data)
 const newimagedata=imagedata.filter((items,index)=>{
   return(
@@ -36,7 +36,7 @@ getimages()
 
 const getuserdata = async()=>{
 
-  const res = await axios.get("/auth/getuserdata")
+  const res = await axios.get("api/auth/getuserdata")
   setUserdata(res.data)
 
 }
