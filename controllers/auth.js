@@ -11,39 +11,53 @@ const Challenge = require("../models/challenge");
 async function isEmailValid(email) {
   return emailValidator.validate(email);
 }
-exports.register = async (req, res, next) => {
-  const { username, email, password, dob } = req.body;
 
+
+exports.register = async (req, res, next) => {
+  const {
+    username,
+    email,
+    password,
+    dob,
+  } = req.body;
+
+
+  const { valid, reason, validators } = await isEmailValid(email);
+  
+//  console.log(req.body.Expiry);
+
+  if(    !username||
+    !email||
+    !password||
+    !dob){
+    return res.status(400).json("plese fill all input ")
+  }
+  if (password.length < 6) {
+    return res.status(400).json("password must be 6 character long");
+  }
   try {
-    await User.findOne({ email }, async (err, user) => {
-      const { valid, reason, validators } = await isEmailValid(email);
+    User.findOne({ email }, async (err, user) => {
       console.log(validators);
 
-      if (!valid) {
-        return res
-          .status(500)
-          .json("email is invalid please enter a valid email");
-      } else if (user) {
+     if (user) {
         return res.status(500).json("user already registered");
-      } else {
+      }
+      else {
         const user = await User.create({
           username,
           email,
           password,
           dob,
-          avatar: [
-            {
-              url: "https://res.cloudinary.com/degu3b9yz/image/upload/v1660723144/giphy_jcbcps.gif",
-            },
-          ],
         });
-        sendToken(user, 200, res);
+
+        sendToken(user, 201, res);
       }
     });
-  } catch (err) {
-    // res.status(500).json("");
+  } catch (error) {
+    // res.status(500).json({ success: false, });
   }
-};
+}
+
 
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;

@@ -22,16 +22,6 @@ const userSchema = new mongoose.Schema({
     required:[true,"please provide date of birth"],
   },
 
-  avatar:[
-      {
- url :{
-              type:String,
-              required:true
-          },
-        }
-    
-  ],
-
   // package: {
   //   type: String,
   //   required: [true, "plese provide package"],

@@ -6,10 +6,11 @@ import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { register } from '../actions/userAction';
 import {useAlert} from "react-alert"
+import {Loader} from "../component/Loader"
 
 
 export const Register = () => {
-
+const [loading,setLoading] = useState(false)
     const dispatch = useDispatch();
     const alert = useAlert()
 	const navigate = useNavigate()
@@ -18,7 +19,6 @@ export const Register = () => {
         email:"",
         password:"",
 		dob:"",
-        avatar:""
     })
     
     const handleChange = async(event) => {
@@ -29,44 +29,34 @@ export const Register = () => {
 
     const handleSubmit = async(e)=>{
 e.preventDefault()
-
+setLoading(!loading)
 const myForm = new FormData()
 myForm.set("username", inputvalue.username);
 myForm.set("email", inputvalue.email);
 myForm.set("password", inputvalue.password);
 myForm.set("dob", inputvalue.dob);
-myForm.set("avatar",inputvalue.avatar)
-
-// dispatch(register(myForm))
-// const res = await fetch("http://localhost:5000/api/auth/register",{
-// 	method:"POST",
-// 	headers:{
-// 		'Content-Type':'application/json'
-// 	},
-//     body:JSON.stringify(inputvalue)
-// }).then((data)=>{
-//     localStorage.setItem("nftuser",JSON.stringify(data.json()))
-//     alert("user successfully registered")
-// }).catch((error)=>{
-//     console.log(error)
-// })
 
 
 const res = await axios.post("http://localhost:5000/api/auth/register",inputvalue).then((data)=>{
     alert.success("signup successfull")
     localStorage.setItem("nftuser",JSON.stringify({...data.data}))
+  
     navigate("/DuelSomeone")
 }).catch((error)=>{
-    // alert.error("")
+    setLoading(false)
+    alert.error(error.response.data)
 })
+
+
 
 
 if(localStorage.getItem("nftuser")){
     alert.success("register successfull")
-    // navigate("/DuelSomeone")
+    setLoading(false)
+    navigate("/DuelSomeone")
     
 }else{
-    alert.error("register unsuccessfull")
+    // alert.error("register unsuccessfull")
 }
 
   setInputvalue({
@@ -74,15 +64,17 @@ if(localStorage.getItem("nftuser")){
 	  email: "",
 	  password:"",
 	  dob:"",
-      avatar:"",
   });
 
     }
     
   return (
     <>
+{
+    loading?<Loader/>:
+    <>
+    
 <Container>
-
     <div className={styles.signup_container}>
 			<div className={styles.signup_form_container}>
 				<div className={styles.left}>
@@ -142,6 +134,9 @@ if(localStorage.getItem("nftuser")){
 			</div>
 		</div>
 </Container>
+    </>
+}
+
 
     </>
   )

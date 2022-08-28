@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postimage } from "../actions/apiAction";
 import img1 from "../images/Plus.png";
 import { Link } from "react-router-dom";
+import { Loader } from "../component/Loader";
 
 const DuelChallenge = () => {
   const { image, isImage, loading} = useSelector((state) => state.image);
@@ -113,6 +114,7 @@ const DuelChallenge = () => {
       const localimages = JSON.parse(localStorage.getItem("userImages"));
       console.log(localimages);
       finalimagedata.push(localimages);
+
     }
 
     if (image) {
@@ -149,7 +151,9 @@ console.log(e)
   }, [image]);
 
   return (
+
     <div>
+      <>
       <div className="duelchalenge-sec">
         <div className="container">
           <div className="section-title">
@@ -275,9 +279,13 @@ console.log(e)
                     <div className="tab-cont">
                       <div className="row tabct-main gx-5">
                         <div className="col-md-6 tab-left">
+
+                          {
+                            loading?<Loader style={{backgroundColor:"#282054"}}/>:
                           <div className="dchallenge-rt-1">
                             {userimagedata.map((items, index) => {
                               return (
+                                
                                 <>
                                   <div className="dule-img1">
                                     <img src={items.url} alt="nftimages" />
@@ -285,12 +293,7 @@ console.log(e)
                                 </>
                               );
                             })}
-                            {/* <div className='dule-img1'> 
-                                <img src="./NFT img1.png" alt="img"/>
-                               </div>
-                               <div className='dule-img1'>
-                                 <img src="./NFT img2.png" alt="img"/>
-                                 </div> */}
+                        
                             <div
                               style={{
                                 border: "2px dashed #4A6BBC",
@@ -314,7 +317,8 @@ console.log(e)
                                 </div>
                               }
                             </div>
-                          </div>
+                          </div> 
+                          }
                           <div className="btn-duel-right">
                             <button className="hero-btn">SELECT CARDS</button>
                           </div>
@@ -648,6 +652,9 @@ console.log(e)
           </div>
         </div>
       </div>
+      
+      </>
+
     </div>
   );
 };

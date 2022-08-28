@@ -6,6 +6,7 @@ const path = require("path")
 const cors = require("cors")
 const cloudinary=require("cloudinary")
 const Image = require("./models/Image")
+const User = require("./models/User")
 const cookiesparser = require("cookie-parser");
 const app = express();
 const bodyparser = require("body-parser");
@@ -32,6 +33,39 @@ app.post("/upload",(req,res)=>{
   return res.json(image)
 })
 
+async function isEmailValid(email) {
+  return emailValidator.validate(email);
+}
+
+
+app.post("/signup",async(req,res)=>{
+  const { username, email, password, dob } = req.body;
+  const { valid, reason, validators } = await isEmailValid(email);
+
+  const isUser = await User.findOne(req.body.email)
+
+  if(!valid){
+     return res.json("email is invalid please enter a valid email")
+  }else if(isUser){
+    return res.json("user already exist please login")
+  }
+  else{
+    const user = await User.create({
+      username,
+      email,
+      password,
+      dob,
+      avatar: [
+        {
+          url: "https://res.cloudinary.com/degu3b9yz/image/upload/v1660723144/giphy_jcbcps.gif",
+        },
+      ],
+    })
+
+    return res.json(user)
+  }
+  
+})
 
 // --------------------------deployment------------------------------
 app.use(express.static(path.join(__dirname, "./client/build")));
