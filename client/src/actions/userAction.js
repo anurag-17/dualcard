@@ -46,7 +46,7 @@ export const register = (userData) => async(dispatch) => {
 
     const config = { headers: { "Content-Type": "Application/json" } };
 
-    const { data } = await axios.post(`http://localhost:5000/api/auth/register`,userData,config);
+    const { data } = await axios.post(`/api/auth/register`,userData,config);
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user});
     // console.log(data);
@@ -56,7 +56,7 @@ export const register = (userData) => async(dispatch) => {
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,
-      payload: error.response,
+      payload: error.response.data,
     });
     // console.log(error);
   }
