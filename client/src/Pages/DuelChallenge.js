@@ -23,11 +23,13 @@ const DuelChallenge = () => {
   const [userdata, setUserdata] = useState([]);
   const [localuser, setlocaluser] = useState("");
   const [newuserdata, setnewuserdata] = useState([]);
+  const [searchfilter,setsearchfilter] = useState(newuserdata)
   const [userId, setUserId] = useState("");
   const [userprofiledata, setUserprofiledata] = useState([]);
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
-  const[challenge,setchallenge] = useState({
+  const [clickeduser,setclickeduser] = useState("")
+    const[challenge,setchallenge] = useState({
     playeronetext:"",
     playeroneuserid:"",
     userId:"",
@@ -36,9 +38,16 @@ const DuelChallenge = () => {
     playertwouserid:"" 
     
   })
-  const [clickeduserid,setClickedUserid] = useState("")
-
  
+  const handleSearch =  (event)=>{
+    let value = event.target.value.toLowerCase();
+    let result = [];
+ result = newuserdata.filter((data)=>{
+  return data.username.search(value)!= -1
+ })
+
+ setsearchfilter(result);
+  }
   // console.log(targetname)
   const handleClose = () => {
     setShow(false);
@@ -55,6 +64,7 @@ const DuelChallenge = () => {
     });
 
     setnewuserdata(filtereduser);
+    setsearchfilter(filtereduser);
     
   };
   getuserdata();
@@ -119,7 +129,7 @@ const DuelChallenge = () => {
     }
 
     if (image) {
-      const data = await axios.post("/upload", {
+      const data = await axios.post("/upload",{
         userId,
         image,
       });
@@ -142,9 +152,8 @@ console.log(res.data)
 const handleuserclick = async(e)=>{
 console.log(e)
   console.log(e.target.name)
+     setclickeduser(e.target.name)
  settargetname(e.target.value)
-   settargetname(e.target.value)
- console.log(clickeduserid)
 
 }
 
@@ -170,6 +179,7 @@ console.log(e)
                 type="text"
                 placeholder="Search"
                 aria-label="Search"
+              onChange={(event) =>handleSearch(event)}
               />
               <div class="input-group-append">
                 <span class="input-group-text red lighten-3" id="basic-text1">
@@ -183,7 +193,7 @@ console.log(e)
             <div className="tab-challange">
               <div className="tab-section">
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
-                  {newuserdata.map((items, index) => {
+                  {searchfilter.map((items, index) => {
                     return (
                       <li className="nav-item" role="presentation">
                         <button
