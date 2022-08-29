@@ -26,7 +26,7 @@ exports.register = async (req, res, next) => {
   
 //  console.log(req.body.Expiry);
 
-  if(    !username||
+  if(!username||
     !email||
     !password||
     !dob){
@@ -110,7 +110,7 @@ exports.dashboard = async (req, res, next) => {
 
 exports.getdata = async (req, res) => {
   // console.log(req.body)
-  let imgdata = await Image.find({ userId: req.body.user._id });
+  let imgdata = await Image.find({ userId: req.body._id });
   return res.json(imgdata);
 };
 

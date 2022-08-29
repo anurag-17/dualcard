@@ -72,7 +72,7 @@ const logoutuser = () => {
 
                     <Link to="/profile">
                       
-                    <button className="btn btn-outline head-btn" type="submit">{data.user.username}</button>
+                    <button className="btn btn-outline head-btn" type="submit">{data.username}</button>
                     </Link>
                     <button className="btn btn-outline head-btn" style={{marginLeft:"10px"}}  onClick={logoutuser}>logout</button>
                     {/* { <button onClick={logoutuser}>logout</button> } */}

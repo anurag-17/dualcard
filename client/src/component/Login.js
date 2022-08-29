@@ -6,6 +6,7 @@ import { Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login} from "../actions/userAction"
 import { useAlert } from "react-alert";
+import { Loader } from './Loader';
 
 export const Login = () => {
 	const {isAuthenticated,user,error,loading} = useSelector((state)=>state.user)
@@ -24,18 +25,6 @@ export const Login = () => {
 		e.preventDefault()
     dispatch(login(inputdata))
 		
-const res = await axios.post("http://localhost:5000/api/auth/login",inputdata)
-
-localStorage.setItem("nftuser", JSON.stringify({ ...res.data}))
-
-		console.log(res.data)
-		if(localStorage.getItem("nftuser")){
-			alert.success("login successfull")
-			navigate("/DuelSomeone")
-			
-		}else{
-			alert.error("login unsuccessfull")
-		}
 		
 		setInputData({
 		   email:"",
@@ -56,11 +45,13 @@ if(error){
 <>
 
 <Container >
-
 <Row md={6}>
 
 <div className={styles.login_container}>
 			<div className={styles.login_form_container}>
+{
+	loading?<Loader/>:<>
+
 				<div className={styles.left}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
 						<h1>Login to Your Account</h1>
@@ -96,6 +87,9 @@ if(error){
 						</button>
 					</Link>
 				</div>
+	
+	</>
+}
 			</div>
 		</div>
 

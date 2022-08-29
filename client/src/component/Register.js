@@ -10,7 +10,8 @@ import {Loader} from "../component/Loader"
 
 
 export const Register = () => {
-const [loading,setLoading] = useState(false)
+    const {loading,isAuthenticated,user,error} = useSelector((state)=>state.user)
+// const [loading,setLoading] = useState(false)
     const dispatch = useDispatch();
     const alert = useAlert()
 	const navigate = useNavigate()
@@ -29,30 +30,17 @@ const [loading,setLoading] = useState(false)
 
     const handleSubmit = async(e)=>{
 e.preventDefault()
-setLoading(!loading)
 const myForm = new FormData()
 myForm.set("username", inputvalue.username);
 myForm.set("email", inputvalue.email);
 myForm.set("password", inputvalue.password);
 myForm.set("dob", inputvalue.dob);
 
-
-const res = await axios.post("http://localhost:5000/api/auth/register",inputvalue).then((data)=>{
-    alert.success("signup successfull")
-    localStorage.setItem("nftuser",JSON.stringify({...data.data}))
-  
-    navigate("/DuelSomeone")
-}).catch((error)=>{
-    setLoading(false)
-    alert.error(error.response.data)
-})
-
-
+dispatch(register(inputvalue))
 
 
 if(localStorage.getItem("nftuser")){
     alert.success("register successfull")
-    setLoading(false)
     navigate("/DuelSomeone")
     
 }else{

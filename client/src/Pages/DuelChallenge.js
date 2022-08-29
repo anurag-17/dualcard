@@ -49,18 +49,16 @@ const DuelChallenge = () => {
     const localdata = JSON.parse(localStorage.getItem("nftuser"));
 
     const filtereduser = userdata.filter((items, index) => {
-      return items._id !== localdata.user._id;
+      return items._id !== localdata._id;
     });
 
     setnewuserdata(filtereduser);
     
   };
   getuserdata();
-  getimages();
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
 
-    console.log();
     const res = await axios
       .post("http://localhost:5000/api/auth/getdata",data)
       .then((data) => {
@@ -72,13 +70,14 @@ const DuelChallenge = () => {
     // setfinalimagedata(newimagedata)
     // console.log(setfinalimagedata)
   }
+  getimages();
 
   const handleupload = async (e) => {
     const files = e.target.files[0];
     setFiledata(files);
     const userdata = JSON.parse(localStorage.getItem("nftuser"));
     setUserprofiledata([userdata]);
-    setUserId(userdata.user._id);
+    setUserId(userdata._id);
     setlocaluser(userdata.user.username);
   };
   const handlesubmit = async () => {
@@ -98,7 +97,7 @@ const DuelChallenge = () => {
 
     //   console.log(imgdata)
 
-    // }).catch((err)=>{
+    // }).catch((err)=>{l
     //   console.log(err)`
     // })
 

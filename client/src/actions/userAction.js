@@ -21,13 +21,14 @@ import {
 import { useNavigate } from "react-router-dom";
 
 
-export const login = (userdata) => async (dispatch, getState) => {
+export const login = (userdata) => async (dispatch,) => {
   console.log(userdata);
   try {
     dispatch({ type: LOGIN_REQUEST });
-    const { data } = await axios.post(`/api/auth/login`,userdata);
+    const { data } = await axios.post(`http://localhost:5000/api/auth/login`,userdata);
 
     dispatch({ type:LOGIN_SUCCESS, payload: data.user});
+    localStorage.setItem("nftuser",JSON.stringify({...data.user,password:""}))
     console.log(data);
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data});
@@ -43,11 +44,13 @@ export const register = (userData) => async (dispatch) => {
 
     // const config = { headers: { "Content-Type": "Application/json" } };
 
-    const { data } = await axios.post(`/api/auth/register`,userData);
+    const { data } = await axios.post(`http://localhost:5000/api/auth/register`,userData);
+
+
         
-  
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
     console.log(data);
+    localStorage.setItem("nftuser",JSON.stringify({...data.user,password:""}))
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,
@@ -55,6 +58,7 @@ export const register = (userData) => async (dispatch) => {
     });
     // console.log(error);
   }
+
 };
 export const logout = () => async (dispatch) => {
   try {
