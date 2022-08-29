@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 
@@ -50,7 +51,9 @@ const Home = () => {
                 <div className='buy-ct'>
                   <h3>Level 2 Streamer Duel Card</h3>
                     <div className='buy-img'>
+                      <Link to = "/shop-streamer">
                        <img src="./NFT img.png" alt="img"/>
+                      </Link>
                      </div>
                      <p>These cards are collaboratively designed with your favorite 
                         Content creators!</p>
@@ -61,22 +64,27 @@ const Home = () => {
                 <div className='buy-ct'>
                   <h3>Seasonal Cards</h3>
                     <div className='buy-img'>
+                    <Link to = "/shop-seasonal">
                        <img src="./NFT img2.png" alt="img"/>
+                   </Link>
                      </div>
                      <p>These cards won’t be around long, so grab them while you can.</p>
                 </div>
               </div>
-
               <div className='buy-item1'>
                 <div className='buy-ct'>
                   <h3>Universal Duel Cards</h3>
                     <div className='buy-img'>
+<Link to ="/shop-universal">
                        <img src="./NFT img3.png" alt="img"/>
+</Link>
                      </div>
                      <p>Universal cards allow you to challenge any streamer for their L2 DuelCard.!</p>
                 </div>
               </div>
             </div>
+
+          
             <div className='btn-buy'>
                  <button className='hero-btn'>Buy   Now</button>
             </div>

@@ -18,6 +18,9 @@ import Winner from "./Pages/Winner"
 import Leaderboard from "./Pages/Leaderboard"
 import AboutRules from "./Pages/AboutRules"
 import { Thankyou } from './Thankyou';
+import ShopStreamer from './component/ShopStreamer';
+import ShopUniversal from './component/ShopUniversal';
+import ShopSeasonal from './component/ShopSeasonal';
 
 
 
@@ -42,6 +45,9 @@ function App() {
         <Route path = "/Auction" element = {<Auction/>}/>
         <Route path = "/leaderboard" element = {<Leaderboard/>}/>
         <Route path = "/thankyou" element = {<Thankyou/>}/>
+        <Route path = "/shop-streamer" element = {<ShopStreamer/>}/>
+        <Route path = "/shop-universal" element = {<ShopUniversal/>}/>
+        <Route path = "/shop-seasonal" element = {<ShopSeasonal/>}/>
       </Routes>
     <Footer/>
     </div>
