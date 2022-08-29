@@ -42,12 +42,11 @@ export const Login = () => {
 if(error){
 	alert.error(error)
 }
+	},[error,isAuthenticated,navigate])
 
-if(isAuthenticated){
-	navigate("/")
-}
-	},[error,isAuthenticated])
-
+	if(localStorage.getItem("nftuser")){
+		navigate("/DuelSomeone")
+	}
   return (
 <>
 

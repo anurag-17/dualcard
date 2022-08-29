@@ -49,11 +49,12 @@ if(error){
 	alert.error(error)
 }
 
-if(isAuthenticated){
-	navigate("/")
-}
-	},[error,isAuthenticated])
-    
+
+	},[isAuthenticated,navigate])
+
+    if(localStorage.getItem("nftuser")){
+        navigate("/DuelSomeone")
+    }
   return (
     <>
 {
