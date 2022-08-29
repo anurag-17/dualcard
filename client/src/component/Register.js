@@ -52,7 +52,10 @@ useEffect(()=>{
 if(error){
 	alert.error(error)
 }
-	},[error,alert])
+if (isAuthenticated) {
+    alert.success("Signup Successfull");
+  }
+	},[error,alert,isAuthenticated,navigate])
 
     if(localStorage.getItem("nftuser")){
         navigate("/DuelSomeone")
