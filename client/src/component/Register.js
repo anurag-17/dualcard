@@ -36,7 +36,6 @@ myForm.set("password", inputvalue.password);
 
 dispatch(register(inputvalue))
 
-
   setInputvalue({
 	  username:"",
 	  email: "",
@@ -44,6 +43,16 @@ dispatch(register(inputvalue))
   });
 
     }
+
+useEffect(()=>{
+if(error){
+	alert.error(error)
+}
+
+if(isAuthenticated){
+	navigate("/")
+}
+	},[error,isAuthenticated])
     
   return (
     <>

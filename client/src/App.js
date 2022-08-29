@@ -17,6 +17,7 @@ import Auction from "./component/Auction"
 import Winner from "./Pages/Winner"
 import Leaderboard from "./Pages/Leaderboard"
 import AboutRules from "./Pages/AboutRules"
+import { Thankyou } from './Thankyou';
 
 
 
@@ -26,8 +27,8 @@ function App() {
     <div className="App">
       <Header/>
       <Routes>
-        <Route path ="/" element={<Home/>}/>
-        <Route path ="/login" element={<Login/>}/>
+        <Route path ="/" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+        <Route path ="/login" element={<PrivateRoute><Login/></PrivateRoute>}/>
         <Route path ="/register" element={<PrivateRoute><Register/></PrivateRoute>}/>
         <Route path ="/profile" element={<Dashboard/>}/>
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
@@ -40,6 +41,7 @@ function App() {
         <Route path = "/DuelAccepted" element = {<DuelAccepted/>}/>
         <Route path = "/Auction" element = {<Auction/>}/>
         <Route path = "/leaderboard" element = {<Leaderboard/>}/>
+        <Route path = "/thankyou" element = {<Thankyou/>}/>
       </Routes>
     <Footer/>
     </div>

@@ -30,7 +30,6 @@ export const login = (userdata) => async (dispatch,) => {
     dispatch({ type:LOGIN_SUCCESS, payload: data.user});
     localStorage.setItem("nftuser",JSON.stringify({...data.user,password:""}))
     console.log(data);
-    navigate("/DuelSomeone")
 
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data});

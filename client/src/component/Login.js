@@ -23,14 +23,17 @@ export const Login = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-    dispatch(login(inputdata))
 		
+		dispatch(login(inputdata))
 		
+
 		setInputData({
 		   email:"",
 		   password:""
 		  });
-			
+	
+		
+		
 
 	}
 
@@ -39,7 +42,11 @@ export const Login = () => {
 if(error){
 	alert.error(error)
 }
-	},[error])
+
+if(isAuthenticated){
+	navigate("/")
+}
+	},[error,isAuthenticated])
 
   return (
 <>
