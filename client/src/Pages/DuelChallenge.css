@@ -207,3 +207,6 @@
     justify-content: center;
     display: flex;
 }
+.nav-item{
+    padding:12px;
+}
