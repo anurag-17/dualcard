@@ -30,6 +30,8 @@ export const login = (userdata) => async (dispatch,) => {
     dispatch({ type:LOGIN_SUCCESS, payload: data.user});
     localStorage.setItem("nftuser",JSON.stringify({...data.user,password:""}))
     console.log(data);
+    navigate("/DuelSomeone")
+
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data});
 
@@ -40,6 +42,7 @@ export const login = (userdata) => async (dispatch,) => {
 
 export const register = (userData) => async (dispatch) => {
   try {
+    const navigate = useNavigate()
     dispatch({ type: REGISTER_USER_REQUEST });
 
     // const config = { headers: { "Content-Type": "Application/json" } };
@@ -51,6 +54,7 @@ export const register = (userData) => async (dispatch) => {
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
     console.log(data);
     localStorage.setItem("nftuser",JSON.stringify({...data.user,password:""}))
+    navigate("/DuelSomeone")
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,

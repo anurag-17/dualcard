@@ -28,8 +28,7 @@ exports.register = async (req, res, next) => {
 
   if(!username||
     !email||
-    !password||
-    !dob){
+    !password){
     return res.status(400).json("plese fill all input ")
   }
   if (password.length < 6) {
@@ -47,7 +46,6 @@ exports.register = async (req, res, next) => {
           username,
           email,
           password,
-          dob,
         });
 
         sendToken(user, 201, res);

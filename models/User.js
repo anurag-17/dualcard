@@ -17,15 +17,6 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  dob:{
-    type:Date,
-    required:[true,"please provide date of birth"],
-  },
-
-  // package: {
-  //   type: String,
-  //   required: [true, "plese provide package"],
-  // },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });

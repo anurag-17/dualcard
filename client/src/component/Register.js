@@ -19,7 +19,6 @@ export const Register = () => {
 		username:"",
         email:"",
         password:"",
-		dob:"",
     })
     
     const handleChange = async(event) => {
@@ -34,24 +33,14 @@ const myForm = new FormData()
 myForm.set("username", inputvalue.username);
 myForm.set("email", inputvalue.email);
 myForm.set("password", inputvalue.password);
-myForm.set("dob", inputvalue.dob);
 
 dispatch(register(inputvalue))
 
-
-if(localStorage.getItem("nftuser")){
-    alert.success("register successfull")
-    navigate("/DuelSomeone")
-    
-}else{
-    // alert.error("register unsuccessfull")
-}
 
   setInputvalue({
 	  username:"",
 	  email: "",
 	  password:"",
-	  dob:"",
   });
 
     }
@@ -100,15 +89,6 @@ if(localStorage.getItem("nftuser")){
         name="password"
         onChange={handleChange}
         value={inputvalue.password}
-        required
-        className={styles.input}
-    />
-    <input
-        type="date"
-        placeholder="dob"
-        name="dob"
-        onChange={handleChange}
-        value={inputvalue.dob}
         required
         className={styles.input}
     />
