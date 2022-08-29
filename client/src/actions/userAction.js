@@ -39,20 +39,18 @@ export const login = (userdata) => async (dispatch,) => {
   
 };
 
-export const register = (userData) => async(dispatch) => {
+
+export const register = (userData) => async (dispatch) => {
   try {
-    const navigate = useNavigate()
     dispatch({ type: REGISTER_USER_REQUEST });
 
-    const config = { headers: { "Content-Type": "Application/json" } };
+    // const config = { headers: { "Content-Type": "Application/json" } };
 
-    const { data } = await axios.post(`/api/auth/register`,userData,config);
-
-    dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user});
-    // console.log(data);
-    localStorage.setItem("nftuser",JSON.stringify({...data.user,password:""}))
-    navigate("/DuelSomeone")
-
+    const { data } = await axios.post(`/api/auth/register`,userData);
+        
+  
+    dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
+    console.log(data);
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,
@@ -60,7 +58,6 @@ export const register = (userData) => async(dispatch) => {
     });
     // console.log(error);
   }
-
 };
 export const logout = () => async (dispatch) => {
   try {
