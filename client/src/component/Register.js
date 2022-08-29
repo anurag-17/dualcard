@@ -10,8 +10,8 @@ import {Loader} from "../component/Loader"
 
 
 export const Register = () => {
-    const {loading,isAuthenticated,user,error} = useSelector((state)=>state.user)
-// const [loading,setLoading] = useState(false)
+    // const {loading,isAuthenticated,user,error} = useSelector((state)=>state.user)
+const [loading,setLoading] = useState(false)
     const dispatch = useDispatch();
     const alert = useAlert()
 	const navigate = useNavigate()
@@ -37,10 +37,13 @@ myForm.set("password", inputvalue.password);
 
 // dispatch(register(inputvalue))
 
-const {data} = await axios.post("http://localhost:5000/api/auth/register",inputvalue)
+const {data} = await axios.post("/api/auth/register",inputvalue)
 
 localStorage.setItem("nftuser",JSON.stringify(data.user))
 
+if(!data){
+	alert.error(data.error)
+}
   setInputvalue({
 	  username:"",
 	  email: "",
@@ -48,13 +51,9 @@ localStorage.setItem("nftuser",JSON.stringify(data.user))
   });
 
     }
-useEffect(()=>{
-if(error){
-	alert.error(error)
-}
+// useEffect(()=>{
 
-
-	},[error])
+// 	},[error])
 
     if(localStorage.getItem("nftuser")){
         navigate("/DuelSomeone")
