@@ -203,3 +203,7 @@
     border-radius: 10%;
     height: 100%;
   }
+.nav-tabs{
+    justify-content: center;
+    display: flex;
+}
