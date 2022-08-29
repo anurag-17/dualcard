@@ -86,7 +86,9 @@ const Home = () => {
 
           
             <div className='btn-buy'>
+              <Link to = "/BuyDuelCard">
                  <button className='hero-btn'>Buy   Now</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -110,7 +112,9 @@ const Home = () => {
                       <h3>Auction Your Card</h3>
                       <p>Sell your L2 Duelcards on auction and keep the profits.</p>
                       <div className='btn-market'>
+                        <Link to ="/Leaderboard">
                         <button className='hero-btn'>Show more </button>
+                        </Link>
                       </div>
                       </div>
                     </div>
@@ -129,7 +133,9 @@ const Home = () => {
                       <h3>Leaderboards</h3>
                       <p>Know who is leading and atop the chart with the most NFT Duelcards in possession.</p>
                       <div className='btn-market'>
+                      <Link to ="/Leaderboard">
                         <button className='hero-btn'>Show more </button>
+                        </Link> 
                       </div>
                       </div>
                     </div>
@@ -279,7 +285,9 @@ const Home = () => {
                   <p>The two contestants would submit their NFTs to the escrow account before beginning the challenge. Once the terms are agreed upon, the Duel begins!</p>
                  <p>Once the challenge is completed, the contestants would go to the webpage, verify their identity, the winner is confirmed and the NFTs will be released to the winner from the escrow account. The challenge happens off network.</p>
                      <div className='btn-rule'>
+                      <Link to ="/AboutRules">
                         <button className='hero-btn'>Learn more </button>
+                      </Link>
                    </div>
                 </div>
               </div>
@@ -294,7 +302,9 @@ const Home = () => {
                   <p>The two contestants would submit their NFTs to the escrow account before beginning the challenge. Once the terms are agreed upon, the Duel begins!</p>
                  <p>Once the challenge is completed, the contestants would go to the webpage, verify their identity, the winner is confirmed and the NFTs will be released to the winner from the escrow account. The challenge happens off network.</p>
                      <div className='btn-rule'>
+                      <Link to="/AboutRules">
                         <button className='hero-btn'>Show more</button>
+                      </Link>
                    </div>
                 </div>
               </div>
