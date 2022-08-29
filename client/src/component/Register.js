@@ -44,12 +44,15 @@ dispatch(register(inputvalue))
 	  password:"",
   });
 
+  if(error){
+    alert.error(error)
+  }
     }
 useEffect(()=>{
 if(error){
 	alert.error(error)
 }
-	},[error])
+	},[error,alert])
 
     if(localStorage.getItem("nftuser")){
         navigate("/DuelSomeone")
