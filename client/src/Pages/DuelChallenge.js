@@ -36,6 +36,8 @@ const DuelChallenge = () => {
     playertwouserid:"" 
     
   })
+  const [clickeduserid,setClickedUserid] = useState("")
+
  
   // console.log(targetname)
   const handleClose = () => {
@@ -141,6 +143,8 @@ const handleuserclick = async(e)=>{
 console.log(e)
   console.log(e.target.name)
  settargetname(e.target.value)
+   settargetname(e.target.value)
+ console.log(clickeduserid)
 
 }
 
