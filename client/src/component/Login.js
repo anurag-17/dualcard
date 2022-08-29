@@ -51,12 +51,13 @@ if(error){
 <>
 
 <Container >
-<Row md={6}>
 
-<div className={styles.login_container}>
-			<div className={styles.login_form_container}>
 {
 	loading?<Loader/>:<>
+<Row md={6}>
+<div className={styles.login_container}>
+			<div className={styles.login_form_container}>
+
 
 				<div className={styles.left}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
@@ -94,12 +95,14 @@ if(error){
 					</Link>
 				</div>
 	
-	</>
-}
-			</div>
+	
+		</div>
 		</div>
 
 </Row>
+	</>
+
+}
 
 </Container>
 

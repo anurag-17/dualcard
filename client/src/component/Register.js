@@ -60,7 +60,6 @@ if(error){
 {
     loading?<Loader/>:
     <>
-    
 <Container>
     <div className={styles.signup_container}>
 			<div className={styles.signup_form_container}>
