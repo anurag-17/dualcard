@@ -34,7 +34,12 @@ myForm.set("username", inputvalue.username);
 myForm.set("email", inputvalue.email);
 myForm.set("password", inputvalue.password);
 
-dispatch(register(inputvalue))
+
+// dispatch(register(inputvalue))
+
+const {data} = await axios.post("http://localhost:5000/api/auth/register",inputvalue)
+
+localStorage.setItem("nftuser",JSON.stringify(data.user))
 
   setInputvalue({
 	  username:"",
@@ -43,14 +48,13 @@ dispatch(register(inputvalue))
   });
 
     }
-
 useEffect(()=>{
 if(error){
 	alert.error(error)
 }
 
 
-	},[isAuthenticated,navigate])
+	},[error])
 
     if(localStorage.getItem("nftuser")){
         navigate("/DuelSomeone")

@@ -79,9 +79,7 @@ const logoutuser = () => {
                     :
                     <Link to="/register">
                     <button className="btn btn-outline head-btn" type="submit">SignIn </button>
-                    </Link>
-                  
-                    
+                    </Link> 
                   }         
                 </form>
                 </div>
