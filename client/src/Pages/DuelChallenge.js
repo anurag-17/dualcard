@@ -9,7 +9,9 @@ import { Link } from "react-router-dom";
 import { Loader } from "../component/Loader";
 
 const DuelChallenge = () => {
+  const data = localStorage.getItem("nftuser")
   const { image, isImage, loading} = useSelector((state) => state.image);
+  const {isAuthenticated,user} = useSelector((state)=>state.user)
   const dispatch = useDispatch();
   const [targetname, settargetname] = useState("");
   const [textvalue, setTextvalue] = useState("");
@@ -23,26 +25,33 @@ const DuelChallenge = () => {
   const [userdata, setUserdata] = useState([]);
   const [localuser, setlocaluser] = useState("");
   const [newuserdata, setnewuserdata] = useState([]);
+  const [searchfilter,setsearchfilter] = useState([])
   const [userId, setUserId] = useState("");
+  const [runfun,setrunfun] = useState(true)
   const [userprofiledata, setUserprofiledata] = useState([]);
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
-  const[challenge,setchallenge] = useState({
-    playeronetext:"",
-    playeroneuserid:"",
-    userId:"",
-    playertwotext:"",
-    playertwo_url:"",
-    playertwouserid:"" 
-    
-  })
+  const [clickeduser,setclickeduser] = useState("")
  
+//   const handleSearch =  (event)=>{
+//     let value = event.target.value.toLowerCase();
+//     let result = [];
+//   result = searchfilter.filter((data)=>{
+//   return data.username.search(value)!== -1
+//  })
+
+//  setsearchfilter(result);
+//  console.log(setsearchfilter)
+//   }
+
+
+
   // console.log(targetname)
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => setShow(true);
-
+    
   const getuserdata = async () => {
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
@@ -51,11 +60,39 @@ const DuelChallenge = () => {
     const filtereduser = userdata.filter((items, index) => {
       return items._id !== localdata._id;
     });
-
+  
     setnewuserdata(filtereduser);
-    
+    setsearchfilter(filtereduser)
   };
-  getuserdata();
+
+
+
+  const handleSearch =(event)=>{
+    let keyword = event.target.value
+    
+    if (keyword !== '') {
+      const result = newuserdata.filter((user)=>{
+        return user.username.toLowerCase().startsWith(keyword.toLowerCase())
+      })
+      
+      setsearchfilter(result)
+      setrunfun(false)
+
+  
+    }else{
+      setsearchfilter(newuserdata)
+    }
+
+  }
+  if(runfun){
+    getuserdata()
+  }
+
+
+
+  
+
+
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
 
@@ -117,7 +154,7 @@ const DuelChallenge = () => {
     }
 
     if (image) {
-      const data = await axios.post("/upload", {
+      const data = await axios.post("/upload",{
         userId,
         image,
       });
@@ -140,13 +177,14 @@ console.log(res.data)
 const handleuserclick = async(e)=>{
 console.log(e)
   console.log(e.target.name)
+     setclickeduser(e.target.name)
  settargetname(e.target.value)
 
 }
 
+
   useEffect(() => {
     postImageUrl();
-
   }, [image]);
 
   return (
@@ -166,6 +204,7 @@ console.log(e)
                 type="text"
                 placeholder="Search"
                 aria-label="Search"
+              onChange={(event) =>handleSearch(event)}
               />
               <div class="input-group-append">
                 <span class="input-group-text red lighten-3" id="basic-text1">
@@ -179,7 +218,7 @@ console.log(e)
             <div className="tab-challange">
               <div className="tab-section">
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
-                  {newuserdata.map((items, index) => {
+                  {searchfilter.map((items, index) => {
                     return (
                       <li className="nav-item" role="presentation">
                         <button

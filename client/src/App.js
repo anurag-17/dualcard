@@ -17,10 +17,11 @@ import Auction from "./component/Auction"
 import Winner from "./Pages/Winner"
 import Leaderboard from "./Pages/Leaderboard"
 import AboutRules from "./Pages/AboutRules"
-import { Thankyou } from './Thankyou';
+import  Thankyou from './Thankyou';
 import ShopStreamer from './component/ShopStreamer';
 import ShopUniversal from './component/ShopUniversal';
 import ShopSeasonal from './component/ShopSeasonal';
+import Contactus from './Pages/Contactus';
 
 
 
@@ -36,7 +37,8 @@ function App() {
         <Route path ="/profile" element={<Dashboard/>}/>
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
         <Route path = "/winner" element = {<Winner/>}/>
-        <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/>
+        {/* <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/> */}
+        <Route path = "/DuelSomeone" element = {<DuelChallenge/>}/>
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/AboutRules" element = {<AboutRules/>}/>
         <Route path = "/Marketplace" element = {<Marketplace/>}/>
@@ -48,6 +50,7 @@ function App() {
         <Route path = "/shop-streamer" element = {<ShopStreamer/>}/>
         <Route path = "/shop-universal" element = {<ShopUniversal/>}/>
         <Route path = "/shop-seasonal" element = {<ShopSeasonal/>}/>
+        <Route path = "/contact-us" element = {<Contactus/>}/>
       </Routes>
     <Footer/>
     </div>

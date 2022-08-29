@@ -32,11 +32,7 @@ export const Login = () => {
 		   password:""
 		  });
 	
-		
-		
-
 	}
-
 
 	useEffect(()=>{
 if(error){

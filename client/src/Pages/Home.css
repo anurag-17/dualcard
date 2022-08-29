@@ -69,6 +69,7 @@ h2{
 }
 /* card main end */
 
+
 /* work  its work start */
 .video-section {
     padding-top: 40px;
@@ -93,22 +94,22 @@ iframe {
     height: 700px;
     border-radius: 16px;
 } */
-.ytp-cued-thumbnail-overlay{
-    background-image: url(../images/home-img-shape.png) !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+
+.ytp-cued-thumbnail-overlay-image{
+    background: url(../images/home-img-shape.png) !important;
+    height: 100vh;
 }
-.video-section {
+/* .video-section{
+    background-image: url(../images/banner.png) !important;
+    height: 100vh;
     background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100%;
-   
-}
+    height: 100vh;
+    border-radius: 20px;
+} */
+
 
 
 /* buy start */
@@ -196,6 +197,7 @@ iframe {
 
 .market-item1:nth-child(2) .markt-img img {
     margin-top: -60px;
+    width: 100%;
 }
 .search-bar .input-group {
     justify-content: center;
@@ -361,6 +363,10 @@ iframe {
     padding-left: 35px;
 }
 
+.ruleimg {
+    text-align: right;
+}
+
 .rule-img2 {
     background-image: url(../images/rulebg-2.png);
     background-repeat: no-repeat;
@@ -410,6 +416,18 @@ iframe {
 .inf-ct {
     padding-right: 25px;
 }   
+.icon-mob {
+    display: none;
+}
+.icon-mob img {
+    width: 100%;
+}
+.form-control::placeholder {
+    color: #fff!important;
+    opacity: 1; /* Firefox */
+    font-size: 14px;
+    line-height: 24px;
+  }
 
 
 
@@ -425,7 +443,8 @@ iframe {
   @media only screen and (max-width:992px) {
    
     .buy-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(3,1fr);
+        grid-gap: 10px;
     }
     .nav-tabs {
         grid-template-columns: repeat(3,1fr);
@@ -439,6 +458,53 @@ iframe {
         padding: 22px;
         grid-gap: 20px;
     }
+    .nav-tabs {
+        grid-gap: 0px;
+    }  
+    .nav-tabs:nth-child(2) {
+        border-bottom: none;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        text-align: -webkit-center;
+        padding: 0px;
+        grid-gap: 0px;
+    }
+    
+    .tabct-main {
+        align-items: center;
+    }
+    .rule-main2 {
+        margin-top: -14px;
+        align-items: center;
+    }
+    .marketpl-sec {
+        padding: 40px 0px;
+    }
+    .Challenge-sec {
+        padding: 40px 0px;
+    }
+    .rule-sec {
+        padding: 40px 0px;
+    }
+    .info-sec {
+        padding: 70px 0px;
+    }
+    iframe {
+        max-width: 100%;
+        height: 400px;
+    }
+    .nft-img img {
+        margin-top: -63px;
+    }
+    .inf-ct h4 {
+        font-size: 35px;
+        line-height: 51px;
+    }
+    .info-main {
+        text-align: left;
+        align-items: baseline;
+        flex-direction: initial;
+    }
 }
 
 @media only screen and (max-width:778px) {
@@ -449,8 +515,8 @@ iframe {
         text-align: center;
     }
     .card-section {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
         margin-top:0px;
         background-position: center;
     }
@@ -473,8 +539,133 @@ iframe {
         display: grid;
         grid-template-columns: repeat(2,1fr);
         text-align: -webkit-center;
-        padding: 22px;
-        grid-gap: 20px;
+        padding: 0px;
+        grid-gap: 0px;
+    }
+    .card-main {
+        height: 100%;
+        flex-direction: column-reverse;
+    }
+    .card-img img {
+        max-width: 100%;
+        height: 400px;
+    }
+    .card-img {
+        text-align: center;
+    }
+    .marketpl-sec {
+        padding: 30px 0px;
+    }
+    .buy-img img {
+        width: 85%;
+    }
+    .buy-ct h3 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .markt-cont {
+        padding-left: 0px;
+        text-align: center;
+    }
+    .Challenge-sec {
+        padding: 30px 0px;
+    }
+    .nav-tabs:nth-child(2) {
+        grid-template-columns: repeat(3,1fr);
+    }
+    .buy-img img {
+        width: 60%;
+        height: 350px;
+    }
+   
+    .market-item1:nth-child(2) .mart-ct {
+        text-align: center;
+        padding: 20px 0px;
+    }
+    .market-item1:nth-child(2) .mart-img2 {
+        text-align: center;
+    }
+    .rule-main2 {
+        margin-top: 0px;
+        align-items: center;
+        text-align: center;
+    }
+    .markt-img {
+        text-align: center;
+    }
+    .mt-main img {
+        max-width: 51%;
+        padding-top: 20px;
+        height: 400px;
+    }
+    .market-item1:nth-child(2) .markt-img img {
+        margin-top: 0px;
+        width: 51%;
+        height: 400px;
+    }
+    .rule-img img {
+        width: 75%;
+        height: 400px;
+    }
+    .rule-ct {
+        padding-left: 0px !important;
+    }
+    .rule-main2 .rule-img2 {
+        padding-top: 20px;
+    }
+    .info-sec {
+        padding: 0px 0px 50px 0px;
+    }
+    .nft-img img {
+        margin-top: 0px;
+    }
+    .info-main {
+    text-align: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+    .rule-sec {
+        background-color: #131128;
+        padding: 30px 0px;
+    }
+    .rule-main2 {
+        margin-top: -14px;
+        align-items: center;
+        text-align: left;
+    }
+    .tab-right {
+        padding-top: 20px;
+    }
+    .rule-img3 {
+        background-position: center;
+        z-index: 99999 !important;
+        height: 300px;
+        text-align: right;
+        background-size: contain;
+    }
+    .icon-mob {
+        display: block;
+        text-align: center;
+    }
+    .rule-img3 {
+        background-image: none;
+    }
+    .nft-img img {
+        display: none;
+    }
+    .mt-main img {
+        height: 400px;
+    }
+    .mt-main {  
+        padding-top: 0px;
+    }
+    .ruleimg {
+        text-align: center;
+    }
+    .info-main {
+        text-align: left;
+        align-items: baseline;
+        flex-direction: initial;
     }
 }
 
@@ -484,5 +675,109 @@ iframe {
     }
     .nav-tabs {
         grid-template-columns: repeat(2,1fr);
+    }
+    .section-title h2 {
+        font-size: 30px;
+        line-height: 44px;
+    }
+    .card-cont h2 {
+        font-size: 35px;
+        line-height: 42px;
+    }
+    .section-title h2 {
+        font-size: 35px;
+        line-height: 52px;
+    }
+    .nav-tabs:nth-child(2) {
+        grid-template-columns: repeat(2,1fr);
+    }
+    .inf-ct {
+        padding-right: 0px;
+    }
+    .rule-main1 {
+        text-align: center;
+    }
+
+.markt-cont h2 {
+    font-size: 35px;
+    line-height: 45px;
+}
+iframe {
+    max-width: 100%;
+    height: 350px;
+}
+.mart-ct p {
+    padding: 0px;
+}
+
+.rule-img2 {
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: 99999 !important;
+    background-size: auto;
+}
+.rule-ct {
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.nft-img img {
+    margin-top: 0px;
+    height: 310px;
+}
+.rule-img3 {
+    background-position: left;
+    z-index: 99999 !important;
+    height: 300px;
+    text-align: right;
+    background-size: contain;
+}
+.inf-ct h4 {
+    font-size: 35px;
+    line-height: 51px;
+}
+.icon-mob img {
+    height: 350px;
+    max-width: 75%;
+}
+.info-main {
+    text-align: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+.inf-ct {
+    padding-right: 0px;
+    padding-top: 80px;
+}
+}
+
+
+
+@media only screen and (max-width:568px) {
+    .nav-tabs {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .nav-tabs:nth-child(2) {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .duelchalenge-sec .nav-tabs .nav-link {
+        padding: 5px 40px;
+        width: 100%;
+    }
+    .challenge-list {
+        padding: 20px 0px;
+    }
+    .duelchalenge-sec { 
+        padding: 0px;
+    }
+    .rule-img2 {
+        background-repeat: no-repeat;
+        background-position: left;
+        z-index: 99999 !important;
+        background-size: auto;
+    }
+    .market-item1:nth-child(2) .markt-img img {
+        width: 74%;
+        height: 400px;
     }
 }

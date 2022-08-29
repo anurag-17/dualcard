@@ -1,31 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Footer from './component/Footer'
-import Header from './component/Header'
+import React from 'react';
+import './Thankyou.css';
 
-export const Thankyou = () => {
+const Thankyou = () => {
   return (
-    <>
-    <Header/>
-  <div style={{display:"flex",flexDirection:"column",justifyContent:"center",height:'100vh',width:"100%"}}>
-
-<div className="content">
-  <div className="wrapper-1">
-    <div className="wrapper-2" style={{textAlign:"center"}}>
-      <h1>Thank you !</h1>
-      <p style={{color:"black"}}>wait for accepting request</p>
-      <p style={{color:"black"}}>you should receive a confirmation email soon</p>
-      <Link to ="/">
-      <button className="go-home">
-      go home
-      </button>
-      </Link>
+    <div className='body-main'>
+        <div className='thank-sec'>
+            <div className='container'>
+                <div className='thnkct'>
+                <h1>Thank you !</h1>
+                    <p>Thanks for subscribing to our news letter.</p>
+                    <p>you should receive a confirmation email soon  </p>
+                   <div className='thankbtn'>
+                    <button class="go-home hero-btn">
+                        go home
+                        </button>
+                   </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
-  </div>  
-    {/* <Footer/> */}
-{/* <Footer/> */}
-    </>
   )
 }
+
+export default Thankyou

@@ -16,7 +16,9 @@ const Home = () => {
                 <p>We bridge the gap between you and the content creator, we keep your cards safe in an escrow hold while you challenge, 
                   play, win and sell your cards!</p>
                  <div className='btn-main'>
+                  <Link to = "/contact-us">
                  <button className='hero-btn'>Contact btn</button>
+                  </Link>
                  </div>
               </div>
               </div>
