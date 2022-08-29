@@ -25,7 +25,7 @@ export const login = (userdata) => async (dispatch,) => {
   console.log(userdata);
   try {
     dispatch({ type: LOGIN_REQUEST });
-    const { data } = await axios.post(`http://localhost:5000/api/auth/login`,userdata);
+    const { data } = await axios.post(`/api/auth/login`,userdata);
 
     dispatch({ type:LOGIN_SUCCESS, payload: data.user});
     localStorage.setItem("nftuser",JSON.stringify({...data.user,password:""}))
