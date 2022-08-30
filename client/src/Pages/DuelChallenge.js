@@ -41,22 +41,7 @@ const DuelChallenge = () => {
   };
   const handleShow = () => setShow(true);
     
-  const handleSearch =(event)=>{
-    setrunfun(false)
-    let keyword = event.target.value
 
-    if (keyword !=="") {
-      const result = newuserdata.filter((user)=>{
-        return user.username.toLowerCase().startsWith(keyword.toLowerCase())
-      })
-    
-      setsearchfilter(result)
-    }else{
-      setsearchfilter(newuserdata)
-    }
-
-  }
-  
 
 
 async function getuserdata(){
@@ -159,6 +144,16 @@ console.log(e)
      setclickeduser(e.target.name)
      settargetname(e.target.value)
      console.log(clickeduser)
+}
+
+const handleSearch =(event)=>{
+  setrunfun(false)
+  let keyword = event.target.value
+    const result = newuserdata.filter((user)=>{
+      return user.username.toLowerCase().startsWith(keyword.toLowerCase())
+    })
+  
+    setsearchfilter(result)
 }
 
 
