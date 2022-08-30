@@ -7,11 +7,12 @@ const DuelReceived = () => {
 
 
 const [challengeuser,setChallengeUser] = useState([])
-
+const [filteruser,setFilterUser] = useState([])
 
 const getuserchallenge = async()=>{
   const  res =  await axios.get("http://localhost:5000/api/auth/challengedata")
   console.log(res.data)
+  
   setChallengeUser(res.data)
 }
 getuserchallenge()
@@ -33,7 +34,7 @@ getuserchallenge()
     challengeuser.map((items,index)=>{
         return(
             items.player_1.map((item,i)=>{
-                console.log(item.images[0].url)
+                console.log(item.images.url)
             })
         )
     })

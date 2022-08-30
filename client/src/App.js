@@ -37,8 +37,7 @@ function App() {
         <Route path ="/profile" element={<Dashboard/>}/>
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
         <Route path = "/winner" element = {<Winner/>}/>
-        {/* <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/> */}
-        <Route path = "/DuelSomeone" element = {<DuelChallenge/>}/>
+        <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/>
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/AboutRules" element = {<AboutRules/>}/>
         <Route path = "/Marketplace" element = {<Marketplace/>}/>

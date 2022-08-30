@@ -33,20 +33,6 @@ const DuelChallenge = () => {
   const [userimagedata, setuserimagedata] = useState([]);
   const [clickeduser,setclickeduser] = useState("")
  
-//   const handleSearch =  (event)=>{
-//     let value = event.target.value.toLowerCase();
-//     let result = [];
-//   result = searchfilter.filter((data)=>{
-//   return data.username.search(value)!== -1
-//  })
-
-//  setsearchfilter(result);
-//  console.log(setsearchfilter)
-//   }
-
-
-
-  // console.log(targetname)
   const handleClose = () => {
     setShow(false);
   };
@@ -68,15 +54,15 @@ const DuelChallenge = () => {
 
 
   const handleSearch =(event)=>{
+    setrunfun(false)
     let keyword = event.target.value
     
-    if (keyword !== '') {
+    if (keyword !=="") {
       const result = newuserdata.filter((user)=>{
         return user.username.toLowerCase().startsWith(keyword.toLowerCase())
       })
       
       setsearchfilter(result)
-      setrunfun(false)
 
   
     }else{
@@ -102,10 +88,6 @@ const DuelChallenge = () => {
         setuserimagedata(data.data);
       })
   
-
-    //  console.log(userimagedata)
-    // setfinalimagedata(newimagedata)
-    // console.log(setfinalimagedata)
   }
   getimages();
 
@@ -162,24 +144,26 @@ const DuelChallenge = () => {
       // arr.push(data)
     }
   }
-  const submitCards = async () => {};
+
 
   const sendValue = async() => {
 
 const res = await  axios.post("/api/auth/sendchal",
-{ playerone_url:userimagedata,playeronetext:textvalue,userId:userId},
+{ playerone_url:userimagedata,
+  playeronetext:textvalue,
+  playeroneuserid:userId,
+  playertwouserid:clickeduser
+},
 )
 
 console.log(res.data)
 
-
   };
 const handleuserclick = async(e)=>{
 console.log(e)
-  console.log(e.target.name)
      setclickeduser(e.target.name)
- settargetname(e.target.value)
-
+     settargetname(e.target.value)
+     console.log(clickeduser)
 }
 
 
@@ -269,7 +253,7 @@ console.log(e)
                             <div className="dule-img1"></div>
                           </div>
                           <div className="btn-duel-right">
-                            <button onClick={submitCards} className="hero-btn">
+                            <button  className="hero-btn">
                               SELECT CARDS
                             </button>
                           </div>
