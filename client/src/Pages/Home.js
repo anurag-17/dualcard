@@ -1,9 +1,62 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './Home.css';
 
 
 const Home = () => {
+
+  const [userdata, setUserdata] = useState([]);
+  const [newuserdata, setnewuserdata] = useState([]);
+  const [searchfilter,setsearchfilter] = useState([])
+  const[clickeduser,setclickeduser] =  useState("")
+  const[targetname,settargetname] =useState("")
+  const [firstname,setfirstname] = useState(true)
+  const [runfun,setrunfun] = useState(true)
+
+
+  async function getuserdata(){
+
+
+    if(!firstname){
+      return
+    }
+    const res = await axios.get("/api/auth/getuserdata");
+    setUserdata(res.data);
+    const localdata = JSON.parse(localStorage.getItem("nftuser"));
+      userdata.sort((a,b)=>a.username.localeCompare(b.username))
+    const filtereduser = userdata.filter((items, index) => {
+      return items._id !== localdata._id;
+    });
+   
+    setnewuserdata(filtereduser);
+    setsearchfilter(filtereduser)
+  };
+
+  if(runfun){
+    getuserdata()
+  }
+  
+
+  const handleuserclick = async(e)=>{
+    setfirstname(false)
+  console.log(e)
+       setclickeduser(e.target.name)
+       settargetname(e.target.value)
+       console.log(targetname)
+       console.log(clickeduser)
+  }
+
+  const handleSearch =(event)=>{
+    setrunfun(false)
+    let keyword = event.target.value
+      const result = newuserdata.filter((user)=>{
+        return user.username.toLowerCase().startsWith(keyword.toLowerCase())
+      })
+    
+      setsearchfilter(result)
+  }
+
   return (
     <div>
       <div className='card-section'>
@@ -164,7 +217,7 @@ const Home = () => {
            </div>
            <div className='search-bar'>
            <div class="input-group md-form form-sm form-2 pl-0">
-            <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search"/>
+            <input onChange={handleSearch} class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search"/>
             <div class="input-group-append">
               <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
                   aria-hidden="true"></i></span>
@@ -175,63 +228,54 @@ const Home = () => {
           
             <div className='tab-section'> 
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link active tab-btn" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">  <img src="./User_avatar.png" alt="img"/> Laurie</button>
+
+
+                      {
+
+searchfilter.map((items,index)=>{
+
+  return(
+    <>
+  <li className="nav-item" role="presentation">
+                    <button
+                          value={items.username}
+                          onClick={handleuserclick}
+                          name = {items._id}
+                          className="nav-link active tab-btn"
+                          id="home-tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#home"
+                          type="button"
+                          role="tab"
+                          aria-controls="home"
+                          aria-selected="true"
+                        >
+                          {" "}
+
+                          <img onClick={handleuserclick}
+                            src={require(`../images/tabicon-${index + 1}.png`)}
+                            alt="img"
+                          />
+                          {items.username}
+                        </button>
                         </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#Stephen" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-2.png" alt="img"/> Stephen</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-3.png" alt="img"/> Nick</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-4.png" alt="img"/> Judith</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-5.png" alt="img"/> Andrea</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-6.png" alt="img"/> Albert</button>
-                        </li>
-                        {/* <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-7.png" alt="img"/> Ernest</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon8.png" alt="img"/> Estebana</button>
-                        </li>
-                        
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon9.png" alt="img"/> Carly</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon10.png" alt="img"/> Steve</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon11.png" alt="img"/> Andrina</button>
-                        </li>                        */}
-                    </ul>
-                    <ul className="nav nav-tabs" id="myTab" role="tablist">
-                         <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon-7.png" alt="img"/> Ernest</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon8.png" alt="img"/> Estebana</button>
-                        </li>
-                        
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon9.png" alt="img"/> Carly</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon10.png" alt="img"/> Steve</button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                            <button className="nav-link tab-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><img src="./tabicon11.png" alt="img"/> Andrina</button>
-                        </li>                       
-                    </ul>
+    </>
+  )
+})}                    
+</ul>
                     <div className="tab-content" id="myTabContent">
-                    <div className="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div className="" id="home" role="tabpanel" aria-labelledby="home-tab">
                       <div className='tab-cont'>
-                        <p>Estebana</p>
+                        
+                        {
+                          searchfilter.map((items,index)=>{
+                            if(index===0){
+                              return(
+                                <p>{firstname?items.username:targetname}</p>
+                              )
+                            }
+                          })
+                        }
                         <div className='row'>
                           <div className='col-md-6'>
                             <div className='tab-grid'>
@@ -265,7 +309,9 @@ const Home = () => {
                     </div>
               </div>
               <div className='btn-tb2'>
+                <Link to = "/DuelSomeone">
                  <button className='hero-btn'>Commence Challenge</button>
+                </Link>
              </div>
            </div>
          </div>

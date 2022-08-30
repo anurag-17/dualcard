@@ -111,9 +111,9 @@ exports.getdata = async (req, res) => {
   return res.json(imgdata);
 };
 
-exports.getuserdata = async (req, res) => {
+exports.getuserdata = async(req, res) => {
   let userdata = await User.find();
-  return res.json(userdata);
+  return res.status(200).json(userdata);
 };
 
 exports.sendchallange = async (req, res) => {

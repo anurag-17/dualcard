@@ -45,6 +45,8 @@ if(error){
 	}
   return (
 <>
+<div className='body-main'>
+<div className="login-sec">
 
 <Container >
 
@@ -101,6 +103,8 @@ if(error){
 }
 
 </Container>
+</div>
+</div>
 
 </>
   )

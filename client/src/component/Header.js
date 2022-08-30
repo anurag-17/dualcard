@@ -74,7 +74,7 @@ const logoutuser = () => {
                     <button  className="btn btn-outline head-btn" type="submit">{data.username}</button>
                     </>
                     <button className="btn btn-outline head-btn" style={{marginLeft:"10px"}}  onClick={logoutuser}>logout</button>
-                    {/* { <button onClick={logoutuser}>logout</button> } */}
+                  
                     </div>
                     :
                     <Link to="/register">
@@ -115,18 +115,19 @@ const logoutuser = () => {
                   <Nav.Link href="AboutRules">About / Rules</Nav.Link>
                   <Nav.Link href="ICOInformation">ICO Information</Nav.Link>
                 </Nav>
-                <form className="d-flex">                    
+                
+                <form className="d-flex">
+                  {
+                    localStorage.getItem("nftuser")?
+                    <>
+                    <button  className="btn btn-outline head-btn" type="submit">{data.username}</button>
+                    <button className="btn btn-outline head-btn" style={{marginLeft:"10px"}}  onClick={logoutuser}>logout</button>
+                    </>
+                    :
                     <button className="btn btn-outline head-btn" type="submit">SignIn btn</button>
-                </form>
-                {/* <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form> */}
+
+                  }                    
+                </form>             
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

@@ -118,3 +118,56 @@
       display: flex !important;
       align-items:end;
   }
+
+  .md-image-text-item {
+    position: relative;
+    padding: 15px 0 15px 50px;
+    text-align: left;
+    line-height: normal;
+}
+
+.md-image-text-avatar {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+
+.css-1s2u09g-control {
+    border-radius: 20px !important;
+    min-height: 42px !important;
+}
+.actprize-btn1 .form-control::placeholder {
+    color: #000 !important;
+    opacity: 1; 
+    font-size: 14px;
+    line-height: 24px;
+}
+.actprize-btn1 {
+    width: 100%;
+}
+
+/* responsive */
+@media only screen and (max-width:992px) {
+    img.optionimg {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
+
+@media only screen and (max-width:778px) {
+    .auction-ct {
+        display: flex;
+        color: #fff;
+        grid-gap: 15px;
+        padding-top: 15px;
+        justify-content: center;
+    }
+    .auction-profile img {
+        width: 73%;
+        height: 100%;
+        border-radius: 20px;
+        height: 400px;
+    }   
+}

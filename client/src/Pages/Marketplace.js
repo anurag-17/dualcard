@@ -1,8 +1,20 @@
 import React from 'react';
 import './Marketplace.css';
 import Form from 'react-bootstrap/Form';
+import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
+
 
 const Marketplace = () => {
+  const options = [
+    { label: 'Price', value: 1},
+    { label: 'Streamer', value: 2},
+    { label: 'Sponsor', value: 3},
+    { label: 'Streamer', value: 4},
+    { label: 'Card Type', value: 5},
+    { label: 'Season Card', value: 6},
+
+  ];
+
   return (
     <div className='body-main'>     
       <div className='marketplace-sec'>
@@ -10,7 +22,10 @@ const Marketplace = () => {
            <div className='section-title'>
               <h2>Marketplace</h2>              
            </div>
+           <div className='row'>
 
+           </div>
+          
            <div className='search-bar'>
             <diiv className='serch-grid'>
               <div className='search1'>
@@ -22,16 +37,10 @@ const Marketplace = () => {
                 </div>
               </div>
               </div>
-                <div className='search1'>
-                <Form.Select aria-label="Default select example">
-                  <option></option>
-                  <option value="1">Price</option>
-                  <option value="2">Price</option>
-                  <option value="3">Sponsor</option>
-                  <option value="3">Card Type</option>
-                  <option value="3">Season Card</option>
-                </Form.Select>
-                </div>
+                <div className='search1 filter-search'>                  
+                  <ReactMultiSelectCheckboxes className='filter-market' options={options} />
+                </div>             
+          
             </diiv>
            </div>
            <div className='market-saerch'>

@@ -243,6 +243,14 @@ iframe {
     margin: auto;
     padding-top: 20px;
 }
+
+.search-bar .form-control::placeholder {
+    color: #fff!important;
+    opacity: 1; 
+    font-size: 14px;
+    line-height: 24px;
+}
+
 .input-group-text {
     display: flex;
     align-items: center;

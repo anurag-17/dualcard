@@ -136,11 +136,26 @@ p {
 .most-main {
     grid-gap: 30px;
 }
-
+.leaader-tab .nav-tabs {
+    grid-gap: 20px;
+}
 
 }
 
 @media only screen and (max-width:667px) {
- 
+    .most-main {
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+    
+}
+
+@media only screen and (max-width:568px) {
+    .most-item1 {
+        text-align: center;
+    }
+    .most-des .clearfix {
+        justify-content: center;
+    }
 
 }

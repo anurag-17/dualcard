@@ -1,6 +1,6 @@
 .winner-sec{
     background-color: #121027;
-    padding: 100px 0px 60px 0px;
+    padding: 40px 0px;
 }
 .won-main {   
     padding: 40px 0px;
@@ -45,4 +45,32 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-gap: 45px;
+}
+
+/* responsive */
+
+@media only screen and (max-width:778px) {
+    .winnerbtn1 .hero-btn {
+        font-size: 14px;
+        background-color: #4B6EBC;
+        padding: 6px 15px;
+        border-radius: 25px;
+        border: 1px solid #4B6EBC;
+        color: #fff;
+        text-transform: uppercase;
+        line-height: 24px;
+    }
+   
+  }
+
+
+  @media only screen and (max-width:558px) {
+    .won-btn {
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        grid-gap: 0px;
+    }
+    .won-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
 }

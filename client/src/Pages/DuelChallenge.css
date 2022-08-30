@@ -180,6 +180,12 @@
     z-index: -1;
 
   }
+  .duel-form .form-control::placeholder {
+    color: #fff !important;
+    opacity: 1; 
+    font-size: 14px;
+    line-height: 24px;
+}
   
   .icon-plus:after {
     background-color: #43387f;

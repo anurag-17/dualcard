@@ -34,16 +34,42 @@ const DuelChallenge = () => {
   const [clickeduser,setclickeduser] = useState("")
   const [firstname,setfirstname] = useState(true)
 
+
  
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => setShow(true);
     
-  const getuserdata = async () => {
+  const handleSearch =(event)=>{
+    setrunfun(false)
+    let keyword = event.target.value
+
+    if (keyword !=="") {
+      const result = newuserdata.filter((user)=>{
+        return user.username.toLowerCase().startsWith(keyword.toLowerCase())
+      })
+    
+      setsearchfilter(result)
+    }else{
+      setsearchfilter(newuserdata)
+    }
+
+  }
+  
+
+
+async function getuserdata(){
+
+  if(!firstname){
+    return;
+  }
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
-    const localdata = JSON.parse(localStorage.getItem("nftuser"));
+    const localdata = JSON.parse(localStorage.getItem("nftuser"))
+  
+
+userdata.sort((a,b) => a.username.localeCompare(b.username))
 
     const filtereduser = userdata.filter((items, index) => {
       return items._id !== localdata._id;
@@ -51,30 +77,12 @@ const DuelChallenge = () => {
   
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser)
-  };
-
-
-
-  const handleSearch =(event)=>{
-    setrunfun(false)
-    let keyword = event.target.value
-    
-    if (keyword !=="") {
-      const result = newuserdata.filter((user)=>{
-        return user.username.toLowerCase().startsWith(keyword.toLowerCase())
-      })
-      setsearchfilter(result)
-    }else{
-      setsearchfilter(newuserdata)
-    }
-
   }
   if(runfun){
     getuserdata()
   }
 
-
-
+  
   
 
 
@@ -105,19 +113,6 @@ const DuelChallenge = () => {
     data.append("cloud_name", "degu3b9yz");
     dispatch(postimage(data, userId));
 
-    //   await fetch("https://api.cloudinary.com/v1_1/degu3b9yz/image/upload", {
-    //     method: "POST",
-    //     body: data,
-    //   }).then((res)=>res.json()).then((data)=>{
-    //   const imgUrl = data.url
-    //   setUrl(data.url)
-    //   arr.push(imgUrl)
-
-    //   console.log(imgdata)
-
-    // }).catch((err)=>{l
-    //   console.log(err)`
-    // })
 
     setShow(false);
   };
@@ -202,6 +197,9 @@ console.log(e)
             <div className="tab-challange">
               <div className="tab-section">
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
+
+
+
                   {searchfilter.map((items, index) => {
                   
                     return (
@@ -349,18 +347,19 @@ console.log(e)
                         <div className="col-md-6 tab-right">
                           <div className="dule-rt-2">
                             <div class="clearfix">
-                              <img src="./tabicon-2.png" alt="img" />
                         
-                        {
-
+                        { 
                           searchfilter.map((items,index)=>{
-                          if(index===0){
+                            if(index===0){
                                        
-                            return(
+                              return(<>
+                              
+                              <img src="./tabicon-14.png" alt="img" />
                               <button type="button" class="btn float-end">
                               
                                {firstname?items.username:targetname} 
                               </button>
+                              </>
                             )
                           }
 
