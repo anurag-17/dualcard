@@ -1,6 +1,6 @@
 import React from 'react';
 import './Thankyou.css';
-
+import {Link} from "react-router-dom"
 const Thankyou = () => {
   return (
     <div className='body-main'>
@@ -11,9 +11,12 @@ const Thankyou = () => {
                     <p>Thanks for subscribing to our news letter.</p>
                     <p>you should receive a confirmation email soon  </p>
                    <div className='thankbtn'>
+    <Link to = "/">
+    
                     <button class="go-home hero-btn">
                         go home
                         </button>
+    </Link>
                    </div>
                 </div>
             </div>
