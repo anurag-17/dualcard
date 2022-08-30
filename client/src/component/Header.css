@@ -10,7 +10,7 @@
     color: #fff;
     font-size: 14px;
     line-height: 17px;
-    padding: 0px 25px;
+    padding: 0px 5px;
 }
 .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
     color: cadetblue;
@@ -100,8 +100,6 @@ hr.hr-line {
 }
 
 
-
-
  .a {
     color: #000;
     text-decoration: none !important;
@@ -115,7 +113,7 @@ hr.hr-line {
         color: #fff;
         font-size: 14px;
         line-height: 17px;
-        padding: 0px 5px;
+        padding: 0px !important;
     }
  }
 @media only screen and (max-width:992px) {   

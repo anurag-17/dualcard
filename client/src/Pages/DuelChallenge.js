@@ -32,6 +32,8 @@ const DuelChallenge = () => {
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
   const [clickeduser,setclickeduser] = useState("")
+  const [firstname,setfirstname] = useState(true)
+
  
   const handleClose = () => {
     setShow(false);
@@ -61,10 +63,7 @@ const DuelChallenge = () => {
       const result = newuserdata.filter((user)=>{
         return user.username.toLowerCase().startsWith(keyword.toLowerCase())
       })
-      
       setsearchfilter(result)
-
-  
     }else{
       setsearchfilter(newuserdata)
     }
@@ -160,6 +159,7 @@ console.log(res.data)
 
   };
 const handleuserclick = async(e)=>{
+  setfirstname(false)
 console.log(e)
      setclickeduser(e.target.name)
      settargetname(e.target.value)
@@ -203,6 +203,7 @@ console.log(e)
               <div className="tab-section">
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                   {searchfilter.map((items, index) => {
+                  
                     return (
                       <li className="nav-item" role="presentation">
                         <button
@@ -342,16 +343,30 @@ console.log(e)
                           </div> 
                           }
                           <div className="btn-duel-right">
-                            <button className="hero-btn">SELECT CARDS</button>
+                            <button onClick={handleShow} className="hero-btn">SELECT CARDS</button>
                           </div>
                         </div>
                         <div className="col-md-6 tab-right">
                           <div className="dule-rt-2">
                             <div class="clearfix">
                               <img src="./tabicon-2.png" alt="img" />
+                        
+                        {
+
+                          searchfilter.map((items,index)=>{
+                          if(index===0){
+                                       
+                            return(
                               <button type="button" class="btn float-end">
-                                {targetname}
+                              
+                               {firstname?items.username:targetname} 
                               </button>
+                            )
+                          }
+
+                          })
+                        }
+                              
                             </div>
                           </div>
                           <div className="challenge-list">
