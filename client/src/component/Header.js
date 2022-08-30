@@ -93,7 +93,7 @@ const logoutuser = () => {
           <Container fluid>
             <Navbar.Brand href="#">
             <a className="navbar-brand" href="">
-                    <img src='./Logo.png'></img>
+                    <img src={logo}></img>
                 </a>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -116,7 +116,6 @@ const logoutuser = () => {
                   <Nav.Link href="ICOInformation">ICO Information</Nav.Link>
                 </Nav>
                 <form className="d-flex">                    
-                    <button className="btn btn-outline head-btn" type="submit">SignIn btn</button>
                     <button className="btn btn-outline head-btn" type="submit">SignIn btn</button>
                 </form>
                 {/* <Form className="d-flex">

@@ -5,6 +5,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	font-family: 'Audiowide';
+
 }
 
 .login_form_container {
@@ -16,7 +18,7 @@
 		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
 
-.left {
+.left{
 	flex: 2;
 	display: flex;
 	flex-direction: column;
@@ -25,6 +27,11 @@
 	background-color: white;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
+	align-self: center;
+    color: #1b193c;
+    font-size: 30px;
+    margin-top: 0;
+    font-family: 'Audiowide';
 }
 
 .form_container {
@@ -103,9 +110,30 @@ a{
 	list-style: none;
 }
 
+@media only screen and (max-width: 778px) {
+	@media only screen and (max-width: 778px) {
+		
+		.login_form_container {
+			flex-direction: column;
+			margin-top: 50px;
+		}
+		.right{
+			flex: 1;
+		}
+		.form_container {
+			font-size: 35px;
+			font-family: 'Audiowide';
+		}
+	}
+}
 
 
-@media only screen and (max-width: 777px) {
-
-
+@media only screen and (max-width: 667px) {
+  
+    .right h1 {
+        font-size: 30px;
+    }
+   .form_container h1 {
+        font-size: 26px;
+    }
 }
