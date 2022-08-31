@@ -13,13 +13,12 @@ const [challengerId,setChallngerId]  = useState("")
 const [newuserdata,setnewuserdata] = useState([])
 const [userdata,setUserdata] = useState([])
 const getuserchallenge = async()=>{
-  const  res =  await axios.get("http://localhost:5000/api/auth/challengedata")
+  const  res =  await axios.get("/api/auth/challengedata")
 
   setChallngerId(res.data[0].player_1[0].images[0].userId)
   challengeId = res.data[0].player_1[0].images[0].userId
  setChallengeUser(res.data) 
-
-
+ 
 }
 
 async function getuserdata(){
@@ -64,7 +63,6 @@ challengeuser.map((items,index)=>{
 return(
     items.player_1[0].images.map((items,index)=>{
 return(
-
     <Carousel.Item>
          <img
         className="d-block w-100"
@@ -72,6 +70,7 @@ return(
         alt="First slide"
         />
     </Carousel.Item>
+
 )
     })
 )
@@ -117,7 +116,6 @@ return(
                             </Carousel.Caption>
                         </Carousel.Item> */}
 </Carousel>
-
                             </div>
                             <div className='duel-des'>
                               <div class="clearfix">
