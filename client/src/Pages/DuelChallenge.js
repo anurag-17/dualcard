@@ -33,6 +33,7 @@ const DuelChallenge = () => {
   const [searchfilter,setsearchfilter] = useState([])
   const [userId, setUserId] = useState("");
   const [runfun,setrunfun] = useState(true)
+  const [loader,setLoader] = useState(false)
   const [userprofiledata, setUserprofiledata] = useState([]);
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
@@ -134,7 +135,7 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
 
 
   const sendValue = async() => {
-
+setLoader(true)
 const res = await  axios.post("/api/auth/sendchal",
 { playerone_url:userimagedata,
   playeronetext:textvalue,
@@ -145,7 +146,10 @@ const res = await  axios.post("/api/auth/sendchal",
 },
 )
 
-navigate("/thankyou")
+if(res){
+  setLoader(false)
+  navigate("/thankyou")
+}
 console.log(res.data)
 
   };
@@ -174,7 +178,10 @@ const handleSearch =(event)=>{
 
   return (
 
+   
     <div>
+      {
+        loader?<Loader/>:
       <>
       <div className="duelchalenge-sec">
         <div className="container">
@@ -720,6 +727,7 @@ return(
       </div>
       
       </>
+      }
 
     </div>
   );

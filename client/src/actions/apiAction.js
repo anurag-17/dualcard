@@ -16,3 +16,7 @@ export const postimage=(userdata)=> async (dispatch, getState) => {
     }
     
   };
+
+
+
+  
