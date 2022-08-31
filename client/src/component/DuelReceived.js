@@ -14,9 +14,11 @@ const [newuserdata,setnewuserdata] = useState([])
 const [userdata,setUserdata] = useState([])
 const getuserchallenge = async()=>{
   const  res =  await axios.get("http://localhost:5000/api/auth/challengedata")
+  
   setChallngerId(res.data[0].player_1[0].images[0].userId)
   challengeId = res.data[0].player_1[0].images[0].userId
  setChallengeUser(res.data) 
+
 }
 
 async function getuserdata(){
@@ -32,7 +34,6 @@ async function getuserdata(){
       });
       setnewuserdata(filtereduser);
      filterdata.push(filtereduser)
-     filterdata.map((items,index)=>setusername(items.username))
     }
 
     
@@ -59,7 +60,6 @@ getuserdata()
                                 <Carousel>
 {
 challengeuser.map((items,index)=>{
-
 return(
     items.player_1[0].images.map((items,index)=>{
 return(
@@ -120,7 +120,17 @@ return(
                             </div>
                             <div className='duel-des'>
                               <div class="clearfix">
-                            <button type="button" class="btn float-end">{username}</button>
+                                {
+                                    challengeuser.map((items,index)=>{
+                                        return(
+                                            <button type="button" class="btn float-end">{
+                                   items.player_2[0].name
+
+                                            }</button>
+
+                                        )
+                                    })
+                                }
 
                                 <img src="./tabicon8.png" alt="newimg"/>
                               

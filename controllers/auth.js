@@ -127,14 +127,16 @@ exports.sendchallange = async (req, res) => {
       {
         text: req.body.playeronetext,
         images: req.body.playerone_url,
-        userId:req.body.playeroneuserid
+        userId:req.body.playeroneuserid,
+        name:req.body.playeronename,
       },
     ],
     player_2: [
       {
         text: req.body.playertwotext,
         images:req.body.playertwo_url,
-        userId:req.body.playertwouserid
+        userId:req.body.playertwouserid,
+        name:req.body.playertwoname
       },
     ],
   });

@@ -27,6 +27,9 @@ const challengeSchema = new mongoose.Schema({
       userId: {
         type: String,
       },
+      name:{
+        type:String
+      }
     },
   ],
   player_2: [
@@ -41,6 +44,9 @@ const challengeSchema = new mongoose.Schema({
       userId: {
         type: String,
       },
+      name:{
+        type:String
+      }
     },
   ],
 });

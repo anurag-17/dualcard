@@ -137,7 +137,8 @@ const res = await  axios.post("/api/auth/sendchal",
 { playerone_url:userimagedata,
   playeronetext:textvalue,
   playeroneuserid:userId,
-  playertwouserid:clickeduser
+  playertwouserid:clickeduser,
+  playertwoname:targetname
 },
 )
 
