@@ -8,7 +8,15 @@ const challengeSchema = new mongoose.Schema({
 
   Accept: {
     type: String,
+    default:false
     // required: true,
+  },
+
+  player_1_id:{
+type:String
+  },
+  player_2_id:{
+    type:String
   },
   decline: {
     type: String,

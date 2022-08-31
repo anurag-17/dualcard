@@ -121,6 +121,8 @@ exports.sendchallange = async (req, res) => {
   console.log(req.body)
   let challenge = await Challenge.create({
     recieved:req.body.recieved,
+    player_1_id:req.body.playeroneuserid,
+    player_2_id:req.body.playertwouserid,
     accept,
     decline,
     player_1: [
@@ -150,6 +152,13 @@ return res.json(challengedata)
 
 }
 
+exports.getrecieved = async(req,res)=>{
+
+  const data = await Challenge.find({player_2_id:req.body.id})
+  return res.json(data)
+  console.log(data)
+
+}
 
 
 //forget password

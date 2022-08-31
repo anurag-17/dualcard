@@ -5,13 +5,15 @@ import "./DuelChallenge.css";
 import { useDispatch, useSelector } from "react-redux";
 import { postimage } from "../actions/apiAction";
 import img1 from "../images/Plus.png";
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import { Loader } from "../component/Loader";
 import ImagePicker from 'react-image-picker'
 import 'react-image-picker/dist/index.css'
 import "./tickimage.css"
 
+
 const DuelChallenge = () => {
+  const navigate = useNavigate()
   const data = localStorage.getItem("nftuser")
   const { image, isImage, loading} = useSelector((state) => state.image);
   const {isAuthenticated,user} = useSelector((state)=>state.user)
@@ -55,7 +57,8 @@ async function getuserdata(){
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
     const localdata = JSON.parse(localStorage.getItem("nftuser"))
-  
+   
+    setlocaluser(localdata.username)
 
 userdata.sort((a,b) => a.username.localeCompare(b.username))
 
@@ -81,7 +84,6 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
     const userdata = JSON.parse(localStorage.getItem("nftuser"));
     setUserprofiledata([userdata]);
     setUserId(userdata._id);
-    setlocaluser(userdata.user.username);
   };
 
   const handlesubmit = async () => {
@@ -138,10 +140,12 @@ const res = await  axios.post("/api/auth/sendchal",
   playeronetext:textvalue,
   playeroneuserid:userId,
   playertwouserid:clickeduser,
+  playeronename:localuser,
   playertwoname:targetname
 },
 )
 
+navigate("/thankyou")
 console.log(res.data)
 
   };
@@ -418,14 +422,12 @@ return(
                             </div>
                           </div>
                           <div className="btn-duel-right challenge">
-                            <Link to = "/thankyou">
                             <button
                               onClick={sendValue}
                               className="hero-btn challenge"
                             >
                               send challenge
                             </button>
-                            </Link>
                           </div>
                         </div>
                       </div>

@@ -4,43 +4,24 @@ import Carousel from 'react-bootstrap/Carousel';
 import axios from 'axios';
 
 const DuelReceived = () => {
-const data = JSON.parse(localStorage.getItem("nftuser"))
-let challengeId = ""
-const [username,setusername] = useState("")
-let filterdata = []
-const [challengeuser,setChallengeUser] = useState([])
-const [challengerId,setChallngerId]  = useState("")
-const [newuserdata,setnewuserdata] = useState([])
-const [userdata,setUserdata] = useState([])
-const getuserchallenge = async()=>{
-  const  res =  await axios.get("/api/auth/challengedata")
+    const [challengedata,setchallengedata] = useState([])
+    const data = JSON.parse(localStorage.getItem("nftuser"))
+    const id = data._id
 
-  setChallngerId(res.data[0].player_1[0].images[0].userId)
-  challengeId = res.data[0].player_1[0].images[0].userId
- setChallengeUser(res.data) 
+const getrecieved = async()=>{
+console.log(id)
  
-}
-
-async function getuserdata(){
-      const res = await axios.get("/api/auth/getuserdata");
-      var newdata = res.data
-     
-    //   setUserdata(res.data);
-  userdata.sort((a,b) => a.username.localeCompare(b.username))
-  
-      const filtereduser = newdata.filter((items, index) => {
-        return items._id === challengeId
-
-      });
-      setnewuserdata(filtereduser);
-     filterdata.push(filtereduser)
+        const res = await axios.post("/api/auth/recievedchallenge",{id:id})
+        console.log(res.data)
+        setchallengedata(res.data)
     }
 
-    
+
     useEffect(()=>{
-        getuserchallenge()
-})
-getuserdata()
+        getrecieved()
+    },[])
+
+
 
   return (
     <div>
@@ -59,7 +40,8 @@ getuserdata()
 
                                 <Carousel>
 {
-challengeuser.map((items,index)=>{
+challengedata.map((items,index)=>{
+
 return(
     items.player_1[0].images.map((items,index)=>{
 return(
@@ -79,51 +61,15 @@ return(
 }
 
 
-
-
-
-
-
-{/* 
-                     <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="./slider-1.png"
-                            alt="First slide"
-                            />
-                            <Carousel.Caption>
-                            
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="./slider-2.png"
-                            alt="Second slide"
-                            />
-
-                            <Carousel.Caption>                           
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="./slider-3.png"
-                            alt="Third slide"
-                            />
-
-                            <Carousel.Caption>                            
-                            </Carousel.Caption>
-                        </Carousel.Item> */}
 </Carousel>
                             </div>
                             <div className='duel-des'>
                               <div class="clearfix">
                                 {
-                                    challengeuser.map((items,index)=>{
+                                    challengedata.map((items,index)=>{
                                         return(
                                             <button type="button" class="btn float-end">{
-                                   items.player_2[0].name
+                                         items.player_1[0].name
 
                                             }</button>
 
@@ -145,7 +91,7 @@ return(
                         </div>
                         <div className='dule-cont'>
                             {
-                                challengeuser.map((items,index)=>{    return(
+                                challengedata.map((items,index)=>{    return(
                                         items.player_1.map((item,i)=>{
                                            return(
                                                <>
