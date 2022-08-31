@@ -7,6 +7,9 @@ import { postimage } from "../actions/apiAction";
 import img1 from "../images/Plus.png";
 import { Link } from "react-router-dom";
 import { Loader } from "../component/Loader";
+import ImagePicker from 'react-image-picker'
+import 'react-image-picker/dist/index.css'
+import "./tickimage.css"
 
 const DuelChallenge = () => {
   const data = localStorage.getItem("nftuser")
@@ -42,7 +45,7 @@ const DuelChallenge = () => {
   const handleShow = () => setShow(true);
     
 
-
+ 
 
 async function getuserdata(){
 
@@ -57,18 +60,39 @@ async function getuserdata(){
 userdata.sort((a,b) => a.username.localeCompare(b.username))
 
     const filtereduser = userdata.filter((items, index) => {
-      return items._id !== localdata._id;
+      return items._id !==localdata._id;
     });
   
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser)
+    return
   }
+  
   if(runfun){
     getuserdata()
   }
 
   
   
+  const handleupload = async (e) => {
+    const files = e.target.files[0];
+    console.log(files)
+    setFiledata(files);
+    const userdata = JSON.parse(localStorage.getItem("nftuser"));
+    setUserprofiledata([userdata]);
+    setUserId(userdata._id);
+    setlocaluser(userdata.user.username);
+  };
+
+  const handlesubmit = async () => {
+    let data = new FormData();
+    data.append("file", filedata);
+    data.append("upload_preset", "nftimg");
+    data.append("cloud_name", "degu3b9yz");
+    dispatch(postimage(data));
+
+    setShow(false);
+  };
 
 
   async function getimages() {
@@ -83,24 +107,7 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
   }
   getimages();
 
-  const handleupload = async (e) => {
-    const files = e.target.files[0];
-    setFiledata(files);
-    const userdata = JSON.parse(localStorage.getItem("nftuser"));
-    setUserprofiledata([userdata]);
-    setUserId(userdata._id);
-    setlocaluser(userdata.user.username);
-  };
-  const handlesubmit = async () => {
-    let data = new FormData();
-    data.append("file", filedata);
-    data.append("upload_preset", "nftimg");
-    data.append("cloud_name", "degu3b9yz");
-    dispatch(postimage(data, userId));
-
-
-    setShow(false);
-  };
+  
   async function postImageUrl() {
     imgdata.userId = userId;
     imgdata.url = image;
@@ -111,7 +118,6 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
       const localimages = JSON.parse(localStorage.getItem("userImages"));
       console.log(localimages);
       finalimagedata.push(localimages);
-
     }
 
     if (image) {
@@ -300,14 +306,39 @@ const handleSearch =(event)=>{
                             loading?<Loader style={{backgroundColor:"#282054"}}/>:
                           <div className="dchallenge-rt-1">
                             {userimagedata.map((items, index) => {
-                              return (
+
+
+return(
+  <>
+  <div class="grid-two imageandtext">
+
+
+<div class="imageandtext image_grid">
+  <label>
+    <img onClick={(e)=>console.log(e.target.src)} src={items.url} class="img-thumbnail"/>
+    <input type="checkbox" name="selimg"/>
+    <span class="caption">
+    </span>
+  </label>
+</div>
+</div>
+
+  </>
+)
+                              // return (
                                 
-                                <>
-                                  <div className="dule-img1">
-                                    <img src={items.url} alt="nftimages" />
-                                  </div>
-                                </>
-                              );
+                              //  <div className="grid-two imageandtext">
+                              //   <div className = "imageandtext image_grid">
+
+                              //    <div className="dule-img1">
+                              //    <label htmlFor="selimg2">
+                              //      <img src={items.url} alt="nftimages" />
+                              //     </label>
+                              //     <input type="radio" name="selimg" id="selimg2"/>
+                              //   </div>
+                              //   </div>
+                              //  </div>
+                              // );
                             })}
                         
                             <div
@@ -410,6 +441,7 @@ const handleSearch =(event)=>{
                     </Modal.Header>
                     <Modal.Body>
                       <input
+                        multiple
                         onChange={handleupload}
                         type="file"
                         name=""

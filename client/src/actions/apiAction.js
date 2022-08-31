@@ -12,7 +12,7 @@ export const postimage=(userdata)=> async (dispatch, getState) => {
       
     } catch (error) {
       dispatch({ type:API_FAIL, payload: error.response.data});
-      console.log(error.response);
+      console.log(error.response.data);
     }
     
   };

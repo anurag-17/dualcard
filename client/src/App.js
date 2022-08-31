@@ -22,6 +22,7 @@ import ShopStreamer from './component/ShopStreamer';
 import ShopUniversal from './component/ShopUniversal';
 import ShopSeasonal from './component/ShopSeasonal';
 import Contactus from './Pages/Contactus';
+import Imgup from './Pages/Imgup';
 
 
 
@@ -50,6 +51,7 @@ function App() {
         <Route path = "/shop-universal" element = {<ShopUniversal/>}/>
         <Route path = "/shop-seasonal" element = {<ShopSeasonal/>}/>
         <Route path = "/contact-us" element = {<Contactus/>}/>
+        <Route path = "/tickimage" element = {<Imgup/>}/>
       </Routes>
     <Footer/>
     </div>

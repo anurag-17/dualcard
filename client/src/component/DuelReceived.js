@@ -1,21 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DuelReceived.css';
 import Carousel from 'react-bootstrap/Carousel';
 import axios from 'axios';
 
 const DuelReceived = () => {
-
-
+const data = JSON.parse(localStorage.getItem("nftuser"))
+let challengeId = ""
+const [username,setusername] = useState("")
+let filterdata = []
 const [challengeuser,setChallengeUser] = useState([])
-const [filteruser,setFilterUser] = useState([])
-
+const [challengerId,setChallngerId]  = useState("")
+const [newuserdata,setnewuserdata] = useState([])
+const [userdata,setUserdata] = useState([])
 const getuserchallenge = async()=>{
   const  res =  await axios.get("http://localhost:5000/api/auth/challengedata")
-  console.log(res.data)
-  
-  setChallengeUser(res.data)
+  setChallngerId(res.data[0].player_1[0].images[0].userId)
+  challengeId = res.data[0].player_1[0].images[0].userId
+ setChallengeUser(res.data) 
 }
-getuserchallenge()
+
+async function getuserdata(){
+      const res = await axios.get("/api/auth/getuserdata");
+      var newdata = res.data
+     
+    //   setUserdata(res.data);
+  userdata.sort((a,b) => a.username.localeCompare(b.username))
+  
+      const filtereduser = newdata.filter((items, index) => {
+        return items._id === challengeId
+
+      });
+      setnewuserdata(filtereduser);
+     filterdata.push(filtereduser)
+     filterdata.map((items,index)=>setusername(items.username))
+    }
+
+    
+    useEffect(()=>{
+        getuserchallenge()
+})
+getuserdata()
 
   return (
     <div>
@@ -25,21 +49,43 @@ getuserchallenge()
                     <h2>Duel Received</h2>
                 </div>
                 <div className='row duel-main'>
-                    <div className='col-md-4 col-sm-12 duel-left'>
+            <div className='col-md-4 col-sm-12 duel-left'>
+
                         <div className='duel-lef-slide'>
                             <div className='duel-sldier'>
+                
+                
 
-                            <Carousel>
+                                <Carousel>
 {
-    challengeuser.map((items,index)=>{
-        return(
-            items.player_1.map((item,i)=>{
-                console.log(item.images.url)
-            })
-        )
+challengeuser.map((items,index)=>{
+
+return(
+    items.player_1[0].images.map((items,index)=>{
+return(
+
+    <Carousel.Item>
+         <img
+        className="d-block w-100"
+        src={items.url}
+        alt="First slide"
+        />
+    </Carousel.Item>
+)
     })
+)
+})
+
 }
-                        <Carousel.Item>
+
+
+
+
+
+
+
+{/* 
+                     <Carousel.Item>
                             <img
                             className="d-block w-100"
                             src="./slider-1.png"
@@ -68,13 +114,16 @@ getuserchallenge()
 
                             <Carousel.Caption>                            
                             </Carousel.Caption>
-                        </Carousel.Item>
-                        </Carousel>
+                        </Carousel.Item> */}
+</Carousel>
+
                             </div>
                             <div className='duel-des'>
                               <div class="clearfix">
+                            <button type="button" class="btn float-end">{username}</button>
+
                                 <img src="./tabicon8.png" alt="newimg"/>
-                                <button type="button" class="btn float-end">Estebana</button>
+                              
                               </div>  
                               <div className='duel-leftgreen-text mt-3'>
                                 <h4><span>5</span>won</h4>
@@ -87,10 +136,8 @@ getuserchallenge()
                         </div>
                         <div className='dule-cont'>
                             {
-                                challengeuser.map((items,index)=>{
-                                    return(
+                                challengeuser.map((items,index)=>{    return(
                                         items.player_1.map((item,i)=>{
-                                           console.log(item.images)
                                            return(
                                                <>
                                    <h4>TERMS</h4>
@@ -132,7 +179,7 @@ getuserchallenge()
                                 <div className='dule-rt-2'>
                                     <div class="clearfix">
                                        <img src="./tabicon8.png" alt="img"/>
-                                    <button type="button" class="btn float-end">Estebana</button>
+                                    <button type="button" class="btn float-end">{data.username}</button>
                                  </div> 
                                 </div>
                                 <div className='duel-form'>

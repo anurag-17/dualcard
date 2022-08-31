@@ -107,7 +107,7 @@ exports.dashboard = async (req, res, next) => {
 
 exports.getdata = async (req, res) => {
   // console.log(req.body)
-  let imgdata = await Image.find({ userId: req.body._id });
+  let imgdata = await Image.find({ userId: req.body._id});
   return res.json(imgdata);
 };
 
@@ -147,6 +147,8 @@ const challengedata = await Challenge.find()
 return res.json(challengedata)
 
 }
+
+
 
 //forget password
 

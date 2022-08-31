@@ -8,8 +8,8 @@ const Thankyou = () => {
             <div className='container'>
                 <div className='thnkct'>
                 <h1>Thank you !</h1>
-                    <p>Thanks for subscribing to our news letter.</p>
-                    <p>you should receive a confirmation email soon  </p>
+                    <p>Your challenge has been sent</p>
+                    <p>Duel someone or go Home</p>
                    <div className='thankbtn'>
     <Link to = "/">
     

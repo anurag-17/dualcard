@@ -54,9 +54,21 @@ const logoutuser = () => {
                           </li>     
                         </ul>
                       </li>    
-                    <li className="nav-item" onClick={()=>navigate("/DuelSomeone")} to='/DuelSomeone'>                                        
-                    <Link  to="/DuelSomeone" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Duel Someone</Link>
-                    </li> 
+                    <li class="nav-item dropdown">
+                        <Link class="nav-link dropdown-toggle" to="/Marketplace" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       DuelSomeone
+                        </Link>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li>
+                          <Link to="/DuelSomeone" class="dropdown-item">DuelSomeone</Link>
+                          </li> 
+                          <li>
+                            <Link to="/DuelReceived" class="dropdown-item">Duel Received</Link>
+                          </li>
+                          
+                        </ul>
+                      </li>    
+                 
                     <li className="nav-item" onClick={()=>navigate("/AboutRules")} to='/AboutRules'>                                        
                     <Link  to="AboutRules" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">About / Rules</Link>
                     </li>  
