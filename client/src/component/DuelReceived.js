@@ -14,10 +14,11 @@ const [newuserdata,setnewuserdata] = useState([])
 const [userdata,setUserdata] = useState([])
 const getuserchallenge = async()=>{
   const  res =  await axios.get("http://localhost:5000/api/auth/challengedata")
-  
+
   setChallngerId(res.data[0].player_1[0].images[0].userId)
   challengeId = res.data[0].player_1[0].images[0].userId
  setChallengeUser(res.data) 
+
 
 }
 
