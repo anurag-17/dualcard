@@ -15,7 +15,9 @@ const [loader,setLoader] = useState(true)
   const id = data._id;
   let acceptchallenge = ""
 
- 
+  setTimeout(()=>{
+    setLoader(false)
+    },2200)
 
   const getrecieved = async () => {
     console.log(id);
@@ -26,22 +28,16 @@ const [loader,setLoader] = useState(true)
     setchallengedata(res.data);
   
   };
-
   const AcceptChallenge = async()=>{
      acceptchallenge = true
      console.log(acceptchallenge)
     const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge})
 
   }
-  if(challengedata.length>0){
-      setLoader(false)
-
-  }
-
 
   useEffect(() => {
     getrecieved();
-  }, []);
+  }, [loader]);
 
   return (
    <>
