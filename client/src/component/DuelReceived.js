@@ -28,17 +28,15 @@ const DuelReceived = () => {
             <h2>Duel Received</h2>
           </div>
 
-          {
-            challengedata.map((items,index)=>{
-         
-                console.log(items)
-
-                return(
-
           <div className="row duel-main">
-
-
-
+          {
+              challengedata.map((items,index)=>{
+                  
+                  console.log(items)
+                  
+                  return(
+                      
+                      <>
             <div className="col-md-4 col-sm-12 duel-left">
               <div className="duel-lef-slide">
                       <div className="duel-sldier">
@@ -87,7 +85,7 @@ const DuelReceived = () => {
 return(
     <>
                         <h4>TERMS</h4>
-                        <p>{item.text}.</p>
+                        <p>{item.text}.</p>  
                       </>
 )
                 })} 
@@ -146,10 +144,11 @@ return(
                 </div>
               </div>
             </div>
-          </div>
+</>
                 )
             })
-          }
+        }
+        </div>
         </div>
       </div>
     </div>

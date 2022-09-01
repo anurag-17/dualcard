@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef} from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./DuelChallenge.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import "./tickimage.css"
 
 
 const DuelChallenge = () => {
+  const controlref = useRef()
   const navigate = useNavigate()
   const data = localStorage.getItem("nftuser")
   const { image, isImage, loading} = useSelector((state) => state.image);
@@ -39,9 +40,8 @@ const DuelChallenge = () => {
   const [userimagedata, setuserimagedata] = useState([]);
   const [clickeduser,setclickeduser] = useState("")
   const [firstname,setfirstname] = useState(true)
-  const [ischecked,setIsChecked] = useState()
   const [checkedimage,setcheckedimage] = useState([])
-
+let ischecked = ""
 
  
   const handleClose = () => {
@@ -99,10 +99,14 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
     setShow(false);
   };
   const getchekedimage = (event)=>{
-    console.log(ischecked)
-    if(ischecked===true){
+ 
+    if(ischecked===false){
+      console.log(event.target.src)
+      
+    }else{
       checkedimage.push(event.target.src)
       console.log(checkedimage)
+      
     }
   }
 
@@ -177,7 +181,10 @@ const handleSearch =(event)=>{
   
     setsearchfilter(result)
 }
-
+const handlecheck = (e)=>{
+  ischecked = e.target.checked
+  console.log(ischecked)
+}
 
 
   useEffect(() => {
@@ -333,7 +340,7 @@ return(
 <div class="imageandtext image_grid">
   <label>
     <img onClick={getchekedimage} src={items.url} class="img-thumbnail"/>
-    <input onChange={(e)=>setIsChecked(e.target.checked)}  type="checkbox" name="selimg"/>
+    <input onChange={handlecheck} ref={controlref} type="checkbox" name="selimg"/>
     <span class="caption">
     </span>
   </label>
