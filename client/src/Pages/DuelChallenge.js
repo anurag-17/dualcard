@@ -146,11 +146,13 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
   }
 
 
-  const sendValue = async() => {
-    if(linkurl===null){
-      alert.error("please provide the link")
+  const sendValue = async(e) => {
+
+    if(linkurl.length<=0){
+      alert.error("please fill the input")
+      return
     }
-setLoader(true)
+    setLoader(true)
 const res = await  axios.post("/api/auth/sendchal",
 { playerone_url:checkedimage,
   playeronetext:textvalue,
@@ -455,9 +457,8 @@ return(
                           <div className="btn-duel-right challenge">
                             <button
                                type="submit"
-                              onSubmit={sendValue}
+                              onClick={sendValue}
                               className="hero-btn challenge"
-                          
                             >
                               send challenge
                             </button>
