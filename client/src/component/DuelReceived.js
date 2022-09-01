@@ -3,14 +3,19 @@ import "./DuelReceived.css";
 import Carousel from "react-bootstrap/Carousel";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Loader } from "./Loader";
 
 const DuelReceived = () => {
   const [challengedata, setchallengedata] = useState([]);
 const [challengeid,setChallengeId] = useState("")
+const [loader,setLoader] = useState(true)
+
   const data = JSON.parse(localStorage.getItem("nftuser"));
 
   const id = data._id;
   let acceptchallenge = ""
+
+ 
 
   const getrecieved = async () => {
     console.log(id);
@@ -19,6 +24,7 @@ const [challengeid,setChallengeId] = useState("")
         setChallengeId(items._id)
     })
     setchallengedata(res.data);
+  
   };
 
   const AcceptChallenge = async()=>{
@@ -27,12 +33,20 @@ const [challengeid,setChallengeId] = useState("")
     const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge})
 
   }
+  if(challengedata.length>0){
+      setLoader(false)
+
+  }
+
 
   useEffect(() => {
     getrecieved();
   }, []);
 
   return (
+   <>
+   {
+    loader?<Loader/>:
     <div>
       <div className="DuelRec-sec">
         <div className="container">
@@ -175,7 +189,7 @@ return(
                     <p>you can challenge someone</p>
                     <p>Duel someone</p>
                    <div className='thankbtn'>
-    <Link to = "/">
+    <Link to = "/DuelSomeone">
     
                     <button class="go-home hero-btn">
                         DuelSomeone
@@ -191,6 +205,8 @@ return(
         </div>
       </div>
     </div>
+   }
+   </>
   );
 };
 
