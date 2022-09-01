@@ -90,7 +90,7 @@ const [loader,setLoader] = useState(true)
                           {items.player_1[0].name}
                         </button>
 
-                    <img src={require(`../images/tabicon-${index + 1}.png`)} alt="newimg" />
+                    <img style={{height:"55px"}} src={require(`../images/tabicon-${index + 1}.png`)} alt="newimg" />
                   </div>
                       
                   <div className="duel-leftgreen-text mt-3">
