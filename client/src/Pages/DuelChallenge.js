@@ -10,10 +10,12 @@ import { Loader } from "../component/Loader";
 import ImagePicker from 'react-image-picker'
 import 'react-image-picker/dist/index.css'
 import "./tickimage.css"
+import { useAlert } from "react-alert";
 
 
 const DuelChallenge = () => {
   const navigate = useNavigate()
+  const alert = useAlert()
   const data = localStorage.getItem("nftuser")
   const { image, isImage, loading} = useSelector((state) => state.image);
   const {isAuthenticated,user} = useSelector((state)=>state.user)
@@ -145,6 +147,9 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
 
 
   const sendValue = async() => {
+    if(linkurl===null){
+      alert.error("please provide the link")
+    }
 setLoader(true)
 const res = await  axios.post("/api/auth/sendchal",
 { playerone_url:checkedimage,
@@ -413,9 +418,12 @@ return(
                               <span>8</span>
                             </div>
                           </div>
-                          <div className="duel-form">
+                         
+<form action="">
+<div className="duel-form">
                             <div class="mb-3 mt-0">
                               <textarea
+                              required
                                 onChange={(e) => setTextvalue(e.target.value)}
                                 value={textvalue}
                                 class="form-control"
@@ -425,33 +433,38 @@ return(
                               ></textarea>
                             </div>
                           </div>
-
-
                           <div className="search-bar">
             <div class="input-group md-form form-sm form-2 pl-0">
+
               <input
+                 required
                 class="form-control my-0 py-1 red-border"
                 type="text"
                 placeholder="put your twitch or youtube live link"
                 aria-label="Search"
               onChange={(e)=>setlinkurl(e.target.value)}
               />
+
               <div class="input-group-append">
               
               </div>
             </div>
-          </div>
+                       </div>
 
 
                           <div className="btn-duel-right challenge">
                             <button
-                              onClick={sendValue}
+                               type="submit"
+                              onSubmit={sendValue}
                               className="hero-btn challenge"
-                              disabled = {!textvalue||!linkurl}
+                          
                             >
                               send challenge
                             </button>
                           </div>
+
+</form>
+
                         </div>
                       </div>
                     </div>
