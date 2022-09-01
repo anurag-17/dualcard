@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./DuelReceived.css";
 import Carousel from "react-bootstrap/Carousel";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const DuelReceived = () => {
   const [challengedata, setchallengedata] = useState([]);
@@ -28,6 +29,9 @@ const DuelReceived = () => {
             <h2>Duel Received</h2>
           </div>
 
+{
+    challengedata.length>0?<>
+    
           <div className="row duel-main">
           {
               challengedata.map((items,index)=>{
@@ -37,6 +41,7 @@ const DuelReceived = () => {
                   return(
                       
                       <>
+                      
             <div className="col-md-4 col-sm-12 duel-left">
               <div className="duel-lef-slide">
                       <div className="duel-sldier">
@@ -139,7 +144,7 @@ return(
                     </div>
                   </div>
                   <div className="btn-duel-right">
-                    <button className="hero-btn">acCept challenge</button>
+                    <button className="hero-btn">Accept challenge</button>
                   </div>
                 </div>
               </div>
@@ -149,6 +154,28 @@ return(
             })
         }
         </div>
+    </>:<>
+    <div className='body-main'>
+        <div className='thank-sec'>
+            <div className='container'>
+                <div className='thnkct'>
+                <h1>You haven't Received any challenges yet </h1>
+                    <p>you can challenge someone</p>
+                    <p>Duel someone</p>
+                   <div className='thankbtn'>
+    <Link to = "/">
+    
+                    <button class="go-home hero-btn">
+                        DuelSomeone
+                        </button>
+    </Link>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </>
+}
         </div>
       </div>
     </div>

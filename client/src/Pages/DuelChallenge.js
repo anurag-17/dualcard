@@ -13,7 +13,6 @@ import "./tickimage.css"
 
 
 const DuelChallenge = () => {
-  const controlref = useRef()
   const navigate = useNavigate()
   const data = localStorage.getItem("nftuser")
   const { image, isImage, loading} = useSelector((state) => state.image);
@@ -316,7 +315,6 @@ const handlecheck = (e)=>{
                           </div>
                           <div className="btn-duel-right">
                             <Link to="/DuelRecieved">
-                              {/* <button className='hero-btn'>send  challenge</button> */}
                             </Link>
                           </div>
                         </div>
@@ -340,7 +338,7 @@ return(
 <div class="imageandtext image_grid">
   <label>
     <img onClick={getchekedimage} src={items.url} class="img-thumbnail"/>
-    <input onChange={handlecheck} ref={controlref} type="checkbox" name="selimg"/>
+    <input onChange={handlecheck}  type="checkbox" name="selimg"/>
     <span class="caption">
     </span>
   </label>
@@ -349,20 +347,7 @@ return(
 
   </>
 )
-                              // return (
-                                
-                              //  <div className="grid-two imageandtext">
-                              //   <div className = "imageandtext image_grid">
-
-                              //    <div className="dule-img1">
-                              //    <label htmlFor="selimg2">
-                              //      <img src={items.url} alt="nftimages" />
-                              //     </label>
-                              //     <input type="radio" name="selimg" id="selimg2"/>
-                              //   </div>
-                              //   </div>
-                              //  </div>
-                              // );
+            
                             })}
                         
                             <div
@@ -406,7 +391,7 @@ return(
                               
                               <img src="./tabicon-14.png" alt="img" />
                               <button type="button" class="btn float-end">
-                              
+
                                {firstname?items.username:targetname} 
                               </button>
                               </>
@@ -444,6 +429,7 @@ return(
                             <button
                               onClick={sendValue}
                               className="hero-btn challenge"
+                              disabled = {!textvalue}
                             >
                               send challenge
                             </button>
