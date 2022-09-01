@@ -75,6 +75,7 @@ const [loader,setLoader] = useState(true)
                               className="d-block w-100"
                               src={items}
                               alt="First slide"
+                              
                             />
                             </Carousel.Item>
                           );
