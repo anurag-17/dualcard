@@ -27,6 +27,9 @@ type:String
       text: {
         type: String,
       },
+      link:{
+        type:String
+      },
       images:{
             type:Array,
             // required: true,  
@@ -43,14 +46,17 @@ type:String
   player_2: [
     {
       text: {
-        type: String,
+        type: String
+      },
+      link:{
+        type:String
       },
       images:{
         type:Array,
         // required: true,  
     },
       userId: {
-        type: String,
+        type: String
       },
       name:{
         type:String

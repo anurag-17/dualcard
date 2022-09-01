@@ -6,16 +6,27 @@ import { Link } from "react-router-dom";
 
 const DuelReceived = () => {
   const [challengedata, setchallengedata] = useState([]);
+const [challengeid,setChallengeId] = useState("")
   const data = JSON.parse(localStorage.getItem("nftuser"));
+
   const id = data._id;
+  let acceptchallenge = ""
 
   const getrecieved = async () => {
     console.log(id);
-
     const res = await axios.post("/api/auth/recievedchallenge", { id: id });
-    console.log(res.data);
+    res.data.map((items,index)=>{
+        setChallengeId(items._id)
+    })
     setchallengedata(res.data);
   };
+
+  const AcceptChallenge = async()=>{
+     acceptchallenge = true
+     console.log(acceptchallenge)
+    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge})
+
+  }
 
   useEffect(() => {
     getrecieved();
@@ -144,7 +155,8 @@ return(
                     </div>
                   </div>
                   <div className="btn-duel-right">
-                    <button className="hero-btn">Accept challenge</button>
+                    <button onClick={AcceptChallenge} className="hero-btn">Accept challenge</button>
+                    <button className="hero-btn">Decline challenge</button>
                   </div>
                 </div>
               </div>

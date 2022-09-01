@@ -70,7 +70,7 @@ const Home = () => {
                   play, win and sell your cards!</p>
                  <div className='btn-main'>
                   <Link to = "/contact-us">
-                 <button className='hero-btn'>Contact btn</button>
+                 <button className='hero-btn'>Contact</button>
                   </Link>
                  </div>
               </div>
@@ -87,7 +87,7 @@ const Home = () => {
           <div className='container'>
             <div className='section-title'>
               <h2>How It Works</h2>
-              <p>Purchase a Level 1 DuelCard or a Universal DuelCard and start challenging other players for a chance to win their NFTs!</p>
+              <p>Purchase a Level 1 DuelCard and start challenging other players for a chance to win their NFTs!</p>
             </div>
             <div className='video-section'>           
             <iframe width="1120" height="630" src="https://www.youtube.com/embed/L6dYyye5a2M" title="DuelCards VO Synced02" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -98,43 +98,40 @@ const Home = () => {
         <div className='buy-section'>
           <div className='container'>
             <div className='section-title'>
-              <h2>Buy L1 Duel Card</h2>
+              <h2>Buy Duel Card</h2>
               <p>Challenge, Win and Sell</p>
             </div>
             <div className='buy-grid'>
               <div className='buy-item1'>
                 <div className='buy-ct'>
-                  <h3>Level 2 Streamer Duel Card</h3>
+                  <h3>Buy Lvl1 Duel Card</h3>
                     <div className='buy-img'>
                       <Link to = "/shop-streamer">
                        <img src="./NFT img.png" alt="img"/>
                       </Link>
                      </div>
-                     <p>These cards are collaboratively designed with your favorite 
-                        Content creators!</p>
+                    
                 </div>
               </div>
 
               <div className='buy-item1'>
                 <div className='buy-ct'>
-                  <h3>Seasonal Cards</h3>
+                  <h3>Buy Lvl2 Duel Card</h3>
                     <div className='buy-img'>
                     <Link to = "/shop-seasonal">
                        <img src="./NFT img2.png" alt="img"/>
                    </Link>
                      </div>
-                     <p>These cards won’t be around long, so grab them while you can.</p>
                 </div>
               </div>
               <div className='buy-item1'>
                 <div className='buy-ct'>
-                  <h3>Universal Duel Cards</h3>
+                  <h3>Buy Lvl3 Duel Card</h3>
                     <div className='buy-img'>
 <Link to ="/shop-universal">
                        <img src="./NFT img3.png" alt="img"/>
 </Link>
                      </div>
-                     <p>Universal cards allow you to challenge any streamer for their L2 DuelCard.!</p>
                 </div>
               </div>
             </div>
@@ -142,7 +139,7 @@ const Home = () => {
           
             <div className='btn-buy'>
               <Link to = "/BuyDuelCard">
-                 <button className='hero-btn'>Buy   Now</button>
+                 <button className='hero-btn'>Buy Now</button>
               </Link>
             </div>
           </div>
@@ -267,20 +264,10 @@ searchfilter.map((items,index)=>{
                     <div className="" id="home" role="tabpanel" aria-labelledby="home-tab">
                       <div className='tab-cont'>
                         
-                        {
-                          searchfilter.map((items,index)=>{
-                            if(index===0){
-                              return(
-                                <p>{firstname?items.username:targetname}</p>
-                              )
-                            }
-                          })
-                        }
                         <div className='row'>
                           <div className='col-md-6'>
                             <div className='tab-grid'>
                               <div className='tab-item1'>
-                              <img src="./marketplace3.png" alt="img"/>
                               </div>
                             </div>
                           </div>
@@ -365,9 +352,10 @@ searchfilter.map((items,index)=>{
             <div className='row info-main'>
               <div className='col-md-6'>
                 <div className='inf-ct'>
-                  <h4>ICO Information</h4>
-                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                     sanctus est Lorem ipsum dolor sit amet.</p>
+                  <h4>DuelCoins Information</h4>
+                  <p>We are introducing a new token,DuelCoin, to help facilitate the governing smart contracts over the "Duel Challenge" System.
+                    Tokenomics and more details to the public coming soon!
+                     </p>
                      <div className='btn-rule'>
                       <Link to = "/ICOInformation">
                         <button className='hero-btn'>Show more</button>

@@ -9,7 +9,7 @@ const BuyDuelCard = () => {
       <div className='buyduelcard'>
         <div className='container'>
           <div className='section-title'>
-                    <h2>Buy L1 Duel Card</h2>
+                    <h2>Buy Duel Card</h2>
           </div>
           <div className='row buydel-main'>
             <div className='buydue-bg'>

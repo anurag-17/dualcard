@@ -9,7 +9,6 @@ const Thankyou = () => {
                 <div className='thnkct'>
                 <h1>Thank you !</h1>
                     <p>Your challenge has been sent</p>
-                    <p>Duel someone or go Home</p>
                    <div className='thankbtn'>
     <Link to = "/">
     

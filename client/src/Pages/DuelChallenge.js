@@ -40,6 +40,7 @@ const DuelChallenge = () => {
   const [clickeduser,setclickeduser] = useState("")
   const [firstname,setfirstname] = useState(true)
   const [checkedimage,setcheckedimage] = useState([])
+  const [linkurl,setlinkurl] = useState("")
 let ischecked = ""
 
  
@@ -94,7 +95,6 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
     data.append("upload_preset", "nftimg");
     data.append("cloud_name", "degu3b9yz");
     dispatch(postimage(data));
-
     setShow(false);
   };
   const getchekedimage = (event)=>{
@@ -152,7 +152,8 @@ const res = await  axios.post("/api/auth/sendchal",
   playeroneuserid:userId,
   playertwouserid:clickeduser,
   playeronename:localuser,
-  playertwoname:targetname
+  playertwoname:targetname,
+  playeronelink:linkurl
 },
 )
 
@@ -391,7 +392,6 @@ return(
                               
                               <img src="./tabicon-14.png" alt="img" />
                               <button type="button" class="btn float-end">
-
                                {firstname?items.username:targetname} 
                               </button>
                               </>
@@ -425,11 +425,29 @@ return(
                               ></textarea>
                             </div>
                           </div>
+
+
+                          <div className="search-bar">
+            <div class="input-group md-form form-sm form-2 pl-0">
+              <input
+                class="form-control my-0 py-1 red-border"
+                type="text"
+                placeholder="put your twitch or youtube live link"
+                aria-label="Search"
+              onChange={(e)=>setlinkurl(e.target.value)}
+              />
+              <div class="input-group-append">
+              
+              </div>
+            </div>
+          </div>
+
+
                           <div className="btn-duel-right challenge">
                             <button
                               onClick={sendValue}
                               className="hero-btn challenge"
-                              disabled = {!textvalue}
+                              disabled = {!textvalue||!linkurl}
                             >
                               send challenge
                             </button>

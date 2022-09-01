@@ -19,45 +19,7 @@ export const Auction = () => {
             </div>
           ),
         },
-        {
-          value: "BTC",
-          label: (
-            <div  className='opttext' style={{ fontWeight: 600, fontSize: "20px", color: "#282828" }}>
-              <img className='optionimg'
-                style={{ height: "36px", width: "36px", marginRight: "30px" }}
-                src={otion1}
-                alt="loading"
-              />
-              BTC
-            </div>
-          ),
-        },
-        {
-          value: "BTC",
-          label: (
-            <div className='opttext' style={{ fontWeight: 600, fontSize: "20px", color: "#282828" }}>
-              <img className='optionimg'
-                style={{ height: "36px", width: "36px", marginRight: "30px" }}
-                src={otion1}
-                alt="loading"
-              />
-             BTC
-            </div>
-          ),
-        },
-        {
-          value: "BTC",
-          label: (
-            <div className='opttext' style={{ fontWeight: 600, fontSize: "20px", color: "#282828" }}>
-              <img className='optionimg'
-                style={{ height: "36px", width: "36px", marginRight: "30px" }}
-                src={otion1}
-                alt="loading"
-              />
-              BTC
-            </div>
-          ),
-        },
+    
         
       ]; 
 
@@ -138,7 +100,7 @@ const customStyles = {
                             </div>
                         </div>
                         <div className='btn-duel-right'>
-                              <button className='hero-btn'>Winner</button>
+                              <button className='hero-btn'>Publish to Marketplace</button>
                          </div>
                     </div>
                 </div>

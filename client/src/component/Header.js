@@ -73,7 +73,7 @@ const logoutuser = () => {
                     <Link  to="AboutRules" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">About / Rules</Link>
                     </li>  
                     <li className="nav-item" onClick={()=>navigate("/ICOInformation")} to='/ICOInformation'>                                        
-                    <Link  to="ICOInformation" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">ICO Information</Link>
+                    <Link  to="ICOInformation" className="nav-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">DuelCoins Info</Link>
                     </li>                                                    
                      
                 </ul>
