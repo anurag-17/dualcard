@@ -42,7 +42,7 @@ function App() {
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/AboutRules" element = {<AboutRules/>}/>
         <Route path = "/Marketplace" element = {<Marketplace/>}/>
-        <Route path = "/DuelReceived" element = {<DuelReceived/>}/>
+        <Route path = "/DuelReceived" element = {<ProtectedRoute><DuelReceived/></ProtectedRoute>}/>
         <Route path = "/DuelAccepted" element = {<DuelAccepted/>}/>
         <Route path = "/Auction" element = {<Auction/>}/>
         <Route path = "/leaderboard" element = {<Leaderboard/>}/>
