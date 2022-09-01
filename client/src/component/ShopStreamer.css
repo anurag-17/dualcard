@@ -45,6 +45,7 @@
 
 .clearfix {
     display: flex;
+    margin-bottom: 20px;
 }
 .stemprofile .clearfix {
     display: flex;

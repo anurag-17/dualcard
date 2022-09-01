@@ -39,6 +39,8 @@ const DuelChallenge = () => {
   const [userimagedata, setuserimagedata] = useState([]);
   const [clickeduser,setclickeduser] = useState("")
   const [firstname,setfirstname] = useState(true)
+  const [ischecked,setIsChecked] = useState()
+  const [checkedimage,setcheckedimage] = useState([])
 
 
  
@@ -96,7 +98,13 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
 
     setShow(false);
   };
-
+  const getchekedimage = (event)=>{
+    console.log(ischecked)
+    if(ischecked===true){
+      checkedimage.push(event.target.src)
+      console.log(checkedimage)
+    }
+  }
 
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
@@ -105,8 +113,8 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
       .post("/api/auth/getdata",data)
       .then((data) => {
         setuserimagedata(data.data);
+
       })
-  
   }
   getimages();
 
@@ -129,7 +137,6 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
         image,
       });
       console.log(data);
-      // arr.push(data)
     }
   }
 
@@ -137,7 +144,7 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
   const sendValue = async() => {
 setLoader(true)
 const res = await  axios.post("/api/auth/sendchal",
-{ playerone_url:userimagedata,
+{ playerone_url:checkedimage,
   playeronetext:textvalue,
   playeroneuserid:userId,
   playertwouserid:clickeduser,
@@ -170,6 +177,7 @@ const handleSearch =(event)=>{
   
     setsearchfilter(result)
 }
+
 
 
   useEffect(() => {
@@ -319,16 +327,13 @@ const handleSearch =(event)=>{
                           <div className="dchallenge-rt-1">
                             {userimagedata.map((items, index) => {
 
-
 return(
   <>
   <div class="grid-two imageandtext">
-
-
 <div class="imageandtext image_grid">
   <label>
-    <img onClick={(e)=>console.log(e.target.src)} src={items.url} class="img-thumbnail"/>
-    <input type="checkbox" name="selimg"/>
+    <img onClick={getchekedimage} src={items.url} class="img-thumbnail"/>
+    <input onChange={(e)=>setIsChecked(e.target.checked)}  type="checkbox" name="selimg"/>
     <span class="caption">
     </span>
   </label>
