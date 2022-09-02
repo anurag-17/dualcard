@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./DuelReceived.css";
 import Carousel from "react-bootstrap/Carousel";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import { Loader } from "./Loader";
 
 const DuelReceived = () => {
   const [challengedata, setchallengedata] = useState([]);
-const [challengeid,setChallengeId] = useState("")
+const [challengeid,setChallengeId] = useState([])
 const [loader,setLoader] = useState(true)
+const navigate = useNavigate()
 
   const data = JSON.parse(localStorage.getItem("nftuser"));
 
   const id = data._id;
   let acceptchallenge = ""
+  let declinechallenge = ""
 
   setTimeout(()=>{
     setLoader(false)
@@ -21,23 +23,47 @@ const [loader,setLoader] = useState(true)
 
   const getrecieved = async () => {
     console.log(id);
-    const res = await axios.post("/api/auth/recievedchallenge", { id: id });
+    const res = await axios.post("/api/auth/recievedchallenge", {id:id,Accept:false,decline:false});
+    console.log(res.data)
     res.data.map((items,index)=>{
-        setChallengeId(items._id)
+      console.log(items._id)
+      challengeid.push(items._id)
+      console.log(challengeid)
     })
     setchallengedata(res.data);
   
   };
-  const AcceptChallenge = async()=>{
+  const AcceptChallenge = async(index)=>{
+
+    setLoader(true)
+    
+let acceptindex = index
      acceptchallenge = true
      console.log(acceptchallenge)
-    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge})
+     console.log(challengeid)
+    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id})
+if(res.data){
+  setLoader(false)
+}
+navigate("/DuelAccepted")
+
+  }
+
+
+  const DeclineChallenge = async(index)=>{
+let acceptindex = index
+
+setLoader(true)
+declinechallenge = true
+acceptchallenge = false
+const res = await axios.put("/api/auth/declinechallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:declinechallenge})
+
 
   }
 
   useEffect(() => {
     getrecieved();
-  }, [loader]);
+  }, [loader,acceptchallenge]);
 
   return (
    <>
@@ -56,9 +82,7 @@ const [loader,setLoader] = useState(true)
           <div className="row duel-main">
           {
               challengedata.map((items,index)=>{
-                  
-                  console.log(items)
-                  
+                                    
                   return(
                       
                       <>
@@ -166,8 +190,8 @@ return(
                     </div>
                   </div>
                   <div className="btn-duel-right">
-                    <button onClick={AcceptChallenge} className="hero-btn">Accept challenge</button>
-                    <button className="hero-btn">Decline challenge</button>
+                    <button onClick={()=>AcceptChallenge(index)} className="hero-btn">Accept challenge</button>
+                    {/* <button onClick={()=>DeclineChallenge(index)} className="hero-btn">Decline challenge</button> */}
                   </div>
                 </div>
               </div>

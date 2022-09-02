@@ -7,8 +7,6 @@ import { postimage } from "../actions/apiAction";
 import img1 from "../images/Plus.png";
 import { Link,useNavigate} from "react-router-dom";
 import { Loader } from "../component/Loader";
-import ImagePicker from 'react-image-picker'
-import 'react-image-picker/dist/index.css'
 import "./tickimage.css"
 import { useAlert } from "react-alert";
 
@@ -441,7 +439,7 @@ return(
               <input
                  required
                 class="form-control my-0 py-1 red-border"
-                type="text"
+                type="url"
                 placeholder="put your twitch or youtube live link"
                 aria-label="Search"
               onChange={(e)=>setlinkurl(e.target.value)}

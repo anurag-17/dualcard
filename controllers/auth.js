@@ -7,88 +7,99 @@ const user = require("../models/User");
 const emailValidator = require("deep-email-validator");
 const bodyParser = require("body-parser");
 const Challenge = require("../models/challenge");
-
+const catchAsyncError = require("../Errorhandlers/catchAsyncError")
+const ErrorHandler = require("../config/errorHandler")
 async function isEmailValid(email) {
   return emailValidator.validate(email);
 }
 
 
-exports.register = async (req, res, next) => {
-  const {
-    username,
-    email,
-    password,
-  } = req.body;
-
-
-  const { valid, reason, validators } = await isEmailValid(email);
+exports.register = catchAsyncError(
+   async (req,res, next) => {
+    const {
+      username,
+      email,
+      password,
+    } = req.body;
   
-//  console.log(req.body.Expiry);
-
-  if(!username||
-    !email||
-    !password){
-    return res.status(400).json("plese fill all input ")
-  }
-  if (password.length < 6) {
-    return res.status(400).json("password must be 6 character long");
-  }
-  try {
-    User.findOne({ email }, async (err, user) => {
-      console.log(validators);
-
-     if (user) {
-        return res.status(500).json("user already registered");
-      }
-      else {
-        const user = await User.create({
-          username,
-          email,
-          password,
-        });
-
-        sendToken(user, 201, res);
-      }
-    });
-  } catch (error) {
-    // res.status(500).json({ success: false, });
-  }
-}
-
-
-exports.login = async (req, res, next) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return next(new ErrorResponse("please provide email&password", 400));
-  }
-
-  try {
-    const user = await User.findOne({ email }).select("+password");
-    if (!user) {
-      return res.status(500).json("invalid credentials user not found");
+  
+    const { valid, reason, validators } = await isEmailValid(email);
+    
+  //  console.log(req.body.Expiry);
+  
+    if(!username||
+      !email||
+      !password){
+        return next(new ErrorHandler("please fill all the inputs"))
     }
-    const isMatch = await user.matchPasswords(password);
-    if (!isMatch) {
-      return res.status(500).json("password is not valid please register");
+    if (password.length < 6) {
+return next(new ErrorHandler("password must be 6 characters long",400))
     }
-    // res.status(201).json(user)
-
-    sendToken(user, 200, res);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+  
+      User.findOne({ email }, async (err, user) => {
+        console.log(validators);
+  
+       if (user) {
+        return next(new ErrorHandler("user Already exist",400))
+        }
+        else if(!valid){
+          return next(new ErrorHandler("please enter a valid email",400))
+        }
+        else {
+          const user = await User.create({
+            username,
+            email,
+            password,
+          });
+  
+          sendToken(user, 201, res);
+        }
+      });
+    
   }
-};
+)
 
-exports.isAuthuser = async (req, res, next) => {
-  const { token } = req.cookies;
-  console.log("hii");
-  if (!token) {
-    return next(new ErrorResponse("plese login to access this resource", 401));
+
+exports.login = catchAsyncError(
+  async (req, res, next) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return next(new ErrorResponse("please provide email&password", 400));
+    }
+  
+  
+      const user = await User.findOne({ email }).select("+password");
+      if (!user) {
+        return res.status(500).json("invalid credentials user not found");
+      }
+      const isMatch = await user.matchPasswords(password);
+      if (!isMatch) {
+        return res.status(500).json("password is not valid please register");
+      }
+      // res.status(201).json(user)
+  
+      sendToken(user, 200, res);
+  
+    
   }
-  const decodedData = jwt.verify(token, process.env.JWT_SECRET);
-  req.user = await User.findById(decodedData.id);
-  next();
-};
+) 
+
+exports.isAuthuser =
+
+catchAsyncError(
+  
+  async (req, res, next) => {
+    const { token } = req.cookies;
+    console.log("hii");
+    if (!token) {
+      return next(new ErrorResponse("plese login to access this resource", 401));
+    }
+    const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = await User.findById(decodedData.id);
+    next();
+  }
+  )
+
 exports.dashboard = async (req, res, next) => {
   if (req.session) {
     console.log(req.session.email);
@@ -105,62 +116,91 @@ exports.dashboard = async (req, res, next) => {
   // console.log({token});
 };
 
-exports.getdata = async (req, res) => {
-  // console.log(req.body)
-  let imgdata = await Image.find({ userId: req.body._id});
-  return res.json(imgdata);
-};
+exports.getdata = 
+catchAsyncError(
 
-exports.getuserdata = async(req, res) => {
-  let userdata = await User.find();
-  return res.status(200).json(userdata);
-};
+  async (req, res,next) => {
+    // console.log(req.body)
+    let imgdata = await Image.find({ userId: req.body._id});
+    return res.json(imgdata);
+  }
+)
 
-exports.sendchallange = async (req, res) => {
-  const { recieved, accept, decline } = req.body;
-  console.log(req.body)
-  let challenge = await Challenge.create({
-    recieved:req.body.recieved,
-    player_1_id:req.body.playeroneuserid,
-    player_2_id:req.body.playertwouserid,
-    accept,
-    decline,
-    player_1: [
-      {
-        text: req.body.playeronetext,
-        images: req.body.playerone_url,
-        userId:req.body.playeroneuserid,
-        name:req.body.playeronename,
-        link:req.body.playeronelink
-      },
-    ],
-    player_2: [
-      {
-        text: req.body.playertwotext,
-        images:req.body.playertwo_url,
-        userId:req.body.playertwouserid,
-        name:req.body.playertwoname,
-        link:req.body.playertwolink
-      },
-    ],
-  });
-  return res.json(challenge)
-};
+exports.getuserdata = 
+catchAsyncError(
+  
+  async(req, res,next) => {
+    let userdata = await User.find();
+    return res.status(200).json(userdata);
+  }
+  )
 
-exports.getchallenge = async(req,res)=>{
+exports.sendchallange = 
 
-const challengedata = await Challenge.find()
-return res.json(challengedata)
+catchAsyncError(
+  
+  async (req, res,next) => {
+    const { recieved, accept, decline } = req.body;
+    console.log(req.body)
+    let challenge = await Challenge.create({
+      recieved:req.body.recieved,
+      player_1_id:req.body.playeroneuserid,
+      player_2_id:req.body.playertwouserid,
+      accept,
+      decline,
+      player_1: [
+        {
+          text: req.body.playeronetext,
+          images: req.body.playerone_url,
+          userId:req.body.playeroneuserid,
+          name:req.body.playeronename,
+          link:req.body.playeronelink
+        },
+      ],
+      player_2: [
+        {
+          text: req.body.playertwotext,
+          images:req.body.playertwo_url,
+          userId:req.body.playertwouserid,
+          name:req.body.playertwoname,
+          link:req.body.playertwolink
+        },
+      ],
+    });
+    return res.json(challenge)
+  }
+  )
 
-}
+exports.getchallenge =
+catchAsyncError(
+  
+  async(req,res,next)=>{
+  
+  const challengedata = await Challenge.find()
+  return res.json(challengedata)
+  
+  }
+  )
 
-exports.getrecieved = async(req,res)=>{
+exports.getrecieved = 
+catchAsyncError(
+  async(req,res,next)=>{
+  
+    const data = await Challenge.find({player_2_id:req.body.id,Accept:req.body.Accept})
+    return res.json(data)
+  
+  }
+  )
 
-  const data = await Challenge.find({player_2_id:req.body.id})
-  return res.json(data)
-  console.log(data)
+exports.acceptChallenge = catchAsyncError(
 
-}
+  async(req,res,next)=>{
+    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,decline:req.body.decline})
+    return res.status(200).json(update)
+  }
+
+) 
+
 
 
 //forget password

@@ -10,6 +10,7 @@ const User = require("./models/User")
 const multer = require("multer")
 const cookiesparser = require("cookie-parser");
 const app = express();
+const errorMiddleware = require("./Errorhandlers/Error")
 const bodyparser = require("body-parser");
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "500kb", extended: true }));
@@ -34,39 +35,6 @@ app.post("/upload",(req,res)=>{
   return res.json(image)
 })
 
-async function isEmailValid(email) {
-  return emailValidator.validate(email);
-}
-
-
-// app.post("/signup",async(req,res)=>{
-//   const { username, email, password, dob } = req.body;
-//   const { valid, reason, validators } = await isEmailValid(email);
-
-//   const isUser = await User.findOne(req.body.email)
-
-//   if(!valid){
-//      return res.json("email is invalid please enter a valid email")
-//   }else if(isUser){
-//     return res.json("user already exist please login")
-//   }
-//   else{
-//     const user = await User.create({
-//       username,
-//       email,
-//       password,
-//       dob,
-//       avatar: [
-//         {
-//           url: "https://res.cloudinary.com/degu3b9yz/image/upload/v1660723144/giphy_jcbcps.gif",
-//         },
-//       ],
-//     })
-
-//     return res.json(user)
-//   }
-  
-// })
 
 app.get("/getuser",async(req,res)=>{
 
@@ -106,7 +74,15 @@ cloudinary.config({
 const server=app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
 });
+
+
+
+
 process.on("unhandledRejection",(err,promise)=>{
   console.log(` logged error${err}`);
   server.close(()=>process.exit(1));
 })
+
+
+//errorhandler
+app.use(errorMiddleware)

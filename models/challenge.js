@@ -11,6 +11,10 @@ const challengeSchema = new mongoose.Schema({
     default:false
     // required: true,
   },
+  decline: {
+    type: String,
+    default:false,
+  },
 
   player_1_id:{
 type:String
@@ -18,10 +22,7 @@ type:String
   player_2_id:{
     type:String
   },
-  decline: {
-    type: String,
-    // default: true,
-  },
+
   player_1:[
     {
       text: {
