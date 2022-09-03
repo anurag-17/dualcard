@@ -176,7 +176,7 @@ catchAsyncError(
   
   async(req,res,next)=>{
   
-  const challengedata = await Challenge.find({player_1_id:req.body.id,Accept:true})
+  const challengedata = await Challenge.find({player_1_id:req.body.id,Accept:req.body.Accept})
   return res.json(challengedata)
 
   }

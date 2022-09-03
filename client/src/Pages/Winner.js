@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Winner.css';
 
 const Winner = () => {
@@ -34,10 +35,14 @@ const Winner = () => {
                    <button className='hero-btn'>CARD GALLERY</button>
            </div>
            <div className='btn-duel-right winnerbtn1'>
+            <Link to = "/DuelSomeone">
                    <button className='hero-btn'>DUEL AGAIN</button>
+            </Link>
            </div>
            <div className='btn-duel-right winnerbtn1'>
+            <Link to="/Auction">
                    <button className='hero-btn'>AUCTION CARDS</button>
+            </Link>
            </div>
           </div>
         </div>

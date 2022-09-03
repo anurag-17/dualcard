@@ -2,6 +2,7 @@ import  React,{useState,useEffect} from 'react';
 import './DuelAccepted.css';
 import Carousel from 'react-bootstrap/Carousel';
 import axios from "axios"
+import {Link} from "react-router-dom"
 
 
 export const DuelAccepted = () => {
@@ -13,9 +14,15 @@ export const DuelAccepted = () => {
     const data = JSON.parse(localStorage.getItem("nftuser"));
 
     const id = data._id;
+
+
+
+
     const getrecieved = async () => {
         console.log(id);
         const res = await axios.post("/api/auth/recievedchallenge",{id:id,Accept:true});
+        const newres = await axios.post("/api/auth/challengedata",{id:id,Accept:true})
+
         console.log(res)
         res.data.map((items,index)=>{
           console.log(items)
@@ -23,9 +30,17 @@ export const DuelAccepted = () => {
             setChallengeId(items._id) 
         })
         console.log(challengeid)
-        setchallengedata(res.data);
+        setchallengedata([...res.data,...newres.data]);
+        console.log(challengedata)
       };
+
+//       const getacceptedchallenge = async()=>{
+//         console.log(res)
+//         setchallengedata(challengedata.concat(res.data))
+//    }
+
       useEffect(()=>{
+        // getacceptedchallenge()
         getrecieved()
       },[])
 
@@ -41,6 +56,7 @@ export const DuelAccepted = () => {
 
                     {
                         challengedata.map((items,index)=>{
+                            console.log(items)
                             return(
                                 <>
                                 
@@ -75,10 +91,12 @@ export const DuelAccepted = () => {
                         </Carousel>
                             </div>
                             <div className='select-btn'>
-                              <button className='hero-btn'> <span>3</span>selected</button>
+                              <button className='hero-btn'> <span>{items.player_1[0].images.length}</span>selected</button>
                             </div>
-                            <div className='btn-duel-right'>
+                            <div className='btn-duel-right winner-btn'>
+                                <Link to = "/winner">
                                     <button className='hero-btn'>Winner</button>
+                                </Link>
                              </div>
                         </div>
                         </div> 
@@ -131,8 +149,10 @@ export const DuelAccepted = () => {
                             <div className='select-btn'>
                               <button className='hero-btn'> <span>3</span>selected</button>
                             </div>
-                            <div className='btn-duel-right'>
+                            <div className='btn-duel-right winner-btn'>
+                            <Link to = "/winner">
                                     <button className='hero-btn'>Winner</button>
+                                </Link>
                              </div>
                         </div>
                         </div> 

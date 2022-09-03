@@ -44,7 +44,6 @@ const DuelChallenge = () => {
 let ischecked = ""
 const thisid = JSON.parse(localStorage.getItem("nftuser"))
 const id = thisid._id
-console.log(id)
  
   const handleClose = () => {
     setShow(false);
