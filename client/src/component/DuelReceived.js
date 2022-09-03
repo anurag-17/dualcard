@@ -41,7 +41,7 @@ let acceptindex = index
      acceptchallenge = true
      console.log(acceptchallenge)
      console.log(challengeid)
-    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id})
+    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false})
 if(res.data){
   setLoader(false)
 }
@@ -50,14 +50,12 @@ navigate("/DuelAccepted")
   }
 
 
-  const DeclineChallenge = async(index)=>{
-let acceptindex = index
+const DeclineChallenge = async()=>{
 
 setLoader(true)
 declinechallenge = true
 acceptchallenge = false
-const res = await axios.put("/api/auth/declinechallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:declinechallenge})
-
+const res = await axios.put("/api/auth/declinechallenge",{Accept:false,challengerid:id,decline:true})
 
   }
 
@@ -191,7 +189,7 @@ return(
                   </div>
                   <div className="btn-duel-right">
                     <button onClick={()=>AcceptChallenge(index)} className="hero-btn">Accept challenge</button>
-                    {/* <button onClick={()=>DeclineChallenge(index)} className="hero-btn">Decline challenge</button> */}
+                    <button onClick={DeclineChallenge} className="hero-btn">Decline challenge</button>
                   </div>
                 </div>
               </div>

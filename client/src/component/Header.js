@@ -136,7 +136,9 @@ const logoutuser = () => {
                     <button className="btn btn-outline head-btn" style={{marginLeft:"10px"}}  onClick={logoutuser}>logout</button>
                     </>
                     :
+                    <Link to="/register">
                     <button className="btn btn-outline head-btn" type="submit">SignIn btn</button>
+                    </Link>
 
                   }                    
                 </form>             

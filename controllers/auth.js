@@ -176,9 +176,9 @@ catchAsyncError(
   
   async(req,res,next)=>{
   
-  const challengedata = await Challenge.find()
+  const challengedata = await Challenge.find({player_1_id:req.body.id,Accept:true})
   return res.json(challengedata)
-  
+
   }
   )
 
@@ -192,6 +192,7 @@ catchAsyncError(
   }
   )
 
+
 exports.acceptChallenge = catchAsyncError(
 
   async(req,res,next)=>{
@@ -201,6 +202,21 @@ exports.acceptChallenge = catchAsyncError(
 
 ) 
 
+exports.declineChallenge = catchAsyncError(
+  async(req,res,next)=>{
+    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,decline:req.body.decline})
+    return res.status(200).json(update)
+  }
+)
+
+exports.challengeStatus = catchAsyncError(
+
+async(req,res,next)=>{
+  const status = await Challenge.find({player_1_id:req.body.id})
+  return res.status(200).json(status)
+}
+
+)
 
 
 //forget password

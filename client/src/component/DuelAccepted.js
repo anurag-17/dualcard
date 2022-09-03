@@ -20,7 +20,7 @@ export const DuelAccepted = () => {
         res.data.map((items,index)=>{
           console.log(items)
           console.log(items._id)
-            setChallengeId(items._id)
+            setChallengeId(items._id) 
         })
         console.log(challengeid)
         setchallengedata(res.data);

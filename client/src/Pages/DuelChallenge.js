@@ -42,7 +42,9 @@ const DuelChallenge = () => {
   const [checkedimage,setcheckedimage] = useState([])
   const [linkurl,setlinkurl] = useState("")
 let ischecked = ""
-
+const thisid = JSON.parse(localStorage.getItem("nftuser"))
+const id = thisid._id
+console.log(id)
  
   const handleClose = () => {
     setShow(false);
@@ -60,7 +62,6 @@ async function getuserdata(){
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
     const localdata = JSON.parse(localStorage.getItem("nftuser"))
-   
     setlocaluser(localdata.username)
 
 userdata.sort((a,b) => a.username.localeCompare(b.username))
@@ -87,6 +88,7 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
     const userdata = JSON.parse(localStorage.getItem("nftuser"));
     setUserprofiledata([userdata]);
     setUserId(userdata._id);
+    console.log(userId)
   };
 
   const handlesubmit = async () => {
@@ -154,7 +156,7 @@ userdata.sort((a,b) => a.username.localeCompare(b.username))
 const res = await  axios.post("/api/auth/sendchal",
 { playerone_url:checkedimage,
   playeronetext:textvalue,
-  playeroneuserid:userId,
+  playeroneuserid:id,
   playertwouserid:clickeduser,
   playeronename:localuser,
   playertwoname:targetname,
@@ -747,11 +749,19 @@ return(
                       </div>
                     </div>
                   </div>
+          
                 </div>
+                
               </div>
             </div>
           </div>
         </div>
+        <div style ={{textAlign:"center",marginTop:"50px"}}>
+
+<Link to= "/duelstatus">
+<h4 style={{color:"white"}}>Please check status for previous Duel Challenges</h4>
+</Link>
+</div>
       </div>
       
       </>
