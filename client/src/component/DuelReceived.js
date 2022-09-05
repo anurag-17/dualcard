@@ -163,7 +163,7 @@ const res = await axios.put("/api/auth/declinechallenge",{Accept:false,challenge
       <div className="DuelRec-sec">
         <div className="container">
           <div className="section-title">
-            <h2>Duel Received</h2>
+            <h2 className = "body-main">Duel Received</h2>
           </div>
 
 {

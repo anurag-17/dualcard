@@ -88,7 +88,7 @@ const logoutuser = () => {
                     </li>                                                    
                      
                 </ul>
-                <form className="d-flex">  
+                <form style={{position:"relative",right:"10%"}} className="d-flex">  
                 {
                     localStorage.getItem("nftuser")?
                     <div style = {{position:"relative",bottom:"15px"}}>
@@ -98,10 +98,10 @@ const logoutuser = () => {
                         </Link>
                         <ul style={{backgroundColor:"#3C2485",textAlign:"center"}} class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                        <button style={{marginBottom:"10px",backgroundColor:"#273e77",border:"1px solid #ffff"}}  className="btn btn-outline head-btn" type="submit">{data.username}</button>
+                        <button style={{padding:"5px 8px",marginBottom:"10px",backgroundColor:"#273e77",border:"1px solid #ffff"}}  className="btn btn-outline head-btn" type="submit">{data.username}</button>
                           </li> 
                           <li>
-                          <button style={{backgroundColor:"#273e77",border:"1px solid #ffff"}} className="btn btn-outline head-btn"   onClick={logoutuser}>logout</button>
+                          <button style={{backgroundColor:"#273e77",border:"1px solid #ffff",padding:"5px 8px"}} className="btn btn-outline head-btn"   onClick={logoutuser}>logout</button>
                           </li>                             
                         </ul>
                     </li> 
