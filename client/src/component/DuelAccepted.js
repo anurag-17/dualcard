@@ -10,9 +10,9 @@ export const DuelAccepted = () => {
     const [challengedata, setchallengedata] = useState([]);
     const [challengeid,setChallengeId] = useState("")
     const [loader,setLoader] = useState(true)
+    const [userimagedata, setuserimagedata] = useState([]);
 
     const data = JSON.parse(localStorage.getItem("nftuser"));
-
     const id = data._id;
 
 
@@ -34,10 +34,14 @@ export const DuelAccepted = () => {
         console.log(challengedata)
       };
 
-//       const getacceptedchallenge = async()=>{
-//         console.log(res)
-//         setchallengedata(challengedata.concat(res.data))
-//    }
+      async function getimages() {
+        const data = JSON.parse(localStorage.getItem("nftuser"));
+    
+        const res = await axios.post("/api/auth/getdata", data).then((data) => {
+          setuserimagedata(data.data);
+        });
+      }
+      getimages();
 
       useEffect(()=>{
         // getacceptedchallenge()
@@ -114,36 +118,22 @@ export const DuelAccepted = () => {
                          <div className='dA-slider'>
 
                             <Carousel>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="/NFTimgslider-4.png"
-                            alt="First slide"
-                            />
-                            <Carousel.Caption>
-                            
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="/slider-2.png"
-                            alt="Second slide"
-                            />
-
-                            <Carousel.Caption>                           
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="/slider-3.png"
-                            alt="Third slide"
-                            />
-
-                            <Carousel.Caption>                            
-                            </Carousel.Caption>
-                        </Carousel.Item>
+                                {
+                                    userimagedata.map((items,index)=>{
+                                        return(
+                                            <Carousel.Item>
+                                            <img
+                                            className="d-block w-100"
+                                            src={items.url}
+                                            alt="First slide"
+                                            />
+                                            <Carousel.Caption>
+                                            
+                                            </Carousel.Caption>
+                                        </Carousel.Item>
+                                        )
+                                    })
+                                }
                         </Carousel>
                             </div>
                             <div className='select-btn'>

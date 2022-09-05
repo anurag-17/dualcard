@@ -43,6 +43,11 @@ app.get("/getuser",async(req,res)=>{
 
 })
 
+// app.post("/deleteuser",async(req,res)=>{
+//   const user = await Image.remove({userId:"630c6f4959371e797bea2fea"})
+//   return res.json(user)
+// })
+
 // --------------------------deployment------------------------------
 app.use(express.static(path.join(__dirname, "./client/build")));
 

@@ -34,7 +34,7 @@ const navigate  = useNavigate()
                     <Link  to="AboutRules" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">About / Rules</Link>
                     </li>  
                     <li className="nav-item" onClick={()=>navigate("/ICOInformation")} to='/ICOInformation'>                                        
-                    <Link  to="ICOInformation" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">ICO Information</Link>
+                    <Link  to="ICOInformation" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">DuelCoins Information</Link>
                     </li>                                    
                     <li className="nav-item" onClick={()=>navigate("/contact-us")} to='/ICOInformation'>                                        
                     <Link  to="ICOInformation" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Contact Us</Link>
@@ -51,5 +51,4 @@ const navigate  = useNavigate()
     </div>
   )
 }
-
 export default Footer

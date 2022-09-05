@@ -78,7 +78,17 @@
 .winner-btn button{
     padding: 12px 0;
 }
-
+.table-hero-btn{
+    background: #4f6bbc;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 25px;
+    font-size: 18px;
+    line-height: 24px;
+    top: 0;
+    left: 0;
+    font-weight: 400;
+}
 
 /* responsive */
 @media only screen and (max-width:1200px) {

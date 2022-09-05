@@ -23,6 +23,7 @@ import ShopUniversal from './component/ShopUniversal';
 import ShopSeasonal from './component/ShopSeasonal';
 import Contactus from './Pages/Contactus';
 import { DuelStatus } from './Pages/DuelStatus';
+import Pathtolevel from './Pages/Pathtolevel';
 
 
 
@@ -52,6 +53,7 @@ function App() {
         <Route path = "/shop-seasonal" element = {<ShopSeasonal/>}/>
         <Route path = "/contact-us" element = {<Contactus/>}/>
         <Route path = "/duelstatus" element = {<DuelStatus/>}/>
+        <Route path = "/pathtolevel" element = {<Pathtolevel/>}/>
       </Routes>
     <Footer/>
     </div>
@@ -66,7 +68,6 @@ export function ProtectedRoute(props){
   if(userdata)
   {
     return props.children
-  
   }else{
    return <Navigate to="/login"/>
   }

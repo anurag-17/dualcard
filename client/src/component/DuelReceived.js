@@ -4,11 +4,33 @@ import Carousel from "react-bootstrap/Carousel";
 import axios from "axios";
 import { Link,useNavigate} from "react-router-dom";
 import { Loader } from "./Loader";
+import { postimage } from "../actions/apiAction";
+import { useDispatch, useSelector } from "react-redux";
+import img1 from "../images/Plus.png";
+import { Button, Modal } from "react-bootstrap";
+import "../Pages/tickimage.css";
+
 
 const DuelReceived = () => {
+  const dispatch = useDispatch()
+  const { image, isImage, loading } = useSelector((state) => state.image);
   const [challengedata, setchallengedata] = useState([]);
 const [challengeid,setChallengeId] = useState([])
 const [loader,setLoader] = useState(true)
+const [filedata, setFiledata] = useState("");
+const [userid,setUserId] = useState("")
+const [show,setShow] = useState(false)
+const [userimagedata, setuserimagedata] = useState([]);
+let ischecked = "";
+const [checkedimage, setcheckedimage] = useState([]);
+
+
+
+const iddata  = JSON.parse(localStorage.getItem("nftuser"))
+const userId  = iddata._id
+console.log(userId)
+
+
 const navigate = useNavigate()
 
   const data = JSON.parse(localStorage.getItem("nftuser"));
@@ -20,6 +42,13 @@ const navigate = useNavigate()
   setTimeout(()=>{
     setLoader(false)
     },2200)
+
+
+    const handleClose = () => {
+      setShow(false);
+    };
+
+    const handleShow = () => setShow(true);
 
   const getrecieved = async () => {
     console.log(id);
@@ -59,9 +88,72 @@ const res = await axios.put("/api/auth/declinechallenge",{Accept:false,challenge
 
   }
 
+  const handleupload = async (e) => {
+    const files = e.target.files[0];
+    console.log(files);
+    setFiledata(files);
+    const userdata = JSON.parse(localStorage.getItem("nftuser"));
+    setUserId(userdata._id);
+    console.log(userid);
+  };
+
+  const handlesubmit = async () => {
+    let data = new FormData();
+    data.append("file", filedata);
+    data.append("upload_preset", "nftimg");
+    data.append("cloud_name", "degu3b9yz");
+    dispatch(postimage(data));
+    setShow(false);
+  };
+
+  
+  async function postImageUrl() {
+    // if (image) {
+    //   localStorage.setItem("userImages", JSON.stringify(newarr));
+    //   const localimages = JSON.parse(localStorage.getItem("userImages"));
+    //   console.log(localimages);
+    //   finalimagedata.push(localimages);
+    // }
+
+    if (image) {
+      const data = await axios.post("/upload", {
+        userId,
+        image
+      });
+      console.log(data);
+    }
+  }
+
+  async function getimages() {
+    const data = JSON.parse(localStorage.getItem("nftuser"));
+
+    const res = await axios.post("/api/auth/getdata",data).then((data) => {
+      setuserimagedata(data.data);
+    });
+  }
+  getimages();
+
+
+  const handlecheck = (e) => {
+    ischecked = e.target.checked;
+    console.log(ischecked);
+  };
+
+  const getchekedimage = (event) => {
+    if (ischecked === false) {
+      console.log(event.target.src);
+    } else {
+      checkedimage.push(event.target.src);
+      console.log(checkedimage);
+    }
+  };
+
+
   useEffect(() => {
     getrecieved();
-  }, [loader,acceptchallenge]);
+   postImageUrl()
+
+  }, [loader,acceptchallenge,image]);
 
   return (
    <>
@@ -139,10 +231,7 @@ return(
 )
                 })} 
                 
-            
-                
-                      
-                    
+  
                   
               </div>
             </div>
@@ -152,20 +241,70 @@ return(
             <div className="col-md-6 duel-right">
               <div className="row">
                 <div className="col-md-6 col-sm-6">
-                  <div className="dule-rt-1">
-                    <div className="dule-img1">
-                      <img src="./NFT img1.png" alt="img" />
-                    </div>
-                    <div className="dule-img1">
-                      <img src="./NFT img1.png" alt="img" />
-                    </div>
-                    <div className="dule-img1">
-                      <img src="./NFT img2.png" alt="img" />
-                    </div>
-                    <div className="dule-img1"></div>
-                  </div>
+                  {
+                    loading?<Loader/>:  <div className="dule-rt-1">
+                    {
+                     userimagedata.map((items,index)=>{
+                       return(
+
+                         <div class="grid-two imageandtext">
+                         <div class="imageandtext image_grid">
+                           <label>
+                             <img
+                               onClick={getchekedimage}
+                               src={items.url}
+                               className="img-thumbnail"
+                             />
+                             <input
+                               onChange={handlecheck}
+                               type="checkbox"
+                               name="selimg"
+                             />
+                             <span class="caption"></span>
+                           </label>
+                         </div>
+                       </div>
+                         
+                       )
+                     })
+                    }
+               <div
+                                 style={{
+                                   border: "2px dashed #4A6BBC",
+                                   borderRadius: "16px",
+                                   width:"130px"
+
+                                 }}
+                                 className="dule-img1"
+                               >
+                                 {
+                                   <div
+                                     style={{
+                                       textAlign: "center",
+                                       position: "relative",
+                                       top: "45px",
+                                       left: "12px",
+                                       width:"100px"
+                                     }}
+                                     onClick={handleShow}
+                                     className="icon-plus button"
+                                   >
+                                     <img src={img1} />
+                                   </div>
+                                 }
+                               </div>
+                 {/* <div className="dule-img1">
+                   <img src="./NFT img1.png" alt="img" />
+                 </div>
+                 <div className="dule-img1">
+                   <img src="./NFT img2.png" alt="img" />
+                 </div>
+                 <div className="dule-img1"></div> */}
+               </div> 
+                  }
+               
                   <div className="btn-duel-right">
-                    <button className="hero-btn">SELECT CARDS</button>
+                    <button onClick={handleShow} className="hero-btn">SELECT CARDS</button>
                   </div>
                 </div>
                 <div className="col-md-6 col-sm-6">
@@ -194,6 +333,29 @@ return(
                 </div>
               </div>
             </div>
+            <Modal
+                        style={{ height: "800px" }}
+                        show={show}
+                        onHide={handleClose}
+                      >
+                        <Modal.Header closeButton>
+                          <Modal.Title>Modal heading</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <input
+                            multiple
+                            onChange={handleupload}
+                            type="file"
+                            name=""
+                            id=""
+                          />
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button variant="primary" onClick={handlesubmit}>
+                            Save Changes
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
 </>
                 )
             })

@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import axios from "axios"
+import { Link } from 'react-router-dom';
 
 export const DuelStatus = () => {
     const [challengedata, setchallengedata] = useState([]);
@@ -37,6 +38,7 @@ getrecieved()
                 <tr>
                     <th>user</th>
                     <th>Status</th>
+                    <th>go to challenge</th>
                 </tr>
                 </thead>
 {
@@ -54,6 +56,10 @@ getrecieved()
                 <tr>
                 <td>{items.player_2[0].name}</td>
                 <td>{items.Accept==="true"?"Accepted":"Decline"}</td>
+                {
+                items.Accept==="true"?<td>
+                    <Link to="/DuelAccepted"><button className='table-hero-btn'>go to challenge</button></Link></td>:""
+                }
                 </tr>
             </tbody>
         </>
