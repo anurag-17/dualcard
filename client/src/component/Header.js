@@ -79,7 +79,7 @@ const logoutuser = () => {
                           <Link to="/pathtolevel" class="dropdown-item">Pathtolevel</Link>
                           </li> 
                           <li>
-                            <Link to="Duelsystem" class="dropdown-item">Duelsystem</Link>
+                            <Link to="/duelsystem" class="dropdown-item">Duelsystem</Link>
                           </li>                             
                         </ul>
                     </li> 

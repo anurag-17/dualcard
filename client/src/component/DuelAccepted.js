@@ -50,7 +50,7 @@ export const DuelAccepted = () => {
 
 setTimeout(()=>{
 setLoader(false)
-},1000)
+},1300)
 
   return (
     <div>

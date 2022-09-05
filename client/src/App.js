@@ -25,6 +25,7 @@ import Contactus from './Pages/Contactus';
 import { DuelStatus } from './Pages/DuelStatus';
 import Pathtolevel from './Pages/Pathtolevel';
 import { Loser } from './Pages/Loser';
+import Duelsystem from './component/Duelsystem';
 
 
 
@@ -56,6 +57,7 @@ function App() {
         <Route path = "/contact-us" element = {<Contactus/>}/>
         <Route path = "/duelstatus" element = {<DuelStatus/>}/>
         <Route path = "/pathtolevel" element = {<Pathtolevel/>}/>
+        <Route path = "/duelsystem" element = {<Duelsystem/>}/>
       </Routes>
     <Footer/>
     </div>
