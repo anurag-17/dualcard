@@ -91,9 +91,6 @@ const logoutuser = () => {
                 <form className="d-flex">  
                 {
                     localStorage.getItem("nftuser")?
-
-
-                    
                     <div style = {{position:"relative",bottom:"15px"}}>
                          <li class="nav-item dropdown">
                         <Link class="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
