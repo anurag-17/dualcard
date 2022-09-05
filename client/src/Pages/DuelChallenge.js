@@ -416,7 +416,7 @@ const DuelChallenge = () => {
                                 </div>
                               </div>
 
-                              <form action="">
+                              <form action="post">
                                 <div className="duel-form">
                                   <div class="mb-3 mt-0">
                                     <textarea
@@ -435,9 +435,9 @@ const DuelChallenge = () => {
                                 <div className="search-bar">
                                   <div class="input-group md-form form-sm form-2 pl-0">
                                     <input
+                                    type = "url"
                                       required
                                       class="form-control my-0 py-1 red-border"
-                                      type="url"
                                       placeholder="put your twitch or youtube live link"
                                       aria-label="Search"
                                       onChange={(e) =>

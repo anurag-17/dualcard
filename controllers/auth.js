@@ -8,7 +8,8 @@ const emailValidator = require("deep-email-validator");
 const bodyParser = require("body-parser");
 const Challenge = require("../models/challenge");
 const catchAsyncError = require("../Errorhandlers/catchAsyncError")
-const ErrorHandler = require("../config/errorHandler")
+const ErrorHandler = require("../config/errorHandler");
+const challenge = require("../models/challenge");
 async function isEmailValid(email) {
   return emailValidator.validate(email);
 }
@@ -182,6 +183,9 @@ catchAsyncError(
   }
   )
 
+
+
+
 exports.getrecieved = 
 catchAsyncError(
   async(req,res,next)=>{
@@ -216,6 +220,12 @@ async(req,res,next)=>{
   return res.status(200).json(status)
 }
 
+)
+
+exports.getwinner  = catchAsyncError(
+  async(req,res,next)=>{
+    const challengedata = await Challenge.find({player_1_id:req.body.id,Accept:req.body.Accept,status:winner})
+  }
 )
 
 
