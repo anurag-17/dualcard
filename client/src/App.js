@@ -24,6 +24,7 @@ import ShopSeasonal from './component/ShopSeasonal';
 import Contactus from './Pages/Contactus';
 import { DuelStatus } from './Pages/DuelStatus';
 import Pathtolevel from './Pages/Pathtolevel';
+import { Loser } from './Pages/Loser';
 
 
 
@@ -39,6 +40,7 @@ function App() {
         <Route path ="/profile" element={<Dashboard/>}/>
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
         <Route path = "/winner" element = {<Winner/>}/>
+        <Route path = "/loser" element = {<Loser/>}/>
         <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/>
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/AboutRules" element = {<AboutRules/>}/>

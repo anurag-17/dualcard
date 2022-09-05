@@ -53,7 +53,7 @@ export const DuelAccepted = () => {
         <div className='duelacept-sec'>
             <div className='container'>
                 <div className='section-title'>
-                    <h2>Duel Accepted</h2>
+                    <h2 className = "body-main">Duel Accepted</h2>
                 </div>
 
                 <div className='row duelat-main'>
@@ -140,8 +140,8 @@ export const DuelAccepted = () => {
                               <button className='hero-btn'> <span>3</span>selected</button>
                             </div>
                             <div className='btn-duel-right winner-btn'>
-                            <Link to = "/winner">
-                                    <button className='hero-btn'>Winner</button>
+                            <Link to = "/loser">
+                                    <button className='hero-btn'>Loser</button>
                                 </Link>
                              </div>
                         </div>

@@ -7,6 +7,7 @@ import { Nav } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from "../images/Logo.png"
+import tabicon from "../images/tabicon-14.png"
 
 const Header = () => {
 const [show,setShow] = useState(false)
@@ -90,12 +91,25 @@ const logoutuser = () => {
                 <form className="d-flex">  
                 {
                     localStorage.getItem("nftuser")?
-                    <div style={{display:"flex"}}>
 
+
+                    
+                    <div style = {{position:"relative",bottom:"15px"}}>
+                         <li class="nav-item dropdown">
+                        <Link class="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src = {tabicon} alt = "profileimage"/>
+                        </Link>
+                        <ul style={{backgroundColor:"#3C2485",textAlign:"center"}} class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li>
+                        <button style={{marginBottom:"10px",backgroundColor:"#273e77",border:"1px solid #ffff"}}  className="btn btn-outline head-btn" type="submit">{data.username}</button>
+                          </li> 
+                          <li>
+                          <button style={{backgroundColor:"#273e77",border:"1px solid #ffff"}} className="btn btn-outline head-btn"   onClick={logoutuser}>logout</button>
+                          </li>                             
+                        </ul>
+                    </li> 
                     <>
-                    <button  className="btn btn-outline head-btn" type="submit">{data.username}</button>
                     </>
-                    <button className="btn btn-outline head-btn" style={{marginLeft:"10px"}}  onClick={logoutuser}>logout</button>
                   
                     </div>
                     :
