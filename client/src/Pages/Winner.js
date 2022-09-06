@@ -1,8 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Winner.css';
+import axios from "axios"
 
 const Winner = () => {
+  const {id,index} = useParams()
+  console.log(id)
+  console.log(index)
+
+  const getwinner = async()=>{
+    const res = await axios.post("/api/auth/winnerchallenge",id)
+    console.log(res.data)
+  }
+
   return (
     <div className='body-main'>
       <div className='winner-sec'>

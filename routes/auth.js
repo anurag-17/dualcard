@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const{ register, login, forgetpassword, resetpassword,getdata, getuserdata, isAuthuser, dashboard, sendchallange, getchallenge, uploadimage, getrecieved, acceptChallenge, challengeStatus, declineChallenge }= require('../controllers/auth')
+const{ register, login, forgetpassword, resetpassword,getdata, getuserdata, isAuthuser, dashboard, sendchallange, getchallenge, uploadimage, getrecieved, acceptChallenge, challengeStatus, declineChallenge, getwinner }= require('../controllers/auth')
 router.route("/register").post(register);
 
 router.route("/login").post(login);
@@ -17,6 +17,7 @@ router.route("/recievedchallenge").post(getrecieved)
 router.route("/acceptChallenge").put(acceptChallenge)
 router.route("/challengestatus").post(challengeStatus)
 router.route("/declinechallenge").post(declineChallenge)
+router.route("/winnerchallenge").post(getwinner)
 
 
 // router.route("/forgetpassword").post(forgetpassword);

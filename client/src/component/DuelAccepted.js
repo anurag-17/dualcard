@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./DuelAccepted.css";
 import Carousel from "react-bootstrap/Carousel";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import axios from "axios"; 
+import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "./Loader";
 
 export const DuelAccepted = () => {
+  const navigate = useNavigate()
   const [challengedata, setchallengedata] = useState([]);
   const [challengeid, setChallengeId] = useState("");
   const [loader, setLoader] = useState(true);
@@ -53,6 +54,18 @@ export const DuelAccepted = () => {
     setLoader(false);
   }, 1300);
 
+  const handlewin= (e)=>{
+console.log(e.target.name)
+console.log(e.target.value)
+navigate(`/winner/${e.target.name}/${e.target.value}`)
+  }
+
+  const handlelose  = (e)=>{
+    console.log(e.target.name)
+    console.log(e.target.value)
+    navigate(`/loser/${e.target.name}/${e.target.value}`)
+  }
+
   return (
     <div>
       {loader ? (
@@ -66,7 +79,6 @@ export const DuelAccepted = () => {
 
             <div className="row duelat-main">
               {challengedata.map((items, index) => {
-                console.log(items);
                 return (
                   <>
                     <div className="col-md-5 col-sm-5">
@@ -81,6 +93,7 @@ export const DuelAccepted = () => {
                           <div className="dA-slider">
                             <Carousel>
                               {items.player_1[0].images.map((items, index) => {
+                            
                                 return (
                                   <Carousel.Item>
                                     <img
@@ -101,12 +114,12 @@ export const DuelAccepted = () => {
                             </button>
                           </div>
                           <div className="btn-duel-right winner-btn">
-                            <Link to="/winner">
-                              <button className="hero-btn">Winner</button>
-                            </Link>
-                            <Link to="/loser">
-                              <button className="hero-btn">Loser</button>
-                            </Link>
+                            {/* <Link to="/winner"> */}
+                            <button value = "2" name ={items._id} onClick={(e)=>console.log(e.target.name)} className="hero-btn">Winner</button>
+                            {/* </Link> */}
+                            {/* <Link to="/loser"> */}
+                              <button value = "2" name = {items._id} className="hero-btn">Loser</button>
+                            {/* </Link> */}
                           </div>
                         </div>
                       </div>
@@ -146,12 +159,12 @@ export const DuelAccepted = () => {
                             </button>
                           </div>
                           <div className="btn-duel-right winner-btn">
-                            <Link to="/winner">
-                              <button className="hero-btn">Winner</button>
-                            </Link>
-                            <Link to="/loser">
-                              <button className="hero-btn">Loser</button>
-                            </Link>
+                            {/* <Link to="/winner"> */}
+                              <button value="1" name ={items._id} onClick={handlewin} className="hero-btn">Winner</button>
+                            {/* </Link> */}
+                            {/* <Link to="/loser"> */}
+                              <button value="1" name = {items._id} onClick={handlelose} className="hero-btn">Loser</button>
+                            {/* </Link> */}
                           </div>
                         </div>
                       </div>

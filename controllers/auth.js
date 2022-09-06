@@ -224,9 +224,11 @@ async(req,res,next)=>{
 
 exports.getwinner  = catchAsyncError(
   async(req,res,next)=>{
-    const challengedata = await Challenge.find({player_1_id:req.body.id,Accept:req.body.Accept,status:winner})
+     const winner = await Challenge.findById(req.body.id)
+     return res.status(200).json(winner)
   }
 )
+
 
 
 //forget password

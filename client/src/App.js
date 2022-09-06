@@ -40,8 +40,8 @@ function App() {
         <Route path ="/register" element={<PrivateRoute><Register/></PrivateRoute>}/>
         <Route path ="/profile" element={<Dashboard/>}/>
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
-        <Route path = "/winner" element = {<Winner/>}/>
-        <Route path = "/loser" element = {<Loser/>}/>
+        <Route path = "/winner/:id/:index" element = {<Winner/>}/>
+        <Route path = "/loser/:id/:index" element = {<Loser/>}/>
         <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/>
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/AboutRules" element = {<AboutRules/>}/>
