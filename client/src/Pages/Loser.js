@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
 import "./Winner.css";
 import axios from "axios";
 
@@ -50,7 +53,7 @@ export const Loser = () => {
                <h2>You Lose!</h2>
                <div className='prizeimg'>
                  <img style= {{marginLeft:"60px"}} src="/Prize.png" alt="img"/> 
-               <i style = {{color:"red",fontSize:"110px",position:"relative",right:"160px",top:"15px"}} class="fa fa-times" aria-hidden="true"></i>
+                 <FontAwesomeIcon style = {{fontWeight:"600",height:"120px",color:"red",position:"absolute",left:"50%",right:"50%"}} icon={faTimes} />
                </div>
           </div>
           <div className='row won-main'>
@@ -60,8 +63,7 @@ export const Loser = () => {
                 return (
                   <div className="wonimg1">
                     <img src={items} alt="img" />
-               <i style = {{color:"red",fontSize:"110px",position:"relative",right:"0px", bottom:"67px"}} class="fa fa-times" aria-hidden="true"></i>
-
+                    <FontAwesomeIcon style = {{fontWeight:"600",height:"120px",color:"red",position:"relative",bottom:"70px"}} icon={faTimes} />
                   </div>
                 );
               })}
