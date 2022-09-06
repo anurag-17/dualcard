@@ -62,20 +62,34 @@ const navigate = useNavigate()
     setchallengedata(res.data);
   
   };
-  const AcceptChallenge = async(index)=>{
 
+  const handlecheck = (e) => {
+    ischecked = e.target.checked;
+    console.log(ischecked);
+  };
+
+  const getchekedimage = (event) => {
+    if (ischecked === false) {
+      console.log(event.target.src);
+    } else {
+      checkedimage.push(event.target.src);
+      console.log(checkedimage);
+    }
+  };
+
+  const AcceptChallenge = async(index)=>{
     setLoader(true)
-    
+     
+
 let acceptindex = index
      acceptchallenge = true
      console.log(acceptchallenge)
      console.log(challengeid)
-    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false})
+    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false,playertwo_url:checkedimage})
 if(res.data){
   setLoader(false)
 }
 navigate("/DuelAccepted")
-
   }
 
 
@@ -134,21 +148,10 @@ const res = await axios.put("/api/auth/declinechallenge",{Accept:false,challenge
   getimages();
 
 
-  const handlecheck = (e) => {
-    ischecked = e.target.checked;
-    console.log(ischecked);
-  };
-
-  const getchekedimage = (event) => {
-    if (ischecked === false) {
-      console.log(event.target.src);
-    } else {
-      checkedimage.push(event.target.src);
-      console.log(checkedimage);
-    }
-  };
 
 
+
+  
   useEffect(() => {
     getrecieved();
    postImageUrl()

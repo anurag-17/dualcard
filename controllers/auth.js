@@ -200,7 +200,13 @@ catchAsyncError(
 exports.acceptChallenge = catchAsyncError(
 
   async(req,res,next)=>{
-    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,decline:req.body.decline})
+    console.log(req.body)
+    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,decline:req.body.decline,  
+      player_2:[
+      {
+        images:req.body.playertwo_url,
+      },
+    ],})
     return res.status(200).json(update)
   }
 
@@ -217,14 +223,14 @@ exports.challengeStatus = catchAsyncError(
 
 async(req,res,next)=>{
   const status = await Challenge.find({player_1_id:req.body.id})
-  return res.status(200).json(status)
+  return res.json(status)
 }
 
 )
 
 exports.getwinner  = catchAsyncError(
   async(req,res,next)=>{
-     const winner = await Challenge.findById(req.body.id)
+     const winner = await Challenge.find({_id:req.body.id})
      return res.status(200).json(winner)
   }
 )

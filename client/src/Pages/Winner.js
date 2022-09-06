@@ -1,17 +1,23 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './Winner.css';
 import axios from "axios"
 
+
 const Winner = () => {
   const {id,index} = useParams()
+  const [images,setImages] = useState([])
   console.log(id)
   console.log(index)
 
   const getwinner = async()=>{
-    const res = await axios.post("/api/auth/winnerchallenge",id)
-    console.log(res.data)
+    const res = await axios.post("/api/auth/winnerchallenge",{id:id})
+     setImages(res.data)
   }
+
+  useEffect(()=>{
+     getwinner()
+  },[id,index])
 
   return (
     <div className='body-main'>
