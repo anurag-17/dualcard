@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './Winner.css';
 import axios from "axios"
@@ -12,7 +12,8 @@ const Winner = () => {
 
   const getwinner = async()=>{
     const res = await axios.post("/api/auth/winnerchallenge",{id:id})
-     setImages(res.data)
+     images.push(res.data[0])
+     console.log(images)
   }
 
   useEffect(()=>{
@@ -31,6 +32,14 @@ const Winner = () => {
           </div>
           <div className='row won-main'>
             <div className='won-grid'>
+
+              {
+                images.map((items,i)=>{
+
+                  console.log(items)
+
+                })
+              }
                 <div className='wonimg1'>
                   <img src="./challenge-img/1.jpg" alt="img"/> 
                 </div>

@@ -57,13 +57,13 @@ export const DuelAccepted = () => {
   const handlewin= (e)=>{
 console.log(e.target.name)
 console.log(e.target.value)
-navigate(`/winner/${e.target.name}/${e.target.value}`)
+navigate(`/winner/${e.target.name}/player_${e.target.value}`)
   }
 
   const handlelose  = (e)=>{
     console.log(e.target.name)
     console.log(e.target.value)
-    navigate(`/loser/${e.target.name}/${e.target.value}`)
+    navigate(`/loser/${e.target.name}/player_${e.target.value}`)
   }
 
   return (
