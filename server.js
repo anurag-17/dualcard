@@ -7,6 +7,7 @@ const cors = require("cors")
 const cloudinary=require("cloudinary")
 const Image = require("./models/Image")
 const User = require("./models/User")
+const Challenge = require("./models/challenge")
 const multer = require("multer")
 const cookiesparser = require("cookie-parser");
 const app = express();
@@ -44,7 +45,7 @@ app.get("/getuser",async(req,res)=>{
 })
 
 // app.post("/deleteuser",async(req,res)=>{
-//   const user = await Image.remove({userId:"630c6f4959371e797bea2fea"})
+//   const user = await Challenge.deleteMany()
 //   return res.json(user)
 // })
 

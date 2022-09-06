@@ -90,6 +90,12 @@ const DuelChallenge = () => {
     dispatch(postimage(data));
     setShow(false);
   };
+
+  const handlecheck = (e) => {
+    ischecked = e.target.checked;
+    console.log(ischecked);
+  };
+  
   const getchekedimage = (event) => {
     if (ischecked === false) {
       console.log(event.target.src);
@@ -168,10 +174,7 @@ const DuelChallenge = () => {
 
     setsearchfilter(result);
   };
-  const handlecheck = (e) => {
-    ischecked = e.target.checked;
-    console.log(ischecked);
-  };
+
 
   useEffect(() => {
     postImageUrl();

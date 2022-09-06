@@ -9,11 +9,11 @@ import buyimg6 from "../images/6.jpg";
 import shapeline from "../images/shpeline.png";
 const Duelsystem = () => {
   return (
-    <div>Duelsystem
+    <div className='body-main'>
       <div className='duel-syestem-sec'>
         <div className='container'>
            <div className='section-title'>
-              <h2 className='body-main'>Duel Challenge System</h2>               
+              <h2>Duel Challenge System</h2>               
            </div>
            <div className='row'>
             <div className='challengesys-grid'>
@@ -200,7 +200,7 @@ const Duelsystem = () => {
                 </div>
               </div>
               <div className='sele-main container-fluid'>
-              <div className='row winnweaccout1'>
+              <div className='winnweaccout1'>
                   <div className='winneritem1'>
                     <div className='winnwect'>
                       <h3>Handshake Agreement On Duelcards.Io</h3>
