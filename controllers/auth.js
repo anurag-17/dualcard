@@ -230,14 +230,26 @@ async(req,res,next)=>{
 
 exports.getwinner  = catchAsyncError(
   async(req,res,next)=>{
-     const winner = await Challenge.find({_id:req.body.id})
+     const winner = await Challenge.find({_id:req.body.id,result:"pending"})
      return res.status(200).json(winner)
   }
 )
 
 exports.setwinner = catchAsyncError(
   async(req,res,next)=>{
-    const winstatus = await challenge.findByIdAndUpdate(req.body.id,{status:req.body.status})
+    const winstatus = await challenge.findByIdAndUpdate(req.body.id,{
+      result:req.body.result,
+      player_1:[
+        {
+         status:req.body.playeronestatus
+        },
+      ],
+      player_2:[
+        {
+          status:req.body.playertwostatus
+        }
+      ]
+    })
     return res.status(200).json(winstatus)
   }
 )

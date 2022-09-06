@@ -11,7 +11,8 @@ const Winner = () => {
   console.log(index);
 
   const getwinner = async () => {
-    const res = await axios.post("/api/auth/winnerchallenge", { id: id });
+
+    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"pending"});
     images.push(res.data[0]);
     console.log(images[0]);
     const player = `player_${index}`;
@@ -22,12 +23,14 @@ const Winner = () => {
     // console.log(images[0]`.${player}`);
 
     if (index === "player_1") {
+    // const response = await axios.put("/api/auth/winnerstatus",{id:id,playeronestatus:"winner",playertwostatus:"loser",result:"declared"})
       images[0].player_1.map((items, i) => {
         console.log(items);
         setaadil(items.images);
       });
     }
     if (index === "player_2") {
+    // const response = await axios.put("/api/auth/winnerstatus",{id:id,playertwostatus:"winner",playeronestatus:"loser",result:"declared"})
       images[0].player_2.map((items, i) => {
         console.log(items);
         setaadil(items.images);
@@ -37,7 +40,7 @@ const Winner = () => {
 
   useEffect(() => {
     getwinner();
-  }, [id, index]);
+  }, [id,index]);
 
   console.log(aadil);
 
@@ -48,7 +51,7 @@ const Winner = () => {
           <div className="section-title">
             <h2>You Won!</h2>
             <div className="prizeimg">
-              <img src="./Prize.png" alt="img" />
+              <img src="/Prize.png" alt="img" />
             </div>
           </div>
           <div className="row won-main">

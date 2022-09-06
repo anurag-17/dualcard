@@ -79,6 +79,7 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
 
             <div className="row duelat-main">
               {challengedata.map((items, index) => {
+                console.log(items.player_2[0].name)
                 return (
                   <>
                     <div className="col-md-5 col-sm-5">

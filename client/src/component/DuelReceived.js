@@ -52,7 +52,7 @@ const navigate = useNavigate()
 
   const getrecieved = async () => {
     console.log(id);
-    const res = await axios.post("/api/auth/recievedchallenge", {id:id,Accept:false,decline:false});
+    const res = await axios.post("/api/auth/recievedchallenge", {id:id,Accept:"pending",decline:false});
     console.log(res.data)
     res.data.map((items,index)=>{
       console.log(items._id)
@@ -79,8 +79,6 @@ const navigate = useNavigate()
 
   const AcceptChallenge = async(index)=>{
     setLoader(true)
-     
-
 let acceptindex = index
      acceptchallenge = true
      console.log(acceptchallenge)
@@ -88,8 +86,8 @@ let acceptindex = index
     const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false,playertwo_url:checkedimage})
 if(res.data){
   setLoader(false)
+  navigate("/DuelAccepted")
 }
-navigate("/DuelAccepted")
   }
 
 
@@ -146,10 +144,6 @@ const res = await axios.put("/api/auth/declinechallenge",{Accept:false,challenge
     });
   }
   getimages();
-
-
-
-
 
   
   useEffect(() => {
@@ -296,13 +290,7 @@ return(
                                    </div>
                                  }
                                </div>
-                 {/* <div className="dule-img1">
-                   <img src="./NFT img1.png" alt="img" />
-                 </div>
-                 <div className="dule-img1">
-                   <img src="./NFT img2.png" alt="img" />
-                 </div>
-                 <div className="dule-img1"></div> */}
+                
                </div> 
                   }
                

@@ -34,8 +34,7 @@ getrecieved()
             {/* <h1 style={{color:"red",marginTop:"100px"}}>{data.username}</h1> */}
             {/* <h2>{data._id}</h2> */}
             <div className='user-title'>
-                <h1>Name</h1> 
-                <p>Name</p>
+                <h1>{data.username}</h1> 
             </div>   
             <div>
             <div className='duelsatus-table'>  
@@ -61,7 +60,7 @@ getrecieved()
                             <tbody>
                                 <tr>
                                 <td>{items.player_2[0].name}</td>
-                                <td>{items.Accept==="true"?"Accepted":"Decline"}</td>
+                                <td>{items.Accept==="true"?"Accepted":"pending"}</td>
                                 {
                                 items.Accept==="true"?<td>
                                     <Link to="/DuelAccepted"><button className='table-hero-btn'>go to challenge</button></Link></td>:""

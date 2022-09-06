@@ -5,14 +5,14 @@ const challengeSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
-  status:{
-    type:String,
-    default:"pending"
+  result:{
+type:String,
+default:"pending"
   },
-
+ 
   Accept: {
     type: String,
-    default:false
+    default:"pending"
     // required: true,
   },
   decline: {
@@ -43,6 +43,10 @@ type:String
       userId: {
         type: String,
       },
+      status:{
+        type:String,
+        default:"pending"
+      },
       name:{
         type:String
       }
@@ -62,6 +66,10 @@ type:String
     },
       userId: {
         type: String
+      },
+      status:{
+        type:String,
+        default:"pending"
       },
       name:{
         type:String
