@@ -5,14 +5,13 @@ import axios from "axios";
 
 const Winner = () => {
   const { id, index } = useParams();
-
   const [images, setImages] = useState([]);
-  const [imgurl, setImgUrl] = useState([]);
+  const [aadil, setaadil] = useState([]);
   console.log(id);
   console.log(index);
 
-  const getwinner = async()=>{
-    const res = await axios.post("/api/auth/winnerchallenge", {id:id});
+  const getwinner = async () => {
+    const res = await axios.post("/api/auth/winnerchallenge", { id: id });
     images.push(res.data[0]);
     console.log(images[0]);
     const player = `player_${index}`;
@@ -22,17 +21,25 @@ const Winner = () => {
 
     // console.log(images[0]`.${player}`);
 
-    images[0].player_1.map((items,i)=>{
-      console.log(items)
-      setImgUrl(items.images)
-    })
+    if (index === "player_1") {
+      images[0].player_1.map((items, i) => {
+        console.log(items);
+        setaadil(items.images);
+      });
+    }
+    if (index === "player_2") {
+      images[0].player_2.map((items, i) => {
+        console.log(items);
+        setaadil(items.images);
+      });
+    }
   };
-  
-  console.log(imgurl);
 
   useEffect(() => {
     getwinner();
-  });
+  }, [id, index]);
+
+  console.log(aadil);
 
   return (
     <div className="body-main">
@@ -41,26 +48,22 @@ const Winner = () => {
           <div className="section-title">
             <h2>You Won!</h2>
             <div className="prizeimg">
-              <img src="/Prize.png" alt="img" />
+              <img src="./Prize.png" alt="img" />
             </div>
           </div>
           <div className="row won-main">
             <div className="won-grid">
-              {imgurl.map((items, i) => {
-                console.log(items)
+              {aadil.map((item, ind) => {
+                console.log(item);
                 return (
-                  <div className="wonimg1">
-                    <img src={items} alt="img" />
-                  </div>
+                  <>
+                    <div className="wonimg1">
+                      <img src={item} alt="img" />
+                    </div>
+                   
+                  </>
                 );
               })}
-              {/*                
-                <div className='wonimg1'>
-                  <img src="/challenge-img/3.jpg" alt="img"/> 
-                </div>
-                <div className='wonimg1'>
-                  <img src="/challenge-img/4.jpg" alt="img"/> 
-                </div> */}
             </div>
           </div>
           <div className="won-btn">

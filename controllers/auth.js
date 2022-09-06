@@ -235,6 +235,13 @@ exports.getwinner  = catchAsyncError(
   }
 )
 
+exports.setwinner = catchAsyncError(
+  async(req,res,next)=>{
+    const winstatus = await challenge.findByIdAndUpdate(req.body.id,{status:req.body.status})
+    return res.status(200).json(winstatus)
+  }
+)
+
 
 
 //forget password

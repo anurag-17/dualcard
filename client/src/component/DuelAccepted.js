@@ -57,13 +57,13 @@ export const DuelAccepted = () => {
   const handlewin= (e)=>{
 console.log(e.target.name)
 console.log(e.target.value)
-navigate(`/winner/${e.target.name}/${e.target.value}`)
+navigate(`/winner/${e.target.name}/player_${e.target.value}`)
   }
 
   const handlelose  = (e)=>{
     console.log(e.target.name)
     console.log(e.target.value)
-    navigate(`/loser/${e.target.name}/${e.target.value}`)
+    navigate(`/loser/${e.target.name}/player_${e.target.value}`)
   }
 
   return (
@@ -118,7 +118,7 @@ navigate(`/winner/${e.target.name}/${e.target.value}`)
                             <button value = "2" name ={items._id} onClick={handlewin} className="hero-btn">Winner</button>
                             {/* </Link> */}
                             {/* <Link to="/loser"> */}
-                              <button value = "2" name = {items._id} className="hero-btn">Loser</button>
+                              <button onClick={handlelose} value = "1" name = {items._id} className="hero-btn">Loser</button>
                             {/* </Link> */}
                           </div>
                         </div>
@@ -163,7 +163,7 @@ navigate(`/winner/${e.target.name}/${e.target.value}`)
                               <button value="1" name ={items._id} onClick={handlewin} className="hero-btn">Winner</button>
                             {/* </Link> */}
                             {/* <Link to="/loser"> */}
-                              <button value="1" name = {items._id} onClick={handlelose} className="hero-btn">Loser</button>
+                              <button value="2" name = {items._id} onClick={handlelose} className="hero-btn">Loser</button>
                             {/* </Link> */}
                           </div>
                         </div>
