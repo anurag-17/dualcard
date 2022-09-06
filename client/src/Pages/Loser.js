@@ -5,16 +5,21 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import "./Winner.css";
 import axios from "axios";
+import { Loader } from "../component/Loader";
 
 export const Loser = () => {
   const { id, index } = useParams();
   const [images, setImages] = useState([]);
   const [aadil, setaadil] = useState([]);
+  const [loader, setLoader] = useState(true);
   console.log(id);
   console.log(index);
 
   const getwinner = async () => {
     const res = await axios.post("/api/auth/winnerchallenge", { id: id });
+    if(res){
+      setLoader(false)
+    }
     images.push(res.data[0]);
     console.log(images[0]);
     const player = `player_${index}`;
@@ -40,13 +45,16 @@ export const Loser = () => {
 
   useEffect(() => {
     getwinner();
-  }, [id, index]);
+  }, [loader]);
 
 
 
     return (
+      
 <>
-<div className='body-main'>
+{
+  loader?<Loader/>:<>
+  <div className='body-main'>
       <div className='winner-sec'>
         <div className='container'>
         <div className='section-title'>
@@ -56,14 +64,14 @@ export const Loser = () => {
                  <FontAwesomeIcon style = {{fontWeight:"600",height:"120px",color:"red",position:"absolute",left:"50%",right:"50%"}} icon={faTimes} />
                </div>
           </div>
-          <div className='row won-main'>
+          <div style={{position:"relative",bottom:"100px"}}  className='row won-main'>
             <div className='won-grid'>
             {aadil.map((items, i) => {
                 console.log(items)
                 return (
                   <div className="wonimg1">
+                    <FontAwesomeIcon style = {{zIndex:"100",fontWeight:"600",height:"120px",color:"red",position:"relative",top:"300px"}} icon={faTimes} />
                     <img src={items} alt="img" />
-                    <FontAwesomeIcon style = {{fontWeight:"600",height:"120px",color:"red",position:"relative",bottom:"70px"}} icon={faTimes} />
                   </div>
                 );
               })}
@@ -87,6 +95,9 @@ export const Loser = () => {
         </div>
         </div>
     </div>
+  </>
+}
+
 
 </>
 
