@@ -60,7 +60,10 @@ getrecieved()
                             <tbody>
                                 <tr>
                                 <td>{items.player_2[0].name}</td>
-                                <td>{items.Accept==="true"?"Accepted":"pending"}</td>
+                                
+                                {/* <td>{items.Accept==="true"?"Accepted":"pending"}</td> */}
+                                {items.Accept==="true"?<td>Accepted</td>:<td>pending</td>}
+                                
                                 {
                                 items.Accept==="true"?<td>
                                     <Link to="/DuelAccepted"><button className='table-hero-btn'>go to challenge</button></Link></td>:""

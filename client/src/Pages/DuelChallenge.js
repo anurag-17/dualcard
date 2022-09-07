@@ -68,6 +68,11 @@ const DuelChallenge = () => {
 
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser);
+    filtereduser.map((items,index)=>{
+      if(index===0){
+settargetname(items.username)
+      }
+    })
     return;
   }
 
@@ -161,8 +166,6 @@ setErrorMessage("")
         playeronelink: linkurl,
       });
   
-  
-
     if(res){
           setLoader(false);
       navigate("/thankyou");
@@ -174,6 +177,7 @@ setErrorMessage("")
     console.log(e);
     setclickeduser(e.target.name);
     settargetname(e.target.value);
+    console.log(targetname)
     console.log(clickeduser);
   };
 

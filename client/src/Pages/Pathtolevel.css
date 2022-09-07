@@ -132,7 +132,7 @@ ul.most-lisrt li {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-45%, -50%);
+    transform: translate(-45%, -27%);
     width: 400px;
 }
 .level-sec {
