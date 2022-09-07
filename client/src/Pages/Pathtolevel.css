@@ -24,6 +24,15 @@
     background-color: #23194E;
     border-radius: 20px
 }
+/* .tite-shape{
+    background-image: url(../images/most-shape1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+} */
+
+/* pathlevel table start */
+
 .total-sec {
     padding-top: 50px;
 }
@@ -123,14 +132,19 @@ ul.most-lisrt li {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-45%, -50%);
     width: 400px;
 }
-
+.level-sec {
+    padding-top: 30px;
+}
 .tablelevel table.table-main.table.table-striped tr:last-child td {
     border: 0px;
     border-bottom: 0px !important;
 }
+/* pathlevel table end */
+
+
 /* responsive */
 @media only screen and (max-width:1200px) {
     
@@ -175,11 +189,11 @@ ul.most-lisrt li {
 }
 .total-sec td:nth-child(1) {
     padding: 10px 10px;
-    width: 205px;
+    width: 140px;
 }
 .tite-shape img {
     width: 100%;
-    max-width: 75%;
+    max-width: 90%;
 }
 .level-img img {
     border-radius: 27px;
@@ -206,6 +220,12 @@ ul.most-lisrt li {
     .total-sec td {
         font-size: 12px;
         line-height: 25px;
+    }
+    .total-sec td:nth-child(1) {
+        width: 91px;
+    }
+    .level-sec {
+        padding: 10px;
     }
     }
     
