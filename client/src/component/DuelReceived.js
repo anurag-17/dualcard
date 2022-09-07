@@ -9,9 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import img1 from "../images/Plus.png";
 import { Button, Modal } from "react-bootstrap";
 import "../Pages/tickimage.css";
+import { useAlert } from "react-alert";
+
 
 
 const DuelReceived = () => {
+  const alert = useAlert()
   const dispatch = useDispatch()
   const { image, isImage, loading } = useSelector((state) => state.image);
   const [challengedata, setchallengedata] = useState([]);
@@ -23,6 +26,7 @@ const [show,setShow] = useState(false)
 const [userimagedata, setuserimagedata] = useState([]);
 let ischecked = "";
 const [checkedimage, setcheckedimage] = useState([]);
+const [errromessage,setErrorMessage] = useState("this is error message")
 
 
 
@@ -78,6 +82,10 @@ const navigate = useNavigate()
   };
 
   const AcceptChallenge = async(index)=>{
+    if(checkedimage.length<=0){
+      alert.error("please select cards")
+      return
+    }
     setLoader(true)
 let acceptindex = index
      acceptchallenge = true
