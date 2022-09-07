@@ -206,8 +206,10 @@ exports.acceptChallenge = catchAsyncError(
       player_2:[
       {
         images:req.body.playertwo_url,
+        name:req.body.name
       },
-    ],})
+    ],
+  })
     return res.status(200).json(update)
   }
 
@@ -215,8 +217,8 @@ exports.acceptChallenge = catchAsyncError(
 
 exports.declineChallenge = catchAsyncError(
   async(req,res,next)=>{
-    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,decline:req.body.decline})
-    return res.status(200).json(update)
+    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:"decline"})
+    return res.json(update)
   }
 )
 

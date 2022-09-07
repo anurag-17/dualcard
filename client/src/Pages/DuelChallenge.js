@@ -40,9 +40,10 @@ const DuelChallenge = () => {
   const [firstname, setfirstname] = useState(true);
   const [checkedimage, setcheckedimage] = useState([]);
   const [linkurl, setlinkurl] = useState("");
-  let ischecked = "";
+  let ischecked = ""
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
+  const [inputerror,setInputError]  = useState("")
 
 
   const handleClose = () => {
@@ -107,6 +108,7 @@ const DuelChallenge = () => {
     }
   };
 
+
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
 
@@ -139,26 +141,14 @@ const DuelChallenge = () => {
 
   const sendValue = async (e) => {
 e.preventDefault()
-
  if(checkedimage.length<=0){
   setErrorMessage("please select cards")
   setTimeout(()=>{
 setErrorMessage("")
-  },4000)
-      return
-    }else if(linkurl.length<=0){
-      setErrorMessage("please fill all the inputs")
-      setTimeout(()=>{
-    setErrorMessage("")
-      },4000)
-      return
-    }else if(textvalue.length<=0){
-      setErrorMessage("please fill all the inputs")
-      setTimeout(()=>{
-    setErrorMessage("")
-      },4000)
+  },2200)
       return
     }
+
 
       setLoader(true);
       const res = await axios.post("/api/auth/sendchal", {
@@ -369,7 +359,7 @@ setErrorMessage("")
                                                 className="img-thumbnail"
                                               />
                                               <input
-                                                onChange={handlecheck}
+                                                onClick={handlecheck}
                                                 type="checkbox"
                                                 name="selimg"
                                               />
@@ -452,7 +442,18 @@ setErrorMessage("")
                                 </div>
                               </div>
 
-                              <form action="post">
+                              {
+inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="popup error">
+<div className="message">
+<p>{inputerror}</p>
+</div>
+<div className="action">
+<button onClick={()=>setInputError("")}>Ok</button>
+</div>
+</div>
+}
+
+                              <form onSubmit={sendValue}>
                                 <div className="duel-form">
                                   <div class="mb-3 mt-0">
                                     <textarea
@@ -465,9 +466,10 @@ setErrorMessage("")
                                       id="exampleFormControlTextarea1"
                                       placeholder="Write your terms"
                                       rows="10"
-                                    ></textarea>
+                                    />
                                   </div>
                                 </div>
+
                                 <div className="search-bar">
                                   <div class="input-group md-form form-sm form-2 pl-0">
                                     <input
@@ -486,13 +488,13 @@ setErrorMessage("")
                                 </div>
 
                                 <div className="btn-duel-right challenge">
-                                  <button
+                                  <input
                                     type="submit"
-                                    onClick={sendValue}
+                                    // on={sendValue}
+                                    placeholder="send Challenge"
                                     className="hero-btn challenge"
-                                  >
-                                    send challenge
-                                  </button>
+                                  />
+                                 
                                 </div>
                               </form>
                             </div>
@@ -504,7 +506,7 @@ setErrorMessage("")
                         style={{ height: "800px" }}
                         show={show}
                         onHide={handleClose}
-                      >
+                        >
                         <Modal.Header closeButton>
                           <Modal.Title>Modal heading</Modal.Title>
                         </Modal.Header>
@@ -515,7 +517,7 @@ setErrorMessage("")
                             type="file"
                             name=""
                             id=""
-                          />
+                            />
                         </Modal.Body>
                         <Modal.Footer>
                           <Button variant="primary" onClick={handlesubmit}>
@@ -524,276 +526,6 @@ setErrorMessage("")
                         </Modal.Footer>
                       </Modal>
 
-                      <div
-                        className="tab-pane fade"
-                        id="Nick"
-                        role="tabpanel"
-                        aria-labelledby="Nick-tab"
-                      >
-                        <div className="tab-cont">
-                          <div className="row tabct-main gx-5">
-                            <div className="col-md-6 tab-left">
-                              <div className="dchallenge-rt-1">
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img2.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <input type="file" />
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  SELECT CARDS
-                                </button>
-                              </div>
-                            </div>
-                            <div className="col-md-6 tab-right">
-                              <div className="dule-rt-2">
-                                <div class="clearfix">
-                                  <img src="./tabicon-3.png" alt="img" />
-                                  <button type="button" class="btn float-end">
-                                    Nick
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="challenge-list">
-                                <div className="won-title">
-                                  <h4>Challenges won</h4>
-                                  <span>5</span>
-                                </div>
-                                <div className="lost-title">
-                                  <h4>Challenges lost</h4>
-                                  <span>8</span>
-                                </div>
-                              </div>
-                              <div className="duel-form">
-                                <div class="mb-3 mt-0">
-                                  <textarea
-                                    class="form-control"
-                                    id="exampleFormControlTextarea1"
-                                    placeholder="Write your terms"
-                                    rows="10"
-                                  ></textarea>
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  send challenge
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="tab-pane fade"
-                        id="Andrea"
-                        role="tabpanel"
-                        aria-labelledby="Andrea-tab"
-                      >
-                        <div className="tab-cont">
-                          <div className="row tabct-main gx-5">
-                            <div className="col-md-6 tab-left">
-                              <div className="dchallenge-rt-1">
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img2.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <input type="file" />
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  SELECT CARDS
-                                </button>
-                              </div>
-                            </div>
-                            <div className="col-md-6 tab-right">
-                              <div className="dule-rt-2">
-                                <div class="clearfix">
-                                  <img src="./tabicon-5.png" alt="img" />
-                                  <button type="button" class="btn float-end">
-                                    Andrea
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="challenge-list">
-                                <div className="won-title">
-                                  <h4>Challenges won</h4>
-                                  <span>5</span>
-                                </div>
-                                <div className="lost-title">
-                                  <h4>Challenges lost</h4>
-                                  <span>8</span>
-                                </div>
-                              </div>
-                              <div className="duel-form">
-                                <div class="mb-3 mt-0">
-                                  <textarea
-                                    class="form-control"
-                                    id="exampleFormControlTextarea1"
-                                    placeholder="Write your terms"
-                                    rows="10"
-                                  ></textarea>
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  send challenge
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        className="tab-pane fade"
-                        id="Judith"
-                        role="tabpanel"
-                        aria-labelledby="Judith-tab"
-                      >
-                        <div className="tab-cont">
-                          <div className="row tabct-main gx-5">
-                            <div className="col-md-6 tab-left">
-                              <div className="dchallenge-rt-1">
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img2.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <input type="file" />
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  SELECT CARDS
-                                </button>
-                              </div>
-                            </div>
-                            <div className="col-md-6 tab-right">
-                              <div className="dule-rt-2">
-                                <div class="clearfix">
-                                  <img src="./tabicon-4.png" alt="img" />
-                                  <button type="button" class="btn float-end">
-                                    Judith
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="challenge-list">
-                                <div className="won-title">
-                                  <h4>Challenges won</h4>
-                                  <span>5</span>
-                                </div>
-                                <div className="lost-title">
-                                  <h4>Challenges lost</h4>
-                                  <span>8</span>
-                                </div>
-                              </div>
-                              <div className="duel-form">
-                                <div class="mb-3 mt-0">
-                                  <textarea
-                                    class="form-control"
-                                    id="exampleFormControlTextarea1"
-                                    placeholder="Write your terms"
-                                    rows="10"
-                                  ></textarea>
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  Send Challenge
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        className="tab-pane fade"
-                        id="Estebana"
-                        role="tabpanel"
-                        aria-labelledby="Estebana-tab"
-                      >
-                        <div className="tab-cont">
-                          <div className="row tabct-main gx-5">
-                            <div className="col-md-6 tab-left">
-                              <div className="dchallenge-rt-1">
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img2.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <input type="file" />
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  SELECT CARDS
-                                </button>
-                              </div>
-                            </div>
-
-                            <div className="col-md-6 tab-right">
-                              <div className="dule-rt-2">
-                                <div class="clearfix">
-                                  <img src="./tabicon8.png" alt="img" />
-                                  <button type="button" class="btn float-end">
-                                    Estebana
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="challenge-list">
-                                <div className="won-title">
-                                  <h4>Challenges won</h4>
-                                  <span>5</span>
-                                </div>
-                                <div className="lost-title">
-                                  <h4>Challenges lost</h4>
-                                  <span>8</span>
-                                </div>
-                              </div>
-                              <div className="duel-form">
-                                <div class="mb-3 mt-0">
-                                  <textarea
-                                    class="form-control"
-                                    id="exampleFormControlTextarea1"
-                                    placeholder="Write your terms"
-                                    rows="10"
-                                  ></textarea>
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  send challenge
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

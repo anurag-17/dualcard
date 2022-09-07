@@ -16,18 +16,21 @@ import { useAlert } from "react-alert";
 const DuelReceived = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
-  const { image, isImage, loading } = useSelector((state) => state.image);
+  const { image, isImage} = useSelector((state) => state.image);
+  const [playertwoname,setplayertwoname] = useState("")
   const [challengedata, setchallengedata] = useState([]);
-const [challengeid,setChallengeId] = useState([])
+const [challengeid,setChallengeId] = useState("")
 const [loader,setLoader] = useState(true)
 const [filedata, setFiledata] = useState("");
 const [userid,setUserId] = useState("")
 const [show,setShow] = useState(false)
 const [userimagedata, setuserimagedata] = useState([]);
+const [loading,setLoading] = useState(false)
 let ischecked = "";
 const [checkedimage, setcheckedimage] = useState([]);
-const [errromessage,setErrorMessage] = useState("this is error message")
-
+const [errromessage,setErrorMessage] = useState("")
+const [challengerid,setChallengerId]  = useState("")
+let  acceptchallenge = ""
 
 
 const iddata  = JSON.parse(localStorage.getItem("nftuser"))
@@ -39,14 +42,11 @@ const navigate = useNavigate()
 
   const data = JSON.parse(localStorage.getItem("nftuser"));
 
-  const id = data._id;
-  let acceptchallenge = ""
-  let declinechallenge = ""
+  const id=data._id;
 
   setTimeout(()=>{
     setLoader(false)
-    },2200)
-
+    },2000)
 
     const handleClose = () => {
       setShow(false);
@@ -56,15 +56,18 @@ const navigate = useNavigate()
 
   const getrecieved = async () => {
     console.log(id);
-    const res = await axios.post("/api/auth/recievedchallenge", {id:id,Accept:"pending",decline:false});
-    console.log(res.data)
+    const res = await axios.post("/api/auth/recievedchallenge",{id:id,Accept:"pending",decline:false});
+
     res.data.map((items,index)=>{
+      setChallengerId(items._id)
       console.log(items._id)
-      challengeid.push(items._id)
-      console.log(challengeid)
+      console.log(items.player_2[0].name)
+      setplayertwoname(items.player_2[0].name)
+       
+      // challengeid.push(items._id)
+
     })
     setchallengedata(res.data);
-  
   };
 
   const handlecheck = (e) => {
@@ -83,30 +86,35 @@ const navigate = useNavigate()
 
   const AcceptChallenge = async(index)=>{
     if(checkedimage.length<=0){
-      alert.error("please select cards")
-      return
-    }
-    setLoader(true)
-let acceptindex = index
-     acceptchallenge = true
-     console.log(acceptchallenge)
-     console.log(challengeid)
-    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false,playertwo_url:checkedimage})
-if(res.data){
-  setLoader(false)
-  navigate("/DuelAccepted")
+      setErrorMessage("please select the cards")
+      setTimeout(()=>{
+    setErrorMessage("")
+      },2200)
+          return
+        }
+        let acceptindex = index
+        acceptchallenge = true
+        console.log(acceptchallenge)
+        console.log(challengeid)
+      setLoading(true)
+    const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false,playertwo_url:checkedimage,name:playertwoname})
+    if(res){
+      setLoader(false)
+      navigate("/DuelAccepted")
 }
   }
 
-
-const DeclineChallenge = async()=>{
-
-setLoader(true)
-declinechallenge = true
-acceptchallenge = false
-const res = await axios.put("/api/auth/declinechallenge",{Accept:false,challengerid:id,decline:true})
-
-  }
+  const DeclineChallenge = async()=>{
+  console.log(challengerid)
+    setLoading(true)
+    const res = await axios.put("/api/auth/declinechallenge",{challengerid:challengerid})
+    if(res){
+      window.location.reload()
+      setLoader(false)
+    }
+     
+      }
+  
 
   const handleupload = async (e) => {
     const files = e.target.files[0];
@@ -158,13 +166,18 @@ const res = await axios.put("/api/auth/declinechallenge",{Accept:false,challenge
     getrecieved();
    postImageUrl()
 
-  }, [loader,acceptchallenge,image]);
+  }, [loader,acceptchallenge]);
+
+
+
 
   return (
    <>
    {
     loader?<Loader/>:
     <div>
+    {
+      loading?<Loader/>:
       <div className="DuelRec-sec">
         <div className="container">
           <div className="section-title">
@@ -302,6 +315,17 @@ return(
                </div> 
                   }
                
+               {
+errromessage&&<div style = {{position:"relative",left:"35%",bottom:"50%"}} className="popup error">
+<div className="message">
+<p>{errromessage}</p>
+</div>
+<div className="action">
+<button onClick={()=>setErrorMessage("")}>Ok</button>
+</div>
+</div>
+}
+
                   <div className="btn-duel-right">
                     <button onClick={handleShow} className="hero-btn">SELECT CARDS</button>
                   </div>
@@ -384,6 +408,7 @@ return(
 }
         </div>
       </div>
+    }
     </div>
    }
    </>

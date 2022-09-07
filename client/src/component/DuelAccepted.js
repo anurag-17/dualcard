@@ -18,11 +18,11 @@ export const DuelAccepted = () => {
     console.log(id);
     const res = await axios.post("/api/auth/recievedchallenge", {
       id: id,
-      Accept: true,
+      Accept:true,
     });
     const newres = await axios.post("/api/auth/challengedata", {
       id: id,
-      Accept: true,
+      Accept:true,
     });
 
     console.log(res);
@@ -48,11 +48,11 @@ export const DuelAccepted = () => {
   useEffect(() => {
     // getacceptedchallenge()
     getrecieved();
-  }, []);
+  });
 
   setTimeout(() => {
     setLoader(false);
-  }, 1300);
+  },1800);
 
   const handlewin= (e)=>{
 console.log(e.target.name)
@@ -86,7 +86,7 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                       <div className="dA-left">
                         <div className="dA-profile">
                           <div class="clearfix">
-                            <img src="./tabicon8.png" alt="img" />
+                            <img src="/tabicon8.png" alt="img" />
                             <button type="button" class="btn float-end">
                               {items.player_1[0].name}
                             </button>
@@ -126,13 +126,13 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                       </div>
                     </div>
                     <div className="col-md-2 col-sm-2 duelA-center">
-                      <img src="./VS icon.png" alt="img" />
+                      <img src="/VS icon.png" alt="img" />
                     </div>
                     <div className="col-md-5 col-sm-5">
                       <div className="dA-left">
                         <div className="dA-profile">
                           <div class="clearfix">
-                            <img src="./tabicon-6.png" alt="img" />
+                            <img src="/tabicon-6.png" alt="img" />
                             <button type="button" class="btn float-end">
                               {items.player_2[0].name}
                             </button>

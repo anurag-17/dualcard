@@ -7,6 +7,8 @@ import buyimg4 from "../images/4.jpg";
 import buyimg5 from "../images/5.jpg";
 import buyimg6 from "../images/6.jpg";
 import shapeline from "../images/shpeline.png";
+import Cardflip from './Cardflip';
+
 const Duelsystem = () => {
   return (
     <div className='body-main'>
@@ -15,153 +17,7 @@ const Duelsystem = () => {
            <div className='section-title'>
               <h2>Duel Challenge System</h2>               
            </div>
-           <div className='row'>
-            <div className='challengesys-grid'>
-              <div className='chall-sys1'>
-                <div className='row system-main'>
-                  <div className='col-md-4'>
-                   <div className='shape1'>
-                     <img src={buyimg1}></img>
-                     <h4>LVL 1 DUELCARD</h4>
-                   </div>
-                  </div>
-                  <div className='col-md-4'>
-                    <div className='systemct'>
-                      <img src={shapeline}></img>
-                    </div>  
-                  </div>
-                  <div className='col-md-4'>
-                  <div className='shape1'>
-                    <img src={buyimg2}></img>
-                    <h4>LVL 1 DUELCARD</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='chall-sys1'>
-                <div className='row system-main'>
-                  <div className='col-md-4'>
-                    <div className='shap-line'>
-                      <div className='shape1'>
-                        <img src={buyimg2}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                      <div className='shape1'>
-                        <img src={buyimg1}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col-md-4'>
-                     <div className='systemct'>
-                      <img src={shapeline}></img>
-                    </div>  
-                  </div>
-                  <div className='col-md-4'>
-                  <div className='shape1'>
-                    <img src={buyimg2}></img>
-                    <h4>LVL 1 DUELCARD</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='chall-sys1'>
-                <div className='row system-main'>
-                  <div className='col-md-4'>
-                  <div className='shap-line'>
-                      <div className='shape1'>
-                        <img src={buyimg2}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                      <div className='shape1'>
-                        <img src={buyimg1}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                      <div className='shape1'>
-                        <img src={buyimg3}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col-md-4'>
-                    <div className='systemct'>
-                      <img src={shapeline}></img>
-                    </div>  
-                  </div>
-                  <div className='col-md-4'>
-                  <div className='shape1'>
-                    <img src={buyimg2}></img>
-                    <h4>LVL 1 DUELCARD</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='chall-sys1'>
-                <div className='row system-main'>
-                  <div className='col-md-4'>
-                  <div className='shap-line'>
-                      <div className='shape1'>
-                        <img src={buyimg2}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                      <div className='shape1'>
-                        <img src={buyimg1}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                      <div className='shape1'>
-                        <img src={buyimg3}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col-md-4'>
-                    <div className='systemct'>
-                        <img src={shapeline}></img>
-                      </div>  
-                  </div>
-                  <div className='col-md-4'>
-                  <div className='shape1'>
-                    <img src={buyimg2}></img>
-                    <h4>LVL 1 DUELCARD</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='chall-sys1'>
-                <div className='row system-main'>
-                  <div className='col-md-4'>
-                  <div className='shap-line'>
-                      <div className='shape1'>
-                        <img src={buyimg2}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                      <div className='shape1'>
-                        <img src={buyimg1}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                      <div className='shape1'>
-                        <img src={buyimg3}></img>
-                        <h4>LVL 1 DUELCARD</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col-md-4'>
-                    <div className='systemct'>
-                        <img src={shapeline}></img>
-                      </div>  
-                  </div>
-                  <div className='col-md-4'>
-                  <div className='shape1'>
-                    <img src={buyimg2}></img>
-                    <h4>LVL 1 DUELCARD</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>             
-
-            </div>
-           </div>
-
+           <Cardflip />          
            <div className='row'>
                <div className='section-title'>
                   <h2>Basic Dueling With L1 And L2 Duelcard Nft's</h2>   
@@ -228,7 +84,7 @@ const Duelsystem = () => {
 
                   <div className='winneritem1'>
                     <div className='winnwect'>
-                      <h3>NFT Escrow Account</h3>
+                      <h3>Winner</h3>
                       <div className='accout-grid'>
                         <div className='accout-img1'>
                           <img src={buyimg4}></img>

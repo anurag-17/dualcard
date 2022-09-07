@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Winner.css";
 import axios from "axios";
+import { Loader } from "../component/Loader";
 
 const Winner = () => {
   const { id, index } = useParams();
   const [images, setImages] = useState([]);
   const [aadil, setaadil] = useState([]);
+  const [loader, setLoader] = useState(true);
+
   console.log(id);
   console.log(index);
 
   const getwinner = async () => {
 
     const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"pending"});
+    if(res){
+      setLoader(false)
+    }
     images.push(res.data[0]);
     console.log(images[0]);
     const player = `player_${index}`;
@@ -45,7 +51,10 @@ const Winner = () => {
   console.log(aadil);
 
   return (
-    <div className="body-main">
+
+    <>
+    {
+      loader?<Loader/>:  <div className="body-main">
       <div className="winner-sec">
         <div className="container">
           <div className="section-title">
@@ -87,6 +96,9 @@ const Winner = () => {
         </div>
       </div>
     </div>
+    }
+    </>
+  
   );
 };
 

@@ -72,14 +72,14 @@ const logoutuser = () => {
                  
                       <li class="nav-item dropdown">
                         <Link class="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        About / Rules
+                        Challenge System
                         </Link>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                          <Link to="/pathtolevel" class="dropdown-item">Pathtolevel</Link>
+                          <Link to="Pathtolevel" class="dropdown-item">Pathtolevel</Link>
                           </li> 
                           <li>
-                            <Link to="/duelsystem" class="dropdown-item">Duelsystem</Link>
+                            <Link to="Duelsystem" class="dropdown-item">Duelsystem</Link>
                           </li>                             
                         </ul>
                     </li> 

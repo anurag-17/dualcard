@@ -127,7 +127,10 @@ ul.most-lisrt li {
     width: 400px;
 }
 
-
+.tablelevel table.table-main.table.table-striped tr:last-child td {
+    border: 0px;
+    border-bottom: 0px !important;
+}
 /* responsive */
 @media only screen and (max-width:1200px) {
     

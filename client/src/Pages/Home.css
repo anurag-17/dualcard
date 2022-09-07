@@ -5,6 +5,7 @@ h2{
     font-size: 40px;
     line-height: 52px;
     font-family: Audiowide, Regular;
+    text-transform: capitalize;
 }
 .section-title p {
     font-size: 14px;

@@ -16,7 +16,7 @@ router.route("/challengedata").post(getchallenge)
 router.route("/recievedchallenge").post(getrecieved)
 router.route("/acceptChallenge").put(acceptChallenge)
 router.route("/challengestatus").post(challengeStatus)
-router.route("/declinechallenge").post(declineChallenge)
+router.route("/declinechallenge").put(declineChallenge)
 router.route("/winnerchallenge").post(getwinner)
 router.route("/winnerstatus").put(setwinner)
 // router.route("/forgetpassword").post(forgetpassword);

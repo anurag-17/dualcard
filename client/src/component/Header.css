@@ -78,6 +78,7 @@ hr.hr-line {
 }
 .desktop-nav {
     display:block;
+    z-index: 9999999;
 }
 .mobile-nav{
     display: none;
