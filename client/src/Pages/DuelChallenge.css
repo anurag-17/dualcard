@@ -221,3 +221,66 @@
 .tab-challange .nav-item {
     padding: 12px;
 }
+
+
+.popup.error {
+    width: 15rem;
+    height: 5rem;
+    z-index:222;
+    bottom:0px;
+    left:390px;
+    /* margin: 4rem auto; */
+    position: absolute;
+    background-color: #fafafa;
+    box-shadow: 2px 2px 1rem #212121;
+    border-radius: 0.25rem;
+  }
+  .popup.error .message {
+    background-color: #282254;
+    height: 4rem;
+    border-radius: 0.25rem 0.25rem 0 0;
+    overflow: hidden;
+    position: relative;
+    font-size: 0.9rem;
+  }
+  .popup.error .message:before {
+    font-family: FontAwesome;
+    position: absolute;
+    color: #fafafa;
+    font-size: 10rem;
+    opacity: 0.3;
+    top: -2.5rem;
+    right: -0.5rem;
+  }
+  .popup.error .message p {
+    padding: 0.9rem;
+    font-size: 20px;
+    color: #fafafa;
+  }
+  .popup.error .action {
+    height: 3rem;
+    line-height: 3rem;
+    width: 100%;
+    position: relative;
+  }
+  .popup.error .action button {
+    position: absolute;
+    right: 1rem;
+    bottom: 1.3rem;
+    height: 42px;
+    border:1px solid white;
+    outline: none;
+    background-color: #282254;
+    width: 5rem;
+    /* height: 30px; */
+    justify-content: center;
+    color: #fafafa;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 0.25rem;
+    text-align: center;
+    padding-bottom: 5px;
+  }
+  .popup.error .action button:active {
+    background-color: #282254;
+  }

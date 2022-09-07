@@ -42,6 +42,8 @@ const DuelChallenge = () => {
   const [linkurl, setlinkurl] = useState("");
   let ischecked = "";
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
+  const [erromessage,setErrorMessage] = useState("")
+
 
   const handleClose = () => {
     setShow(false);
@@ -139,13 +141,22 @@ const DuelChallenge = () => {
 e.preventDefault()
 
  if(checkedimage.length<=0){
-      alert.error("please select cards")
+  setErrorMessage("please select cards")
+  setTimeout(()=>{
+setErrorMessage("")
+  },4000)
       return
     }else if(linkurl.length<=0){
-      alert.error("please fill all the inputs")
+      setErrorMessage("please fill all the inputs")
+      setTimeout(()=>{
+    setErrorMessage("")
+      },4000)
       return
     }else if(textvalue.length<=0){
-      alert.error("please fill all the inputs")
+      setErrorMessage("please fill all the inputs")
+      setTimeout(()=>{
+    setErrorMessage("")
+      },4000)
       return
     }
 
@@ -258,6 +269,7 @@ e.preventDefault()
                     </ul>
 
                     <div className="tab-content" id="myTabContent">
+
                       <div
                         className="tab-pane fade"
                         id="home"
@@ -321,7 +333,16 @@ e.preventDefault()
                           </div>
                         </div>
                       </div>
-
+{
+  erromessage&&<div class="popup error">
+  <div class="message">
+    <p>{erromessage}</p>
+  </div>
+  <div class="action">
+    <button onClick={()=>setErrorMessage("")}>Ok</button>
+  </div>
+</div>
+}
                       <div
                         className=""
                         id="Stephen"
