@@ -37,7 +37,7 @@ type:String
       },
       images:{
             type:Array,
-            // required: true,  
+            required: true,  
         },
         
       userId: {
@@ -62,7 +62,7 @@ type:String
       },
       images:{
         type:Array,
-        // required: true,  
+        required: true,  
     },
       userId: {
         type: String

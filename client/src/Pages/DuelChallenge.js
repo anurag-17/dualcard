@@ -136,23 +136,34 @@ const DuelChallenge = () => {
   }
 
   const sendValue = async (e) => {
-    if (linkurl.length <= 0) {
-      alert.error("please fill the input");
-      return;
-    }
-    setLoader(true);
-    const res = await axios.post("/api/auth/sendchal", {
-      playerone_url: checkedimage,
-      playeronetext: textvalue,
-      playeroneuserid:thisid._id, 
-      playertwouserid: clickeduser,
-      playeronename: localuser,
-      playertwoname: targetname,
-      playeronelink: linkurl,
-    });
+e.preventDefault()
 
-    if (res) {
-      setLoader(false);
+ if(checkedimage.length<=0){
+      alert.error("please select cards")
+      return
+    }else if(linkurl.length<=0){
+      alert.error("please fill all the inputs")
+      return
+    }else if(textvalue.length<=0){
+      alert.error("please fill all the inputs")
+      return
+    }
+
+      setLoader(true);
+      const res = await axios.post("/api/auth/sendchal", {
+        playerone_url: checkedimage,
+        playeronetext: textvalue,
+        playeroneuserid:thisid._id, 
+        playertwouserid: clickeduser,
+        playeronename: localuser,
+        playertwoname: targetname,
+        playeronelink: linkurl,
+      });
+  
+  
+
+    if(res){
+          setLoader(false);
       navigate("/thankyou");
     }
     console.log(res.data);
@@ -400,7 +411,8 @@ const DuelChallenge = () => {
                                           >
                                             {firstname
                                               ? items.username
-                                              : targetname}
+                                              : targetname
+                                              }
                                           </button>
                                         </>
                                       );
