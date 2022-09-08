@@ -47,7 +47,8 @@ getrecieved()
                 <table className='table table-bordered'>
                             <thead>
                                 <tr>
-                                    <th>user</th>
+                                    <th>challenger</th>
+                                    <th>Reciever</th>
                                     <th>Status</th>
                                     <th>go to challenge</th>
                                 </tr>
@@ -65,6 +66,7 @@ getrecieved()
                         <>
                             <tbody>
                                 <tr>
+                                <td>{items.player_1[0].name}</td>
                                 <td>{items.player_2[0].name}</td>
                                 
                                 {/* <td>{items.Accept==="true"?"Accepted":"pending"}</td> */}
