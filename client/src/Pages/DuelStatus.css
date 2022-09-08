@@ -1,6 +1,9 @@
 .duelstatus-sec{
     background-color: #121127;
     padding: 40px 0px;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
 }
 
 .duelsatus-table th {

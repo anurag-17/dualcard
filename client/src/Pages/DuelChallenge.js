@@ -152,6 +152,12 @@ e.preventDefault()
 setErrorMessage("")
   },2200)
       return
+    }else if(!targetname){
+         setErrorMessage("please select a name")
+         setTimeout(()=>{
+          setErrorMessage("")
+            },2200)
+         return
     }
 
 
