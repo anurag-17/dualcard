@@ -22,7 +22,7 @@ const navigate  = useNavigate()
           <div className='foot-list'>
           <ul className="footer-menu">
                 <li className="nav-item" to="/">                    
-                    <Link  to="BuyDuelCard" className="foot-link" aria-current="page">BuyDuelCard</Link>
+                    <Link  to="BuyDuelCard" className="foot-link" aria-current="page">Buy Duel Card</Link>
                     </li>                    
                     <li className="nav-item" onClick={()=>navigate("/Marketplace")} to='/Marketplace'>                                        
                     <Link  to="Marketplace" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Marketplace</Link>
@@ -31,7 +31,7 @@ const navigate  = useNavigate()
                     <Link  to="DuelSomeone" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Duel Someone</Link>
                     </li> 
                     <li className="nav-item" onClick={()=>navigate("/AboutRules")} to='/AboutRules'>                                        
-                    <Link  to="AboutRules" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">About / Rules</Link>
+                    <Link  to="AboutRules" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Challenge System</Link>
                     </li>  
                     <li className="nav-item" onClick={()=>navigate("/ICOInformation")} to='/ICOInformation'>                                        
                     <Link  to="ICOInformation" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">DuelCoins Information</Link>
