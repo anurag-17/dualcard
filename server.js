@@ -53,6 +53,12 @@ app.post("/uploadimg",upload.single('profile'),async(req,res)=>{
     
   })
 
+
+  app.post('/photos', async(req,res,next)=>{
+    const data = await Image.find({userId:req.body._id})
+    return res.status(200).json(data)
+})
+
 // app.post("/upload",(req,res)=>{
 //   const image = new Image({
 //     userId:req.body.userId,
@@ -65,7 +71,7 @@ app.post("/uploadimg",upload.single('profile'),async(req,res)=>{
 // })
 
 
-app.get("/getuser",async(req,res)=>{
+app.get("/getuser",async(req,res,next)=>{
 
   const user = await User.find()
   return res.json(user)

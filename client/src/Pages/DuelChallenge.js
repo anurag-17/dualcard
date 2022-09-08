@@ -103,6 +103,7 @@ setclickeduser(items._id)
     let data = new FormData();
     data.append("profile", filedata);
     data.append("upload_preset", "profile");
+    data.append("userId",userId)
     // data.append("cloud_name", "degu3b9yz");
     dispatch(postimage(data));
     setShow(false);
@@ -123,9 +124,10 @@ setclickeduser(items._id)
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
     
-    const res = await axios.post("/api/auth/getdata", data).then((data) => {
+    const res = await axios.post("/photos",data).then((data) => {
       setuserimagedata(data.data);
     });
+    
   }
   getimages();
 
@@ -372,7 +374,7 @@ setErrorMessage("")
                                             <label>
                                               <img
                                                 onClick={getchekedimage}
-                                                src={items.url}
+                                                src={require(`../../../${items.url}`)}
                                                 className="img-thumbnail"
                                               />
                                               <input
