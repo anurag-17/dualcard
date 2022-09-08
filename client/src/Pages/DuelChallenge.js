@@ -374,7 +374,7 @@ setErrorMessage("")
                                             <label>
                                               <img
                                                 onClick={getchekedimage}
-                                                src={require(`../../../${items.url}`)}
+                                                src={require(`../../../uploads/${items.url}`)}
                                                 className="img-thumbnail"
                                               />
                                               <input
