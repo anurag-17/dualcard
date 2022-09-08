@@ -20,8 +20,6 @@ const logoutuser = () => {
   navigate("/register");
 };
 
-
-
   return (
     <div>
         <div className='container-fluid topheader desktop-nav fixed-top'>
@@ -37,7 +35,7 @@ const logoutuser = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-menu">
                     <li className="nav-item" to="/">                    
-                       <Link  to="BuyDuelCard" className="nav-link" aria-current="page">BuyDuelCard</Link>
+                       <Link  to="BuyDuelCard" className="nav-link" aria-current="page">Buy Duel Card</Link>
                     </li>    
                     <li class="nav-item dropdown">
                         <Link class="nav-link dropdown-toggle" to="/Marketplace" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,11 +55,11 @@ const logoutuser = () => {
                       </li>    
                     <li class="nav-item dropdown">
                         <Link class="nav-link dropdown-toggle" to="/Marketplace" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       DuelSomeone
+                       Duel Someone
                         </Link>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                          <Link to="/DuelSomeone" class="dropdown-item">DuelSomeone</Link>
+                          <Link to="/DuelSomeone" class="dropdown-item">Duel Someone</Link>
                           </li> 
                           <li>
                             <Link to="/DuelReceived" class="dropdown-item">Duel Received</Link>
@@ -76,10 +74,10 @@ const logoutuser = () => {
                         </Link>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                          <Link to="Pathtolevel" class="dropdown-item">Pathtolevel</Link>
+                          <Link to="Pathtolevel" class="dropdown-item">Path To Level</Link>
                           </li> 
                           <li>
-                            <Link to="Duelsystem" class="dropdown-item">Duelsystem</Link>
+                            <Link to="Duelsystem" class="dropdown-item">Duel System</Link>
                           </li>                             
                         </ul>
                     </li> 
