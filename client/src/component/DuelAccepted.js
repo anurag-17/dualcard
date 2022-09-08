@@ -82,6 +82,7 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                 console.log(items.player_2[0].name)
                 return (
                   <>
+                  <h1 style ={{color:"white",textAlign:"center",marginTop:"80px",marginBottom:"20px"}}>Challenge{index+1}</h1>
                     <div className="col-md-5 col-sm-5">
                       <div className="dA-left">
                         <div className="dA-profile">
