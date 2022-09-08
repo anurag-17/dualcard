@@ -82,6 +82,7 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                 console.log(items.player_2[0].name)
                 return (
                   <>
+        
                   <h1 style ={{color:"white",textAlign:"center",marginTop:"80px",marginBottom:"20px"}}>Challenge{index+1}</h1>
                     <div className="col-md-5 col-sm-5">
                       <div className="dA-left">
@@ -90,6 +91,8 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                             <img src="/tabicon8.png" alt="img" />
                             <button type="button" class="btn float-end">
                               {items.player_1[0].name}
+                             <span style ={{color:"white",textAlign:"right",marginLeft:"40px",marginBottom:"20px"}}>Challenger</span>
+
                             </button>
                           </div>
                           <div className="dA-slider">
@@ -129,6 +132,8 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                             <img src="/tabicon-6.png" alt="img" />
                             <button type="button" class="btn float-end">
                               {items.player_2[0].name}
+                             <span style ={{color:"white",textAlign:"right",marginLeft:"100px",marginBottom:"20px"}}>Reciever</span>
+
                             </button>
                           </div>
                           <div className="dA-slider">

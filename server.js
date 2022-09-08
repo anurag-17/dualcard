@@ -53,10 +53,10 @@ app.get("/getuser",async(req,res)=>{
 
 })
 
-// app.post("/deleteuser",async(req,res)=>{
-//   const user = await Challenge.deleteMany()
-//   return res.json(user)
-// })
+app.post("/deleteuser",async(req,res)=>{
+  const user = await Challenge.deleteMany()
+  return res.json(user)
+})
 
 // --------------------------deployment------------------------------
 app.use(express.static(path.join(__dirname, "./client/build")));
