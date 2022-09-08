@@ -37,50 +37,50 @@ const logoutuser = () => {
                     <li className="nav-item" to="/">                    
                        <Link  to="BuyDuelCard" className="nav-link" aria-current="page">Buy Duel Card</Link>
                     </li>    
-                    <li class="nav-item dropdown">
-                        <Link class="nav-link dropdown-toggle" to="/Marketplace" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li className="nav-item dropdown">
+                        <Link className="nav-link dropdown-toggle" to="/Marketplace" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Marketplace
                         </Link>
-                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                          <Link to="Marketplace" class="dropdown-item">Marketplace</Link>
+                          <Link to="Marketplace" className="dropdown-item">Marketplace</Link>
                           </li> 
                           <li>
-                            <Link to="Auction" class="dropdown-item">Auction Your Cards</Link>
+                            <Link to="Auction" className="dropdown-item">Auction Your Cards</Link>
                           </li>
                           <li>
-                          <Link to="Leaderboard" class="dropdown-item">Leaderboards</Link>
+                          <Link to="Leaderboard" className="dropdown-item">Leaderboards</Link>
                           </li>     
                         </ul>
                       </li>    
-                    <li class="nav-item dropdown">
-                        <Link class="nav-link dropdown-toggle" to="/Marketplace" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li className="nav-item dropdown">
+                        <Link className="nav-link dropdown-toggle" to="/DuelSomeone" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                        Duel Someone
                         </Link>
-                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                          <Link to="/DuelSomeone" class="dropdown-item">Duel Someone</Link>
+                          <a href="/DuelSomeone" className="dropdown-item">Duel Someone</a>
                           </li> 
                           <li>
-                            <Link to="/DuelReceived" class="dropdown-item">Duel Received</Link>
+                            <Link to="/DuelReceived" className="dropdown-item">Duel Received</Link>
                           </li>
                           <li>
-                            <Link to="/duelstatus" class="dropdown-item">Duel Status</Link>
+                            <Link to="/duelstatus" className="dropdown-item">Duel Status</Link>
                           </li>
                           
                         </ul>
                       </li>    
                  
-                      <li class="nav-item dropdown">
-                        <Link class="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <li className="nav-item dropdown">
+                        <Link className="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Challenge System
                         </Link>
-                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                          <Link to="Pathtolevel" class="dropdown-item">Path To Level</Link>
+                          <Link to="Pathtolevel" className="dropdown-item">Path To Level</Link>
                           </li> 
                           <li>
-                            <Link to="Duelsystem" class="dropdown-item">Duel System</Link>
+                            <Link to="Duelsystem" className="dropdown-item">Duel System</Link>
                           </li>                             
                         </ul>
                     </li> 
@@ -93,11 +93,11 @@ const logoutuser = () => {
                 {
                     localStorage.getItem("nftuser")?
                     <div style = {{position:"relative",bottom:"15px"}}>
-                         <li class="nav-item dropdown">
-                        <Link class="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         <li className="nav-item dropdown">
+                        <Link className="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src = {tabicon} alt = "profileimage"/>
                         </Link>
-                        <ul style={{backgroundColor:"#3C2485",textAlign:"center"}} class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <ul style={{backgroundColor:"#3C2485",textAlign:"center"}} className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
                         <button style={{padding:"5px 8px",marginBottom:"10px",backgroundColor:"#273e77",border:"1px solid #ffff"}}  className="btn btn-outline head-btn" type="submit">{data.username}</button>
                           </li> 

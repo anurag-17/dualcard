@@ -178,7 +178,7 @@ catchAsyncError(
   
   async(req,res,next)=>{
   
-  const challengedata = await Challenge.find({player_1_id:req.body.id,Accept:req.body.Accept})
+  const challengedata = await Challenge.find({player_1_id:req.body.id,Accept:req.body.Accept,result:req.body.result})
   return res.json(challengedata)
 
   }
@@ -190,8 +190,7 @@ catchAsyncError(
 exports.getrecieved = 
 catchAsyncError(
   async(req,res,next)=>{
-  
-    const data = await Challenge.find({player_2_id:req.body.id,Accept:req.body.Accept})
+    const data = await Challenge.find({player_2_id:req.body.id,Accept:req.body.Accept,result:req.body.result})
     return res.json(data)
   
   }
@@ -250,16 +249,6 @@ exports.setwinner = catchAsyncError(
   async(req,res,next)=>{
     const winstatus = await challenge.findByIdAndUpdate(req.body.id,{
       result:req.body.result,
-      player_1:[
-        {
-         status:req.body.playeronestatus
-        },
-      ],
-      player_2:[
-        {
-          status:req.body.playertwostatus
-        }
-      ]
     })
     return res.status(200).json(winstatus)
   }

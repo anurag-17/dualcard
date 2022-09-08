@@ -19,10 +19,12 @@ export const DuelAccepted = () => {
     const res = await axios.post("/api/auth/recievedchallenge", {
       id: id,
       Accept:true,
+      result:"pending"
     });
     const newres = await axios.post("/api/auth/challengedata", {
       id: id,
       Accept:true,
+      result:"pending"
     });
 
     console.log(res);
@@ -31,11 +33,12 @@ export const DuelAccepted = () => {
       console.log(items._id);
       setChallengeId(items._id);
     });
-    console.log(challengeid);
     setchallengedata([...res.data, ...newres.data]);
     console.log(challengedata);
-  };
 
+    
+  };
+  
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
 
@@ -48,22 +51,32 @@ export const DuelAccepted = () => {
   useEffect(() => {
     // getacceptedchallenge()
     getrecieved();
-  });
+  },[]);
 
   setTimeout(() => {
     setLoader(false);
   },1800);
 
   const handlewin= (e)=>{
+    setLoader(true)
+    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declare"})
+if(res){
+setLoader(false)
+  navigate(`/winner/${e.target.name}/player_${e.target.value}`)
+}
 console.log(e.target.name)
 console.log(e.target.value)
-navigate(`/winner/${e.target.name}/player_${e.target.value}`)
   }
 
   const handlelose  = (e)=>{
+    setLoader(true)
+    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declare"})
+    if(res){
+setLoader(false)
+      navigate(`/loser/${e.target.name}/player_${e.target.value}`)
+    }
     console.log(e.target.name)
     console.log(e.target.value)
-    navigate(`/loser/${e.target.name}/player_${e.target.value}`)
   }
 
   return (
