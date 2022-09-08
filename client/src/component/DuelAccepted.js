@@ -133,12 +133,12 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                           </div>
                           <div className="dA-slider">
                             <Carousel>
-                              {userimagedata.map((items, index) => {
+                              {items.player_2[0].images.map((items, index) => {
                                 return (
                                   <Carousel.Item>
                                     <img
                                       className="d-block w-100"
-                                      src={items.url}
+                                      src={items}
                                       alt="First slide"
                                     />
                                     <Carousel.Caption></Carousel.Caption>
