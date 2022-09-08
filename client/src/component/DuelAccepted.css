@@ -17,7 +17,7 @@
     margin-bottom: 10px;
 }
 .dA-profile{
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 .duelA-center {
     text-align: center;
@@ -72,7 +72,9 @@
 }
 
 .winner-btn{
-    padding-top: 4px;
+    padding-top: 0px;
+    position: relative;
+    left:20%;
 }
 
 .winner-btn button{

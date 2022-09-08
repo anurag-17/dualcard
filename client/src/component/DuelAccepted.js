@@ -114,16 +114,9 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                               selected
                             </button>
                           </div>
-                          <div className="btn-duel-right winner-btn">
-                            {/* <Link to="/winner"> */}
-                            <button value = "2" name ={items._id} onClick={handlewin} className="hero-btn">Winner</button>
-                            {/* </Link> */}
-                            {/* <Link to="/loser"> */}
-                              <button onClick={handlelose} value = "1" name = {items._id} className="hero-btn">Loser</button>
-                            {/* </Link> */}
-                          </div>
                         </div>
                       </div>
+                          
                     </div>
                     <div className="col-md-2 col-sm-2 duelA-center">
                       <img src="/VS icon.png" alt="img" />
@@ -161,19 +154,28 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                           </div>
                           <div className="btn-duel-right winner-btn">
                             {/* <Link to="/winner"> */}
-                              <button value="1" name ={items._id} onClick={handlewin} className="hero-btn">Winner</button>
+                              {/* <button value="1" name ={items._id} onClick={handlewin} className="hero-btn">Winner</button> */}
                             {/* </Link> */}
                             {/* <Link to="/loser"> */}
-                              <button value="2" name = {items._id} onClick={handlelose} className="hero-btn">Loser</button>
+                              {/* <button value="2" name = {items._id} onClick={handlelose} className="hero-btn">Loser</button> */}
                             {/* </Link> */}
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div className="btn-duel-right winner-btn">
+                            {/* <Link to="/winner"> */}
+                            <button value = "2" name ={items._id} onClick={handlewin} className="hero-btn">Winner</button>
+                            {/* </Link> */}
+                            {/* <Link to="/loser"> */}
+                              <button onClick={handlelose} value = "1" name = {items._id} className="hero-btn">Loser</button>
+                            {/* </Link> */}
+                          </div>
                   </>
-                );
-              })}
+                      );
+                    })}
             </div>
+            
           </div>
         </div>
       )}

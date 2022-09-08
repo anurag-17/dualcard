@@ -24,6 +24,15 @@ app.use('/api/auth', require('./routes/auth'))
 const PORT = process.env.PORT ||5000;
 
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'uploads')
+    },
+  filename: function (req, file, cb) {
+      cb(null , file.originalname);
+  }
+});
+
 
 app.post("/upload",(req,res)=>{
   const image = new Image({
