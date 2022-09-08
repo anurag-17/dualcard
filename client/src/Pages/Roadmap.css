@@ -11,7 +11,7 @@
     padding: 30px 0px;
 }
 .road-item1{
-    background-image: url(../images/roadmap-1.jpeg);
+    background-image: url(../images/purple-circle.svg);
     background-repeat: no-repeat;
     background-position: center;
     height: 387px;
@@ -36,7 +36,7 @@
 }
 .road-item1:nth-child(even) {
     flex-direction: column-reverse;
-    background-image: url(../images/roadmap2.jpeg);
+    background-image: url(../images/Blue-Green-circle.svg);
     
 }
 .road-item1:nth-child(even) .map-des {

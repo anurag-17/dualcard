@@ -9,6 +9,7 @@
  .shape1:nth-child(1) {
     transform: rotate(0deg);
     position: relative;
+    text-align: left;
 }
 .shape1:nth-child(2) {
     position: absolute;
@@ -21,7 +22,12 @@
     transform: rotate(347deg);
 
 }
-
+.dual-first img {
+    width: 239px;
+}
+.dual-first {
+    text-align: right !important;
+}
 
 /* chalangeitem1 css start */
 
@@ -48,8 +54,8 @@
     padding: 16px;
     width: 193px;
     padding-top: 40px;
-    margin-top: 35px;
-    margin-right: 1px;
+    margin-top: 47px;
+    margin-right: 32px;
 }
 .chalangeitem1 .select-btn {
     text-align: center;
@@ -81,12 +87,14 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 404px;
+    height: 441px;
 }
 .Aimg img {
     width: 100%;
 }
-
+.challen-rights {
+    margin-left: 100px !important;
+}
 
 
 
@@ -113,7 +121,7 @@
     background-color: #4672C4;
     border-radius: 20px;
     padding: 14px;
-    width: 300px;
+    width: 283px;
     margin: 140px 30px 135px 31px;
 }
 .accout-grid {
@@ -187,7 +195,9 @@
 .challangeAmain {
     padding-top: 30px;
 }
-
+.system-main h4 {
+    display: none;
+}
 
 
 

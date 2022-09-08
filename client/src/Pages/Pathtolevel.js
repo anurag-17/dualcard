@@ -1,10 +1,10 @@
 import React from 'react';
 import './Pathtolevel.css';
 import buyimg1 from "../images/1.jpg";
-import shape1 from "../images/mostshape.png";
-import shape_1 from "../images/most-shape1.png";
-import shape2 from "../images/most-shape2.png";
-import shape3 from "../images/most-shape3.png";
+import shape1 from "../images/branched-arrow-green.svg";
+import shape_1 from "../images/arrow-brown.svg";
+import shape2 from "../images/arrow-yellow.svg";
+import shape3 from "../images/arrow-red.svg";
 import Table from 'react-bootstrap/Table';
 
 const Pathtolevel = () => {

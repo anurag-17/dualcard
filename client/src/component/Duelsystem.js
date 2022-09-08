@@ -1,12 +1,16 @@
 import React from 'react';
 import './Duelsystem.css';
-import buyimg1 from "../images/1.jpg";
-import buyimg2 from "../images/2.jpg";
-import buyimg3 from "../images/3.jpg";
-import buyimg4 from "../images/4.jpg";
-import buyimg5 from "../images/5.jpg";
-import buyimg6 from "../images/6.jpg";
-import shapeline from "../images/shpeline.png";
+
+import topleft from "../images/NFT-icon_green-left.svg";
+import topright from "../images/NFT-img_top-right.svg";
+
+import greenleft from "../images/NFT-icon_top-left.svg";
+import greenright from "../images/NFT-img_top-right.svg";
+
+import centerright from "../images/centerright.svg";
+import centerleft from "../images/centerleft.svg";
+
+
 import Cardflip from './Cardflip';
 
 const Duelsystem = () => {
@@ -39,16 +43,16 @@ const Duelsystem = () => {
                               <button className='hero-btn'>CHALLENGER  <span>A</span></button>
                             </div>
                             <div className='Aimg'>
-                            <img src={buyimg4}></img>
+                            <img src={topleft}></img>
                             </div>
                          
                        </div>
-                       <div className='chalangeitem1'>
+                       <div className='chalangeitem1 challen-rights'>
                             <div className='select-btn'>
                               <button className='hero-btn'> CHALLENGER <span>B</span></button>
                             </div>
                             <div className='Aimg'>
-                            <img src={buyimg4}></img>
+                            <img src={topright}></img>
                             </div>
                          
                        </div>
@@ -68,15 +72,15 @@ const Duelsystem = () => {
                   <div className='winneritem1'>
                     <div className='winnwect'>
                       <h3>NFT Escrow Account</h3>
-                      <div className='accout-grid'>
+                      <div className='accout-grid netesc'>
                         <div className='accout-img1'>
-                          <img src={buyimg4}></img>
+                          <img src={greenleft}></img>
                         </div>
                         <div className='accout-line'>
                           <h5>+</h5>
                         </div>
                         <div className='accout-img1'>
-                          <img src={buyimg5}></img>
+                          <img src={greenright}></img>
                         </div>
                       </div>
                     </div>
@@ -85,13 +89,13 @@ const Duelsystem = () => {
                   <div className='winneritem1'>
                     <div className='winnwect'>
                       <h3>Winner</h3>
-                      <div className='accout-grid'>
+                      <div className='accout-grid '>
                         <div className='accout-img1'>
-                          <img src={buyimg4}></img>
+                          <img src={greenleft}></img>
                         </div>
                         
                         <div className='accout-img1'>
-                          <img src={buyimg5}></img>
+                          <img src={greenright}></img>
                         </div>
                       </div>
                     </div>
