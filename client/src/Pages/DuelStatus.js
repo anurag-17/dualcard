@@ -74,6 +74,34 @@ getrecieved()
                         )
                 })
                 }
+                {
+                    challengedata.map((items,index)=>{
+                        console.log(items.player_1[0].name)
+                    var accept = "Accepted"
+                    var notaccept = "Not Accepted"
+                    var decline = "Challenge Declined"
+
+
+                        return(
+                            
+                        <>
+                            <tbody>
+                                <tr>
+                                <td>{items.player_1[0].name}</td>
+                                
+                                {/* <td>{items.Accept==="true"?"Accepted":"pending"}</td> */}
+                                {items.Accept==="true"?<td>Accepted</td>:<td>pending</td>}
+                                
+                                {
+                                items.Accept==="true"?<td>
+                                    <Link to="/DuelAccepted"><button className='table-hero-btn'>go to challenge</button></Link></td>:""
+                                }
+                                </tr>
+                            </tbody>
+                        </>
+                        )
+                })
+                }
                 </table>
             </div>  
             </div>
