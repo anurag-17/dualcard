@@ -40,7 +40,7 @@ const DuelChallenge = () => {
   const [firstname, setfirstname] = useState(true);
   const [checkedimage, setcheckedimage] = useState([]);
   const [linkurl, setlinkurl] = useState("");
-  let ischecked = ""
+ const [checked,setChecked] = useState()
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
@@ -101,31 +101,28 @@ setclickeduser(items._id)
 
   const handlesubmit = async () => {
     let data = new FormData();
-    data.append("file", filedata);
-    data.append("upload_preset", "nftimg");
-    data.append("cloud_name", "degu3b9yz");
+    data.append("profile", filedata);
+    data.append("upload_preset", "profile");
+    // data.append("cloud_name", "degu3b9yz");
     dispatch(postimage(data));
     setShow(false);
   };
 
-  const handlecheck = (e) => {
-    ischecked = e.target.checked;
-    console.log(ischecked);
-  };
+ 
   
-  const getchekedimage = (event) => {
-    if (ischecked === false) {
-      console.log(event.target.src);
-    } else {
+    const getchekedimage = (event) => {
+      if(checked===false) {
+        console.log(checked)
+    }else{
       checkedimage.push(event.target.src);
-      console.log(checkedimage);
     }
-  };
+    
+  }
 
 
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
-
+    
     const res = await axios.post("/api/auth/getdata", data).then((data) => {
       setuserimagedata(data.data);
     });
@@ -379,7 +376,7 @@ setErrorMessage("")
                                                 className="img-thumbnail"
                                               />
                                               <input
-                                                onClick={handlecheck}
+                                                onClick={(e)=>setChecked(e.target.checked)}
                                                 type="checkbox"
                                                 name="selimg"
                                               />

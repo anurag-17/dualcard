@@ -15,7 +15,7 @@ export const Loser = () => {
   console.log(index);
 
   const getwinner = async () => {
-    const res = await axios.post("/api/auth/winnerchallenge", { id: id });
+    const res = await axios.post("/api/auth/winnerchallenge",{ id:id,result:"declare" });
     if(res){
       setLoader(false)
     }

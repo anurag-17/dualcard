@@ -9,6 +9,7 @@ const Image = require("./models/Image")
 const User = require("./models/User")
 const Challenge = require("./models/challenge")
 const multer = require("multer")
+var fs = require("fs")
 const cookiesparser = require("cookie-parser");
 const app = express();
 const errorMiddleware = require("./Errorhandlers/Error")
@@ -23,7 +24,6 @@ app.use(cors())
 app.use('/api/auth', require('./routes/auth'))
 const PORT = process.env.PORT ||5000;
 
-
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
       cb(null, 'uploads')
@@ -34,16 +34,35 @@ var storage = multer.diskStorage({
 });
 
 
-app.post("/upload",(req,res)=>{
-  const image = new Image({
-    userId:req.body.userId,
-    url:req.body.image
-  })
-  
-  image.save()
+var upload = multer({storage:storage})
 
-  return res.json(image)
-})
+
+app.post("/uploadimg",upload.single('profile'),async(req,res)=>{
+  try {
+      var img = fs.readFileSync(req.file.path);
+      var encode_image = img.toString('base64')
+    const image = await new Image({
+          url:req.file.path,
+          userId:req.body.userId
+      })
+      image.save()
+      res.status(200).json({message:"success"})   
+  } catch (error) {
+      console.log(error)
+  }
+    
+  })
+
+// app.post("/upload",(req,res)=>{
+//   const image = new Image({
+//     userId:req.body.userId,
+//     url:req.body.image
+//   })
+  
+//   image.save()
+
+//   return res.json(image)
+// })
 
 
 app.get("/getuser",async(req,res)=>{
