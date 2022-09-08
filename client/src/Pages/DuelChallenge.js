@@ -44,6 +44,7 @@ const DuelChallenge = () => {
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
+  let newname = ""
 
 
   const handleClose = () => {
@@ -68,11 +69,12 @@ const DuelChallenge = () => {
 
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser);
-//     filtereduser.map((items,index)=>{
-//       if(index===0){
+    filtereduser.map((items,index)=>{
+      if(index===0){
 // settargetname(items.username)
-//       }
-//     })
+newname = items.username
+      }
+    })
     return;
   }
 
@@ -152,7 +154,8 @@ e.preventDefault()
 setErrorMessage("")
   },2200)
       return
-    }else if(!targetname){
+    }
+    else if(!targetname){
          setErrorMessage("please select a name")
          setTimeout(()=>{
           setErrorMessage("")
@@ -168,7 +171,7 @@ setErrorMessage("")
         playeroneuserid:thisid._id, 
         playertwouserid: clickeduser,
         playeronename: localuser,
-        playertwoname: targetname,
+        playertwoname:targetname,
         playeronelink: linkurl,
       });
   

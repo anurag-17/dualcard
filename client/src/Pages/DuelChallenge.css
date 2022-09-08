@@ -224,16 +224,17 @@
 
 
 .popup.error {
-    width: 15rem;
-    height: 5rem;
-    z-index:222;
-    bottom:0px;
+    width:15rem;
+    height:5rem;
+    z-index:99999;
+    bottom:-10px;
     left:390px;
     /* margin: 4rem auto; */
-    position: absolute;
+    position:absolute;
     background-color: #fafafa;
     box-shadow: 2px 2px 1rem #212121;
     border-radius: 0.25rem;
+    
   }
   .popup.error .message {
     background-color: #282254;
