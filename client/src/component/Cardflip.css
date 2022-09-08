@@ -50,40 +50,23 @@
 }
 
 /*first card*/
-#wrapper div:nth-child(1) {
-  transform: rotate(0deg);
-  transform-origin: left 500px;
-}
 
-#wrapper:hover > #squareID #imageIcon {
-  opacity: 1;
-}
 
-/*second card*/
-#wrapper:hover > div:nth-child(2) {
-  transform: rotate(-4deg);
-  transform-origin: left 500px;
-}
 
 
 
 
 /*third card*/
 
-#wrapper:hover > div:nth-child(3) {
-  transform: rotate(-8deg);
-  transform-origin: left 500px;
-}
+
 .squareID .shape1 img {
     width: 100%;
     border-radius: 10px;
-    border: 1px solid #fff;
     max-width: 56%;
 }
 .shape1 img {
     width: 94%;
     border-radius: 10px;
-    border: 1px solid #fff;
     max-width: 90%;
 }
 .system-main {
@@ -107,19 +90,19 @@
 .shape1 img {
     width: 100%;
     border-radius: 10px;
-    border: 1px solid #fff;
-    max-width: 66%;
+ 
 }
 .shape2 {
-    text-align: center;
+    text-align: left;
     position: relative;
 }
-
+.shape2 h4 {
+    display: none;
+}
 .shape2 img {
     width: 100%;
     border-radius: 10px;
-    border: 1px solid #fff;
-    max-width: 66%;
+    max-width: 78%;
 }
 .chall-sys1 {
     margin: 40px 0px;
@@ -127,7 +110,7 @@
 }
 .systemct img {
     width: 100%;
-    max-width: 65%;
+    max-width: 86%;
     margin: auto;
 }
 .shape1 h4 {
@@ -165,7 +148,19 @@
 .systemct {
     text-align: center;
 }
+.netesc {
+    margin-top: 26px;
+}
+.dual-first {
+    text-align: right !important;
+}
 
+.dual-first img {
+    width: 239px;
+}
+.dualsecond {
+    text-align: right !important;
+}
 
 
 /* responsive */
