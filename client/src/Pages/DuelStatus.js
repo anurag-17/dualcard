@@ -11,8 +11,8 @@ const data = JSON.parse(localStorage.getItem("nftuser"))
 
 console.log(data)
 const getrecieved = async () => {
-    const res = await axios.post("/api/auth/challengestatus",{id:data._id});
-    const newres = await axios.post("/api/auth/challengetwostatus",{id:data._id})
+    const res = await axios.post("/api/auth/challengestatus",{id:data._id,result:"pending"});
+    const newres = await axios.post("/api/auth/challengetwostatus",{id:data._id,result:"pending"})
     console.log(res)
     res.data.map((items,index)=>{
       console.log(items)

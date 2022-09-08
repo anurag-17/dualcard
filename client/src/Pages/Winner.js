@@ -15,7 +15,7 @@ const Winner = () => {
 
   const getwinner = async () => {
 
-    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"pending"});
+    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declare"});
     if(res){
       setLoader(false)
     }

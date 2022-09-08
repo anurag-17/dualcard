@@ -60,7 +60,6 @@ return next(new ErrorHandler("password must be 6 characters long",400))
   }
 )
 
-
 exports.login = catchAsyncError(
   async (req, res, next) => {
     const { email, password } = req.body;
@@ -224,7 +223,7 @@ exports.declineChallenge = catchAsyncError(
 exports.challengeStatus = catchAsyncError(
 
 async(req,res,next)=>{
-  const status = await Challenge.find({player_2_id:req.body.id})
+  const status = await Challenge.find({player_2_id:req.body.id,result:req.body.result})
   return res.json(status)
 }
 
@@ -232,7 +231,7 @@ async(req,res,next)=>{
 exports.challenge_2_status = catchAsyncError(
 
 async(req,res,next)=>{
-  const status = await Challenge.find({player_1_id:req.body.id})
+  const status = await Challenge.find({player_1_id:req.body.id,result:req.body.result})
   return res.json(status)
 }
 
@@ -240,7 +239,7 @@ async(req,res,next)=>{
 
 exports.getwinner  = catchAsyncError(
   async(req,res,next)=>{
-     const winner = await Challenge.find({_id:req.body.id,result:"pending"})
+     const winner = await Challenge.find({_id:req.body.id,result:req.body.result})
      return res.status(200).json(winner)
   }
 )

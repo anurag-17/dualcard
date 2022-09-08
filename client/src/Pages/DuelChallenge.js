@@ -45,10 +45,9 @@ const DuelChallenge = () => {
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
 
-
   setTimeout(()=>{
    setrunfun(false)
-  },1000)
+  },800)
   const handleClose = () => {
     setShow(false);
   };
