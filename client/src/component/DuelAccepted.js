@@ -132,8 +132,7 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                             <img src="/tabicon-6.png" alt="img" />
                             <button type="button" class="btn float-end">
                               {items.player_2[0].name}
-                             <span style ={{color:"white",textAlign:"right",marginLeft:"100px",marginBottom:"20px"}}>Reciever</span>
-
+                             <span style ={{color:"white",textAlign:"right"}}>Reciever</span>
                             </button>
                           </div>
                           <div className="dA-slider">
@@ -155,7 +154,7 @@ navigate(`/winner/${e.target.name}/player_${e.target.value}`)
                           <div className="select-btn">
                             <button className="hero-btn">
                               {" "}
-                              <span>3</span>selected
+                              <span>{items.player_2[0].images.length}</span>selected
                             </button>
                           </div>
                           <div className="btn-duel-right winner-btn">
