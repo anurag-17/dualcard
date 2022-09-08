@@ -68,11 +68,11 @@ const DuelChallenge = () => {
 
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser);
-    filtereduser.map((items,index)=>{
-      if(index===0){
-settargetname(items.username)
-      }
-    })
+//     filtereduser.map((items,index)=>{
+//       if(index===0){
+// settargetname(items.username)
+//       }
+//     })
     return;
   }
 

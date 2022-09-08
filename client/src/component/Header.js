@@ -64,6 +64,9 @@ const logoutuser = () => {
                           <li>
                             <Link to="/DuelReceived" class="dropdown-item">Duel Received</Link>
                           </li>
+                          <li>
+                            <Link to="/duelstatus" class="dropdown-item">Duel Status</Link>
+                          </li>
                           
                         </ul>
                       </li>    
