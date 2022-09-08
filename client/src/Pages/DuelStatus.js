@@ -12,6 +12,7 @@ const data = JSON.parse(localStorage.getItem("nftuser"))
 console.log(data)
 const getrecieved = async () => {
     const res = await axios.post("/api/auth/challengestatus",{id:data._id});
+    const newres = await axios.post("/api/auth/challengetwostatus",{id:data._id})
     console.log(res)
     res.data.map((items,index)=>{
       console.log(items)
@@ -19,12 +20,17 @@ const getrecieved = async () => {
         setChallengeId(items._id)
     })
     console.log(challengeid)
-    setchallengedata(res.data);
+    setchallengedata([...res.data, ...newres.data]);
+  
   };
 useEffect(()=>{
 getrecieved()
 },[])
 
+// const newarr = challengedata.filter((c,index)=>{
+//     return challengedata.indexOf(c) === index
+// })
+// console.log(newarr)
 
   return (
 <>
@@ -74,34 +80,7 @@ getrecieved()
                         )
                 })
                 }
-                {
-                    challengedata.map((items,index)=>{
-                        console.log(items.player_1[0].name)
-                    var accept = "Accepted"
-                    var notaccept = "Not Accepted"
-                    var decline = "Challenge Declined"
-
-
-                        return(
-                            
-                        <>
-                            <tbody>
-                                <tr>
-                                <td>{items.player_1[0].name}</td>
-                                
-                                {/* <td>{items.Accept==="true"?"Accepted":"pending"}</td> */}
-                                {items.Accept==="true"?<td>Accepted</td>:<td>pending</td>}
-                                
-                                {
-                                items.Accept==="true"?<td>
-                                    <Link to="/DuelAccepted"><button className='table-hero-btn'>go to challenge</button></Link></td>:""
-                                }
-                                </tr>
-                            </tbody>
-                        </>
-                        )
-                })
-                }
+              
                 </table>
             </div>  
             </div>

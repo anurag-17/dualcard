@@ -225,6 +225,14 @@ exports.declineChallenge = catchAsyncError(
 exports.challengeStatus = catchAsyncError(
 
 async(req,res,next)=>{
+  const status = await Challenge.find({player_2_id:req.body.id})
+  return res.json(status)
+}
+
+)
+exports.challenge_2_status = catchAsyncError(
+
+async(req,res,next)=>{
   const status = await Challenge.find({player_1_id:req.body.id})
   return res.json(status)
 }
