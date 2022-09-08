@@ -44,9 +44,11 @@ const DuelChallenge = () => {
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
-  let newname = ""
 
 
+  setTimeout(()=>{
+   setrunfun(false)
+  },2000)
   const handleClose = () => {
     setShow(false);
   };
@@ -71,16 +73,22 @@ const DuelChallenge = () => {
     setsearchfilter(filtereduser);
     filtereduser.map((items,index)=>{
       if(index===0){
+settargetname(items.username)
+setclickeduser(items._id)
+
 // settargetname(items.username)
-newname = items.username
       }
     })
     return;
   }
 
-  if (runfun) {
+  if(runfun){
+    console.log(targetname)
+    console.log(clickeduser)
     getuserdata();
   }
+ useEffect((items,index)=>{
+ },[runfun])
 
   const handleupload = async (e) => {
     const files = e.target.files[0];
@@ -130,12 +138,12 @@ newname = items.username
     imgdata.url = image;
     console.log(imgdata);
     newarr.push(imgdata);
-    if (image) {
-      localStorage.setItem("userImages", JSON.stringify(newarr));
-      const localimages = JSON.parse(localStorage.getItem("userImages"));
-      console.log(localimages);
-      finalimagedata.push(localimages);
-    }
+    // if (image) {
+    //   localStorage.setItem("userImages", JSON.stringify(newarr));
+    //   const localimages = JSON.parse(localStorage.getItem("userImages"));
+    //   console.log(localimages);
+    //   finalimagedata.push(localimages);
+    // }
 
     if (image) {
       const data = await axios.post("/upload", {
