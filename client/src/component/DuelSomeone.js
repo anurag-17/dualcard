@@ -126,7 +126,7 @@ const res = await axios.post("/api/auth/getdata",data).then((data)=>{
   }
   useEffect(()=>{
       getimages()
-  },[])
+  },[loader])
 
 
 

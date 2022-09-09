@@ -221,8 +221,10 @@
 .tab-challange .nav-item {
     padding: 12px;
 }
-
-
+.modal-content {
+  position: relative;
+ top:95px;
+}
 .popup.error {
     width:15rem;
     height:5rem;
