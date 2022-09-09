@@ -185,10 +185,6 @@ setErrorMessage("")
     setsearchfilter(result);
   };
 
-  
-
- 
-
   return (
     <div>
       {loader ? (
@@ -331,7 +327,7 @@ setErrorMessage("")
 </div>
 }
                       <div
-                        className=""
+                       className=""
                         id="Stephen"
                         aria-labelledby="Stephen-tab"
                       >
@@ -345,7 +341,7 @@ setErrorMessage("")
                               ) : (
                                 <div className="dchallenge-rt-1">
                                   {userimagedata.map((items, index) => {
-                                    const src = items.url.slice(21)
+                                    const src = items.url.slice(8)
                                     console.log(src)
                                     return (
                                       <>
