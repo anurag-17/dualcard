@@ -11,6 +11,7 @@ import "../Pages/tickimage.css";
 import { useAlert } from "react-alert";
 
 
+
 const DuelSomeone = () => {
   const navigate = useNavigate();
   const alert = useAlert();
@@ -355,7 +356,7 @@ setErrorMessage("")
                                             <label>
                                               <img
                                                 onClick={getchekedimage}
-                                                src={require(`../../build/uploads/${src}`)}
+                                                src={require(`../../../uploads/${src}`)}
                                                 className="img-thumbnail"
                                               />
                                               <input

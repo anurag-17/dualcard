@@ -26,7 +26,7 @@ const PORT = process.env.PORT ||5000;
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, './client/build/uploads')
+      cb(null, './uploads')
     },
   filename: function (req, file, cb) {
       cb(null , file.originalname);
