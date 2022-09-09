@@ -119,7 +119,6 @@ setLoader(false)
   async function getimages() {
 const res = await axios.post("/api/auth/getdata",data).then((data)=>{
     var url = data.data[0].url
-    console.log(url.slice(19))
     
     setuserimagedata(data.data)
 })
@@ -341,7 +340,7 @@ setErrorMessage("")
                               ) : (
                                 <div className="dchallenge-rt-1">
                                   {userimagedata.map((items, index) => {
-                                    const src = items.url.slice(8)
+                                    const src = items.url.slice(12)
                                     console.log(src)
                                     return (
                                       <>
@@ -350,7 +349,7 @@ setErrorMessage("")
                                             <label>
                                               <img
                                                 onClick={getchekedimage}
-                                                src={require(`../../../uploads/${src}`)}
+                                                src={require(`${src}`)}
                                                 className="img-thumbnail"
                                               />
                                               <input
