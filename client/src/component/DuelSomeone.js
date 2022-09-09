@@ -10,8 +10,6 @@ import { Loader } from "../component/Loader";
 import "../Pages/tickimage.css";
 import { useAlert } from "react-alert";
 
-
-
 const DuelSomeone = () => {
   const navigate = useNavigate();
   const alert = useAlert();
