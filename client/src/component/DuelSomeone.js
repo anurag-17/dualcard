@@ -394,6 +394,7 @@ setErrorMessage("")
                               <div className="btn-duel-right">
                                 <button
                                   onClick={handleShow}
+                                style={{width:"100%"}}
                                   className="hero-btn"
                                 >
                                   SELECT CARDS
@@ -484,6 +485,7 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
 
                                 <div className="btn-duel-right challenge">
                                   <input
+                                style={{width:"100%"}}
                                     type="submit"
                                     // on={sendValue}
                                     placeholder="send Challenge"

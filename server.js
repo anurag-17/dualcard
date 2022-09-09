@@ -19,6 +19,7 @@ app.use(express.urlencoded({ limit: "500kb", extended: true }));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookiesparser());
 
+
 connectDB()
 app.use(cors())
 app.use('/api/auth', require('./routes/auth'))
@@ -26,7 +27,7 @@ const PORT = process.env.PORT ||5000;
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, './uploads')
+      cb(null, './client/build/static/media')
     },
   filename: function (req, file, cb) {
       cb(null , file.originalname);
@@ -41,7 +42,7 @@ app.post("/deleteuser",async(req,res)=>{
   return res.json(user)
 })
 
-app.post("/uploadimg",upload.single('profile'),async(req,res)=>{
+app.post("/uploadimg",upload.single('profile'),async(req,res,next)=>{
   try {
       var img = fs.readFileSync(req.file.path);
       var encode_image = img.toString('base64')
@@ -54,13 +55,10 @@ app.post("/uploadimg",upload.single('profile'),async(req,res)=>{
   } catch (error) {
       console.log(error)
   }
-    
+    next()
   })
 
  
-
-
-
 // app.post("/upload",(req,res)=>{
 //   const image = new Image({
 //     userId:req.body.userId,

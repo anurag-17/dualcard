@@ -10,6 +10,9 @@ import greenright from "../images/NFT-img_top-right.svg";
 import centerright from "../images/centerright.svg";
 import centerleft from "../images/centerleft.svg";
 
+import backgroundlines from "../images/line-back.svg";
+
+
 
 import Cardflip from './Cardflip';
 
@@ -33,6 +36,13 @@ const Duelsystem = () => {
                   And The Other Half Transferred To The Partner's Wallet </p>         
                   <p>Maltiple Duelcard Nft's Can Be Wagered On A Duel As Long As The Minimum Challenge Requirements Have Been Met. Streamers Will Most Likely Request That A Minimum Number Of L1 Nft's Is Needed To Challenge.</p>
            
+            <div className='background-pc'> 
+              <img src={backgroundlines}/>
+              </div>
+
+
+
+
               </div>
               </div>
                <div className='row challangeAmain'>

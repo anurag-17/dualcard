@@ -42,9 +42,11 @@
 .tablelevel th {
     color: #fff;
     font-family: 'Poppins', sans-serif;
-    font-size: 18px;
-    line-height: 27px;
+    font-size: 15px;
+    line-height: 20px;
     font-weight: 400;
+    text-align: left;
+    padding-left: 26px;
 }
 .total-sec td {
     color: #fff;
@@ -53,7 +55,14 @@
     line-height: 25px;
     font-weight: 400;
     padding: 15px 20px;
+    width: 20%;
+    text-align: left;
 }
+.table-main tbody, td, th, thead, tr {
+    border-width: 1px !important;
+
+}
+
 .table-main tbody, td, th, thead, tr {
     border-color: inherit;
     border-style: solid;
@@ -138,10 +147,7 @@ ul.most-lisrt li {
 .level-sec {
     padding-top: 30px;
 }
-.tablelevel table.table-main.table.table-striped tr:last-child td {
-    border: 0px;
-    border-bottom: 0px !important;
-}
+
 /* pathlevel table end */
 
 
@@ -174,7 +180,7 @@ ul.most-lisrt li {
     grid-gap: 20px;
 }
 .tite-shape h3 {
-    font-size: 14px;
+    font-size: 19px;
 }
 .tite-shape h3 {
     left: 54%;
