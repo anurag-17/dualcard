@@ -10,6 +10,7 @@ import { Loader } from "../component/Loader";
 import "../Pages/tickimage.css";
 import { useAlert } from "react-alert";
 
+
 const DuelSomeone = () => {
   const navigate = useNavigate();
   const alert = useAlert();
@@ -20,11 +21,6 @@ const DuelSomeone = () => {
   const [textvalue, setTextvalue] = useState("");
   const [newarr, setNewarr] = useState([]);
   const [filedata, setFiledata] = useState("");
-  const [finalimagedata, setfinalimagedata] = useState([]);
-  const [imgdata, setImgdata] = useState({
-    url: "",
-    userId: "",
-  });
   const [userdata, setUserdata] = useState([]);
   const [localuser, setlocaluser] = useState("");
   const [newuserdata, setnewuserdata] = useState([]);
@@ -350,7 +346,7 @@ setErrorMessage("")
                               ) : (
                                 <div className="dchallenge-rt-1">
                                   {userimagedata.map((items, index) => {
-                                    const src = items.url.slice(19)
+                                    const src = items.url.slice(21)
                                     console.log(src)
                                     return (
                                       <>
@@ -359,7 +355,7 @@ setErrorMessage("")
                                             <label>
                                               <img
                                                 onClick={getchekedimage}
-                                                src={require(`../uploads/${src}`)}
+                                                src={require(`../../build/uploads/${src}`)}
                                                 className="img-thumbnail"
                                               />
                                               <input
