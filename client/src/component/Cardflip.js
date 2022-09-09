@@ -10,11 +10,11 @@ import thirdleft from "../images/third-left-card.svg";
 import thirdright from "../images/row3-right-card.svg";
 
 
-import row4left from "../images/row4-left-card.svg";
+// import row4left from "../images/row4-left-card.svg";
 import row4right from "../images/row4-right-card.svg";
 
 import fifthleft from "../images/row5-left-card.svg";
-import fifthrights from "../images/fifth-right.svg";
+// import fifthrights from "../images/fifth-right.svg";
 
 
 
@@ -119,7 +119,7 @@ const Cardflip = () => {
                   <div ID="wrapper"> 
                         <div id="squareID" class="one">
                             <div className='shape1'>
-                                <img  className="one" src={row4left}></img>
+                                {/* <img  className="one" src={row4left}></img> */}
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
@@ -164,7 +164,7 @@ const Cardflip = () => {
                   </div>
                   <div className='col-md-4'>
                   <div className='shape2'>
-                    <img src={fifthrights}></img>
+                    {/* <img src={fifthrights}></img> */}
                     <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>

@@ -8,20 +8,16 @@ import img1 from "../images/Plus.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../component/Loader";
 import "./tickimage.css";
-import { useAlert } from "react-alert";
 
 const DuelChallenge = () => {
   const navigate = useNavigate();
-  const alert = useAlert();
-  const data = localStorage.getItem("nftuser");
+
   const { image, isImage, loading } = useSelector((state) => state.image);
-  const { isAuthenticated, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [targetname, settargetname] = useState("");
   const [textvalue, setTextvalue] = useState("");
   const [newarr, setNewarr] = useState([]);
   const [filedata, setFiledata] = useState("");
-  const [finalimagedata, setfinalimagedata] = useState([]);
   const [imgdata, setImgdata] = useState({
     url: "",
     userId: "",
@@ -40,14 +36,14 @@ const DuelChallenge = () => {
   const [firstname, setfirstname] = useState(true);
   const [checkedimage, setcheckedimage] = useState([]);
   const [linkurl, setlinkurl] = useState("");
- const [checked,setChecked] = useState()
+  const [checked, setChecked] = useState();
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
-  const [erromessage,setErrorMessage] = useState("")
-  const [inputerror,setInputError]  = useState("")
+  const [erromessage, setErrorMessage] = useState("");
+  const [inputerror, setInputError] = useState("");
 
-  setTimeout(()=>{
-   setrunfun(false)
-  },800)
+  setTimeout(() => {
+    setrunfun(false);
+  }, 800);
   const handleClose = () => {
     setShow(false);
   };
@@ -70,24 +66,21 @@ const DuelChallenge = () => {
 
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser);
-    filtereduser.map((items,index)=>{
-      if(index===0){
-settargetname(items.username)
-setclickeduser(items._id)
-
-// settargetname(items.username)
+    filtereduser.map((items, index) => {
+      if (index === 0) {
+        settargetname(items.username);
+        setclickeduser(items._id);
       }
-    })
+    });
     return;
   }
 
-  if(runfun){
-    console.log(targetname)
-    console.log(clickeduser)
+  if (runfun) {
+    // console.log(targetname);
+    // console.log(clickeduser);
     getuserdata();
   }
- useEffect((items,index)=>{
- },[runfun])
+  useEffect((items, index) => {}, [runfun]);
 
   const handleupload = async (e) => {
     const files = e.target.files[0];
@@ -103,45 +96,27 @@ setclickeduser(items._id)
     let data = new FormData();
     data.append("profile", filedata);
     data.append("upload_preset", "profile");
-    data.append("userId",userId)
+    data.append("userId", userId);
     // data.append("cloud_name", "degu3b9yz");
     dispatch(postimage(data));
     setShow(false);
   };
 
- 
-  
-    const getchekedimage = (event) => {
-      if(checked===false) {
-        console.log(checked)
-    }else{
-      checkedimage.push(event.target.src);
-    }
-    
-  }
-
-
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
-    
-    const res = await axios.post("/photos",data).then((data) => {
+
+    await axios.post("http://localhost:5000/photos", data).then((data) => {
       setuserimagedata(data.data);
     });
-    
   }
   getimages();
+  console.log(userimagedata);
 
   async function postImageUrl() {
     imgdata.userId = userId;
     imgdata.url = image;
     console.log(imgdata);
     newarr.push(imgdata);
-    // if (image) {
-    //   localStorage.setItem("userImages", JSON.stringify(newarr));
-    //   const localimages = JSON.parse(localStorage.getItem("userImages"));
-    //   console.log(localimages);
-    //   finalimagedata.push(localimages);
-    // }
 
     if (image) {
       const data = await axios.post("/upload", {
@@ -153,36 +128,34 @@ setclickeduser(items._id)
   }
 
   const sendValue = async (e) => {
-e.preventDefault()
- if(checkedimage.length<=0){
-  setErrorMessage("please select cards")
-  setTimeout(()=>{
-setErrorMessage("")
-  },2200)
-      return
-    }
-    else if(!targetname){
-         setErrorMessage("please select a name")
-         setTimeout(()=>{
-          setErrorMessage("")
-            },2200)
-         return
+    e.preventDefault();
+    if (checkedimage.length <= 0) {
+      setErrorMessage("please select cards");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2200);
+      return;
+    } else if (!targetname) {
+      setErrorMessage("please select a name");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2200);
+      return;
     }
 
+    setLoader(true);
+    const res = await axios.post("/api/auth/sendchal", {
+      playerone_url: checkedimage,
+      playeronetext: textvalue,
+      playeroneuserid: thisid._id,
+      playertwouserid: clickeduser,
+      playeronename: localuser,
+      playertwoname: targetname,
+      playeronelink: linkurl,
+    });
 
-      setLoader(true);
-      const res = await axios.post("/api/auth/sendchal", {
-        playerone_url: checkedimage,
-        playeronetext: textvalue,
-        playeroneuserid:thisid._id, 
-        playertwouserid: clickeduser,
-        playeronename: localuser,
-        playertwoname:targetname,
-        playeronelink: linkurl,
-      });
-  
-    if(res){
-          setLoader(false);
+    if (res) {
+      setLoader(false);
       navigate("/thankyou");
     }
     console.log(res.data);
@@ -192,7 +165,7 @@ setErrorMessage("")
     console.log(e);
     setclickeduser(e.target.name);
     settargetname(e.target.value);
-    console.log(targetname)
+    console.log(targetname);
     console.log(clickeduser);
   };
 
@@ -205,7 +178,6 @@ setErrorMessage("")
 
     setsearchfilter(result);
   };
-
 
   useEffect(() => {
     postImageUrl();
@@ -278,7 +250,6 @@ setErrorMessage("")
                     </ul>
 
                     <div className="tab-content" id="myTabContent">
-
                       <div
                         className="tab-pane fade"
                         id="home"
@@ -342,16 +313,18 @@ setErrorMessage("")
                           </div>
                         </div>
                       </div>
-{
-  erromessage&&<div class="popup error">
-  <div class="message">
-    <p>{erromessage}</p>
-  </div>
-  <div class="action">
-    <button onClick={()=>setErrorMessage("")}>Ok</button>
-  </div>
-</div>
-}
+                      {erromessage && (
+                        <div class="popup error">
+                          <div class="message">
+                            <p>{erromessage}</p>
+                          </div>
+                          <div class="action">
+                            <button onClick={() => setErrorMessage("")}>
+                              Ok
+                            </button>
+                          </div>
+                        </div>
+                      )}
                       <div
                         className=""
                         id="Stephen"
@@ -373,12 +346,15 @@ setErrorMessage("")
                                           <div class="imageandtext image_grid">
                                             <label>
                                               <img
-                                                onClick={getchekedimage}
-                                                src={require(`../../../uploads/${items.url}`)}
-                                                className="img-thumbnail"
+                                                // onClick={getchekedimage}
+                                                src={require(`../../../${items.url}`)}
+                                                className="thumbnail"
+                                                alt=""
                                               />
                                               <input
-                                                onClick={(e)=>setChecked(e.target.checked)}
+                                                onClick={(e) =>
+                                                  setChecked(e.target.checked)
+                                                }
                                                 type="checkbox"
                                                 name="selimg"
                                               />
@@ -441,8 +417,7 @@ setErrorMessage("")
                                           >
                                             {firstname
                                               ? items.username
-                                              : targetname
-                                              }
+                                              : targetname}
                                           </button>
                                         </>
                                       );
@@ -461,16 +436,25 @@ setErrorMessage("")
                                 </div>
                               </div>
 
-                              {
-inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="popup error">
-<div className="message">
-<p>{inputerror}</p>
-</div>
-<div className="action">
-<button onClick={()=>setInputError("")}>Ok</button>
-</div>
-</div>
-}
+                              {inputerror && (
+                                <div
+                                  style={{
+                                    position: "relative",
+                                    left: "55%",
+                                    top: "%",
+                                  }}
+                                  className="popup error"
+                                >
+                                  <div className="message">
+                                    <p>{inputerror}</p>
+                                  </div>
+                                  <div className="action">
+                                    <button onClick={() => setInputError("")}>
+                                      Ok
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
 
                               <form onSubmit={sendValue}>
                                 <div className="duel-form">
@@ -492,7 +476,7 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                                 <div className="search-bar">
                                   <div class="input-group md-form form-sm form-2 pl-0">
                                     <input
-                                    type = "url"
+                                      type="url"
                                       required
                                       class="form-control my-0 py-1 red-border"
                                       placeholder="put your twitch or youtube live link"
@@ -513,7 +497,6 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                                     placeholder="send Challenge"
                                     className="hero-btn challenge"
                                   />
-                                 
                                 </div>
                               </form>
                             </div>
@@ -525,7 +508,7 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                         style={{ height: "800px" }}
                         show={show}
                         onHide={handleClose}
-                        >
+                      >
                         <Modal.Header closeButton>
                           <Modal.Title>Modal heading</Modal.Title>
                         </Modal.Header>
@@ -536,7 +519,7 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                             type="file"
                             name=""
                             id=""
-                            />
+                          />
                         </Modal.Body>
                         <Modal.Footer>
                           <Button variant="primary" onClick={handlesubmit}>
@@ -544,7 +527,6 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                           </Button>
                         </Modal.Footer>
                       </Modal>
-
                     </div>
                   </div>
                 </div>

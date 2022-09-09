@@ -26,7 +26,7 @@ const PORT = process.env.PORT ||5000;
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, 'uploads')
+      cb(null, './client/src/uploads')
     },
   filename: function (req, file, cb) {
       cb(null , file.originalname);
@@ -54,7 +54,7 @@ app.post("/uploadimg",upload.single('profile'),async(req,res)=>{
   })
 
 
-  app.post('/photos', async(req,res,next)=>{
+  app.post('/photos', async(req,res)=>{
     const data = await Image.find({userId:req.body._id})
     return res.status(200).json(data)
 })
@@ -78,10 +78,10 @@ app.get("/getuser",async(req,res,next)=>{
 
 })
 
-app.post("/deleteuser",async(req,res)=>{
-  const user = await Challenge.deleteMany()
-  return res.json(user)
-})
+// app.post("/deleteuser",async(req,res)=>{
+//   const user = await Challenge.deleteMany()
+//   return res.json(user)
+// })
 
 // --------------------------deployment------------------------------
 app.use(express.static(path.join(__dirname, "./client/build")));
