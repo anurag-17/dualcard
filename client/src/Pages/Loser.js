@@ -16,9 +16,9 @@ export const Loser = () => {
 
   const getwinner = async () => {
     const res = await axios.post("/api/auth/winnerchallenge",{ id:id,result:"declare" });
-    if(res){
+    setTimeout(()=>{
       setLoader(false)
-    }
+    },1200)
     images.push(res.data[0]);
     console.log(images[0]);
     const player = `player_${index}`;
@@ -44,7 +44,7 @@ export const Loser = () => {
 
   useEffect(() => {
     getwinner();
-  }, [loader]);
+  },[]);
 
 
 

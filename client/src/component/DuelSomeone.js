@@ -117,7 +117,7 @@ setLoader(false)
     }else{
       checkedimage.push(event.target.src);
     }
-    
+    console.log(checkedimage)
   }
 
 
@@ -128,12 +128,10 @@ const res = await axios.post("/api/auth/getdata",data).then((data)=>{
     
     setuserimagedata(data.data)
 })
-
   }
-
   useEffect(()=>{
       getimages()
-  },[loader])
+  },[])
 
 
 
@@ -353,6 +351,7 @@ setErrorMessage("")
                                 <div className="dchallenge-rt-1">
                                   {userimagedata.map((items, index) => {
                                     const src = items.url.slice(19)
+                                    console.log(src)
                                     return (
                                       <>
                                         <div class="grid-two imageandtext">
