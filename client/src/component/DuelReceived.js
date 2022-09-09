@@ -262,6 +262,7 @@ return(
                     loading?<Loader/>:  <div className="dule-rt-1">
                     {
                      userimagedata.map((items,index)=>{
+                      const src = items.url.slice(19)
                        return(
 
                          <div class="grid-two imageandtext">
@@ -269,7 +270,7 @@ return(
                            <label>
                              <img
                                onClick={getchekedimage}
-                               src={items.url}
+                               src={require(`../uploads/${src}`)}
                                className="img-thumbnail"
                              />
                              <input

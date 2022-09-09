@@ -118,11 +118,9 @@ exports.dashboard = async (req, res, next) => {
 
 exports.getdata = 
 catchAsyncError(
-
   async (req, res,next) => {
-    // console.log(req.body)
-    let imgdata = await Image.find({ userId:req.body._id});
-    return res.json(imgdata);
+    let imgdata = await Image.find({userId:req.body._id});
+    return res.status(200).json(imgdata);
   }
 )
 

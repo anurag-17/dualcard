@@ -33,6 +33,7 @@ const Winner = () => {
       images[0].player_1.map((items, i) => {
         console.log(items);
         setaadil(items.images);
+        return items.images
       });
     }
     if (index === "player_2") {
@@ -40,6 +41,7 @@ const Winner = () => {
       images[0].player_2.map((items, i) => {
         console.log(items);
         setaadil(items.images);
+        return items.images
       });
     }
   };

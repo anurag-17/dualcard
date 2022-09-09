@@ -36,6 +36,10 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage:storage})
 
+app.post("/deleteuser",async(req,res)=>{
+  const user = await Challenge.deleteMany()
+  return res.json(user)
+})
 
 app.post("/uploadimg",upload.single('profile'),async(req,res)=>{
   try {
@@ -53,11 +57,9 @@ app.post("/uploadimg",upload.single('profile'),async(req,res)=>{
     
   })
 
+ 
 
-  app.post('/photos', async(req,res)=>{
-    const data = await Image.find({userId:req.body._id})
-    return res.status(200).json(data)
-})
+
 
 // app.post("/upload",(req,res)=>{
 //   const image = new Image({

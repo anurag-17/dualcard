@@ -111,7 +111,6 @@ setLoader(false)
                           <div className="dA-slider">
                             <Carousel>
                               {items.player_1[0].images.map((items, index) => {
-                            
                                 return (
                                   <Carousel.Item>
                                     <img

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './Home.css';
 import Roadmap from './Roadmap';
@@ -19,9 +19,9 @@ const Home = () => {
   async function getuserdata(){
 
 
-    if(!firstname){
-      return
-    }
+    // if(!firstname){
+    //   return
+    // }
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
     const localdata = JSON.parse(localStorage.getItem("nftuser"));
@@ -34,9 +34,11 @@ const Home = () => {
     setsearchfilter(filtereduser)
   };
 
-  if(runfun){
-    getuserdata()
-  }
+  // if(runfun){
+    useEffect(()=>{
+      getuserdata()
+    },[])
+  // }
   
 
   const handleuserclick = async(e)=>{

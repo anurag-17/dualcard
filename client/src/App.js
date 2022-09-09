@@ -8,7 +8,7 @@ import Home from './Pages/Home';
 import Header from "./component/Header"
 import Footer from "./component/Footer"
 import BuyDuelCard from "./Pages/BuyDuelCard"
-import DuelChallenge from './Pages/DuelChallenge';
+import DuelSomeone from './component/DuelSomeone';
 import ICOInformation from "./Pages/ICOInformation"
 import Marketplace from "./Pages/Marketplace"
 import DuelReceived from "./component/DuelReceived"
@@ -27,9 +27,6 @@ import Pathtolevel from './Pages/Pathtolevel';
 import { Loser } from './Pages/Loser';
 import Duelsystem from './component/Duelsystem';
 
-
-
-
 function App() {
   return (
     <div className="App">
@@ -42,7 +39,7 @@ function App() {
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
         <Route path = "/winner/:id/:index" element = {<Winner/>}/>
         <Route path = "/loser/:id/:index" element = {<Loser/>}/>
-        <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelChallenge/></ProtectedRoute>}/>
+        <Route path = "/DuelSomeone" element = {<DuelSomeone/>}/>
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/AboutRules" element = {<AboutRules/>}/>
         <Route path = "/Marketplace" element = {<Marketplace/>}/>
