@@ -10,7 +10,7 @@ import logo from "../images/Logo.png"
 import tabicon from "../images/tabicon-14.png"
 
 const Header = () => {
-const [show,setShow] = useState(false)
+// const [show,setShow] = useState(false)
 const navigate  = useNavigate()
 const data = JSON.parse(localStorage.getItem("nftuser"))
 console.log(data)

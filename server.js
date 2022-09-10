@@ -25,12 +25,13 @@ app.use(cors())
 app.use('/api/auth', require('./routes/auth'))
 const PORT = process.env.PORT ||5000;
 
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, './client/build/static/media')
+      cb(null, './uploads')
     },
   filename: function (req, file, cb) {
-      cb(null , file.originalname);
+    cb(null , file.filename);
   }
 });
 
@@ -38,37 +39,37 @@ var storage = multer.diskStorage({
 var upload = multer({storage:storage})
 
 app.post("/deleteuser",async(req,res)=>{
-  const user = await Challenge.deleteMany()
+  const user = await Image.deleteMany()
   return res.json(user)
 })
 
-app.post("/uploadimg",upload.single('profile'),async(req,res,next)=>{
-  try {
-      var img = fs.readFileSync(req.file.path);
-      var encode_image = img.toString('base64')
-    const image = await new Image({
-          url:req.file.path,
-          userId:req.body.userId
-      })
-      image.save()
-      res.status(200).json({message:"success"})   
-  } catch (error) {
-      console.log(error)
-  }
-    next()
-  })
+// app.post("/uploadimg",upload.single('profile'),async(req,res,next)=>{
+//   try {
+//       var img = fs.readFileSync(req.file.filename);
+//       var encode_image = img.toString('base64')
+//     const image = await new Image({
+//           url:req.file.path,
+//           userId:req.body.userId
+//       })
+//       image.save()
+//       res.status(200).json({message:"success"})   
+//   } catch (error) {
+//       console.log(error)
+//   }
+//     next()
+//   })
 
  
-// app.post("/upload",(req,res)=>{
-//   const image = new Image({
-//     userId:req.body.userId,
-//     url:req.body.image
-//   })
+app.post("/upload",(req,res)=>{
+  const image = new Image({
+    userId:req.body.userId,
+    url:req.body.image
+  })
   
-//   image.save()
+  image.save()
 
-//   return res.json(image)
-// })
+  return res.json(image)
+})
 
 
 app.get("/getuser",async(req,res,next)=>{

@@ -12,22 +12,24 @@ import { useAlert } from "react-alert";
 
 const DuelSomeone = () => {
   const navigate = useNavigate();
+  const {image,loading,isImage} = useSelector((state)=>state.image)
   const alert = useAlert();
-  const data = JSON.parse(localStorage.getItem("nftuser"))
-  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const storagedata = JSON.parse(localStorage.getItem("nftuser"))
   const dispatch = useDispatch();
   const [targetname, settargetname] = useState("");
   const [textvalue, setTextvalue] = useState("");
-  const [newarr, setNewarr] = useState([]);
-  const [filedata, setFiledata] = useState("");
+  const [selectedimage,setselectedimage] = useState([]);
   const [userdata, setUserdata] = useState([]);
   const [localuser, setlocaluser] = useState("");
   const [newuserdata, setnewuserdata] = useState([]);
   const [searchfilter, setsearchfilter] = useState([]);
-  const [userId, setUserId] = useState("");
   const [runfun, setrunfun] = useState(true);
   const [loader, setLoader] = useState(false);
-  const [userprofiledata, setUserprofiledata] = useState([]);
+  // const [userprofiledata, setUserprofiledata] = useState([]);
+  const [data,setdata] = useState({
+    image:"",
+    userId:""
+  })
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
   const [clickeduser, setclickeduser] = useState("");
@@ -38,6 +40,11 @@ const DuelSomeone = () => {
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
+
+
+
+
+
 
   setTimeout(()=>{
    setrunfun(false)
@@ -80,28 +87,30 @@ settargetname(items.username)
     getuserdata();
   }
 
-  const handleupload = async (e) => {
-    const files = e.target.files[0];
-    console.log(files);
-    setFiledata(files);
-    const userdata = JSON.parse(localStorage.getItem("nftuser"));
-    setUserprofiledata([userdata]);
-    setUserId(userdata._id);
-    console.log(userId);
-  };
+  const encodefile = (file)=>{
+    var reader = new FileReader()
+
+    if(file){
+        reader.readAsDataURL(file)
+        reader.onload = ()=>{
+            var base64 = reader.result
+            setdata({
+                image:base64,
+                userId:storagedata._id,
+            })
+            // setfilebaseurl(base64)
+        }
+    reader.onerror = (error)=>{
+        alert("this is error")
+    }
+    }
+}
+  encodefile(selectedimage[0])
+
 
   const handlesubmit = async () => {
-setLoader(true)
-    let data = new FormData();
-    data.append("profile", filedata);
-    data.append("upload_preset", "profile");
-    data.append("userId",userId)
-    // data.append("cloud_name", "degu3b9yz");
     dispatch(postimage(data));
     setShow(false);
-    setTimeout(()=>{
-setLoader(false)
-    },1000)
   };
 
  
@@ -117,17 +126,14 @@ setLoader(false)
 
 
   async function getimages() {
-const res = await axios.post("/api/auth/getdata",data).then((data)=>{
+const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
     var url = data.data[0].url
-    
     setuserimagedata(data.data)
 })
   }
   useEffect(()=>{
       getimages()
-  },[loader])
-
-
+  },[image,loading,isImage])
 
 
   const sendValue = async (e) => {
@@ -183,6 +189,10 @@ setErrorMessage("")
 
     setsearchfilter(result);
   };
+
+  
+
+ 
 
   return (
     <div>
@@ -326,22 +336,20 @@ setErrorMessage("")
 </div>
 }
                       <div
-                       className=""
+                        className=""
                         id="Stephen"
                         aria-labelledby="Stephen-tab"
                       >
                         <div className="tab-cont">
                           <div className="row tabct-main gx-5">
                             <div className="col-md-6 tab-left">
-                              {loader? (
+                              {loading? (
                                 <Loader
-                                  style={{ backgroundColor: "#282054" }}
+                                 
                                 />
                               ) : (
                                 <div className="dchallenge-rt-1">
                                   {userimagedata.map((items, index) => {
-                                    const src = items.url.slice(12)
-                                    console.log(src)
                                     return (
                                       <>
                                         <div class="grid-two imageandtext">
@@ -349,7 +357,7 @@ setErrorMessage("")
                                             <label>
                                               <img
                                                 onClick={getchekedimage}
-                                                src={require(`${src}`)}
+                                                src={items.url}
                                                 className="img-thumbnail"
                                               />
                                               <input
@@ -393,7 +401,6 @@ setErrorMessage("")
                               <div className="btn-duel-right">
                                 <button
                                   onClick={handleShow}
-                                style={{width:"100%"}}
                                   className="hero-btn"
                                 >
                                   SELECT CARDS
@@ -484,7 +491,6 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
 
                                 <div className="btn-duel-right challenge">
                                   <input
-                                style={{width:"100%"}}
                                     type="submit"
                                     // on={sendValue}
                                     placeholder="send Challenge"
@@ -509,7 +515,7 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                         <Modal.Body>
                           <input
                             multiple
-                            onChange={handleupload}
+                            onChange={(e)=>setselectedimage(e.target.files)}
                             type="file"
                             name=""
                             id=""

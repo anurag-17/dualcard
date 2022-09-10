@@ -1,4 +1,6 @@
 .duelacept-sec {
+    min-height:70vh;
+    height: auto;
     background-color: #121127;
     padding: 75px 0px;
 }

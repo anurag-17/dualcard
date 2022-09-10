@@ -140,7 +140,6 @@ catchAsyncError(
   async (req, res,next) => {
     const { recieved, accept, decline } = req.body;
    
-    console.log(req.body)
     let challenge = await Challenge.create({
       recieved:req.body.recieved,
       player_1_id:req.body.playeroneuserid,
