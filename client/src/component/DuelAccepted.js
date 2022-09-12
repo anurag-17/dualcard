@@ -34,9 +34,9 @@ export const DuelAccepted = () => {
 
     
   };
-  // useEffect(() => {
+  useEffect(() => {
     getrecieved();
-  // },[]);
+  },[]);
   
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
