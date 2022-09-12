@@ -72,7 +72,7 @@ export const Loser = () => {
                 console.log(items)
                 return (
                   <div className="wonimg1">
-                    <FontAwesomeIcon style = {{zIndex:"100",fontWeight:"600",height:"120px",color:"red",position:"relative",top:"300px"}} icon={faTimes} />
+                    <FontAwesomeIcon style = {{zIndex:"100",fontWeight:"600",height:"100px",color:"red",position:"relative",top:"325px"}} icon={faTimes} />
                     <img src={items} alt="img" />
                   </div>
                 );
