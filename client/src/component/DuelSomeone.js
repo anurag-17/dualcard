@@ -34,9 +34,9 @@ const DuelSomeone = () => {
   const [userimagedata, setuserimagedata] = useState([]);
   const [clickeduser, setclickeduser] = useState("");
   const [firstname, setfirstname] = useState(true);
-  let checkedimage = []
+  const [checkedimage,setcheckedimage] = useState([])
   const [linkurl, setlinkurl] = useState("");
- const [checked,setChecked] = useState(false)
+ const [checked,setChecked] = useState(true)
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
@@ -101,7 +101,6 @@ settargetname(items.username)
     }
 }
   encodefile(selectedimage[0])
-  console.log(checkedimage)
 
 
 
@@ -114,6 +113,7 @@ settargetname(items.username)
   const getchekedimage = (event) => {
     checkedimage.push(event.target.src);
     // setcheckedimage(event.target.src);
+    console.log(checkedimage)
   } 
 
   async function getimages() {
@@ -349,12 +349,12 @@ setErrorMessage("")
                                           <div class="imageandtext image_grid">
                                             <label>
                                               <img
-                                                onClick={(event)=>checked&&getchekedimage(event)}
+                                                onClick={checked?getchekedimage:undefined}
                                                 src={items.url}
                                                 className="img-thumbnail"
                                               />
                                               <input
-                                                onChange={(e)=>{setChecked(e.target.checked)}}
+                                                onClick={(e)=>{setChecked(e.target.checked)}}
                                                 type="checkbox"
                                                 name="selimg"
                                               />
