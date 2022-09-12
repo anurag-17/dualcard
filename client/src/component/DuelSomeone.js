@@ -43,21 +43,18 @@ const DuelSomeone = () => {
 // let checked = false
 
 
-
-
-
   setTimeout(()=>{
    setrunfun(false)
-  },800)
+  },900)
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => setShow(true);
 
   async function getuserdata() {
-    if (!firstname) {
-      return;
-    }
+    // if (!firstname) {
+    //   return;
+    // }
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
     const localdata = JSON.parse(localStorage.getItem("nftuser"));
@@ -82,8 +79,6 @@ settargetname(items.username)
   }
 
   if(runfun){
-    console.log(targetname)
-    console.log(clickeduser)
     getuserdata();
   }
 
