@@ -32,6 +32,10 @@
 .wonimg1 img {
     
     width: 100%;
+    max-height: 280px;
+    height: auto;
+    position: relative;
+    top: 0px;
     border: 3px solid #6639E4;
     border-radius: 20px;
     opacity: 1;
