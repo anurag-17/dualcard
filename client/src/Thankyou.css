@@ -1,0 +1,47 @@
+.thank-sec {
+    background-color: #121027;
+    padding: 40px 0px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+}
+.thnkct {
+    text-align: center;
+    background: #282454;
+    max-width: 737px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+}
+.thnkct h1{
+    font-family: 'Kaushan Script', cursive;
+  font-size:4em;
+  letter-spacing:3px;
+  color:#5892FF ;
+  margin:0;
+  margin-bottom:20px;
+}
+.thnkct p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 0px;
+}
+.thankbtn {
+    padding-top: 20px;
+}
+.thnkct {
+    text-align: center;
+}
+
+
+
+/* responsive */
+@media only screen and (max-width:667px) {
+    .thnkct h1 {
+        font-size: 35px;
+    }
+    .thank-sec {
+        height: 350px;
+    }
+}

@@ -1,0 +1,15 @@
+*{
+    font-family: 'Audiowide', cursive;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+}
+.container {
+    max-width: 1240px;
+    margin: auto;
+}
+.btn:hover {
+    color: #fff;
+}
+.body-main {
+    padding-top: 65px !important;
+}
