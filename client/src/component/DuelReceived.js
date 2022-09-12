@@ -17,6 +17,12 @@ const DuelReceived = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
   const { image, isImage} = useSelector((state) => state.image);
+  const storagedata = JSON.parse(localStorage.getItem("nftuser"))
+  const [data,setdata] = useState({
+    image:"",
+    userId:""
+  })
+  const [selectedimage,setselectedimage] = useState([]);
   const [playertwoname,setplayertwoname] = useState("")
   const [challengedata, setchallengedata] = useState([]);
 const [challengeid,setChallengeId] = useState("")
@@ -35,14 +41,11 @@ let  acceptchallenge = ""
 
 const iddata  = JSON.parse(localStorage.getItem("nftuser"))
 const userId  = iddata._id
-console.log(userId)
 
 
 const navigate = useNavigate()
 
-  const data = JSON.parse(localStorage.getItem("nftuser"));
-
-  const id=data._id;
+  const id=storagedata._id;
 
   setTimeout(()=>{
     setLoader(false)
@@ -69,19 +72,39 @@ const navigate = useNavigate()
     setchallengedata(res.data);
   };
 
-  const handlecheck = (e) => {
-    ischecked = e.target.checked;
-    console.log(ischecked);
-  };
+  const encodefile = (file)=>{
+    var reader = new FileReader()
 
-  const getchekedimage = (event) => {
-    if (ischecked === false) {
-      console.log(event.target.src);
-    } else {
-      checkedimage.push(event.target.src);
-      console.log(checkedimage);
+    if(file){
+        reader.readAsDataURL(file)
+        reader.onload = ()=>{
+            var base64 = reader.result
+            setdata({
+                image:base64,
+                userId:storagedata._id,
+            })
+            // setfilebaseurl(base64)
+        }
+    reader.onerror = (error)=>{
+        alert("something went wrong")
     }
-  };
+    }
+}
+  encodefile(selectedimage[0])
+
+
+
+  const checkboxchange = (e)=>{
+    if(e.target.checked){
+      // console.log(e.target.value)
+     checkedimage.push(e.target.value);
+     console.log(checkedimage)
+    }
+    else{
+      checkedimage.pop()
+      console.log(checkedimage)
+    }
+}
 
   const AcceptChallenge = async(index)=>{
     if(checkedimage.length<=0){
@@ -113,22 +136,9 @@ const navigate = useNavigate()
     }
      
       }
-  
 
-  const handleupload = async (e) => {
-    const files = e.target.files[0];
-    console.log(files);
-    setFiledata(files);
-    const userdata = JSON.parse(localStorage.getItem("nftuser"));
-    setUserId(userdata._id);
-    console.log(userid);
-  };
 
   const handlesubmit = async () => {
-    let data = new FormData();
-    data.append("file", filedata);
-    data.append("upload_preset", "nftimg");
-    data.append("cloud_name", "degu3b9yz");
     dispatch(postimage(data));
     setShow(false);
   };
@@ -154,7 +164,7 @@ const navigate = useNavigate()
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
 
-    const res = await axios.post("/api/auth/getdata",data).then((data) => {
+    const res = await axios.post("/api/auth/getdata",storagedata).then((data) => {
       setuserimagedata(data.data);
     });
   }
@@ -267,19 +277,20 @@ return(
 
                          <div class="grid-two imageandtext">
                          <div class="imageandtext image_grid">
-                           <label>
-                             <img
-                               onClick={getchekedimage}
-                               src={items.url}
-                               className="img-thumbnail"
-                             />
-                             <input
-                               onChange={handlecheck}
-                               type="checkbox"
-                               name="selimg"
-                             />
-                             <span class="caption"></span>
-                           </label>
+                         <label>
+                                              <img
+                                                src={items.url}
+                                                className="img-thumbnail"
+                                              />
+                                              <input
+                                              // onChange ={(e)=>setChecked(e.target.checkValidity())}
+                                                onChange={checkboxchange}
+                                                type="checkbox"
+                                                name="selimg"
+                                                value = {items.url}
+                                              />
+                                                <span class="caption"></span>
+                                            </label>
                          </div>
                        </div>
                          
@@ -367,7 +378,7 @@ errromessage&&<div style = {{position:"relative",left:"35%",bottom:"50%"}} class
                         <Modal.Body>
                           <input
                             multiple
-                            onChange={handleupload}
+                            onChange={(e)=>setselectedimage(e.target.files)}
                             type="file"
                             name=""
                             id=""

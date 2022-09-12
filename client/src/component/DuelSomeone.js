@@ -36,7 +36,7 @@ const DuelSomeone = () => {
   const [firstname, setfirstname] = useState(true);
   const [checkedimage,setcheckedimage] = useState([])
   const [linkurl, setlinkurl] = useState("");
- const [checked,setChecked] = useState(true)
+ const [checked,setChecked] = useState()
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
@@ -110,11 +110,7 @@ settargetname(items.username)
   };
 
 
-  const getchekedimage = (event) => {
-    checkedimage.push(event.target.src);
-    // setcheckedimage(event.target.src);
-    console.log(checkedimage)
-  } 
+
 
   async function getimages() {
 const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
@@ -123,10 +119,24 @@ const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
 })
   }
 
-
+  const checkboxchange = (e)=>{
+            if(e.target.checked){
+              // console.log(e.target.value)
+             checkedimage.push(e.target.value);
+             console.log(checkedimage)
+  
+            }
+            else{
+              checkedimage.pop()
+              console.log(checkedimage)
+            }
+  }
+  
+  
   useEffect(()=>{
+    console.log(checkedimage)
       getimages()
-  },[image,loading,isImage])
+  },[image,loading,isImage,checkedimage])
 
 
   const sendValue = async (e) => {
@@ -349,16 +359,17 @@ setErrorMessage("")
                                           <div class="imageandtext image_grid">
                                             <label>
                                               <img
-                                                onClick={checked?getchekedimage:undefined}
                                                 src={items.url}
                                                 className="img-thumbnail"
                                               />
                                               <input
-                                                onClick={(e)=>{setChecked(e.target.checked)}}
+                                              // onChange ={(e)=>setChecked(e.target.checkValidity())}
+                                                onChange={checkboxchange}
                                                 type="checkbox"
                                                 name="selimg"
+                                                value = {items.url}
                                               />
-                                              <span class="caption"></span>
+                                                <span class="caption"></span>
                                             </label>
                                           </div>
                                         </div>
