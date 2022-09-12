@@ -55,7 +55,7 @@ export const DuelAccepted = () => {
 
   const handlewin= (e)=>{
     setLoader(true)
-    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declare"})
+    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared"})
 if(res){
 setLoader(false)
   navigate(`/winner/${e.target.name}/player_${e.target.value}`)
@@ -66,7 +66,7 @@ console.log(e.target.value)
 
   const handlelose  = (e)=>{
     setLoader(true)
-    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declare"})
+    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared"})
     if(res){
 setLoader(false)
       navigate(`/loser/${e.target.name}/player_${e.target.value}`)

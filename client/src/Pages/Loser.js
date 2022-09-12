@@ -15,10 +15,11 @@ export const Loser = () => {
   console.log(index);
 
   const getwinner = async () => {
-    const res = await axios.post("/api/auth/winnerchallenge",{ id:id,result:"declare" });
+    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
     setTimeout(()=>{
       setLoader(false)
-    },1200)
+    },1000)
+    console.log(res.data)
     images.push(res.data[0]);
     console.log(images[0]);
     const player = `player_${index}`;
@@ -32,12 +33,14 @@ export const Loser = () => {
       images[0].player_1.map((items, i) => {
         console.log(items);
         setaadil(items.images);
+        return items.images
       });
     }
     if (index === "player_2") {
       images[0].player_2.map((items, i) => {
         console.log(items);
         setaadil(items.images);
+        return items.images
       });
     }
   };

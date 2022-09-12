@@ -15,7 +15,7 @@ const Winner = () => {
 
   const getwinner = async () => {
 
-    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declare"});
+    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
  console.log(res)
   setTimeout(()=>{
     setLoader(false)
@@ -29,7 +29,7 @@ const Winner = () => {
     // console.log(images[0]`.${player}`);
 
     if (index === "player_1") {
-    const response = await axios.put("/api/auth/winnerstatus",{id:id,result:"declared"})
+    // const response = await axios.put("/api/auth/winnerstatus",{id:id,result:"declared"})
       images[0].player_1.map((items, i) => {
         console.log(items);
         setaadil(items.images);
@@ -37,7 +37,7 @@ const Winner = () => {
       });
     }
     if (index === "player_2") {
-    const response = await axios.put("/api/auth/winnerstatus",{id:id,result:"declared"})
+    // const response = await axios.put("/api/auth/winnerstatus",{id:id,result:"declared"})
       images[0].player_2.map((items, i) => {
         console.log(items);
         setaadil(items.images);
@@ -46,9 +46,9 @@ const Winner = () => {
     }
   };
 
-  useEffect(() => {
+  // useEffect(() => {
     getwinner();
-  }, [id,index]);
+  // }, [id,index]);
 
   console.log(aadil);
 

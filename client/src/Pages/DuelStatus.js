@@ -23,9 +23,9 @@ const getrecieved = async () => {
     setchallengedata(res.data);
   
   };
-// useEffect(()=>{
+useEffect(()=>{
 getrecieved()
-// },[])
+},[])
 
 // const newarr = challengedata.filter((c,index)=>{
 //     return challengedata.indexOf(c) === index
