@@ -8,24 +8,29 @@
 }
 .won-main:after {
     position: absolute;
+    display: flex;
     bottom: 27px;
     width: 100%;
     height: 40px;
     background: #3C2485;
     content: '';
     border-radius: 10px;
+    text-align: center;
 }
 .won-grid {
-    display: grid;
+    /* display: grid; */
+    display: flex;
+    justify-content: center;
     grid-template-columns: repeat(4,1fr);
     grid-gap: 30px;
     text-align: center;
     align-items: center;
-    max-width: 990px;
+    max-width:990px;
     margin: auto;
     z-index: 5;
 }
 .wonimg1 img {
+    
     width: 100%;
     border: 3px solid #6639E4;
     border-radius: 20px;
@@ -44,7 +49,12 @@
 .won-btn {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    grid-gap: 45px;
+    grid-gap: 0px;
+}
+
+.win-btn{
+    width: 61%;
+    margin-bottom: 10px;
 }
 
 /* responsive */

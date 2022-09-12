@@ -17,7 +17,7 @@ const navigate  = useNavigate()
       <div class='footer-sec'>
         <div className='container'>
           <div className='footer-logo'>
-            <img src="./Logo-Footer.png" alt="foot-logo"/>
+            <img src="/Logo-Footer.png" alt="foot-logo"/>
           </div>
           <div className='foot-list'>
           <ul className="footer-menu">

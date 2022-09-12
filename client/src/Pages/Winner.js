@@ -82,16 +82,16 @@ const Winner = () => {
           </div>
           <div className="won-btn">
             <div className="btn-duel-right winnerbtn1">
-              <button className="hero-btn">CARD GALLERY</button>
+              <button className="hero-btn win-btn">CARD GALLERY</button>
             </div>
             <div className="btn-duel-right winnerbtn1">
               <Link to="/DuelSomeone">
-                <button className="hero-btn">DUEL AGAIN</button>
+                <button className="hero-btn win-btn">DUEL AGAIN</button>
               </Link>
             </div>
             <div className="btn-duel-right winnerbtn1">
               <Link to="/Auction">
-                <button className="hero-btn">AUCTION CARDS</button>
+                <button style = {{width:"61%"}} className="hero-btn win-btn">AUCTION CARDS</button>
               </Link>
             </div>
           </div>
