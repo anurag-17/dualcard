@@ -12,11 +12,11 @@ import centerleft from "../images/centerleft.svg";
 
 import backgroundlines from "../images/line-back.svg";
 
-
-
 import Cardflip from './Cardflip';
+import { Link,  useNavigate } from 'react-router-dom';
 
 const Duelsystem = () => {
+  const navigate = useNavigate()
   return (
     <div className='body-main'>
       <div className='duel-syestem-sec'>
@@ -71,11 +71,13 @@ const Duelsystem = () => {
               </div>
               <div className='sele-main container-fluid'>
               <div className='winnweaccout1'>
-                  <div className='winneritem1'>
+
+                  <div onClick = {()=>navigate("/AboutRules")} className='winneritem1'>
                     <div className='winnwect'>
                       <h3>Handshake Agreement On Duelcards.Io</h3>
                       <p>Challenger A Accepts Challenger B’s Duel Offer</p>
                       <span> (Hyperlink To Challenge Rules)</span>
+                
                     </div>
                   </div>
 

@@ -70,7 +70,7 @@ getrecieved()
                                 <td>{items.player_2[0].name}</td>
                                 
                                 {/* <td>{items.Accept==="true"?"Accepted":"pending"}</td> */}
-                                {items.Accept==="true"?<td>Accepted</td>:<td>Pending</td>}
+                                {items.Accept==="true"?<td>Accepted</td>: items.Accept ==="decline"? <td>Declined</td>:<td>Pending</td>}
                                 
                                 {
                                 items.Accept==="true"?<td>

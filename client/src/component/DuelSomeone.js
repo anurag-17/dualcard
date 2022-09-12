@@ -34,13 +34,13 @@ const DuelSomeone = () => {
   const [userimagedata, setuserimagedata] = useState([]);
   const [clickeduser, setclickeduser] = useState("");
   const [firstname, setfirstname] = useState(true);
-  const [checkedimage, setcheckedimage] = useState([]);
+  let checkedimage = []
   const [linkurl, setlinkurl] = useState("");
- const [checked,setChecked] = useState()
+ const [checked,setChecked] = useState(false)
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
-
+// let checked = false
 
 
 
@@ -101,11 +101,13 @@ settargetname(items.username)
             // setfilebaseurl(base64)
         }
     reader.onerror = (error)=>{
-        alert("this is error")
+        alert("something went wrong")
     }
     }
 }
   encodefile(selectedimage[0])
+  console.log(checkedimage)
+
 
 
   const handlesubmit = async () => {
@@ -113,17 +115,11 @@ settargetname(items.username)
     setShow(false);
   };
 
- 
-  
-    const getchekedimage = (event) => {
-      if(checked===false) {
-        console.log(checked)
-    }else{
-      checkedimage.push(event.target.src);
-    }
-    console.log(checkedimage)
-  }
 
+  const getchekedimage = (event) => {
+    checkedimage.push(event.target.src);
+    // setcheckedimage(event.target.src);
+  } 
 
   async function getimages() {
 const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
@@ -131,6 +127,8 @@ const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
     setuserimagedata(data.data)
 })
   }
+
+
   useEffect(()=>{
       getimages()
   },[image,loading,isImage])
@@ -356,12 +354,12 @@ setErrorMessage("")
                                           <div class="imageandtext image_grid">
                                             <label>
                                               <img
-                                                onClick={getchekedimage}
+                                                onClick={(event)=>checked&&getchekedimage(event)}
                                                 src={items.url}
                                                 className="img-thumbnail"
                                               />
                                               <input
-                                                onClick={(e)=>setChecked(e.target.checked)}
+                                                onChange={(e)=>{setChecked(e.target.checked)}}
                                                 type="checkbox"
                                                 name="selimg"
                                               />
