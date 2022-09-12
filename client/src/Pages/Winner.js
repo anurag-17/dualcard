@@ -19,7 +19,7 @@ const Winner = () => {
  console.log(res)
   setTimeout(()=>{
     setLoader(false)
-  },1000)
+  },800)
     images.push(res.data[0]);
     console.log(images[0]);
     const player = `player_${index}`;

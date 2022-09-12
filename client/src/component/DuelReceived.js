@@ -145,13 +145,6 @@ const navigate = useNavigate()
 
   
   async function postImageUrl() {
-    // if (image) {
-    //   localStorage.setItem("userImages", JSON.stringify(newarr));
-    //   const localimages = JSON.parse(localStorage.getItem("userImages"));
-    //   console.log(localimages);
-    //   finalimagedata.push(localimages);
-    // }
-
     if (image) {
       const data = await axios.post("/upload", {
         userId,

@@ -12,7 +12,7 @@ const data = JSON.parse(localStorage.getItem("nftuser"))
 console.log(data)
 const getrecieved = async () => {
     const res = await axios.post("/api/auth/challengestatus",{id:data._id,result:"pending"});
-    const newres = await axios.post("/api/auth/challengetwostatus",{id:data._id,result:"pending"})
+    // const newres = await axios.post("/api/auth/challengetwostatus",{id:data._id,result:"pending"})
     console.log(res)
     res.data.map((items,index)=>{
       console.log(items)
@@ -20,7 +20,7 @@ const getrecieved = async () => {
         setChallengeId(items._id)
     })
     console.log(challengeid)
-    setchallengedata([...res.data, ...newres.data]);
+    setchallengedata(res.data);
   
   };
 // useEffect(()=>{

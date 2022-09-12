@@ -16,24 +16,20 @@ export const DuelAccepted = () => {
 
   const getrecieved = async () => {
     console.log(id);
-    const res = await axios.post("/api/auth/recievedchallenge", {
-      id: id,
-      Accept:true,
-      result:"pending"
-    });
-    const newres = await axios.post("/api/auth/challengedata", {
-      id: id,
-      Accept:true,
-      result:"pending"
-    });
 
-    console.log(res);
-    res.data.map((items, index) => {
+    const newres = await axios.post("/api/auth/challengedata", {
+      id:id,
+      Accept:true,
+      result:"pending"
+    });
+    console.log(newres)
+
+    newres.data.map((items, index) => {
       console.log(items);
       console.log(items._id);
       setChallengeId(items._id);
     });
-    setchallengedata([...res.data, ...newres.data]);
+    setchallengedata(newres.data);
     console.log(challengedata);
 
     
