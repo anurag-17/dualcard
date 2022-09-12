@@ -23,7 +23,6 @@ export const DuelAccepted = () => {
       result:"pending"
     });
     console.log(newres)
-
     newres.data.map((items, index) => {
       console.log(items);
       console.log(items._id);
@@ -34,21 +33,20 @@ export const DuelAccepted = () => {
 
     
   };
-  useEffect(() => {
+  // useEffect(() => {
     getrecieved();
-  },[]);
+  // },[]);
   
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
 
-    const res = await axios.post("/api/auth/getdata", data).then((data) => {
+    const res = await axios.post("/api/auth/getdata", data).then((data)=>{
       setuserimagedata(data.data);
     });
   }
   getimages();
 
  
-
   setTimeout(() => {
     setLoader(false);
   },500);
@@ -91,7 +89,6 @@ setLoader(false)
                 console.log(items.player_2[0].name)
                 return (
                   <>
-        
                   <h1 style ={{color:"white",textAlign:"center",marginTop:"80px",marginBottom:"20px"}}>Challenge{index+1}</h1>
                     <div className="col-md-5 col-sm-5">
                       <div className="dA-left">

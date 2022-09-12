@@ -42,6 +42,11 @@
     max-width: 85%;
 
 }
+.prize-image{
+    margin-left:60px;
+    max-width:78%
+}
+
 .wonimg1 img:hover{
     transform: scale(.9);
     transition: ease-in-out 0.5s;

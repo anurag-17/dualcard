@@ -18,7 +18,7 @@ export const Loser = () => {
     const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
     setTimeout(()=>{
       setLoader(false)
-    },1000)
+    },800)
     console.log(res.data)
     images.push(res.data[0]);
     console.log(images[0]);
@@ -59,11 +59,11 @@ export const Loser = () => {
   <div className='body-main'>
       <div className='winner-sec'>
         <div className='container'>
-        <div className='section-title'>
+        <div style={{textAlign:"center"}} className='section-title'>
                <h2>You Lose!</h2>
                <div className='prizeimg'>
-                 <img style= {{marginLeft:"60px"}} src="/Prize.png" alt="img"/> 
-                 <FontAwesomeIcon style = {{fontWeight:"600",height:"120px",color:"red",position:"absolute",left:"50%",right:"50%"}} icon={faTimes} />
+                 <img src="/Prize.png" alt="img"/> 
+                 <FontAwesomeIcon style = {{fontWeight:"600",height:"120px",color:"red",position:"absolute",left:"47.8%",right:"50%"}} icon={faTimes} />
                </div>
           </div>
           <div style={{position:"relative",bottom:"100px"}}  className='row won-main'>
@@ -73,13 +73,13 @@ export const Loser = () => {
                 return (
                   <div className="wonimg1">
                     <FontAwesomeIcon style = {{zIndex:"100",fontWeight:"600",height:"100px",color:"red",position:"relative",top:"325px"}} icon={faTimes} />
-                    <img src={items} alt="img" />
+                    <img   src={items} alt="img" />
                   </div>
                 );
               })}
             </div>
           </div>
-          <div className='won-btn'>
+          <div className=' won-btn'>
            <div className='btn-duel-right winnerbtn1'>
                    <button className='hero-btn'>CARD GALLERY</button>
            </div>
@@ -88,9 +88,9 @@ export const Loser = () => {
                    <button className='hero-btn'>DUEL AGAIN</button>
             </Link>
            </div>
-           <div className='btn-duel-right winnerbtn1'>
+           <div  className='btn-duel-right winnerbtn1'>
             <Link to="/Auction">
-                   <button className='hero-btn'>AUCTION CARDS</button>
+                   <button style={{width:"61%"}} className='hero-btn'>AUCTION CARDS</button>
             </Link>
            </div>
           </div>

@@ -41,7 +41,7 @@ const DuelSomeone = () => {
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
 // let checked = false
-
+ 
 
   setTimeout(()=>{
    setrunfun(false)
@@ -52,9 +52,7 @@ const DuelSomeone = () => {
   const handleShow = () => setShow(true);
 
   async function getuserdata() {
-    // if (!firstname) {
-    //   return;
-    // }
+  
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
     const localdata = JSON.parse(localStorage.getItem("nftuser"));
@@ -139,7 +137,23 @@ const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
   },[image,loading,isImage,checkedimage])
 
 
+  const linkvalidurl =(e)=>{
+    let regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/
+
+     if(!regexp.test(e.target.value)){
+      setErrorMessage("please enter a url with https")
+      setTimeout(()=>{
+        setErrorMessage("")
+          },2000)
+    }else{
+
+      setlinkurl(e.target.value)
+    }
+    
+  }
+
   const sendValue = async (e) => {
+
 e.preventDefault()
  if(checkedimage.length<=0){
   setErrorMessage("please select cards")
@@ -155,6 +169,9 @@ setErrorMessage("")
             },2200)
          return
     }
+
+
+  
 
 
       setLoader(true);
@@ -479,13 +496,12 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                                 <div className="search-bar">
                                   <div class="input-group md-form form-sm form-2 pl-0">
                                     <input
-                                    type = "url"
+                                    type="url"
                                       required
                                       class="form-control my-0 py-1 red-border"
                                       placeholder="put your twitch or youtube live link"
                                       aria-label="Search"
-                                      onChange={(e) =>
-                                        setlinkurl(e.target.value)
+                                      onChange={linkvalidurl
                                       }
                                     />
 
