@@ -10,7 +10,6 @@ router.route("/getdata").post(getdata)
 
 router.route("/getuserdata").get(getuserdata)
 
-router.route("/me").get(isAuthuser,dashboard)
 router.route("/sendchal").post(sendchallange)
 router.route("/challengedata").post(getchallenge)
 router.route("/recievedchallenge").post(getrecieved)

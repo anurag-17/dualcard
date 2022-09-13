@@ -26,8 +26,6 @@ exports.register = catchAsyncError(
   
     const { valid, reason, validators } = await isEmailValid(email);
     
-  //  console.log(req.body.Expiry);
-  
     if(!username||
       !email||
       !password){
@@ -38,8 +36,6 @@ return next(new ErrorHandler("password must be 6 characters long",400))
     }
   
       User.findOne({ email }, async (err, user) => {
-        console.log(validators);
-  
        if (user) {
         return next(new ErrorHandler("user Already exist",400))
         }
@@ -66,8 +62,6 @@ exports.login = catchAsyncError(
     if (!email || !password) {
       return next(new ErrorResponse("please provide email&password", 400));
     }
-  
-  
       const user = await User.findOne({ email }).select("+password");
       if (!user) {
         return res.status(500).json("invalid credentials user not found");
@@ -90,7 +84,6 @@ catchAsyncError(
   
   async (req, res, next) => {
     const { token } = req.cookies;
-    console.log("hii");
     if (!token) {
       return next(new ErrorResponse("plese login to access this resource", 401));
     }
@@ -100,21 +93,6 @@ catchAsyncError(
   }
   )
 
-exports.dashboard = async (req, res, next) => {
-  if (req.session) {
-    console.log(req.session.email);
-  }
-  const user = await User.findById(req.user.id);
-
-  res.status(200).json({
-    sucess: true,
-    user,
-
-    // productCount,
-  });
-  // console.log("user");
-  // console.log({token});
-};
 
 exports.getdata = 
 catchAsyncError(
@@ -197,7 +175,6 @@ catchAsyncError(
 exports.acceptChallenge = catchAsyncError(
 
   async(req,res,next)=>{
-    console.log(req.body)
     const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,decline:req.body.decline,  
       player_2:[
       {

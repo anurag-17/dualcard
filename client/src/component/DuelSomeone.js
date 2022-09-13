@@ -12,13 +12,13 @@ import { useAlert } from "react-alert";
 
 const DuelSomeone = () => {
   const navigate = useNavigate();
-  const {image,loading,isImage} = useSelector((state)=>state.image)
+  const { image, loading, isImage } = useSelector((state) => state.image);
   const alert = useAlert();
-  const storagedata = JSON.parse(localStorage.getItem("nftuser"))
+  const storagedata = JSON.parse(localStorage.getItem("nftuser"));
   const dispatch = useDispatch();
   const [targetname, settargetname] = useState("");
   const [textvalue, setTextvalue] = useState("");
-  const [selectedimage,setselectedimage] = useState([]);
+  const [selectedimage, setselectedimage] = useState([]);
   const [userdata, setUserdata] = useState([]);
   const [localuser, setlocaluser] = useState("");
   const [newuserdata, setnewuserdata] = useState([]);
@@ -26,34 +26,30 @@ const DuelSomeone = () => {
   const [runfun, setrunfun] = useState(true);
   const [loader, setLoader] = useState(false);
   // const [userprofiledata, setUserprofiledata] = useState([]);
-  const [data,setdata] = useState({
-    image:"",
-    userId:""
-  })
+  const [data, setdata] = useState({
+    image: "",
+    userId: "",
+  });
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
   const [clickeduser, setclickeduser] = useState("");
   const [firstname, setfirstname] = useState(true);
-  const [checkedimage,setcheckedimage] = useState([])
+  const [checkedimage, setcheckedimage] = useState([]);
   const [linkurl, setlinkurl] = useState("");
- const [checked,setChecked] = useState()
+  const [checked, setChecked] = useState();
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
-  const [erromessage,setErrorMessage] = useState("")
-  const [inputerror,setInputError]  = useState("")
+  const [erromessage, setErrorMessage] = useState("");
+  const [inputerror, setInputError] = useState("");
 
-
- 
-
-  setTimeout(()=>{
-   setrunfun(false)
-  },900)
+  setTimeout(() => {
+    setrunfun(false);
+  }, 900);
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => setShow(true);
 
   async function getuserdata() {
-  
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
     const localdata = JSON.parse(localStorage.getItem("nftuser"));
@@ -67,115 +63,107 @@ const DuelSomeone = () => {
 
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser);
-    filtereduser.map((items,index)=>{
-      if(index===0){
-settargetname(items.username)
-setclickeduser(items._id)
-settargetname(items.username)
+    filtereduser.map((items, index) => {
+      if (index === 0) {
+        settargetname(items.username);
+        setclickeduser(items._id);
+        settargetname(items.username);
       }
-    })
+    });
     return;
   }
 
-  if(runfun){
+  if (runfun) {
     getuserdata();
   }
 
-  const encodefile = (file)=>{
-    var reader = new FileReader()
+  const encodefile = (file) => {
+    var reader = new FileReader();
 
-    if(file){
-        reader.readAsDataURL(file)
-        reader.onload = ()=>{
-            var base64 = reader.result
-            setdata({
-                image:base64,
-                userId:storagedata._id,
-            })
-            // setfilebaseurl(base64)
-        }
-    reader.onerror = (error)=>{
-        alert("something went wrong")
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        var base64 = reader.result;
+        setdata({
+          image: base64,
+          userId: storagedata._id,
+        });
+        // setfilebaseurl(base64)
+      };
+      reader.onerror = (error) => {
+        alert("something went wrong");
+      };
     }
-    }
-}
-  encodefile(selectedimage[0])
-
-
+  };
+  encodefile(selectedimage[0]);
 
   const handlesubmit = async () => {
     dispatch(postimage(data));
     setShow(false);
   };
 
-
-
-
   async function getimages() {
-const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
-    var url = data.data[0].url
-    setuserimagedata(data.data)
-})
+    const res = await axios
+      .post("/api/auth/getdata", storagedata)
+      .then((data) => {
+        var url = data.data[0].url;
+        setuserimagedata(data.data);
+      });
   }
 
-  const checkboxchange = (e)=>{
-            if(e.target.checked){
-              // console.log(e.target.value)
-             checkedimage.push(e.target.value);
-             console.log(checkedimage)
-  
-            }
-            else{
-              checkedimage.pop()
-              console.log(checkedimage)
-            }
-  }
-  
-  
-  useEffect(()=>{
-    console.log(checkedimage)
-      getimages()
-  },[image,loading,isImage,checkedimage])
+  const checkboxchange = (e) => {
+    if (e.target.checked) {
+      // console.log(e.target.value)
+      checkedimage.push(e.target.value);
+      console.log(checkedimage);
+    } else {
+      checkedimage.pop();
+      console.log(checkedimage);
+    }
+  };
 
+  useEffect(() => {
+    console.log(checkedimage);
+    getimages();
+  }, [image, loading, isImage, checkedimage]);
 
- const handleurl = ()=>{
-  setInputError("please enter the url with https")
-  setTimeout(()=>{
-    setInputError("")
-      },2200)
- }
+  const handleurl = () => {
+    setInputError("please enter the url with https");
+    setTimeout(() => {
+      setInputError("");
+    }, 2200);
+  };
 
   const sendValue = async (e) => {
-e.preventDefault()
+    e.preventDefault();
 
- if(checkedimage.length<=0){
-  setErrorMessage("please select cards")
-  setTimeout(()=>{
-setErrorMessage("")
-  },2200)
-      return
-    }
-    else if(!targetname){
-         setErrorMessage("please select a name")
-         setTimeout(()=>{
-          setErrorMessage("")
-            },2200)
-         return
+    if (checkedimage.length <= 0) {
+      setErrorMessage("please select cards");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2200);
+      return;
+    } else if (!targetname) {
+      setErrorMessage("please select a name");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2200);
+      return;
     }
 
-      setLoader(true);
-      const res = await axios.post("/api/auth/sendchal", {
-        playerone_url: checkedimage,
-        playeronetext: textvalue,
-        playeroneuserid:thisid._id, 
-        playertwouserid: clickeduser,
-        playeronename: localuser,
-        playertwoname:targetname,
-        playeronelink: linkurl,
-      });
-  
-    if(res){
-          setLoader(false);
+    setLoader(true);
+    const res = await axios.post("/api/auth/sendchal", {
+      playerone_url: checkedimage,
+      playeronetext: textvalue,
+      playeroneuserid: thisid._id,
+      playertwouserid: clickeduser,
+      playeronename: localuser,
+      playertwoname: targetname,
+      playeronelink: linkurl,
+    });
+
+    if (res) {
+      setLoader(false);
       navigate("/thankyou");
     }
     console.log(res.data);
@@ -185,7 +173,7 @@ setErrorMessage("")
     console.log(e);
     setclickeduser(e.target.name);
     settargetname(e.target.value);
-    console.log(targetname)
+    console.log(targetname);
     console.log(clickeduser);
   };
 
@@ -198,10 +186,6 @@ setErrorMessage("")
 
     setsearchfilter(result);
   };
-
-  
-
- 
 
   return (
     <div>
@@ -270,7 +254,6 @@ setErrorMessage("")
                     </ul>
 
                     <div className="tab-content" id="myTabContent">
-
                       <div
                         className="tab-pane fade"
                         id="home"
@@ -334,16 +317,18 @@ setErrorMessage("")
                           </div>
                         </div>
                       </div>
-{
-  erromessage&&<div class="popup error">
-  <div class="message">
-    <p>{erromessage}</p>
-  </div>
-  <div class="action">
-    <button onClick={()=>setErrorMessage("")}>Ok</button>
-  </div>
-</div>
-}
+                      {erromessage && (
+                        <div class="popup error">
+                          <div class="message">
+                            <p>{erromessage}</p>
+                          </div>
+                          <div class="action">
+                            <button onClick={() => setErrorMessage("")}>
+                              Ok
+                            </button>
+                          </div>
+                        </div>
+                      )}
                       <div
                         className=""
                         id="Stephen"
@@ -352,10 +337,8 @@ setErrorMessage("")
                         <div className="tab-cont">
                           <div className="row tabct-main gx-5">
                             <div className="col-md-6 tab-left">
-                              {loading? (
-                                <Loader
-                                 
-                                />
+                              {loading ? (
+                                <Loader />
                               ) : (
                                 <div className="dchallenge-rt-1">
                                   {userimagedata.map((items, index) => {
@@ -369,13 +352,13 @@ setErrorMessage("")
                                                 className="img-thumbnail"
                                               />
                                               <input
-                                              // onChange ={(e)=>setChecked(e.target.checkValidity())}
+                                                // onChange ={(e)=>setChecked(e.target.checkValidity())}
                                                 onChange={checkboxchange}
                                                 type="checkbox"
                                                 name="selimg"
-                                                value = {items.url}
+                                                value={items.url}
                                               />
-                                                <span class="caption"></span>
+                                              <span class="caption"></span>
                                             </label>
                                           </div>
                                         </div>
@@ -434,8 +417,7 @@ setErrorMessage("")
                                           >
                                             {firstname
                                               ? items.username
-                                              : targetname
-                                              }
+                                              : targetname}
                                           </button>
                                         </>
                                       );
@@ -453,17 +435,25 @@ setErrorMessage("")
                                   <span>8</span>
                                 </div>
                               </div>
-
-                              {
-inputerror&&<div style = {{position:"relative",left:"25%",top:"25%"}} className="popup error">
-<div className="message">
-<p>{inputerror}</p>
-</div>
-<div className="action">
-<button onClick={()=>setInputError("")}>Ok</button>
-</div>
-</div>
-}
+                              {inputerror && (
+                                <div
+                                  style={{
+                                    position: "relative",
+                                    left: "25%",
+                                    top: "25%",
+                                  }}
+                                  className="popup error"
+                                >
+                                  <div className="message">
+                                    <p>{inputerror}</p>
+                                  </div>
+                                  <div className="action">
+                                    <button onClick={() => setInputError("")}>
+                                      Ok
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
 
                               <form onSubmit={sendValue}>
                                 <div className="duel-form">
@@ -485,8 +475,8 @@ inputerror&&<div style = {{position:"relative",left:"25%",top:"25%"}} className=
                                 <div className="search-bar">
                                   <div className="input-group md-form form-sm form-2 pl-0">
                                     <input
-                                    type="url"
-                                    required
+                                      type="url"
+                                      required
                                       onInvalid={handleurl}
                                       className="form-control my-0 py-1 red-border"
                                       placeholder="put your twitch or youtube live link"
@@ -507,7 +497,6 @@ inputerror&&<div style = {{position:"relative",left:"25%",top:"25%"}} className=
                                     placeholder="send Challenge"
                                     className="hero-btn challenge"
                                   />
-                                 
                                 </div>
                               </form>
                             </div>
@@ -519,18 +508,18 @@ inputerror&&<div style = {{position:"relative",left:"25%",top:"25%"}} className=
                         style={{ height: "800px" }}
                         show={show}
                         onHide={handleClose}
-                        >
+                      >
                         <Modal.Header closeButton>
                           <Modal.Title>Modal heading</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                           <input
                             multiple
-                            onChange={(e)=>setselectedimage(e.target.files)}
+                            onChange={(e) => setselectedimage(e.target.files)}
                             type="file"
                             name=""
                             id=""
-                            />
+                          />
                         </Modal.Body>
                         <Modal.Footer>
                           <Button variant="primary" onClick={handlesubmit}>
@@ -538,7 +527,6 @@ inputerror&&<div style = {{position:"relative",left:"25%",top:"25%"}} className=
                           </Button>
                         </Modal.Footer>
                       </Modal>
-
                     </div>
                   </div>
                 </div>

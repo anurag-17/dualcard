@@ -10,23 +10,13 @@ const Winner = () => {
   const [aadil, setaadil] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  console.log(id);
-  console.log(index);
-
   const getwinner = async () => {
 
  const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
- console.log(res)
   setTimeout(()=>{
     setLoader(false)
   },800)
     images.push(res.data[0]);
-    console.log(images[0]);
-    const player = `player_${index}`;
-    console.log(player);
-    console.log(images);
-
-    // console.log(images[0]`.${player}`);
 
     if (index === "player_1") {
       setaadil(images[0].player_1[0].images);
@@ -40,7 +30,6 @@ const Winner = () => {
     getwinner();
   // }, [id,index]);
 
-  console.log(aadil);
 
   return (
 

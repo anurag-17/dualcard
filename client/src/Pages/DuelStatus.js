@@ -12,18 +12,18 @@ const [loading,setLoading] = useState(false)
 
 console.log(data)
 const getrecieved = async () => {
-    setLoading(true)
+    // setLoading(true)
     const res = await axios.post("/api/auth/challengestatus",{id:data._id,result:"pending"});
     setchallengedata(res.data);
 if(res){
-    setLoading(false)
+    // setLoading(false)
 }
 
   };
 
 useEffect(()=>{
 getrecieved()
-},[])
+})
 
 
   return (
