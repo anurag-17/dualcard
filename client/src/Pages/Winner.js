@@ -15,7 +15,7 @@ const Winner = () => {
 
   const getwinner = async () => {
 
-    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
+ const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
  console.log(res)
   setTimeout(()=>{
     setLoader(false)
@@ -41,7 +41,6 @@ const Winner = () => {
       images[0].player_2.map((items, i) => {
         console.log(items);
         setaadil(items.images);
-        // return items.images
       });
     }
   };
@@ -68,7 +67,6 @@ const Winner = () => {
           <div className="row won-main">
             <div className="won-grid">
               {aadil.map((item, ind) => {
-                console.log(item);
                 return (
                   <>
                     <div className="wonimg1">

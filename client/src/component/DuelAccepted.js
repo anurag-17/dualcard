@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./DuelAccepted.css";
-import Carousel from "react-bootstrap/Carousel";
 import axios from "axios"; 
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "./Loader";
+import {Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+
 
 export const DuelAccepted = () => {
   const navigate = useNavigate()
@@ -15,27 +19,21 @@ export const DuelAccepted = () => {
   const id = data._id;
 
   const getrecieved = async () => {
-    console.log(id);
-
     const newres = await axios.post("/api/auth/challengedata", {
       id:id,
       Accept:true,
       result:"pending"
     });
-    console.log(newres)
+    setchallengedata(newres.data);
+
     newres.data.map((items, index) => {
-      console.log(items);
-      console.log(items._id);
       setChallengeId(items._id);
     });
-    setchallengedata(newres.data);
-    console.log(challengedata);
 
-    
   };
-  // useEffect(() => {
+  useEffect(() => {
     getrecieved();
-  // },[]);
+  },[]);
   
   async function getimages() {
     const data = JSON.parse(localStorage.getItem("nftuser"));
@@ -58,8 +56,6 @@ if(res){
 setLoader(false)
   navigate(`/winner/${e.target.name}/player_${e.target.value}`)
 }
-console.log(e.target.name)
-console.log(e.target.value)
   }
 
   const handlelose  = (e)=>{
@@ -69,8 +65,7 @@ console.log(e.target.value)
 setLoader(false)
       navigate(`/loser/${e.target.name}/player_${e.target.value}`)
     }
-    console.log(e.target.name)
-    console.log(e.target.value)
+
   }
 
   return (
@@ -86,7 +81,6 @@ setLoader(false)
 
             <div className="row duelat-main">
               {challengedata.map((items, index) => {
-                console.log(items.player_2[0].name)
                 return (
                   <>
                   <h1 style ={{color:"white",textAlign:"center",marginTop:"80px",marginBottom:"20px"}}>Challenge{index+1}</h1>
@@ -102,7 +96,38 @@ setLoader(false)
                             </button>
                           </div>
                           <div className="dA-slider">
-                            <Carousel>
+
+  
+                          <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+
+{items.player_1[0].images.map((items, index) => {
+                                return (
+                                  <SwiperSlide>
+                                    <img
+                                      className="d-block w-100"
+                                      src={items}
+                                      alt="First slide"
+                                    />
+                                    </SwiperSlide>
+                                );
+                              })}
+       
+      </Swiper>
+
+                            {/* <Carousel>
                               {items.player_1[0].images.map((items, index) => {
                                 return (
                                   <Carousel.Item>
@@ -114,7 +139,7 @@ setLoader(false)
                                   </Carousel.Item>
                                 );
                               })}
-                            </Carousel>
+                            </Carousel> */}
                           </div>
                           <div className="select-btn">
                             <button className="hero-btn">
@@ -141,20 +166,34 @@ setLoader(false)
                             </button>
                           </div>
                           <div className="dA-slider">
-                            <Carousel>
-                              {items.player_2[0].images.map((items, index) => {
+                          <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+
+{items.player_1[0].images.map((items, index) => {
                                 return (
-                                  <Carousel.Item>
+                                  <SwiperSlide>
                                     <img
                                       className="d-block w-100"
                                       src={items}
                                       alt="First slide"
                                     />
-                                    <Carousel.Caption></Carousel.Caption>
-                                  </Carousel.Item>
+                                    </SwiperSlide>
                                 );
                               })}
-                            </Carousel>
+       
+      </Swiper>
                           </div>
                           <div className="select-btn">
                             <button className="hero-btn">
