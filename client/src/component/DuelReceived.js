@@ -11,7 +11,7 @@ import { Button, Modal } from "react-bootstrap";
 import "../Pages/tickimage.css";
 import { useAlert } from "react-alert";
 
-
+  
 
 const DuelReceived = () => {
   const alert = useAlert()

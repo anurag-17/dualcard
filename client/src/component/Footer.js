@@ -17,7 +17,7 @@ const navigate  = useNavigate()
       <div class='footer-sec'>
         <div className='container'>
           <div className='footer-logo'>
-            <img src="./Logo-Footer.png" alt="foot-logo"/>
+           < a href="/"><img src="./logofooter.svg" alt="foot-logo"/> </a>
           </div>
           <div className='foot-list'>
           <ul className="footer-menu">
@@ -44,7 +44,7 @@ const navigate  = useNavigate()
           </div>
           <hr className='hr-line'></hr>
           <div className='copylink'>
-            <p>Copyright © DuelCards 2021, All Rights Reserved</p>
+            <p>Copyright © DuelCards 2021. All Rights Reserved</p>
           </div>
         </div>
       </div>

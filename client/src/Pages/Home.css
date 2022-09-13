@@ -6,14 +6,17 @@ h2{
     line-height: 52px;
     font-family: Audiowide, Regular;
     text-transform: capitalize;
+    margin-bottom: 31px;
 }
 .section-title p {
     font-size: 14px;
     line-height: 26px;
-    color: #fff;
-    max-width: 536px;
+    color: #F9F9F9;
+    max-width: 470px;
     margin: auto;
-    
+}
+.change-win h2 {
+    margin-bottom: 29px;
 }
 
 /* card main start */
@@ -25,6 +28,7 @@ h2{
     font-family: Audiowide, Regular;
     font-size: 40px;
     line-height: 52px;
+    margin-bottom: 29px;
 }
 .card-img {
     width: 100%;
@@ -39,16 +43,19 @@ h2{
     color: #F9F9F9;
     font-size: 14px;
     line-height: 24px;
+    margin-bottom: 24px;
 }
 .hero-btn {
     font-size: 14px;
     background-color: #4B6EBC;
-    padding: 6px 24px;
+    padding: 8px 33px;
     border-radius: 25px;
     border: 1px solid #4B6EBC;
     color: #fff;
     text-transform: uppercase;
+    font-weight: 500;
     line-height: 24px;
+    transition: 0.6s;
 }
 .card-section{
     background-image: url(../images/home-img-shape.png);
@@ -57,8 +64,10 @@ h2{
     padding-top: 10rem;
     padding-bottom: 5rem;
     margin-top: -65px;
-    background-position: center;
+    background-position: top;
+    background-attachment: fixed;
 }
+
 .card-img img {
     max-width: 70%;
 }
@@ -66,14 +75,17 @@ h2{
     text-align: right;
 }
 .btn-main {
-    padding-top: 25px;
+    padding-top: 12px;
+}
+.card-cont {
+    max-width: 574px;
 }
 /* card main end */
 
 
 /* work  its work start */
 .video-section {
-    padding-top: 40px;
+    padding-top: 51px;
 }
 iframe {
     border: 0;
@@ -130,6 +142,8 @@ iframe {
     font-size: 20px;
     line-height: 24px;
     text-transform: capitalize;
+    font-weight: 300;
+    color: #FFFFFF;
 }
 .buy-img {
     padding: 15px 0px;
@@ -155,6 +169,7 @@ iframe {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 .markt-cont h2 {
     font-size: 40px;
@@ -167,6 +182,7 @@ iframe {
     color: #fff;
     line-height: 24px;
     text-transform: capitalize;
+    margin-bottom: 17px;
 }
 .mart-ct p {
     padding: 15px 0px;
@@ -175,6 +191,10 @@ iframe {
     font-size: 14px;
     color: #fff;
     line-height: 26px;
+    max-width: 444px;
+    margin-right: 0 !important;
+    margin-left: auto;
+    margin-bottom: 23px;
 }
 .mt-main {
     align-items: center;
@@ -187,7 +207,9 @@ iframe {
 .mt-main img {
     max-width: 75%;
 }
-
+.lefts-align p {
+    margin-left: 0;
+}
 
 .market-item1:nth-child(2) .mart-ct {
     text-align: right;
@@ -240,11 +262,10 @@ iframe {
     border: 1px solid #ffca28;
   }
   .search-bar {
-    max-width: 500px;
+    max-width: 414px;
     margin: auto;
-    padding-top: 20px;
+    padding-top: 39px;
 }
-
 .search-bar .form-control::placeholder {
     color: #fff!important;
     opacity: 1; 
@@ -256,7 +277,7 @@ iframe {
     display: flex;
     align-items: center;
     padding: 0.375rem 0.75rem;
-    font-size: 1rem;
+    font-size: 20px;
     font-weight: 400;
     line-height: 1.5;
     color: #fff;
@@ -268,6 +289,9 @@ iframe {
 }
 .input-group {
     padding: 6px;
+}
+.change-win p {
+    max-width: 758px;
 }
 
 /* tab start */
@@ -333,17 +357,19 @@ iframe {
 
 /* rule start */
 .rule-sec {
-    background-color:#131128;
-    padding: 75px 0px;
+    background-color: #131128;
+    padding: 93px 0px;
 }
 .rule-ct h3 {
     color: #fff;
     font-size: 16px;
     line-height: 24px;
+    margin-bottom: 22px;
 }
 .rule-ct p {
     color: #fff;
     font-size: 14px;
+    margin-bottom: 25px;
     line-height: 24px;
 }
 .rule-sec {
@@ -382,23 +408,29 @@ iframe {
     background-position: bottom;
     z-index: 99999 !important;
 }
+.rule-ct .btn-rule {
+    margin-top: 38px;
+}
+
 
  /* info start */
 
  .info-sec {
-    background-color:#131128;
-    padding: 75px 0px;
+    background-color: #131128;
+    padding-top: 75px;
 }
 .inf-ct h4 {
     font-size: 40px;
     line-height: 51px;
     color: #fff;
     font-family: Audiowide, Regular;
+    margin-bottom: 39px;
 }
 .inf-ct p {
     font-size: 14px;
-    line-height:24px;
+    line-height: 24px;
     color: #fff;
+    margin-bottom: 47px;
 }
 
 /* .info-main {
@@ -417,10 +449,11 @@ iframe {
 .rule-img3{
     background-image: url(../images/rule-bg4.png);
     background-repeat: no-repeat;
-    background-position: unset;
+    background-position: 37%;
     z-index: 99999 !important;
-    height: 300px;
+    height: 373px;
     text-align: right;
+    background-size: 46%;
 }
 .inf-ct {
     padding-right: 25px;
@@ -437,15 +470,17 @@ iframe {
     font-size: 14px;
     line-height: 24px;
   }
-
-
-
+  .auction-sec h2 {
+    margin-top: 31px;
+    margin-bottom: 10px;
+}
 
 /* responsive */
 @media only screen and (max-width:1200px) {
     iframe {
         max-width: 100%;
     }
+  
   }
 
 
@@ -514,6 +549,67 @@ iframe {
         align-items: baseline;
         flex-direction: initial;
     }
+    .card-cont {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .card-img img {
+          margin-top: 28px;
+    }
+    .lefts-align p {
+         max-width: 100%;
+        margin: 0 auto;
+    }
+    .mart-ct p {
+        max-width: 100%;
+    }
+    .mart-ct h3 {
+        margin-bottom: 0;
+        margin-top: 30px;
+    }
+    .mart-ct p {
+       margin-bottom: 0;
+    }
+    .markt-cont h2 {
+        margin-top: 34px;
+    }
+    .change-win p {
+        max-width: 80%;
+    }
+    .rule-ct {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .rule-ct {
+        padding-left: 0px !important;
+    }
+    .inf-ct h4 {
+        margin-bottom: 15px;
+    }
+    .inf-ct {
+        padding-right: 0;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .rule-img3 {
+        background-image: none !important;
+        height: 0 !important;
+    }
+    .card-cont p {
+        margin-bottom: 14px;
+    }
+    .section-title h2 {
+        margin-bottom: 15px;
+    }
+    .btn-tb2 {
+       padding-top: 0;
+    }
+    .rule-ct p {
+       margin-bottom: 13px;
+    }
+
+
+
 }
 
 @media only screen and (max-width:778px) {
@@ -715,9 +811,7 @@ iframe {
     max-width: 100%;
     height: 350px;
 }
-.mart-ct p {
-    padding: 0px;
-}
+
 
 .rule-img2 {
     background-repeat: no-repeat;
@@ -787,6 +881,40 @@ iframe {
     }
     .market-item1:nth-child(2) .markt-img img {
         width: 74%;
-        height: 400px;
+        height: auto;
+    }
+    .card-cont {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+    .markt-cont h2 {
+        font-size: 25px;
+        line-height: 35px;
+    }
+    .mt-main img {
+        height: auto;
+    }
+    .card-cont h2 {
+        font-size: 30px;
+        line-height: 36px;
+    }
+    .video-section {
+        padding-top: 20px;
+    }
+    .inf-ct h4 {
+        font-size: 25px;
+        line-height: 34px;
+    }
+    .rule-img img {
+        height: auto;
+    }
+    .foot-list {
+        padding-bottom: 0;
+    }
+    .inf-ct {
+        padding-top: 45px;
+    }
+    .rule-ct {
+        max-width: 90%;
     }
 }

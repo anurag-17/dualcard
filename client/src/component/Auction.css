@@ -32,6 +32,7 @@
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    transition: ease-in-out 0.5s;
 }
 .auction-img1 img:hover {
     transform: scale(.9);

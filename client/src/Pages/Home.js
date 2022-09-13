@@ -73,7 +73,7 @@ const Home = () => {
                   play, win and sell your cards!</p>
                  <div className='btn-main'>
                   <Link to = "/contact-us">
-                 <button className='hero-btn'>Contact</button>
+                 <button className='hero-btn btncl'>Contact us</button>
                   </Link>
                  </div>
               </div>
@@ -142,7 +142,7 @@ const Home = () => {
           
             <div className='btn-buy'>
               <Link to = "/BuyDuelCard">
-                 <button className='hero-btn'>Buy Now</button>
+                 <button className='hero-btn '>Buy Now</button>
               </Link>
             </div>
           </div>
@@ -150,20 +150,20 @@ const Home = () => {
         <div className='marketpl-sec'>
           <div className='container'>
             <div className='row'>
-              <div className='col-lg-4 col-md-4'>
+              <div className='col-lg-3 col-md-4'>
                 <div className='markt-img'>
-                <img src="./marketplace.png" alt="img"/>
+                <img src="./marketplace.png2" alt="img"/>
                 </div>
               </div>
-              <div className='col-lg-8 col-md-8'>
+              <div className='col-lg-7 col-md-8'>
                 <div className='markt-cont'>
                   <h2>NFT Marketplace</h2>
                   <div className='row mt-main'>
-                    <div className='col-md-4 mart-img2'>
+                    <div className='col-md-5 mart-img2'>
                       <img src="./marketplac2.png" alt="img"/>
                     </div>
-                    <div className='col-md-8' >
-                      <div className='mart-ct'>
+                    <div className='col-md-7' >
+                      <div className='mart-ct lefts-align'>
                       <h3>Auction Your Card</h3>
                       <p>Sell your L2 Duelcards on auction and keep the profits.</p>
                       <div className='btn-market'>
@@ -180,10 +180,10 @@ const Home = () => {
           </div>
           <div className='container market-item1'>
             <div className='row'>              
-              <div className='col-lg-8 col-md-8'>
+              <div className='col-lg-9 col-md-8'>
                 <div className='markt-cont'>                 
                   <div className='row mt-main'>                   
-                    <div className='col-md-8' >
+                    <div className='col-md-6' >
                       <div className='mart-ct'>
                       <h3>Leaderboards</h3>
                       <p>Know who is leading and atop the chart with the most NFT Duelcards in possession.</p>
@@ -194,13 +194,13 @@ const Home = () => {
                       </div>
                       </div>
                     </div>
-                    <div className='col-md-4 mart-img2'>
+                    <div className='col-md-5 mart-img2'>
                       <img src="./marketplace4.png" alt="img"/>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='col-lg-4 col-md-4'>
+              <div className='col-lg-3 col-md-4'>
                 <div className='markt-img'>
                 <img src="./marketplace3.png" alt="img"/>
                 </div>
@@ -210,7 +210,7 @@ const Home = () => {
         </div>
         <div className='Challenge-sec'>
          <div className='container'>
-         <div className='section-title'>
+         <div className='section-title change-win'>
               <h2>Challenge to Win</h2>
               <p>Challenge your favorite Twitch streamer with your L1 Duelcard for their uniquely designed and rare L2 Duelcard. You stand a chance to win 1 out of 5 of your favorite streamer’s rare, unique, and special L2 cards. Sell your newly won L2 Duelcards on auction and get
                  to keep the profits.</p>

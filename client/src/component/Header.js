@@ -12,16 +12,28 @@ import tabicon from "../images/tabicon-14.png"
 const Header = () => {
 // const [show,setShow] = useState(false)
 const navigate  = useNavigate()
+const [colorChange, setColorchange] = useState(false);
 const data = JSON.parse(localStorage.getItem("nftuser"))
 console.log(data)
+
+
+const changeNavbarColor = () =>{
+  if(window.scrollY >= 80){
+    setColorchange(true);
+  }
+  else{
+    setColorchange(false);
+  }
+};
+     window.addEventListener('scroll', changeNavbarColor);
+
 
 const logoutuser = () => {
   localStorage.removeItem("nftuser");
   navigate("/register");
 };
 
-  return (
-    <div>
+  return (   <div className={colorChange ? 'navbar colorChange' : 'navbar'}>
         <div className='container-fluid topheader desktop-nav fixed-top'>
         <div className='container'>
          <nav className="navbar navbar-expand-lg navbar-light">
@@ -112,7 +124,7 @@ const logoutuser = () => {
                     </div>
                     :
                     <Link to="/register">
-                    <button className="btn btn-outline head-btn" type="submit">SignIn </button>
+                    <button className="btn btncl btn-outline head-btn" type="submit">Sign In </button>
                     </Link> 
                   }         
                 </form>
@@ -159,7 +171,7 @@ const logoutuser = () => {
                     </>
                     :
                     <Link to="/register">
-                    <button className="btn btn-outline head-btn" type="submit">SignIn btn</button>
+                    <button className="btn btn-outline head-btn" type="submit">Sign In</button>
                     </Link>
 
                   }                    
@@ -171,8 +183,9 @@ const logoutuser = () => {
         ))}
         </div>
     </div>
-    
-  )
-}
 
-export default Header ;
+
+  )
+
+}
+export default Header
