@@ -39,7 +39,7 @@ const DuelSomeone = () => {
  const [checked,setChecked] = useState()
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
-  const [inputerror,setInputError]  = useState("plese enter error")
+  const [inputerror,setInputError]  = useState("")
 
 
  
