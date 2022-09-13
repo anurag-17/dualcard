@@ -40,7 +40,8 @@ const DuelSomeone = () => {
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
   const [inputerror,setInputError]  = useState("")
-// let checked = false
+
+
  
 
   setTimeout(()=>{
@@ -137,24 +138,18 @@ const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
   },[image,loading,isImage,checkedimage])
 
 
-  const linkvalidurl =(e)=>{
-    let regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/
+ const checkvalidurl = (url)=>{
+var regex = new RegExp(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi);
+if(!url.match(regex)){
+  setErrorMessage("please enter the url  with https")
+  return 
+}
 
-     if(!regexp.test(e.target.value)){
-      setErrorMessage("please enter a url with https")
-      setTimeout(()=>{
-        setErrorMessage("")
-          },2000)
-    }else{
-
-      setlinkurl(e.target.value)
-    }
-    
-  }
+ }
 
   const sendValue = async (e) => {
-
 e.preventDefault()
+
  if(checkedimage.length<=0){
   setErrorMessage("please select cards")
   setTimeout(()=>{
@@ -169,10 +164,6 @@ setErrorMessage("")
             },2200)
          return
     }
-
-
-  
-
 
       setLoader(true);
       const res = await axios.post("/api/auth/sendchal", {
@@ -498,11 +489,10 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                                     <input
                                     type="url"
                                       required
+                                      onInvalid={e=>e.target.setCustomValidity("please enter the url with http/https")}
                                       class="form-control my-0 py-1 red-border"
                                       placeholder="put your twitch or youtube live link"
                                       aria-label="Search"
-                                      onChange={linkvalidurl
-                                      }
                                     />
 
                                     <div class="input-group-append"></div>

@@ -54,9 +54,7 @@ setLoader(false)
 setLoader(false)
       navigate(`/loser/${e.target.name}/player_${e.target.value}`)
     }
-
   }
-
   return (
     <div>
      
