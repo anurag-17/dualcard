@@ -39,7 +39,7 @@ const DuelSomeone = () => {
  const [checked,setChecked] = useState()
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage,setErrorMessage] = useState("")
-  const [inputerror,setInputError]  = useState("")
+  const [inputerror,setInputError]  = useState("plese enter error")
 
 
  
@@ -138,13 +138,11 @@ const res = await axios.post("/api/auth/getdata",storagedata).then((data)=>{
   },[image,loading,isImage,checkedimage])
 
 
- const checkvalidurl = (url)=>{
-var regex = new RegExp(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi);
-if(!url.match(regex)){
-  setErrorMessage("please enter the url  with https")
-  return 
-}
-
+ const handleurl = ()=>{
+  setInputError("please enter the url with https")
+  setTimeout(()=>{
+    setInputError("")
+      },2200)
  }
 
   const sendValue = async (e) => {
@@ -457,7 +455,7 @@ setErrorMessage("")
                               </div>
 
                               {
-inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="popup error">
+inputerror&&<div style = {{position:"relative",left:"25%",top:"25%"}} className="popup error">
 <div className="message">
 <p>{inputerror}</p>
 </div>
@@ -485,12 +483,12 @@ inputerror&&<div style = {{position:"relative",left:"55%",top:"%"}} className="p
                                 </div>
 
                                 <div className="search-bar">
-                                  <div class="input-group md-form form-sm form-2 pl-0">
+                                  <div className="input-group md-form form-sm form-2 pl-0">
                                     <input
                                     type="url"
-                                      required
-                                      onInvalid={e=>e.target.setCustomValidity("please enter the url with http/https")}
-                                      class="form-control my-0 py-1 red-border"
+                                    required
+                                      onInvalid={handleurl}
+                                      className="form-control my-0 py-1 red-border"
                                       placeholder="put your twitch or youtube live link"
                                       aria-label="Search"
                                     />

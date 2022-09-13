@@ -233,14 +233,6 @@ async(req,res,next)=>{
 }
 
 )
-exports.challenge_2_status = catchAsyncError(
-
-async(req,res,next)=>{
-  const status = await Challenge.find({player_1_id:req.body.id,result:req.body.result})
-  return res.json(status)
-}
-
-)
 
 exports.getwinner  = catchAsyncError(
   async(req,res,next)=>{

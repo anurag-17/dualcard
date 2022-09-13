@@ -263,7 +263,6 @@
   }
   .popup.error .action {
     height: 3rem;
-    line-height: 3rem;
     width: 100%;
     position: relative;
   }
@@ -271,11 +270,11 @@
     position: absolute;
     right: 1rem;
     bottom: 1.3rem;
-    height: 42px;
+    height: 35px;
     border:1px solid white;
     outline: none;
     background-color: #282254;
-    width: 5rem;
+    width: 4.5rem;
     /* height: 30px; */
     justify-content: center;
     color: #fafafa;
@@ -283,7 +282,6 @@
     transition: background-color 0.2s ease-in-out;
     border-radius: 0.25rem;
     text-align: center;
-    padding-bottom: 5px;
   }
   .popup.error .action button:active {
     background-color: #282254;
