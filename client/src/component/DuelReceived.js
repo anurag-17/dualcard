@@ -58,16 +58,10 @@ const navigate = useNavigate()
     const handleShow = () => setShow(true);
 
   const getrecieved = async () => {
-    console.log(id);
     const res = await axios.post("/api/auth/recievedchallenge",{id:id,Accept:"pending",decline:false,result:"pending"});
     res.data.map((items,index)=>{
       setChallengerId(items._id)
-      console.log(items._id)
-      console.log(items.player_2[0].name)
       setplayertwoname(items.player_2[0].name)
-       
-      // challengeid.push(items._id)
-
     })
     setchallengedata(res.data);
   };
@@ -127,11 +121,10 @@ const navigate = useNavigate()
   }
 
   const DeclineChallenge = async()=>{
-  console.log(challengerid)
-    setLoading(true)
+    setLoader(true)
     const res = await axios.put("/api/auth/declinechallenge",{challengerid:challengerid})
     if(res){
-      window.location.reload()
+      // window.location.reload()
       setLoader(false)
     }
      
@@ -165,9 +158,8 @@ const navigate = useNavigate()
 
   
   useEffect(() => {
+    postImageUrl()
     getrecieved();
-   postImageUrl()
-
   }, [loader,acceptchallenge]);
 
 

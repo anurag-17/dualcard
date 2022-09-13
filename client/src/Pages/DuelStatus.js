@@ -45,7 +45,7 @@ getrecieved()
                                     <th>challenger</th>
                                     <th>Reciever</th>
                                     <th>Status</th>
-                                    <th>go to challenge</th>
+                                    <th>Go to challenge</th>
                                 </tr>
                                 </thead>
                 {

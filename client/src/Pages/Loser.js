@@ -11,43 +11,26 @@ export const Loser = () => {
   const [images, setImages] = useState([]);
   const [aadil, setaadil] = useState([]);
   const [loader, setLoader] = useState(true);
-  console.log(id);
-  console.log(index);
+
 
   const getwinner = async () => {
     const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
     setTimeout(()=>{
       setLoader(false)
     },800)
-    console.log(res.data)
     images.push(res.data[0]);
-    console.log(images[0]);
-    const player = `player_${index}`;
-    console.log(player);
-
-    console.log(images);
-
-    // console.log(images[0]`.${player}`);
 
     if (index === "player_1") {
-      images[0].player_1.map((items, i) => {
-        console.log(items);
-        setaadil(items.images);
-        return items.images
-      });
-    }
-    if (index === "player_2") {
-      images[0].player_2.map((items, i) => {
-        console.log(items);
-        setaadil(items.images);
-        return items.images
-      });
-    }
+      setaadil(images[0].player_1[0].images);
+  }
+  if (index === "player_2") {
+      setaadil(images[0].player_2[0].images);
+  }
   };
 
-  useEffect(() => {
+  // useEffect(() => {
     getwinner();
-  },[]);
+  // },[]);
 
 
 
@@ -73,7 +56,7 @@ export const Loser = () => {
                 return (
                   <div className="wonimg1">
                     <FontAwesomeIcon style = {{zIndex:"100",fontWeight:"600",height:"100px",color:"red",position:"relative",top:"325px"}} icon={faTimes} />
-                    <img   src={items} alt="img" />
+                    <img src={items} alt="img" />
                   </div>
                 );
               })}
