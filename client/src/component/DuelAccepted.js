@@ -47,7 +47,7 @@ export const DuelAccepted = () => {
  
   setTimeout(() => {
     setLoader(false);
-  },500);
+  },800);
 
   const handlewin= (e)=>{
     setLoader(true)
@@ -181,7 +181,7 @@ setLoader(false)
         className="mySwiper"
       >
 
-{items.player_1[0].images.map((items, index) => {
+{items.player_2[0].images.map((items, index) => {
                                 return (
                                   <SwiperSlide>
                                     <img
