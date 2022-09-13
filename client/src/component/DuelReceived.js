@@ -68,7 +68,7 @@ const navigate = useNavigate()
 
   const encodefile = (file)=>{
     var reader = new FileReader()
-
+    
     if(file){
         reader.readAsDataURL(file)
         reader.onload = ()=>{
@@ -92,11 +92,9 @@ const navigate = useNavigate()
     if(e.target.checked){
       // console.log(e.target.value)
      checkedimage.push(e.target.value);
-     console.log(checkedimage)
     }
     else{
       checkedimage.pop()
-      console.log(checkedimage)
     }
 }
 
@@ -110,8 +108,6 @@ const navigate = useNavigate()
         }
         let acceptindex = index
         acceptchallenge = true
-        console.log(acceptchallenge)
-        console.log(challengeid)
       setLoading(true)
     const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false,playertwo_url:checkedimage,name:playertwoname})
     if(res){
@@ -143,13 +139,10 @@ const navigate = useNavigate()
         userId,
         image
       });
-      console.log(data);
     }
   }
 
   async function getimages() {
-    const data = JSON.parse(localStorage.getItem("nftuser"));
-
     const res = await axios.post("/api/auth/getdata",storagedata).then((data) => {
       setuserimagedata(data.data);
     });

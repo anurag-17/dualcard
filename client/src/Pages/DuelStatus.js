@@ -42,7 +42,7 @@ getrecieved()
                 <table className='table table-bordered'>
                             <thead>
                                 <tr>
-                                    <th>challenger</th>
+                                    <th>Challenger</th>
                                     <th>Reciever</th>
                                     <th>Status</th>
                                     <th>Go to challenge</th>
@@ -58,10 +58,9 @@ getrecieved()
                                 <td>{items.player_2[0].name}</td>
                                 
                                 {items.Accept==="true"?<td>Accepted</td>: items.Accept ==="decline"? <td>Declined</td>:<td>Pending</td>}
-                                
                                 {
                                 items.Accept==="true"?<td>
-                                    <Link to="/DuelAccepted"><button className='table-hero-btn'>go to challenge</button></Link></td>:""
+                                    <Link to="/DuelAccepted"><button className='table-hero-btn'>Go To Challenge</button></Link></td>:""
                                 }
                                 </tr>
                             </tbody>
