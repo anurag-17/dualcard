@@ -88,12 +88,11 @@ setLoader(false)
                       <div className="dA-left">
                         <div className="dA-profile">
                           <div class="clearfix">
-                            <img src="/tabicon8.png" alt="img" />
                             <button type="button" class="btn float-end">
+                            <img style={{marginRight:"8px"}} src="/tabicon8.png" alt="img" />
                               {items.player_1[0].name}
-                             <span style ={{color:"white",textAlign:"right",marginLeft:"40px",marginBottom:"20px"}}>Challenger</span>
-
                             </button>
+                            <span style ={{color:"white",marginRight:"10px"}}>Challenger</span>
                           </div>
                           <div className="dA-slider">
 
@@ -142,9 +141,9 @@ setLoader(false)
                             </Carousel> */}
                           </div>
                           <div className="select-btn">
-                            <button className="hero-btn">
+                            <button className="hero-btn" style={{zIndex:1}}>
                               {" "}
-                              <span>{items.player_1[0].images.length}</span>
+                              <span >{items.player_1[0].images.length}</span>
                               selected
                             </button>
                           </div>
@@ -158,12 +157,12 @@ setLoader(false)
                     <div className="col-md-5 col-sm-5">
                       <div className="dA-left">
                         <div className="dA-profile">
-                          <div class="clearfix">
-                            <img src="/tabicon-6.png" alt="img" />
+                        <div class="clearfix">
                             <button type="button" class="btn float-end">
+                            <img style={{marginRight:"8px"}} src="/tabicon9.png" alt="img" />
                               {items.player_2[0].name}
-                             <span style ={{color:"white",textAlign:"right"}}>Reciever</span>
                             </button>
+                            <span style ={{color:"white",marginRight:"10px"}}>Reciever</span>
                           </div>
                           <div className="dA-slider">
                           <Swiper
@@ -196,9 +195,9 @@ setLoader(false)
       </Swiper>
                           </div>
                           <div className="select-btn">
-                            <button className="hero-btn">
+                            <button style = {{zIndex: 1}} className="hero-btn">
                               {" "}
-                              <span>{items.player_2[0].images.length}</span>selected
+                              <span >{items.player_2[0].images.length}</span>selected
                             </button>
                           </div>
                           <div className="btn-duel-right winner-btn">
