@@ -15,17 +15,18 @@ export const Loser = () => {
 
   const getwinner = async () => {
     const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
-    setTimeout(()=>{
+    if(res){
+      images.push(res.data[0]);
       setLoader(false)
-    },800)
-    images.push(res.data[0]);
-
+    }
     if (index === "player_1") {
       setaadil(images[0].player_1[0].images);
   }
   if (index === "player_2") {
       setaadil(images[0].player_2[0].images);
   }
+
+
   };
 
   // useEffect(() => {

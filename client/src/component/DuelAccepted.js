@@ -83,7 +83,6 @@ setLoader(false)
                           </div>
                           <div className="dA-slider">
 
-  
                           <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -113,19 +112,7 @@ setLoader(false)
        
       </Swiper>
 
-                            {/* <Carousel>
-                              {items.player_1[0].images.map((items, index) => {
-                                return (
-                                  <Carousel.Item>
-                                    <img
-                                      className="d-block w-100"
-                                      src={items}
-                                      alt="First slide"
-                                    />
-                                  </Carousel.Item>
-                                );
-                              })}
-                            </Carousel> */}
+                          
                           </div>
                           <div className="select-btn">
                             <button className="hero-btn" style={{zIndex:1}}>

@@ -25,14 +25,10 @@ const DuelReceived = () => {
   const [selectedimage,setselectedimage] = useState([]);
   const [playertwoname,setplayertwoname] = useState("")
   const [challengedata, setchallengedata] = useState([]);
-const [challengeid,setChallengeId] = useState("")
 const [loader,setLoader] = useState(true)
-const [filedata, setFiledata] = useState("");
-const [userid,setUserId] = useState("")
 const [show,setShow] = useState(false)
 const [userimagedata, setuserimagedata] = useState([]);
 const [loading,setLoading] = useState(false)
-let ischecked = "";
 const [checkedimage, setcheckedimage] = useState([]);
 const [errromessage,setErrorMessage] = useState("")
 const [challengerid,setChallengerId]  = useState("")
@@ -68,7 +64,7 @@ const navigate = useNavigate()
 
   const encodefile = (file)=>{
     var reader = new FileReader()
-    
+
     if(file){
         reader.readAsDataURL(file)
         reader.onload = ()=>{
@@ -90,7 +86,6 @@ const navigate = useNavigate()
 
   const checkboxchange = (e)=>{
     if(e.target.checked){
-      // console.log(e.target.value)
      checkedimage.push(e.target.value);
     }
     else{
@@ -149,7 +144,6 @@ const navigate = useNavigate()
   }
   getimages();
 
-  
   useEffect(() => {
     postImageUrl()
     getrecieved();
@@ -250,7 +244,6 @@ return(
                     loading?<Loader/>:  <div className="dule-rt-1">
                     {
                      userimagedata.map((items,index)=>{
-                      const src = items.url.slice(8)
                        return(
 
                          <div class="grid-two imageandtext">
@@ -261,7 +254,6 @@ return(
                                                 className="img-thumbnail"
                                               />
                                               <input
-                                              // onChange ={(e)=>setChecked(e.target.checkValidity())}
                                                 onChange={checkboxchange}
                                                 type="checkbox"
                                                 name="selimg"
