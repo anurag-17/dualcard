@@ -491,6 +491,9 @@ inputerror&&<div style = {{position:"relative",left:"25%",top:"25%"}} className=
                                       className="form-control my-0 py-1 red-border"
                                       placeholder="put your twitch or youtube live link"
                                       aria-label="Search"
+                                      onChange={(e) =>
+                                        setlinkurl(e.target.value)
+                                      }
                                     />
 
                                     <div class="input-group-append"></div>
