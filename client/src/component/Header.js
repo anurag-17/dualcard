@@ -59,7 +59,7 @@ const logoutuser = () => {
                         </Link>
                         <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                          <a href="/DuelSomeone" className="dropdown-item">Duel Someone</a>
+                          <Link to="/DuelSomeone" className="dropdown-item">Duel Someone</Link>
                           </li> 
                           <li>
                             <Link to="/DuelReceived" className="dropdown-item">Duel Received</Link>

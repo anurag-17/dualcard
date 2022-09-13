@@ -39,7 +39,7 @@ function App() {
         <Route path = "/BuyDuelCard" element = {<BuyDuelCard/>}/>
         <Route path = "/winner/:id/:index" element = {<Winner/>}/>
         <Route path = "/loser/:id/:index" element = {<Loser/>}/>
-        <Route path = "/DuelSomeone" element = {<DuelSomeone/>}/>
+        <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelSomeone/></ProtectedRoute>}/>
         <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/AboutRules" element = {<AboutRules/>}/>
         <Route path = "/Marketplace" element = {<Marketplace/>}/>
@@ -52,7 +52,7 @@ function App() {
         <Route path = "/shop-universal" element = {<ShopUniversal/>}/>
         <Route path = "/shop-seasonal" element = {<ShopSeasonal/>}/>
         <Route path = "/contact-us" element = {<Contactus/>}/>
-        <Route path = "/duelstatus" element = {<DuelStatus/>}/>
+        <Route path = "/duelstatus" element = {<ProtectedRoute><DuelStatus/></ProtectedRoute>}/>
         <Route path = "/pathtolevel" element = {<Pathtolevel/>}/>
         <Route path = "/duelsystem" element = {<Duelsystem/>}/>
       </Routes>

@@ -69,8 +69,9 @@ setLoader(false)
             <div className="row duelat-main">
               {challengedata.map((items, index) => {
                 return (
-                  <>
+                  <React.Fragment key={items._id }>
                   <h1 style ={{color:"white",textAlign:"center",marginTop:"80px",marginBottom:"20px"}}>Challenge{index+1}</h1>
+                  
                     <div className="col-md-5 col-sm-5">
                       <div className="dA-left">
                         <div className="dA-profile">
@@ -197,7 +198,7 @@ setLoader(false)
                       </>
                       ) : ("")}
                       </div>
-                  </>
+                  </React.Fragment>
                       );
                     })}
             </div>

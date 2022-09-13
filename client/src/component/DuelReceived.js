@@ -106,8 +106,8 @@ const navigate = useNavigate()
       setLoading(true)
     const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false,playertwo_url:checkedimage,name:playertwoname})
     if(res){
-      setLoader(false)
       navigate("/DuelAccepted")
+      setLoader(false)
 }
   }
 
@@ -174,8 +174,7 @@ const navigate = useNavigate()
                                     
                   return(
                       
-                      <>
-                      
+                      <div key={index}>                   
             <div className="col-md-4 col-sm-12 duel-left">
               <div className="duel-lef-slide">
                       <div className="duel-sldier">
@@ -360,7 +359,7 @@ errromessage&&<div style = {{position:"relative",left:"35%",bottom:"50%"}} class
                           </Button>
                         </Modal.Footer>
                       </Modal>
-</>
+</div>
                 )
             })
         }
