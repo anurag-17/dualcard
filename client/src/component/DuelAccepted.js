@@ -14,7 +14,6 @@ export const DuelAccepted = () => {
   const [challengedata, setchallengedata] = useState([]);
   const [challengeid, setChallengeId] = useState("");
   const [loader, setLoader] = useState(true);
-  const [userimagedata, setuserimagedata] = useState([]);
   const data = JSON.parse(localStorage.getItem("nftuser"));
   const id = data._id;
 
@@ -24,6 +23,9 @@ export const DuelAccepted = () => {
       Accept:true,
       result:"pending"
     });
+    if(newres){
+      setLoader(false)
+    }
     setchallengedata(newres.data);
 
     newres.data.map((items, index) => {
@@ -34,20 +36,7 @@ export const DuelAccepted = () => {
   useEffect(() => {
     getrecieved();
   },[]);
-  
-  async function getimages() {
-    const data = JSON.parse(localStorage.getItem("nftuser"));
 
-    const res = await axios.post("/api/auth/getdata", data).then((data)=>{
-      setuserimagedata(data.data);
-    });
-  }
-  getimages();
-
- 
-  setTimeout(() => {
-    setLoader(false);
-  },800);
 
   const handlewin= (e)=>{
     setLoader(true)
@@ -70,15 +59,15 @@ setLoader(false)
 
   return (
     <div>
-      {loader ? (
-        <Loader />
-      ) : (
+     
         <div className="duelacept-sec">
           <div className="container">
             <div className="section-title">
               <h2 className="body-main">Duel Accepted</h2>
             </div>
-
+            {loader ? (
+        <Loader />
+      ) : (
             <div className="row duelat-main">
               {challengedata.map((items, index) => {
                 return (
@@ -227,10 +216,10 @@ setLoader(false)
                       );
                     })}
             </div>
+            )}
             
           </div>
         </div>
-      )}
     </div>
   );
 };
