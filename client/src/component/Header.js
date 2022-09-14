@@ -89,7 +89,7 @@ const logoutuser = () => {
                         </Link>
                         <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>
-                          <Link to="Pathtolevel" className="dropdown-item">Path To Level</Link>
+                          <Link to="Pathtolevel" className="dropdown-item">Path To Level 4</Link>
                           </li> 
                           <li>
                             <Link to="Duelsystem" className="dropdown-item">Duel System</Link>
