@@ -12,11 +12,12 @@ import centerleft from "../images/centerleft.svg";
 
 import backgroundlines from "../images/line-back.svg";
 
+
+
 import Cardflip from './Cardflip';
-import { Link,  useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Duelsystem = () => {
-  const navigate = useNavigate()
   return (
     <div className='body-main'>
       <div className='duel-syestem-sec'>
@@ -37,6 +38,7 @@ const Duelsystem = () => {
                   <p>Maltiple Duelcard Nft's Can Be Wagered On A Duel As Long As The Minimum Challenge Requirements Have Been Met. Streamers Will Most Likely Request That A Minimum Number Of L1 Nft's Is Needed To Challenge.</p>
            
             <div className='background-pc'> 
+            <a href='/AboutRules'> </a>
               <img src={backgroundlines}/>
               </div>
 
@@ -71,14 +73,14 @@ const Duelsystem = () => {
               </div>
               <div className='sele-main container-fluid'>
               <div className='winnweaccout1'>
-
-                  <div onClick = {()=>navigate("/AboutRules")} className='winneritem1'>
+                  <div className='winneritem1'>
+                  <a href='/AboutRules'>
                     <div className='winnwect'>
                       <h3>Handshake Agreement On Duelcards.Io</h3>
                       <p>Challenger A Accepts Challenger B’s Duel Offer</p>
                       <span> (Hyperlink To Challenge Rules)</span>
-                
                     </div>
+                    </a>
                   </div>
 
                   <div className='winneritem1'>

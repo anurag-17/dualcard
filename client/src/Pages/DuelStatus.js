@@ -13,17 +13,15 @@ const [loading,setLoading] = useState(false)
 console.log(data)
 const getrecieved = async () => {
     // setLoading(true)
-    const res = await axios.post("/api/auth/challengestatus",{id:data._id,result:"pending"});
+    const res = await axios.post("/api/auth/challengestatus",{id:data._id});
     setchallengedata(res.data);
 if(res){
     // setLoading(false)
 }
-
   };
-
 useEffect(()=>{
 getrecieved()
-})
+},[])
 
 
   return (
@@ -33,7 +31,6 @@ getrecieved()
             <div className='container'>
 {
  loading?<Loader style = {{height:"100px"}}/>:<>
-    
             <div className='user-title'>
                 <h1>{data.username}</h1> 
             </div>   
@@ -46,10 +43,12 @@ getrecieved()
                                     <th>Reciever</th>
                                     <th>Status</th>
                                     <th>Go to challenge</th>
+                                    <th>Result</th>
                                 </tr>
                                 </thead>
                 {
                     challengedata.map((items,index)=>{
+                        console.log(challengedata)
                         return(
                         <>
                             <tbody>
@@ -57,11 +56,12 @@ getrecieved()
                                 <td>{items.player_1[0].name}</td>
                                 <td>{items.player_2[0].name}</td>
                                 
-                                {items.Accept==="true"?<td>Accepted</td>: items.Accept ==="decline"? <td>Declined</td>:<td>Pending</td>}
+                                {items.Accept==="true"&&items.result==="pending"?<td>Accepted</td>:items.Accept ==="decline"?<td>Declined</td>:items.Accept==="pending"?<td>Pending</td>:<td>Declared</td>}
                                 {
-                                items.Accept==="true"?<td>
-                                    <Link to="/DuelAccepted"><button className='table-hero-btn'>Go To Challenge</button></Link></td>:""
-                                }
+                                items.Accept==="true"&&items.result==="pending"?<td>
+                                  <Link to="/DuelAccepted"><button className='table-hero-btn'>Go To Challenge</button></Link></td>:<td><button className='table-hero-btn'>Go To Challenge</button></td>
+                                }  
+                                 <td>{items.winner===data.username?<span style = {{color:"green"}}>You Won</span>:<span style={{color:"red"}}>You Lost</span>}</td>
                                 </tr>
                             </tbody>
                         </>

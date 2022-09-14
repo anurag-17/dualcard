@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./DuelAccepted.css";
 import axios from "axios"; 
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { Loader } from "./Loader";
 import {Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper";
@@ -40,7 +40,7 @@ export const DuelAccepted = () => {
 
   const handlewin= (e)=>{
     setLoader(true)
-    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared"})
+    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared",winner:data.username})
 if(res){
 setLoader(false)
   navigate(`/winner/${e.target.name}/player_${e.target.value}`)

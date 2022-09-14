@@ -113,10 +113,10 @@ const Pathtolevel = () => {
                  </div>
               <div className='most-list'>
               <ul className='most-lisrt'>
-                <li>Lvl 4 Cards Will Be Minted And Transferred To The Wallet/Account Based On These Categories</li>
-                <li>Most Duels Accepted</li>
-                <li> Most Duels Won</li>
-                <li>Most Cards Collected</li>
+                <li className='list-hide'>* Lvl 4 Cards Will Be Minted And Transferred To The Wallet/Account Based On These Categories</li>
+                <li><span>●</span> Most Duels Accepted</li>
+                <li> <span>●</span> Most Duels Won</li>
+                <li> <span>●</span> Most Cards Collected</li>
               </ul>
               </div>
              

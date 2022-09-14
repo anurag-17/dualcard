@@ -96,12 +96,6 @@ ul.most-lisrt {
     padding: 20px 0px;
 }
 
-ul.most-lisrt li:before {
-    content: url('../images/dot-icn.png');
-    height: 30px;
-    width: 22px;
-    background-repeat: no-repeat;
-}
 ul.most-lisrt li {
     padding-left: 11px;
 }
@@ -143,11 +137,18 @@ ul.most-lisrt li {
     left: 50%;
     transform: translate(-45%, -27%);
     width: 400px;
-}
+}   
 .level-sec {
     padding-top: 30px;
 }
-
+ul.most-lisrt li span {
+    margin-right: 3px;
+    font-size: 19px;
+}
+.table-main tbody {
+    box-shadow: 0 0 0 1px #3c2485;
+    border-radius: 28px;
+}
 /* pathlevel table end */
 
 

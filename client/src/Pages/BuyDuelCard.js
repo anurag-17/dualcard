@@ -24,7 +24,7 @@ const BuyDuelCard = () => {
                 </div>
                 <div className='name-form'>
                 <Form.Group className="">
-                   <Form.Control placeholder="Albert"  />
+                   <Form.Control placeholder="Name"  />
                    </Form.Group>
                 </div>
                 <div className='btn-duel-right'>
@@ -45,7 +45,7 @@ const BuyDuelCard = () => {
                 </div>
                 <div className='name-form'>
                 <Form.Group className="">
-                   <Form.Control placeholder="Albert"  />
+                   <Form.Control placeholder="Name"  />
                    </Form.Group>
                 </div>
                 <div className='btn-duel-right'>
@@ -66,7 +66,7 @@ const BuyDuelCard = () => {
                 </div>
                 <div className='name-form'>
                 <Form.Group className="">
-                   <Form.Control placeholder="Albert"  />
+                   <Form.Control placeholder="Name"  />
                    </Form.Group>
                 </div>
                 <div className='btn-duel-right'>
@@ -87,7 +87,7 @@ const BuyDuelCard = () => {
                 </div>
                 <div className='name-form'>
                 <Form.Group className="">
-                   <Form.Control placeholder="Albert"  />
+                   <Form.Control placeholder="Name"  />
                    </Form.Group>
                 </div>
                 <div className='btn-duel-right'>
@@ -108,7 +108,7 @@ const BuyDuelCard = () => {
                 </div>
                 <div className='name-form'>
                 <Form.Group className="">
-                   <Form.Control placeholder="Albert"  />
+                   <Form.Control placeholder="Name"  />
                    </Form.Group>
                 </div>
                 <div className='btn-duel-right'>
@@ -129,7 +129,7 @@ const BuyDuelCard = () => {
                 </div>
                 <div className='name-form'>
                 <Form.Group className="">
-                   <Form.Control placeholder="Albert"  />
+                   <Form.Control placeholder="Name"  />
                    </Form.Group>
                 </div>
                 <div className='btn-duel-right'>

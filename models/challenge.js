@@ -9,17 +9,16 @@ const challengeSchema = new mongoose.Schema({
 type:String,
 default:"pending"
   },
+  winner:{
+    type:String,
+    defualt:"pending"
+  },
  
   Accept: {
     type: String,
     default:"pending"
     // required: true,
   },
-  decline: {
-    type: String,
-    default:false,
-  },
-
   player_1_id:{
 type:String
   },

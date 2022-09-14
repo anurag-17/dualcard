@@ -10,10 +10,10 @@ const Challenge = require("../models/challenge");
 const catchAsyncError = require("../Errorhandlers/catchAsyncError")
 const ErrorHandler = require("../config/errorHandler");
 const challenge = require("../models/challenge");
+
 async function isEmailValid(email) {
   return emailValidator.validate(email);
 }
-
 
 exports.register = catchAsyncError(
    async (req,res, next) => {
@@ -70,16 +70,11 @@ exports.login = catchAsyncError(
       if (!isMatch) {
         return res.status(500).json("password is not valid please register");
       }
-      // res.status(201).json(user)
-  
       sendToken(user, 200, res);
-  
-    
   }
 ) 
 
 exports.isAuthuser =
-
 catchAsyncError(
   
   async (req, res, next) => {
@@ -175,7 +170,7 @@ catchAsyncError(
 exports.acceptChallenge = catchAsyncError(
 
   async(req,res,next)=>{
-    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,decline:req.body.decline,  
+    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,  
       player_2:[
       {
         images:req.body.playertwo_url,
@@ -203,8 +198,6 @@ async(req,res,next)=>{
     {player_1_id:req.body.id},
     {player_2_id:req.body.id}
     ],
-    result:req.body.result
-  
   })
   return res.json(status)
 }
@@ -222,6 +215,7 @@ exports.setwinner = catchAsyncError(
   async(req,res,next)=>{
     const winstatus = await challenge.findByIdAndUpdate(req.body.id,{
       result:req.body.result,
+      winner:req.body.winner,
     })
     return res.status(200).json(winstatus)
   }
