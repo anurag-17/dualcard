@@ -40,7 +40,7 @@ const Roadmap = () => {
                 </div>
                 <div className='road-item1 fifth-sec'>
                 <div className='yeartext'>
-                  <h3>NOV <span>2022</span></h3>                  
+                  <h3>NOV <span>2023</span></h3>                  
                 </div>
                 <div className='map-des'>
                 <p>Live public launch and First mint event</p></div>
