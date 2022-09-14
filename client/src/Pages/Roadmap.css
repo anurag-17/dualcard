@@ -1,7 +1,8 @@
 /* road map start */
-.roadmap-sec{
-    background-color:#131128;
-    padding: 75px 0px;
+.roadmap-sec {
+    background-color: #131128;
+    padding-top: 75px;
+    padding-bottom: 36px;
 }
 .roadmap-grid {
     display: grid;
@@ -29,6 +30,8 @@
 }
 .yeartext span {
     display: block;
+    font-family: 'Audiowide', cursive;
+    font-size: 30px;
 }
 .road-item1 {
     display: flex;
@@ -54,6 +57,45 @@
     line-height: 17px;
     color: #fff;
     font-family: 'Poppins', sans-serif;
+}
+.first-tops p {
+    margin-bottom: 0;
+    padding: 24px;
+}
+.second-tops {
+    padding: 2px !important;
+    margin-bottom: 39px;
+}
+.second-tops p {
+    margin-bottom: -11px;
+    padding: 41px;
+}
+.third-sec p {
+    margin-top: 5px;
+}
+
+.fifth-sec p {
+    margin-top: 26px;
+}   
+.first-tops .yeartext h3 {
+    margin-bottom: 0;
+    margin-top: 7px;
+}
+.second-tops h3 {
+    margin-bottom: -2px;
+    padding-top: 9px;
+}
+.third-sec h3 {
+    margin-bottom: 7px;
+    padding-top: 7px;
+}
+.fourth-sec h3 {
+    padding-top: 13px;
+    margin-bottom: 0;
+}
+.fifth-sec h3 {
+    margin-bottom: 0;
+    padding-top: 7px;
 }
 
 /* road map end */
@@ -84,29 +126,16 @@
     .map-des {
         padding: 33px 0px;
     }
+    .second-tops p {
+        margin-bottom: 29px;
+
+    }
   }
 
-  @media only screen and (max-width:992px) {
-    .roadmap-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 15px;
-        text-align: center;
-        padding: 30px 0px;
-    }
-    .road-item1:nth-child(even) .map-des p {
-        padding: 40px 65px;
-    }
-    .map-des p {
-        padding: 30px 65px;
-    }
   
-}
 
 @media only screen and (max-width:867px) {  
-    .road-item1:nth-child(even) .map-des p {
-        padding: 40px 48px;
-    }
+
     
 }
 
@@ -125,18 +154,21 @@
     background-position: center;
 }
 .map-des p {
-    padding: 35px 70px;
+    padding: 64px 70px !important;
     width: 300px;
     margin: auto;
 }
-.road-item1:nth-child(even) .map-des p {
-    padding: 45px 97px;
-    width: 100%;
-    margin: auto;
+.first-tops p {
+    padding: 0 !important;
+    max-width: 157px !important;
+    margin-top: 41px;
 }
-.roadmap-sec {
-    padding: 100px 0px;
+.third-sec p {
+    padding: 0 !important;
+    width: 157px;
+    margin-top: 25px;
 }
+
 }
 
 @media only screen and (max-width:667px) {
@@ -149,6 +181,7 @@
 }
 .road-item1 {
     background-position: center;
+    margin-bottom: 16px !important;
 }
 .map-des p {
     padding: 30px 55px;
@@ -165,6 +198,26 @@
 .roadmap-sec {
     padding: 0px 0px;
 }
+.first-tops p {
+    margin-top: 40px;
+}
+.second-tops p {
+    padding: 57px !important;
+}
+.third-sec p {
+    width: 148px;
+    margin-top: 31px;
+}
+.fourth-sec p {
+    padding: 48px !important;
+}
+.fifth-sec .map-des p {
+    padding: 51px 70px !important;
+}
+.second-tops {
+    margin-bottom: 0px;
+}
+
 }
 
 
