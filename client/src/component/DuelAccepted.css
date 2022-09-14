@@ -83,11 +83,14 @@
 .winner-btn{
     padding-top: 0px;
     position: relative;
-    left:20%;
+    text-align: center;
 }
 
 .winner-btn button{
     padding: 12px 0;
+}
+#winner-btn{
+width: 70%;
 }
 .table-hero-btn{
     background: #4f6bbc;

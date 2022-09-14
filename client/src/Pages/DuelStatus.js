@@ -59,9 +59,9 @@ getrecieved()
                                 {items.Accept==="true"&&items.result==="pending"?<td>Accepted</td>:items.Accept ==="decline"?<td>Declined</td>:items.Accept==="pending"?<td>Pending</td>:<td>Declared</td>}
                                 {
                                 items.Accept==="true"&&items.result==="pending"?<td>
-                                  <Link to="/DuelAccepted"><button className='table-hero-btn'>Go To Challenge</button></Link></td>:<td><button className='table-hero-btn'>Go To Challenge</button></td>
+                                  <Link to="/DuelAccepted"><button className='table-hero-btn'>Go To Challenge</button></Link></td>:<td><button disabled className='table-hero-btn'>Go To Challenge</button></td>
                                 }  
-                                 <td>{items.winner===data.username?<span style = {{color:"green"}}>You Won</span>:<span style={{color:"red"}}>You Lost</span>}</td>
+                                 <td>{items.winner===data.username?<h4 style = {{color:"green",fontFamily:"'Audiowide', cursive"}}>You Won</h4>:<h4 style={{color:"red",fontFamily:"'Audiowide', cursive"}}>You Lost</h4>}</td>
                                 </tr>
                             </tbody>
                         </>

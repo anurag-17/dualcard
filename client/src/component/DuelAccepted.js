@@ -188,12 +188,12 @@ setLoader(false)
                     </div>
                     <div className="btn-duel-right winner-btn">
                       {id === challengedata[0].player_1_id ? (<>
-                        <button value="2" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
-                        <button onClick={handlelose} value="1" name={items._id} className="hero-btn">Loser</button></>) : ("")}
+                        <button id = "winnner-btn" value="2" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
+                        <button id = "winner-btn" onClick={handlelose} value="1" name={items._id} className="hero-btn">Loser</button></>) : ("")}
 
                       {id === challengedata[0].player_2_id ? (<>
-                        <button value="1" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
-                        <button value="2" name={items._id} onClick={handlelose} className="hero-btn">Loser</button>
+                        <button id = "winner-btn" value="1" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
+                        <button id = "winner-btn" value="2" name={items._id} onClick={handlelose} className="hero-btn">Loser</button>
 
                       </>
                       ) : ("")}

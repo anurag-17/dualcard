@@ -174,7 +174,7 @@ const navigate = useNavigate()
                                     
                   return(
                       
-                      <div key={index}>                   
+                    <React.Fragment key= {items._id}>
             <div className="col-md-4 col-sm-12 duel-left">
               <div className="duel-lef-slide">
                       <div className="duel-sldier">
@@ -359,7 +359,8 @@ errromessage&&<div style = {{position:"relative",left:"35%",bottom:"50%"}} class
                           </Button>
                         </Modal.Footer>
                       </Modal>
-</div>
+                    </React.Fragment>                    
+
                 )
             })
         }

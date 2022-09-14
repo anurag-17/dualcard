@@ -221,6 +221,12 @@ exports.setwinner = catchAsyncError(
   }
 )
 
+exports.countwinlose = catchAsyncError(
+  async(req,res,next)=>{
+    const counting = await Challenge.find({winner:req.body.user})
+  }
+)
+
 
 
 //forget password
