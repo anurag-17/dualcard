@@ -57,7 +57,7 @@ getrecieved()
                                 {items.Accept==="true"&&items.result==="pending"?<td>Accepted</td>:items.Accept ==="decline"?<td>Declined</td>:items.Accept==="pending"?<td>Pending</td>:<td>Declared</td>}
                                 {
                                 items.Accept==="true"&&items.result==="pending"?<td>
-                                  <Link to="/DuelAccepted"><button className='table-hero-btn'>Go To Challenge</button></Link></td>:<td><button disabled = {items.result==="declared"} className='table-hero-btn'>Go To Challenge</button></td>
+                                  <Link to="/DuelAccepted"><button className='table-hero-btn'>Go To Challenge</button></Link></td>:<td><button disabled className='table-hero-btn'>Go To Challenge</button></td>
                                 }  
                                  <td>
                                     {
