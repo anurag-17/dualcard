@@ -1,5 +1,7 @@
 import React from 'react';
 import './Aboutrule.css';
+import img1 from "../images/1.jpg"
+
 
 const AboutRules = () => {
   return (
@@ -13,7 +15,7 @@ const AboutRules = () => {
             <div className='At-grid'>
               <div className='At-griditem1'>
                 <div className='title-rule'>
-                  <img src="./challenge-img/1.jpg" alt="img"/> 
+                  <img src = {img1} alt="img"/> 
                   <h3>LEVEL 1 CARDS</h3>
                 </div>
                 <div className='At-des'>
@@ -24,7 +26,7 @@ const AboutRules = () => {
 
               <div className='At-griditem1'>
                 <div className='title-rule'>
-                  <img src="./challenge-img/1.jpg" alt="img"/> 
+                  <img src = {img1} alt="img"/> 
                   <h3>LEVEL 1 CARDS</h3>
                 </div>
                 <div className='At-des'>
@@ -34,7 +36,7 @@ const AboutRules = () => {
               </div>
               <div className='At-griditem1'>
                 <div className='title-rule'>
-                  <img src="./challenge-img/1.jpg" alt="img"/> 
+                  <img src = {img1} alt="img"/> 
                   <h3>LEVEL 1 CARDS</h3>
                 </div>
                 <div className='At-des'>
@@ -44,7 +46,7 @@ const AboutRules = () => {
               </div>
               <div className='At-griditem1'>
                 <div className='title-rule'>
-                  <img src="./challenge-img/1.jpg" alt="img"/> 
+                  <img src = {img1} alt="img"/> 
                   <h3>LEVEL 1 CARDS</h3>
                 </div>
                 <div className='At-des'>
