@@ -99,7 +99,7 @@ const logoutuser = () => {
                 <form style={{position:"relative",right:"10%"}} className="d-flex">  
                 {
                     localStorage.getItem("nftuser")?
-                    <div style = {{position:"relative",bottom:"15px"}}>
+                    <div style = {{position:"relative"}}>
                          <li className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src = {tabicon} alt = "profileimage"/>

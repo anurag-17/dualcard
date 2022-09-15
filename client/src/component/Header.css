@@ -115,6 +115,11 @@ hr.hr-line {
     color: #fff;
 }
 
+li{
+    list-style: none;
+    text-decoration: none;
+}
+
 
 .justify-content-end.flex-grow-1.pe-3.navbar-nav a {
     padding: 10px;

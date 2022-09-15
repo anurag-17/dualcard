@@ -25,7 +25,6 @@ const DuelSomeone = () => {
   const [searchfilter, setsearchfilter] = useState([]);
   const [runfun, setrunfun] = useState(true);
   const [loader, setLoader] = useState(false);
-  // const [userprofiledata, setUserprofiledata] = useState([]);
   const [data, setdata] = useState({
     image: "",
     userId: "",
@@ -36,14 +35,13 @@ const DuelSomeone = () => {
   const [firstname, setfirstname] = useState(true);
   const [checkedimage, setcheckedimage] = useState([]);
   const [linkurl, setlinkurl] = useState("");
-  const [checked, setChecked] = useState();
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage, setErrorMessage] = useState("");
   const [inputerror, setInputError] = useState("");
 
   setTimeout(() => {
     setrunfun(false);
-  },900);
+  },1000);
   const handleClose = () => {
     setShow(false);
   };
@@ -112,7 +110,6 @@ const DuelSomeone = () => {
 
   const checkboxchange = (e) => {
     if (e.target.checked) {
-      // console.log(e.target.value)
       checkedimage.push(e.target.value);
       console.log(checkedimage);
     } else {
@@ -350,7 +347,6 @@ const DuelSomeone = () => {
                                                 className="img-thumbnail"
                                               />
                                               <input
-                                                // onChange ={(e)=>setChecked(e.target.checkValidity())}
                                                 onChange={checkboxchange}
                                                 type="checkbox"
                                                 name="selimg"

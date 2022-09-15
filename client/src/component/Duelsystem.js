@@ -42,9 +42,6 @@ const Duelsystem = () => {
               <img src={backgroundlines}/>
               </div>
 
-
-
-
               </div>
               </div>
                <div className='row challangeAmain'>

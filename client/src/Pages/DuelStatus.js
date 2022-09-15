@@ -8,8 +8,11 @@ export const DuelStatus = () => {
 
 const [challengedata, setchallengedata] = useState([]);
 const data = JSON.parse(localStorage.getItem("nftuser"))
-const [loading,setLoading] = useState(false)
+const [loading,setLoading] = useState(true)
 
+setTimeout(()=>{
+setLoading(false)
+},2100)
 const getrecieved = async () => {
     // setLoading(true)
     const res = await axios.post("/api/auth/challengestatus",{id:data._id});
@@ -26,10 +29,10 @@ getrecieved()
   return (
 <>
     <div className='body-main'>
+        {
+            loading?<Loader/>:
         <div className='duelstatus-sec'>
             <div className='container'>
-{
- loading?<Loader style = {{height:"100px"}}/>:<>
             <div className='user-title'>
                 <h1>{data.username}</h1> 
             </div>   
@@ -61,7 +64,7 @@ getrecieved()
                                 }  
                                  <td>
                                     {
-                                     items.winner===data.username?<h4 style={{color:"green"}}>You Won</h4>:items.loser ===data.username?<h4 style ={{color:"red"}}>You Lose</h4>:<h4>pending</h4>
+                                     items.winner===data.username?<h4 style={{color:"green"}}>You Won</h4>:items.loser===data.username?<h4 style ={{color:"red"}}>You Lose</h4>:<h4>pending</h4>
                                     }
                                  </td>
                             
@@ -75,10 +78,11 @@ getrecieved()
                 </table>
             </div>  
             </div>
- </>
-}
+ 
+
     </div>
     </div>
+        }
     </div>
 </> 
  )
