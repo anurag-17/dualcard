@@ -16,7 +16,7 @@ import { useAlert } from "react-alert";
 const DuelReceived = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
-  const { image, isImage} = useSelector((state) => state.image);
+  const { image,loading,isImage} = useSelector((state) => state.image);
   const storagedata = JSON.parse(localStorage.getItem("nftuser"))
   const [data,setdata] = useState({
     image:"",
@@ -26,9 +26,9 @@ const DuelReceived = () => {
   const [playertwoname,setplayertwoname] = useState("")
   const [challengedata, setchallengedata] = useState([]);
 const [loader,setLoader] = useState(true)
+const [acceptloader,setAcceptLoader] = useState(false)
 const [show,setShow] = useState(false)
 const [userimagedata, setuserimagedata] = useState([]);
-const [loading,setLoading] = useState(false)
 const [checkedimage, setcheckedimage] = useState([]);
 const [errromessage,setErrorMessage] = useState("")
 const [challengerid,setChallengerId]  = useState("")
@@ -82,7 +82,10 @@ const navigate = useNavigate()
 }
   encodefile(selectedimage[0])
 
-
+  const handlesubmit=async()=>{
+    dispatch(postimage(data));
+    setShow(false);
+  };
 
   const checkboxchange = (e)=>{
     if(e.target.checked){
@@ -94,6 +97,7 @@ const navigate = useNavigate()
 }
 
   const AcceptChallenge = async(index)=>{
+    setAcceptLoader(true)
     if(checkedimage.length<=0){
       setErrorMessage("please select the cards")
       setTimeout(()=>{
@@ -103,11 +107,9 @@ const navigate = useNavigate()
         }
         let acceptindex = index
         acceptchallenge = true
-      setLoading(true)
     const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false,playertwo_url:checkedimage,name:playertwoname})
     if(res){
       navigate("/DuelAccepted")
-      setLoader(false)
 }
   }
 
@@ -122,32 +124,21 @@ const navigate = useNavigate()
       }
 
 
-  const handlesubmit = async () => {
-    dispatch(postimage(data));
-    setShow(false);
-  };
 
-  
-  async function postImageUrl() {
-    if (image) {
-      const data = await axios.post("/upload", {
-        userId,
-        image
-      });
-    }
-  }
 
-  async function getimages() {
-    const res = await axios.post("/api/auth/getdata",storagedata).then((data) => {
+const getimages = async()=>{
+  let user = JSON.parse(localStorage.getItem("nftuser"))
+    const res = await axios.post("/api/auth/getdata",user).then((data) => {
       setuserimagedata(data.data);
     });
   }
-  getimages();
 
+  
   useEffect(() => {
-    postImageUrl()
-    getrecieved();
-  }, [loader,acceptchallenge]);
+    // postImageUrl()
+    getimages();
+  getrecieved();
+  },[image,loading,isImage,userimagedata]);
 
 
 
@@ -158,7 +149,7 @@ const navigate = useNavigate()
     loader?<Loader/>:
     <div>
     {
-      loading?<Loader/>:
+      acceptloader?<Loader/>:
       <div className="DuelRec-sec">
         <div className="container">
           <div className="section-title">

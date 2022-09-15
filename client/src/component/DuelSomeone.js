@@ -12,7 +12,7 @@ import { useAlert } from "react-alert";
 
 const DuelSomeone = () => {
   const navigate = useNavigate();
-  const { image, loading, isImage } = useSelector((state) => state.image);
+  const { image,loading,isImage }= useSelector((state) => state.image);
   const alert = useAlert();
   const storagedata = JSON.parse(localStorage.getItem("nftuser"));
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const DuelSomeone = () => {
 
   setTimeout(() => {
     setrunfun(false);
-  }, 900);
+  },900);
   const handleClose = () => {
     setShow(false);
   };
@@ -79,7 +79,6 @@ const DuelSomeone = () => {
 
   const encodefile = (file) => {
     var reader = new FileReader();
-
     if (file) {
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -123,9 +122,8 @@ const DuelSomeone = () => {
   };
 
   useEffect(() => {
-    console.log(checkedimage);
     getimages();
-  }, [image, loading, isImage, checkedimage]);
+  }, [image,loading,isImage,userimagedata]);
 
   const handleurl = () => {
     setInputError("please enter the url with https");
@@ -225,7 +223,7 @@ const DuelSomeone = () => {
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                       {searchfilter.map((items, index) => {
                         return (
-                          <li className="nav-item" role="presentation">
+                          <li key={items._id} className="nav-item" role="presentation">
                             <button
                               value={items.username}
                               onClick={handleuserclick}
@@ -343,7 +341,7 @@ const DuelSomeone = () => {
                                 <div className="dchallenge-rt-1">
                                   {userimagedata.map((items, index) => {
                                     return (
-                                      <>
+                                      <React.Fragment key = {index}>
                                         <div class="grid-two imageandtext">
                                           <div class="imageandtext image_grid">
                                             <label>
@@ -362,7 +360,7 @@ const DuelSomeone = () => {
                                             </label>
                                           </div>
                                         </div>
-                                      </>
+                                      </React.Fragment>
                                     );
                                   })}
 
@@ -515,7 +513,7 @@ const DuelSomeone = () => {
                         <Modal.Body>
                           <input
                             multiple
-                            onChange={(e) => setselectedimage(e.target.files)}
+                            onChange={(e)=>setselectedimage(e.target.files)}
                             type="file"
                             name=""
                             id=""
