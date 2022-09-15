@@ -53,7 +53,6 @@ export const Loser = () => {
           <div style={{position:"relative",bottom:"100px"}}  className='row won-main'>
             <div className='won-grid'>
             {aadil.map((items, i) => {
-                console.log(items)
                 return (
                   <div className="wonimg1">
                     <FontAwesomeIcon style = {{zIndex:"100",fontWeight:"600",height:"100px",color:"red",position:"relative",top:"325px"}} icon={faTimes} />

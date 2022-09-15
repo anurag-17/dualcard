@@ -216,6 +216,7 @@ exports.setwinner = catchAsyncError(
     const winstatus = await challenge.findByIdAndUpdate(req.body.id,{
       result:req.body.result,
       winner:req.body.winner,
+      loser:req.body.loser,
     })
     return res.status(200).json(winstatus)
   }

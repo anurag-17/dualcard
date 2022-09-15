@@ -11,9 +11,12 @@ default:"pending"
   },
   winner:{
     type:String,
-    defualt:"pending"
+    default:"pending"
   },
- 
+  loser:{
+    type:String,
+    default:"pending"
+  },
   Accept: {
     type: String,
     default:"pending"

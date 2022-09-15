@@ -2,20 +2,15 @@ import React, {useEffect, useState} from "react";
 import { Link , useNavigate} from "react-router-dom";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Container from 'react-bootstrap/Container';
-import { Form } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from "../images/Logo.png"
 import tabicon from "../images/tabicon-14.png"
 
 const Header = () => {
-// const [show,setShow] = useState(false)
 const navigate  = useNavigate()
 const [colorChange, setColorchange] = useState(false);
 const data = JSON.parse(localStorage.getItem("nftuser"))
-console.log(data)
-
 
 const changeNavbarColor = () =>{
   if(window.scrollY >= 80){

@@ -13,6 +13,8 @@ export const DuelAccepted = () => {
   const navigate = useNavigate()
   const [challengedata, setchallengedata] = useState([]);
   const [challengeid, setChallengeId] = useState("");
+  const [winlose,setwinlose]  = useState("")
+  const [otherone,setotherone] = useState("")
   const [loader, setLoader] = useState(true);
   const data = JSON.parse(localStorage.getItem("nftuser"));
   const id = data._id;
@@ -30,9 +32,17 @@ export const DuelAccepted = () => {
 
     newres.data.map((items, index) => {
       setChallengeId(items._id);
-    });
 
+    if(items.player_1_id===data._id){
+      setwinlose(items.player_1[0].name)
+      setotherone(items.player_2[0].name)
+    }else{
+      setwinlose(items.player_2[0].name)
+      setotherone(items.player_1[0].name)
+    }
+    });
   };
+  
   useEffect(() => {
     getrecieved();
   },[]);
@@ -40,7 +50,7 @@ export const DuelAccepted = () => {
 
   const handlewin= (e)=>{
     setLoader(true)
-    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared",winner:data.username})
+    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared",winner:winlose,loser:otherone})
 if(res){
 setLoader(false)
   navigate(`/winner/${e.target.name}/player_${e.target.value}`)
@@ -49,7 +59,7 @@ setLoader(false)
 
   const handlelose  = (e)=>{
     setLoader(true)
-    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared"})
+    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared",winner:otherone,loser:winlose})
     if(res){
 setLoader(false)
       navigate(`/loser/${e.target.name}/player_${e.target.value}`)
@@ -68,15 +78,17 @@ setLoader(false)
       ) : (
             <div className="row duelat-main">
               {challengedata.map((items, index) => {
+
+              
                 return (
-                  <React.Fragment key={items._id }>
+                  <React.Fragment key={items._id}>
                   <h1 style ={{color:"white",textAlign:"center",marginTop:"80px",marginBottom:"20px"}}>Challenge{index+1}</h1>
                   
                     <div className="col-md-5 col-sm-5">
                       <div className="dA-left">
                         <div className="dA-profile">
-                          <div class="clearfix">
-                            <button type="button" class="btn float-end">
+                          <div className="clearfix">
+                            <button type="button" className="btn float-end">
                             <img style={{marginRight:"8px"}} src="/tabicon8.png" alt="img" />
                               {items.player_1[0].name}
                             </button>
@@ -101,7 +113,7 @@ setLoader(false)
 
 {items.player_1[0].images.map((items, index) => {
                                 return (
-                                  <SwiperSlide>
+                                  <SwiperSlide key = {index}>
                                     <img
                                       className="d-block w-100"
                                       src={items}
@@ -132,8 +144,8 @@ setLoader(false)
                     <div className="col-md-5 col-sm-5">
                       <div className="dA-left">
                         <div className="dA-profile">
-                        <div class="clearfix">
-                            <button type="button" class="btn float-end">
+                        <div className="clearfix">
+                            <button type="button" className="btn float-end">
                             <img style={{marginRight:"8px"}} src="/tabicon9.png" alt="img" />
                               {items.player_2[0].name}
                             </button>
@@ -157,7 +169,7 @@ setLoader(false)
 
 {items.player_2[0].images.map((items, index) => {
                                 return (
-                                  <SwiperSlide>
+                                  <SwiperSlide key= {index}>
                                     <img
                                       className="d-block w-100"
                                       src={items}
@@ -176,19 +188,14 @@ setLoader(false)
                             </button>
                           </div>
                           <div className="btn-duel-right winner-btn">
-                            {/* <Link to="/winner"> */}
-                              {/* <button value="1" name ={items._id} onClick={handlewin} className="hero-btn">Winner</button> */}
-                            {/* </Link> */}
-                            {/* <Link to="/loser"> */}
-                              {/* <button value="2" name = {items._id} onClick={handlelose} className="hero-btn">Loser</button> */}
-                            {/* </Link> */}
+                        
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="btn-duel-right winner-btn">
                       {id === challengedata[0].player_1_id ? (<>
-                        <button id = "winnner-btn" value="2" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
+                        <button id = "winner-btn" value="2" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
                         <button id = "winner-btn" onClick={handlelose} value="1" name={items._id} className="hero-btn">Loser</button></>) : ("")}
 
                       {id === challengedata[0].player_2_id ? (<>
