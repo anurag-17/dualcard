@@ -3,6 +3,14 @@ import './Auction.css';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 import otion1 from "../images/Bitcoin-icon.png"
+import img1 from "../images/1.jpg"
+import img2 from "../images/2.jpg"
+import img3 from "../images/3.jpg"
+import img4 from "../images/4.jpg"
+import img5 from "../images/5.jpg"
+import img6 from "../images/6.jpg"
+import img7 from "../images/7.jpg"
+import img8 from "../images/8.jpg"
 
 export const Auction = () => {
     const options = [
@@ -48,28 +56,28 @@ const customStyles = {
                         </div>
                         <div className='auction-grid'>
                                 <div className='auction-img1'>
-                                <img src="./challenge-img/1.jpg" alt="img"/>
+                                <img src={img1} alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                <img src="./challenge-img/2.jpg" alt="img"/>
+                                <img src={img2} alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                <img src="./challenge-img/3.jpg" alt="img"/>
+                                <img src={img3} alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                <img src="./challenge-img/4.jpg" alt="img"/>
+                                <img src={img4} alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                <img src="./challenge-img/5.jpg" alt="img"/>
+                                <img src={img5} alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                <img src="./challenge-img/6.jpg" alt="img"/>
+                                <img src={img6} alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                <img src="./challenge-img/7.jpg" alt="img"/>
+                                <img src={img7} alt="img"/>
                                 </div>
                                 <div className='auction-img1'>
-                                <img src="./challenge-img/8.jpg" alt="img"/>
+                                <img src={img8} alt="img"/>
                                 </div>                                
                         </div>
 

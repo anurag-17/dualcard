@@ -199,7 +199,7 @@ const DuelSomeone = () => {
                     type="text"
                     placeholder="Search"
                     aria-label="Search"
-                    onChange={(event) => handleSearch(event)}
+                    onChange={(event)=>handleSearch(event)}
                   />
                   <div class="input-group-append">
                     <span
