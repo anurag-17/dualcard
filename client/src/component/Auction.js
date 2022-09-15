@@ -40,8 +40,6 @@ const customStyles = {
   }
   const [packages, setpackages] = useState("");
 
-
-
   return (
     <div className='body-main'>
         <div className='auction-sec'>
