@@ -84,7 +84,7 @@ const customStyles = {
                     </div>
                     <div className='col-md-4 col-sm-12 aut-right'>
                         <div className='auction-profile'>
-                        <img src="./challenge-img/1.jpg" alt="img"/>
+                        <img src={img1} alt="img"/>
                         </div>
                         <div className='auction-ct'>
                             <div class='actprize-btn1'>
