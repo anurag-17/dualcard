@@ -67,7 +67,6 @@ getrecieved()
                                      items.winner===data.username?<h4 style={{color:"green"}}>You Won</h4>:items.loser===data.username?<h4 style ={{color:"red"}}>You Lose</h4>:<h4>pending</h4>
                                     }
                                  </td>
-                            
                                 </tr>
                             </tbody>
                         </React.Fragment>

@@ -46,7 +46,6 @@ const DuelSomeone = () => {
     setShow(false);
   };
   const handleShow = () => setShow(true);
-
   async function getuserdata() {
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
@@ -120,7 +119,7 @@ const DuelSomeone = () => {
 
   useEffect(() => {
     getimages();
-  }, [image,loading,isImage,userimagedata]);
+  },[image,loading,isImage,userimagedata]);
 
   const handleurl = () => {
     setInputError("please enter the url with https");
@@ -134,7 +133,7 @@ const DuelSomeone = () => {
 
     if (checkedimage.length <= 0) {
       setErrorMessage("please select cards");
-      setTimeout(() => {
+      setTimeout(() =>{
         setErrorMessage("");
       }, 2200);
       return;
@@ -161,7 +160,6 @@ const DuelSomeone = () => {
       setLoader(false);
       navigate("/thankyou");
     }
-    console.log(res.data);
   };
   const handleuserclick = async (e) => {
     setfirstname(false);
