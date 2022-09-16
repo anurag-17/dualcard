@@ -9,7 +9,7 @@ import { useAlert } from "react-alert";
 import { Loader } from "../component/Loader";
 
 export const Register = () => {
-  const { loading, isAuthenticated, user, error } = useSelector(
+  const { loading, isAuthenticated, user, error} = useSelector(
     (state) => state.user
   );
   // const [loading,setLoading] = useState(false)
@@ -44,12 +44,12 @@ export const Register = () => {
     });
 
     if (error) {
-      alert.error(error);
+     alert(error.message)
     }
   };
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      alert.error(error.message);
     } else if (isAuthenticated) {
       alert.success("Signup Successfull");
     }
@@ -109,7 +109,6 @@ export const Register = () => {
                       className={styles.input}
                     />
 
-                    {/* {error && <div className={styles.error_msg}>{error}</div>} */}
                     <button type="submit" className={styles.green_btn}>
                       Sign Up
                     </button>

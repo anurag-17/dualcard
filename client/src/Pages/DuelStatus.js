@@ -13,12 +13,8 @@ export const DuelStatus = () => {
     setLoading(false);
   }, 2100);
   const getrecieved = async () => {
-    // setLoading(true)
     const res = await axios.post("/api/auth/challengestatus", { id: data._id });
     setchallengedata(res.data);
-    if (res) {
-      // setLoading(false)
-    }
   };
   useEffect(() => {
     getrecieved();
@@ -28,8 +24,8 @@ export const DuelStatus = () => {
     <>
       <div className="body-main">
         {loading ? (
-          <Loader />
-        ) : (
+          <Loader/>
+        ):(
           <div className="duelstatus-sec">
             <div className="container">
               <div className="user-title">
@@ -81,14 +77,15 @@ export const DuelStatus = () => {
                                   </button>
                                 </td>
                               )}
+
                               <td>
                                 {items.winner === data.username ? (
                                   <h4 style={{ color: "green" }}>You Won</h4>
-                                ) : items.loser === data.username ? (
+                                ):items.loser === data.username ? (
                                   <h4 style={{ color: "red" }}>You Lose</h4>
-                                ) : (
-                                  <h4>pending</h4>
-                                )}
+                                ):items.Accept==="decline"?(
+                                  <h4>Cancelled</h4>
+                                ):<h4>Pending</h4>}
                               </td>
                             </tr>
                           </tbody>

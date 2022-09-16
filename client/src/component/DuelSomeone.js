@@ -14,7 +14,6 @@ import Resizer from "react-image-file-resizer";
 const DuelSomeone = () => {
   const navigate = useNavigate();
   const { image,loading,isImage}= useSelector((state) => state.image);
-  const alert = useAlert();
   const storagedata = JSON.parse(localStorage.getItem("nftuser"));
   const dispatch = useDispatch();
   const [targetname, settargetname] = useState("");
@@ -92,7 +91,7 @@ const DuelSomeone = () => {
   }
 
   const encodefile = (file) => {
-    if (selectedimage) {
+    if (file) {
       try {
         Resizer.imageFileResizer(
          file,
