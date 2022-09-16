@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../component/Loader";
 import "../Pages/tickimage.css";
 import { useAlert } from "react-alert";
+import Resizer from "react-image-file-resizer";
 
 const DuelSomeone = () => {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ const DuelSomeone = () => {
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage, setErrorMessage] = useState("");
   const [inputerror, setInputError] = useState("");
+  const [winning,setwinning] = useState("")
+  const [losing,setlosing] = useState("")
+  const user = storagedata.username
 
   setTimeout(() => {
     setrunfun(false);
@@ -74,25 +78,43 @@ const DuelSomeone = () => {
     getuserdata();
   }
 
-  const encodefile = (file) => {
-    var reader = new FileReader();
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        var base64 = reader.result;
-        setdata({
-          image: base64,
-          userId: storagedata._id,
-        });
-        // setfilebaseurl(base64)
-      };
-      reader.onerror = (error) => {
-        alert("something went wrong");
-      };
-    }
-  };
-  encodefile(selectedimage[0]);
+  const handlefile = (e)=>{
 
+    const filesize = e.target.files[0].size/1024
+    if(filesize>500){
+      alert.error("please upload a file only upto 500 kb")
+    }else{
+      setselectedimage(e.target.files)
+    }
+  }
+
+  const encodefile = (file) => {
+    if (file) {
+      try {
+        Resizer.imageFileResizer(
+         file,
+          300,
+          300,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            setdata({
+                    image:uri,
+                    userId:storagedata._id,
+                  });
+          },
+          "base64",
+          200,
+          200
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+  }
+  encodefile(selectedimage[0]);
   const handlesubmit = async () => {
     dispatch(postimage(data));
     setShow(false);
@@ -117,9 +139,21 @@ const DuelSomeone = () => {
     }
   };
 
+  const countwinlose = async()=>{
+    const res = await axios.post("/api/auth/countwinlose",{user:user})
+     let winfiltered = res.data.filter((items,index)=>{
+      return items.winner === storagedata.username
+    })
+    setwinning(winfiltered.length)
+    setlosing(res.data.length-winfiltered.length)
+    
+    }
+
+
   useEffect(() => {
     getimages();
-  },[image,loading,isImage,userimagedata]);
+    countwinlose()
+  },[loading,isImage,userimagedata]);
 
   const handleurl = () => {
     setInputError("please enter the url with https");
@@ -247,69 +281,6 @@ const DuelSomeone = () => {
                     </ul>
 
                     <div className="tab-content" id="myTabContent">
-                      <div
-                        className="tab-pane fade"
-                        id="home"
-                        role="tabpanel"
-                        aria-labelledby="home-tab"
-                      >
-                        <div className="tab-cont">
-                          <div className="row tabct-main gx-5">
-                            <div className="col-md-6 tab-left">
-                              <div className="dchallenge-rt-1">
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img1.png" alt="img" />
-                                </div>
-                                <div className="dule-img1">
-                                  <img src="./NFT img2.png" alt="img" />
-                                </div>
-                                <div className="dule-img1"></div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <button className="hero-btn">
-                                  SELECT CARDS
-                                </button>
-                              </div>
-                            </div>
-                            <div className="col-md-6 tab-right">
-                              <div className="dule-rt-2">
-                                <div class="clearfix">
-                                  <img src="./User_avatar.png" alt="img" />
-                                  <button type="button" class="btn float-end">
-                                    Laurie
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="challenge-list">
-                                <div className="won-title">
-                                  <h4>Challenges won</h4>
-                                  <span>5</span>
-                                </div>
-                                <div className="lost-title">
-                                  <h4>Challenges lost</h4>
-                                  <span>8</span>
-                                </div>
-                              </div>
-                              <div className="duel-form">
-                                <div class="mb-3 mt-0">
-                                  <textarea
-                                    class="form-control"
-                                    id="exampleFormControlTextarea1"
-                                    placeholder="Write your terms"
-                                    rows="10"
-                                  ></textarea>
-                                </div>
-                              </div>
-                              <div className="btn-duel-right">
-                                <Link to="/DuelRecieved"></Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                       {erromessage && (
                         <div class="popup error">
                           <div class="message">
@@ -420,11 +391,11 @@ const DuelSomeone = () => {
                               <div className="challenge-list">
                                 <div className="won-title">
                                   <h4>Challenges won</h4>
-                                  <span>5</span>
+                                  <span>{winning}</span>
                                 </div>
                                 <div className="lost-title">
                                   <h4>Challenges lost</h4>
-                                  <span>8</span>
+                                  <span>{losing}</span>
                                 </div>
                               </div>
                               {inputerror && (
@@ -507,7 +478,7 @@ const DuelSomeone = () => {
                         <Modal.Body>
                           <input
                             multiple
-                            onChange={(e)=>setselectedimage(e.target.files)}
+                            onChange={handlefile}
                             type="file"
                             name=""
                             id=""

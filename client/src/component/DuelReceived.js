@@ -11,8 +11,6 @@ import { Button, Modal } from "react-bootstrap";
 import "../Pages/tickimage.css";
 import { useAlert } from "react-alert";
 
-
-
 const DuelReceived = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
@@ -32,16 +30,16 @@ const [userimagedata, setuserimagedata] = useState([]);
 const [checkedimage, setcheckedimage] = useState([]);
 const [errromessage,setErrorMessage] = useState("")
 const [challengerid,setChallengerId]  = useState("")
+const [winning,setwinning] = useState("")
+const [losing,setlosing] = useState("")
+
 let  acceptchallenge = ""
-
-
-const iddata  = JSON.parse(localStorage.getItem("nftuser"))
-const userId  = iddata._id
-
+const user = storagedata.username
 
 const navigate = useNavigate()
 
   const id=storagedata._id;
+  
 
   setTimeout(()=>{
     setLoader(false)
@@ -54,7 +52,7 @@ const navigate = useNavigate()
     const handleShow = () => setShow(true);
 
   const getrecieved = async () => {
-    const res = await axios.post("/api/auth/recievedchallenge",{id:id,Accept:"pending",decline:false,result:"pending"});
+    const res = await axios.post("/api/auth/recievedchallenge",{id:id,Accept:"pending",result:"pending"});
     res.data.map((items,index)=>{
       setChallengerId(items._id)
       setplayertwoname(items.player_2[0].name)
@@ -123,14 +121,26 @@ const navigate = useNavigate()
      
       }
 
+const countwinlose = async()=>{
+const res = await axios.post("/api/auth/countwinlose",{user:user})
+ let winfiltered = res.data.filter((items,index)=>{
+  return items.winner === storagedata.username
+})
+setwinning(winfiltered.length)
 
+let losefiltered = res.data.filter((items,index)=>{
+  return items.loser === storagedata.username
+})
 
+setlosing(losefiltered.length)
+}
 
 const getimages = async()=>{
   let user = JSON.parse(localStorage.getItem("nftuser"))
     const res = await axios.post("/api/auth/getdata",user).then((data) => {
       setuserimagedata(data.data);
     });
+
   }
 
   
@@ -138,9 +148,8 @@ const getimages = async()=>{
     // postImageUrl()
     getimages();
   getrecieved();
+countwinlose()
   },[image,loading,isImage,userimagedata]);
-
-
 
 
   return (
@@ -199,12 +208,12 @@ const getimages = async()=>{
                       
                   <div className="duel-leftgreen-text mt-3">
                     <h4>
-                      <span>5</span>won
+                      <span>{winning}</span>won
                     </h4>
                   </div>
                   <div className="duel-leftred-text">
                     <h4>
-                      <span>8</span>lost
+                      <span>{losing}</span>lost
                     </h4>
                   </div>
                 </div>

@@ -224,8 +224,15 @@ exports.setwinner = catchAsyncError(
 
 exports.countwinlose = catchAsyncError(
   async(req,res,next)=>{
-    const counting = await Challenge.find({winner:req.body.user})
+    const counting = await Challenge.find({ $or:[
+    {winner:req.body.user},  
+    {loser:req.body.user}
+    ]})
+
+return res.status(200).json(counting)
+
   }
+
 )
 
 

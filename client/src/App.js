@@ -25,6 +25,7 @@ import { DuelStatus } from './Pages/DuelStatus';
 import Pathtolevel from './Pages/Pathtolevel';
 import { Loser } from './Pages/Loser';
 import Duelsystem from './component/Duelsystem';
+import { ChallengeMarket } from './component/ChallengeMarket';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path = "/duelstatus" element = {<ProtectedRoute><DuelStatus/></ProtectedRoute>}/>
         <Route path = "/pathtolevel" element = {<Pathtolevel/>}/>
         <Route path = "/duelsystem" element = {<Duelsystem/>}/>
+        <Route path = "/duelmarket" element = {<ChallengeMarket/>}/>
       </Routes>
     <Footer/>
     </div>
