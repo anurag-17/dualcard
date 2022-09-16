@@ -13,7 +13,7 @@ import Resizer from "react-image-file-resizer";
 
 const DuelSomeone = () => {
   const navigate = useNavigate();
-  const { image,loading,isImage }= useSelector((state) => state.image);
+  const { image,loading,isImage}= useSelector((state) => state.image);
   const alert = useAlert();
   const storagedata = JSON.parse(localStorage.getItem("nftuser"));
   const dispatch = useDispatch();
@@ -39,9 +39,12 @@ const DuelSomeone = () => {
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage, setErrorMessage] = useState("");
   const [inputerror, setInputError] = useState("");
+  const [sizealert,setSizeAlert] = useState("");
   const [winning,setwinning] = useState("")
   const [losing,setlosing] = useState("")
+  const [filesize,setfilesize] = useState()
   const user = storagedata.username
+
 
   setTimeout(() => {
     setrunfun(false);
@@ -79,24 +82,24 @@ const DuelSomeone = () => {
   }
 
   const handlefile = (e)=>{
-
-    const filesize = e.target.files[0].size/1024
-    if(filesize>500){
-      alert.error("please upload a file only upto 500 kb")
-    }else{
-      setselectedimage(e.target.files)
-    }
+  let file = e.target.files[0].size/1024
+   setfilesize(e.target.files[0].size/1024)
+   if(file>500){
+    setSizeAlert("please upload image only upto 500kb")
+    return
+   }
+   setselectedimage(e.target.files)
   }
 
   const encodefile = (file) => {
-    if (file) {
+    if (selectedimage) {
       try {
         Resizer.imageFileResizer(
          file,
           300,
           300,
           "JPEG",
-          100,
+           80,
           0,
           (uri) => {
             setdata({
@@ -115,6 +118,7 @@ const DuelSomeone = () => {
 
   }
   encodefile(selectedimage[0]);
+
   const handlesubmit = async () => {
     dispatch(postimage(data));
     setShow(false);
@@ -153,7 +157,7 @@ const DuelSomeone = () => {
   useEffect(() => {
     getimages();
     countwinlose()
-  },[loading,isImage,userimagedata]);
+  },[image,loading,isImage,userimagedata]);
 
   const handleurl = () => {
     setInputError("please enter the url with https");
@@ -417,7 +421,6 @@ const DuelSomeone = () => {
                                   </div>
                                 </div>
                               )}
-
                               <form onSubmit={sendValue}>
                                 <div className="duel-form">
                                   <div class="mb-3 mt-0">
@@ -466,12 +469,31 @@ const DuelSomeone = () => {
                           </div>
                         </div>
                       </div>
-
+                    
                       <Modal
                         style={{ height: "800px" }}
                         show={show}
                         onHide={handleClose}
                       >
+                          {sizealert&& (
+                                <div
+                                  style={{
+                                    position: "relative",
+                                    left: "25%",
+                                                              
+                                  }}
+                                  className="popup error"
+                                >
+                                  <div className="message">
+                                    <p>{sizealert}</p>
+                                  </div>
+                                  <div className="action">
+                                    <button onClick={() => setSizeAlert("")}>
+                                      Ok
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
                         <Modal.Header closeButton>
                           <Modal.Title>Modal heading</Modal.Title>
                         </Modal.Header>
@@ -485,9 +507,9 @@ const DuelSomeone = () => {
                           />
                         </Modal.Body>
                         <Modal.Footer>
-                          <Button variant="primary" onClick={handlesubmit}>
+                          <button className="btn btn-primary" disabled={filesize>500} onClick={handlesubmit}>
                             Save Changes
-                          </Button>
+                          </button>
                         </Modal.Footer>
                       </Modal>
                     </div>
