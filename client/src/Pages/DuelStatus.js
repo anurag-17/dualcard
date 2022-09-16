@@ -72,6 +72,7 @@ export const DuelStatus = () => {
                                 </td>
                               ) : (
                                 <td>
+                                  
                                   <button disabled className="table-hero-btn">
                                     Go To Challenge
                                   </button>
