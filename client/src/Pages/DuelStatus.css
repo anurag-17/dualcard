@@ -1,7 +1,7 @@
 .duelstatus-sec{
     background-color: #121127;
     padding: 40px 0px;
-    height: 75vh;
+    height:100%;
     display: flex;
     justify-content: center;
 }
