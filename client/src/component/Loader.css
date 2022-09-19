@@ -7,10 +7,10 @@
     max-width: 100%;
   }
   
-  .loading > div {
-    width: 7vmax;
-    height: 7vmax;
-    border:  10px solid #a256f9;
+.loading > div {
+    width:7vmax;
+    height:7vmax;
+    border:15px solid #a256f9;
     border-radius: 20%;
     animation: loadingRotate 1500ms linear infinite;
   }

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./DuelStatus.css";
 import { Loader } from "../component/Loader";
 
-
 export const DuelStatus = () => {
   const [challengedata, setchallengedata] = useState([]);
   const data = JSON.parse(localStorage.getItem("nftuser"));

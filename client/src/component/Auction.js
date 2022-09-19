@@ -85,13 +85,13 @@ const customStyles = {
                         <img src={img1} alt="img"/>
                         </div>
                         <div className='auction-ct'>
-                            <div class='actprize-btn1'>
+                            <div className='actprize-btn1'>
                                 <h5>Price</h5>
                                 <Form.Group className="mb-3">
                                 <Form.Control placeholder="starting price"  />
                             </Form.Group>
                             </div>
-                            <div class='actprize-btn1 curreny-img'>
+                            <div className='actprize-btn1 curreny-img'>
                                 <h5>currency</h5>                              
                                   <Select
                                 className="Select_pack"
@@ -100,8 +100,7 @@ const customStyles = {
                                     value={options.filter(function(option) {
                                     return option.value === packages;
                                     })}
-            
-                    onChange={handle}
+                                    onChange={handle}
                   />
                             </div>
                         </div>

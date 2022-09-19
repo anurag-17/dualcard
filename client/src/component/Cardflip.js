@@ -56,8 +56,8 @@ const Cardflip = () => {
                 <div className='row system-main'>
                   <div className='col-md-4'>
                     <div className='shap-line'>                      
-                        <div ID="wrapper"> 
-                        <div id="squareID" class="one">
+                        <div id="wrapper"> 
+                        <div id="squareID" className="one">
                             <div className='shape1 dualsecond'>
                                 <img  className="one" src={secondleft}></img>
                                 <h4>LVL 1 DUELCARD</h4>
@@ -86,8 +86,8 @@ const Cardflip = () => {
                 <div className='row system-main'>
                   <div className='col-md-4'>
                   <div className='shap-line'>
-                  <div ID="wrapper"> 
-                        <div id="squareID" class="one">
+                  <div id="wrapper"> 
+                        <div id="squareID" className="one">
                             <div className='shape1'>
                                 <img  className="one" src={thirdleft}></img>
                                 <h4>LVL 1 DUELCARD</h4>
@@ -116,8 +116,8 @@ const Cardflip = () => {
                 <div className='row system-main'>
                   <div className='col-md-4'>
                   <div className='shap-line'>
-                  <div ID="wrapper"> 
-                        <div id="squareID" class="one">
+                  <div id="wrapper"> 
+                        <div id="squareID" className="one">
                             <div className='shape1'>
                                 <img  className="one" src={row4left}></img>
                                 <h4>LVL 1 DUELCARD</h4>
@@ -146,8 +146,8 @@ const Cardflip = () => {
                 <div className='row system-main'>
                   <div className='col-md-4'>
                   <div className='shap-line'>
-                  <div ID="wrapper"> 
-                        <div id="squareID" class="one">
+                  <div id="wrapper"> 
+                        <div id="squareID" className="one">
                             <div className='shape1'>
                                 <img  className="one" src={fifthleft}></img>
                                 <h4>LVL 1 DUELCARD</h4>
