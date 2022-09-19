@@ -198,7 +198,7 @@ const DuelSomeone = () => {
     getuserdata();
     getimages();
     countwinlose();
-  },[runfun]);
+  },[runfun,image,isImage]);
 
 
   return (
