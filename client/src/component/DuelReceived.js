@@ -111,7 +111,6 @@ const navigate = useNavigate()
       navigate("/DuelAccepted")
 }
   }
-
   const DeclineChallenge = async()=>{
     setLoader(true)
     const res = await axios.put("/api/auth/declinechallenge",{challengerid:challengerid})
@@ -145,7 +144,6 @@ const getimages = async()=>{
 
   
   useEffect(() => {
-    // postImageUrl()
     getimages();
   getrecieved();
 countwinlose()

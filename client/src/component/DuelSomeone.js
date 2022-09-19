@@ -11,10 +11,11 @@ import "../Pages/tickimage.css";
 import { useAlert } from "react-alert";
 import Resizer from "react-image-file-resizer";
 import { Searchbar } from "./Searchbar";
+import { Usernames } from "./tab/Usernames";
 
 const DuelSomeone = () => {
   const navigate = useNavigate();
-  const { image,loading,isImage}= useSelector((state) => state.image);
+  const { image, loading, isImage } = useSelector((state) => state.image);
   const storagedata = JSON.parse(localStorage.getItem("nftuser"));
   const dispatch = useDispatch();
   const [targetname, settargetname] = useState("");
@@ -39,16 +40,15 @@ const DuelSomeone = () => {
   const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage, setErrorMessage] = useState("");
   const [inputerror, setInputError] = useState("");
-  const [sizealert,setSizeAlert] = useState("");
-  const [winning,setwinning] = useState("")
-  const [losing,setlosing] = useState("")
-  const [filesize,setfilesize] = useState()
-  const user = storagedata.username
-
+  const [sizealert, setSizeAlert] = useState("");
+  const [winning, setwinning] = useState("");
+  const [losing, setlosing] = useState("");
+  const [filesize, setfilesize] = useState();
+  const user = storagedata.username;
 
   setTimeout(() => {
     setrunfun(false);
-  },1000);
+  }, 1000);
   const handleClose = () => {
     setShow(false);
   };
@@ -81,31 +81,31 @@ const DuelSomeone = () => {
     getuserdata();
   }
 
-  const handlefile = (e)=>{
-  let file = e.target.files[0].size/1024
-   setfilesize(e.target.files[0].size/1024)
-   if(file>500){
-    setSizeAlert("please upload image only upto 500kb")
-    return
-   }
-   setselectedimage(e.target.files)
-  }
+  const handlefile = (e) => {
+    let file = e.target.files[0].size / 1024;
+    setfilesize(e.target.files[0].size / 1024);
+    if (file > 500) {
+      setSizeAlert("please upload image only upto 500kb");
+      return;
+    }
+    setselectedimage(e.target.files);
+  };
 
   const encodefile = (file) => {
     if (file) {
       try {
         Resizer.imageFileResizer(
-         file,
+          file,
           300,
           300,
           "JPEG",
-           80,
+          80,
           0,
           (uri) => {
             setdata({
-                    image:uri,
-                    userId:storagedata._id,
-                  });
+              image: uri,
+              userId: storagedata._id,
+            });
           },
           "base64",
           200,
@@ -115,8 +115,7 @@ const DuelSomeone = () => {
         console.log(err);
       }
     }
-
-  }
+  };
   encodefile(selectedimage[0]);
 
   const handlesubmit = async () => {
@@ -143,21 +142,19 @@ const DuelSomeone = () => {
     }
   };
 
-  const countwinlose = async()=>{
-    const res = await axios.post("/api/auth/countwinlose",{user:user})
-     let winfiltered = res.data.filter((items,index)=>{
-      return items.winner === storagedata.username
-    })
-    setwinning(winfiltered.length)
-    setlosing(res.data.length-winfiltered.length)
-    
-    }
-
+  const countwinlose = async () => {
+    const res = await axios.post("/api/auth/countwinlose", { user: user });
+    let winfiltered = res.data.filter((items, index) => {
+      return items.winner === storagedata.username;
+    });
+    setwinning(winfiltered.length);
+    setlosing(res.data.length - winfiltered.length);
+  };
 
   useEffect(() => {
     getimages();
-    countwinlose()
-  },[image,loading,isImage,userimagedata]);
+    countwinlose();
+  }, [image, loading, isImage, userimagedata]);
 
   const handleurl = () => {
     setInputError("please enter the url with https");
@@ -170,7 +167,7 @@ const DuelSomeone = () => {
     e.preventDefault();
     if (checkedimage.length <= 0) {
       setErrorMessage("please select cards");
-      setTimeout(() =>{
+      setTimeout(() => {
         setErrorMessage("");
       }, 2200);
       return;
@@ -180,7 +177,7 @@ const DuelSomeone = () => {
         setErrorMessage("");
       }, 2200);
       return;
-    } 
+    }
     setLoader(true);
     const res = await axios.post("/api/auth/sendchal", {
       playerone_url: checkedimage,
@@ -191,22 +188,20 @@ const DuelSomeone = () => {
       playertwoname: targetname,
       playeronelink: linkurl,
     });
-
+    
     if (res) {
       setLoader(false);
       navigate("/thankyou");
     }
   };
-  const handleuserclick = async (e) => {
+  const handleuserclick = async (name, id) => {
     setfirstname(false);
-    setclickeduser(e.target.name);
-    settargetname(e.target.value);
-    console.log(targetname);
-    console.log(clickeduser)
+    setclickeduser(id);
+    settargetname(name);
   };
 
   const handleSearch = (searchword) => {
-    let keyword = searchword
+    let keyword = searchword;
     const result = newuserdata.filter((user) => {
       return user.username.toLowerCase().startsWith(keyword.toLowerCase());
     });
@@ -216,7 +211,7 @@ const DuelSomeone = () => {
   return (
     <div>
       {loader ? (
-        <Loader/>
+        <Loader />
       ) : (
         <>
           <div className="duelchalenge-sec">
@@ -224,41 +219,11 @@ const DuelSomeone = () => {
               <div className="section-title">
                 <h2>Commence Duel/Challenge</h2>
               </div>
-            <Searchbar search={handleSearch}/>
+              <Searchbar search={handleSearch} />
               <div className="row">
                 <div className="tab-challange">
                   <div className="tab-section">
-                    <ul className="nav nav-tabs" id="myTab" role="tablist">
-                      {searchfilter.map((items,index) => {
-                        return (
-                          <li key={items._id} className="nav-item" role="presentation">
-                            <button
-                              value={items.username}
-                              onClick={handleuserclick}
-                              name={items._id}
-                              className="nav-link active tab-btn"
-                              id="home-tab"
-                              data-bs-toggle="tab"
-                              data-bs-target="#home"
-                              type="button"
-                              role="tab"
-                              aria-controls="home"
-                              aria-selected="true"
-                            >
-                              {" "}
-                              <img
-                                src={require(`../images/tabicon-${
-                                  index + 1
-                                }.png`)}
-                                alt="img"
-                              />
-                              {items.username}
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ul>
-
+                    <Usernames onuserclick={handleuserclick} searchfilter={searchfilter}/>
                     <div className="tab-content" id="myTabContent">
                       {erromessage && (
                         <div class="popup error">
@@ -286,7 +251,7 @@ const DuelSomeone = () => {
                                 <div className="dchallenge-rt-1">
                                   {userimagedata.map((items, index) => {
                                     return (
-                                      <React.Fragment key = {index}>
+                                      <React.Fragment key={index}>
                                         <div class="grid-two imageandtext">
                                           <div class="imageandtext image_grid">
                                             <label>
@@ -434,7 +399,6 @@ const DuelSomeone = () => {
                                 <div className="btn-duel-right challenge">
                                   <input
                                     type="submit"
-                                    // on={sendValue}
                                     placeholder="send Challenge"
                                     className="hero-btn challenge"
                                   />
@@ -444,31 +408,30 @@ const DuelSomeone = () => {
                           </div>
                         </div>
                       </div>
-                    
+
                       <Modal
                         style={{ height: "800px" }}
                         show={show}
                         onHide={handleClose}
                       >
-                          {sizealert&& (
-                                <div
-                                  style={{
-                                    position: "relative",
-                                    left: "25%",
-                                                              
-                                  }}
-                                  className="popup error"
-                                >
-                                  <div className="message">
-                                    <p>{sizealert}</p>
-                                  </div>
-                                  <div className="action">
-                                    <button onClick={() => setSizeAlert("")}>
-                                      Ok
-                                    </button>
-                                  </div>
-                                </div>
-                              )}
+                        {sizealert && (
+                          <div
+                            style={{
+                              position: "relative",
+                              left: "25%",
+                            }}
+                            className="popup error"
+                          >
+                            <div className="message">
+                              <p>{sizealert}</p>
+                            </div>
+                            <div className="action">
+                              <button onClick={() => setSizeAlert("")}>
+                                Ok
+                              </button>
+                            </div>
+                          </div>
+                        )}
                         <Modal.Header closeButton>
                           <Modal.Title>Modal heading</Modal.Title>
                         </Modal.Header>
@@ -482,7 +445,11 @@ const DuelSomeone = () => {
                           />
                         </Modal.Body>
                         <Modal.Footer>
-                          <button className="btn btn-primary" disabled={filesize>500} onClick={handlesubmit}>
+                          <button
+                            className="btn btn-primary"
+                            disabled={filesize > 500}
+                            onClick={handlesubmit}
+                          >
                             Save Changes
                           </button>
                         </Modal.Footer>
