@@ -47,8 +47,8 @@ export const MostCard = () => {
                 <div className='most-grid1'>
                   <div className='most-des'>
                      <div className="clearfix">
-                                <img src="./tabicon-6.png" alt="img"/>
-                                <button type="button" className="btn float-end">Estebana</button>
+                     <img src="./tabicon-6.png" alt="img"/>
+                     <button type="button" className="btn float-end">Estebana</button>
                       </div> 
                       <div className='most-cont'>
                         <h3>Sale Price Record:</h3>
@@ -70,8 +70,8 @@ export const MostCard = () => {
                   <div className='most-grid1'>
                     <div className='most-des'>
                       <div className="clearfix">
-                                  <img src="./tabicon-6.png" alt="img"/>
-                                  <button type="button" className="btn float-end">Estebana</button>
+                      <img src="./tabicon-6.png" alt="img"/>
+                      <button type="button" className="btn float-end">Estebana</button>
                         </div> 
                         <div className='most-cont'>
                           <h3>Sale Price Record:</h3>
@@ -93,8 +93,8 @@ export const MostCard = () => {
                 <div className='most-grid1'>
                   <div className='most-des'>
                      <div className="clearfix">
-                                <img src="./tabicon-6.png" alt="img"/>
-                                <button type="button" className="btn float-end">Estebana</button>
+                     <button type="button" className="btn float-end">Estebana</button>
+                     <img src="./tabicon-6.png" alt="img"/>
                       </div> 
                       <div className='most-cont'>
                         <h3>Sale Price Record:</h3>
@@ -117,8 +117,8 @@ export const MostCard = () => {
                 <div className='most-grid1'>
                   <div className='most-des'>
                      <div className="clearfix">
-                                <img src="./tabicon-6.png" alt="img"/>
-                                <button type="button" className="btn float-end">Estebana</button>
+                     <img src="./tabicon-6.png" alt="img"/>
+                     <button type="button" className="btn float-end">Estebana</button>
                       </div> 
                       <div className='most-cont'>
                         <h3>Sale Price Record:</h3>
