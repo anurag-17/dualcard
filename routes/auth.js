@@ -8,7 +8,7 @@ router.route("/login").post(login);
 
 router.route("/getdata").post(getdata)
 
-router.route("/getuserdata").get(getuserdata)
+router.route("/getuserdata").post(getuserdata)
 
 router.route("/sendchal").post(sendchallange)
 router.route("/challengedata").post(getchallenge)

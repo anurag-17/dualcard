@@ -46,14 +46,14 @@ const DuelSomeone = () => {
   setTimeout(() => {
     setrunfun(false);
     setLoader(false)
-  },900);
+  },1000);
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => setShow(true);
 
   const getuserdata = async()=> {
-    const res = await axios.get("/api/auth/getuserdata");
+    const res = await axios.post("/api/auth/getuserdata");
     setUserdata(res.data);
     userdata.sort((a, b) => a.username.localeCompare(b.username));
     const filtereduser = userdata.filter((items, index) => {
@@ -193,15 +193,13 @@ const DuelSomeone = () => {
     });
     setsearchfilter(result);
   };
-
+  
   useEffect(() => {
+    getuserdata();
     getimages();
     countwinlose();
-  },[]);
+  },[runfun]);
 
-  useEffect(()=>{
-    getuserdata();
-  },[runfun])
 
   return (
     <div>

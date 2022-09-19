@@ -99,7 +99,6 @@ catchAsyncError(
 
 exports.getuserdata = 
 catchAsyncError(
-  
   async(req, res,next) => {
     let userdata = await User.find();
     return res.status(200).json(userdata);
