@@ -221,11 +221,11 @@ const DuelSomeone = () => {
                     <Usernames onuserclick={handleuserclick} searchfilter={searchfilter}/>
                     <div className="tab-content" id="myTabContent">
                       {erromessage && (
-                        <div class="popup error">
-                          <div class="message">
+                        <div className="popup error">
+                          <div className="message">
                             <p>{erromessage}</p>
                           </div>
-                          <div class="action">
+                          <div className="action">
                             <button onClick={() => setErrorMessage("")}>
                               Ok
                             </button>
@@ -247,8 +247,8 @@ const DuelSomeone = () => {
                                   {userimagedata.map((items, index) => {
                                     return (
                                       <React.Fragment key={index}>
-                                        <div class="grid-two imageandtext">
-                                          <div class="imageandtext image_grid">
+                                        <div className="grid-two imageandtext">
+                                          <div className="imageandtext image_grid">
                                             <label>
                                               <img
                                                 src={items.url}
@@ -260,7 +260,7 @@ const DuelSomeone = () => {
                                                 name="selimg"
                                                 value={items.url}
                                               />
-                                              <span class="caption"></span>
+                                              <span className="caption"></span>
                                             </label>
                                           </div>
                                         </div>
@@ -304,18 +304,18 @@ const DuelSomeone = () => {
                             </div>
                             <div className="col-md-6 tab-right">
                               <div className="dule-rt-2">
-                                <div class="clearfix">
+                                <div className="clearfix">
                                   {searchfilter.map((items, index) => {
                                     if (index === 0) {
                                       return (
-                                        <React.Fragment>
+                                        <React.Fragment key= {index}>
                                           <img
                                             src="./tabicon-14.png"
                                             alt="img"
                                           />
                                           <button
                                             type="button"
-                                            class="btn float-end"
+                                            className="btn float-end"
                                           >
                                             {firstname
                                               ? items.username
@@ -358,14 +358,14 @@ const DuelSomeone = () => {
                               )}
                               <form onSubmit={sendValue}>
                                 <div className="duel-form">
-                                  <div class="mb-3 mt-0">
+                                  <div className="mb-3 mt-0">
                                     <textarea
                                       required
                                       onChange={(e) =>
                                         setTextvalue(e.target.value)
                                       }
                                       value={textvalue}
-                                      class="form-control"
+                                      className="form-control"
                                       id="exampleFormControlTextarea1"
                                       placeholder="Write your terms"
                                       rows="10"
@@ -387,7 +387,7 @@ const DuelSomeone = () => {
                                       }
                                     />
 
-                                    <div class="input-group-append"></div>
+                                    <div className="input-group-append"></div>
                                   </div>
                                 </div>
 

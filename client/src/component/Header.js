@@ -131,11 +131,9 @@ const logoutuser = () => {
         {[false,].map((expand) => (
         <Navbar key={expand}  expand={expand}>
           <Container fluid>
-            <Navbar.Brand href="#">
-            <a className="navbar-brand" href="">
-                    <img src={logo}></img>
-                </a>
-            </Navbar.Brand>
+            <Link to="/">
+            <img src={logo}></img>
+            </Link>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}

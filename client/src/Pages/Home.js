@@ -93,7 +93,7 @@ const Home = () => {
               <p>Purchase a Level 1 DuelCard and start challenging other players for a chance to win their NFTs!</p>
             </div>
             <div className='video-section'>           
-            <iframe width="1120" height="630" src="https://www.youtube.com/embed/L6dYyye5a2M" title="DuelCards VO Synced02" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1120" height="630" src="https://www.youtube.com/embed/L6dYyye5a2M" title="DuelCards VO Synced02" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
           </div>
         </div>
@@ -216,10 +216,10 @@ const Home = () => {
                  to keep the profits.</p>
            </div>
            <div className='search-bar'>
-           <div class="input-group md-form form-sm form-2 pl-0">
-            <input onChange={handleSearch} class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search"/>
-            <div class="input-group-append">
-              <span class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+           <div className="input-group md-form form-sm form-2 pl-0">
+            <input onChange={handleSearch} className="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search"/>
+            <div className="input-group-append">
+              <span className="input-group-text red lighten-3" id="basic-text1"><i className="fas fa-search text-grey"
                   aria-hidden="true"></i></span>
             </div>
           </div>
