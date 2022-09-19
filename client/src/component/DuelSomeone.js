@@ -10,6 +10,7 @@ import { Loader } from "../component/Loader";
 import "../Pages/tickimage.css";
 import { useAlert } from "react-alert";
 import Resizer from "react-image-file-resizer";
+import { Searchbar } from "./Searchbar";
 
 const DuelSomeone = () => {
   const navigate = useNavigate();
@@ -167,7 +168,6 @@ const DuelSomeone = () => {
 
   const sendValue = async (e) => {
     e.preventDefault();
-
     if (checkedimage.length <= 0) {
       setErrorMessage("please select cards");
       setTimeout(() =>{
@@ -181,7 +181,7 @@ const DuelSomeone = () => {
       }, 2200);
       return;
     }
-
+    
     setLoader(true);
     const res = await axios.post("/api/auth/sendchal", {
       playerone_url: checkedimage,
@@ -200,27 +200,24 @@ const DuelSomeone = () => {
   };
   const handleuserclick = async (e) => {
     setfirstname(false);
-    console.log(e);
     setclickeduser(e.target.name);
     settargetname(e.target.value);
     console.log(targetname);
-    console.log(clickeduser);
+    console.log(clickeduser)
   };
 
-  const handleSearch = (event) => {
-    setrunfun(false);
-    let keyword = event.target.value;
+  const handleSearch = (searchword) => {
+    let keyword = searchword
     const result = newuserdata.filter((user) => {
       return user.username.toLowerCase().startsWith(keyword.toLowerCase());
     });
-
     setsearchfilter(result);
   };
 
   return (
     <div>
       {loader ? (
-        <Loader />
+        <Loader/>
       ) : (
         <>
           <div className="duelchalenge-sec">
@@ -228,32 +225,12 @@ const DuelSomeone = () => {
               <div className="section-title">
                 <h2>Commence Duel/Challenge</h2>
               </div>
-
-              <div className="search-bar">
-                <div class="input-group md-form form-sm form-2 pl-0">
-                  <input
-                    class="form-control my-0 py-1 red-border"
-                    type="text"
-                    placeholder="Search"
-                    aria-label="Search"
-                    onChange={(event)=>handleSearch(event)}
-                  />
-                  <div class="input-group-append">
-                    <span
-                      class="input-group-text red lighten-3"
-                      id="basic-text1"
-                    >
-                      <i class="fas fa-search text-grey" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
+            <Searchbar search={handleSearch}/>
               <div className="row">
                 <div className="tab-challange">
                   <div className="tab-section">
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
-                      {searchfilter.map((items, index) => {
+                      {searchfilter.map((items,index) => {
                         return (
                           <li key={items._id} className="nav-item" role="presentation">
                             <button
@@ -372,7 +349,7 @@ const DuelSomeone = () => {
                                   {searchfilter.map((items, index) => {
                                     if (index === 0) {
                                       return (
-                                        <>
+                                        <React.Fragment>
                                           <img
                                             src="./tabicon-14.png"
                                             alt="img"
@@ -385,7 +362,7 @@ const DuelSomeone = () => {
                                               ? items.username
                                               : targetname}
                                           </button>
-                                        </>
+                                        </React.Fragment>
                                       );
                                     }
                                   })}

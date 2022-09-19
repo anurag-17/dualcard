@@ -115,7 +115,6 @@ const navigate = useNavigate()
     setLoader(true)
     const res = await axios.put("/api/auth/declinechallenge",{challengerid:challengerid})
     if(res){
-      // window.location.reload()
       setLoader(false)
     }
      
@@ -182,7 +181,7 @@ countwinlose()
                     {
                     items.player_1[0].images.map((items, index) => {
                         return (
-                            <Carousel.Item>
+                            <Carousel.Item key = {index}>
                             <img
                               className="d-block w-100"
                               src={items}
@@ -198,8 +197,8 @@ countwinlose()
                     </div>
                 <div className="duel-des">
 
-                          <div class="clearfix">
-                        <button type="button" class="btn float-end">
+                          <div className="clearfix">
+                        <button type="button" className="btn float-end">
                           {items.player_1[0].name}
                         </button>
 
@@ -222,10 +221,10 @@ countwinlose()
                
                 {items.player_1.map((item,index)=>{
 return(
-    <>
+    <React.Fragment key={index}>
                         <h4>TERMS</h4>
                         <p>{item.text}.</p>  
-                      </>
+                      </React.Fragment>
 )
                 })} 
                 
@@ -245,8 +244,8 @@ return(
                      userimagedata.map((items,index)=>{
                        return(
 
-                         <div class="grid-two imageandtext">
-                         <div class="imageandtext image_grid">
+                         <div key={index} className="grid-two imageandtext">
+                         <div className="imageandtext image_grid">
                          <label>
                                               <img
                                                 src={items.url}
@@ -258,7 +257,7 @@ return(
                                                 name="selimg"
                                                 value = {items.url}
                                               />
-                                                <span class="caption"></span>
+                                                <span className="caption"></span>
                                             </label>
                          </div>
                        </div>
@@ -312,17 +311,17 @@ errromessage&&<div style = {{position:"relative",left:"35%",bottom:"50%"}} class
                 </div>
                 <div className="col-md-6 col-sm-6">
                   <div className="dule-rt-2">
-                    <div class="clearfix">
+                    <div className="clearfix">
                       <img src="./tabicon8.png" alt="img" />
-                      <button type="button" class="btn float-end">
+                      <button type="button" className="btn float-end">
                         {storagedata.username}
                       </button>
                     </div>
                   </div>
                   <div className="duel-form">
-                    <div class="mb-3 mt-4">
+                    <div className="mb-3 mt-4">
                       <textarea
-                        class="form-control"
+                        className="form-control"
                         id="exampleFormControlTextarea1"
                         placeholder="Write your terms"
                         rows="10"
@@ -376,7 +375,7 @@ errromessage&&<div style = {{position:"relative",left:"35%",bottom:"50%"}} class
                    <div className='thankbtn'>
     <Link to = "/DuelSomeone">
     
-                    <button class="go-home hero-btn">
+                    <button className="go-home hero-btn">
                         DuelSomeone
                         </button>
     </Link>

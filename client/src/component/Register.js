@@ -34,7 +34,6 @@ export const Register = () => {
     myForm.set("username", inputvalue.username);
     myForm.set("email", inputvalue.email);
     myForm.set("password", inputvalue.password);
-
     dispatch(register(inputvalue));
 
     setInputvalue({

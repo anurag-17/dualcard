@@ -55,7 +55,7 @@ function App() {
         <Route path = "/duelstatus" element = {<ProtectedRoute><DuelStatus/></ProtectedRoute>}/>
         <Route path = "/pathtolevel" element = {<Pathtolevel/>}/>
         <Route path = "/duelsystem" element = {<Duelsystem/>}/>
-        <Route path = "/duelmarket" element = {<ChallengeMarket/>}/>
+        {/* <Route path = "/duelmarket" element = {<ChallengeMarket/>}/> */}
       </Routes>
     <Footer/>
     </div>

@@ -18,17 +18,17 @@ import {
   UPDATE_PROFIE_REQUEST,
   UPDATE_PROFIE_SUCCESS,
 } from "../constants/userConstants";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 export const login = (userdata) => async (dispatch,) => {
-  console.log(userdata);
+  const localdata = JSON.parse(localStorage.getItem("nftuser"))
   try {
     dispatch({ type: LOGIN_REQUEST });
     const { data } = await axios.post(`/api/auth/login`,userdata);
 
     dispatch({ type:LOGIN_SUCCESS, payload: data.user});
-    localStorage.setItem("nftuser",JSON.stringify({...data.user,password:""}))
+    localStorage.setItem("nftuser",JSON.stringify({...data.user,password:"",expire:new Date().getDate()+7}))
     console.log(data);
 
   } catch (error) {

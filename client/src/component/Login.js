@@ -25,8 +25,7 @@ export const Login = () => {
 		e.preventDefault()
 		
 		dispatch(login(inputdata))
-		
-
+	
 		setInputData({
 		   email:"",
 		   password:""
