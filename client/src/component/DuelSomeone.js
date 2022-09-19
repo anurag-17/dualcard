@@ -22,11 +22,10 @@ const DuelSomeone = () => {
   const [textvalue, setTextvalue] = useState("");
   const [selectedimage, setselectedimage] = useState([]);
   const [userdata, setUserdata] = useState([]);
-  const [localuser, setlocaluser] = useState("");
   const [newuserdata, setnewuserdata] = useState([]);
   const [searchfilter, setsearchfilter] = useState([]);
   const [runfun, setrunfun] = useState(true);
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   const [data, setdata] = useState({
     image: "",
     userId: "",
@@ -37,18 +36,17 @@ const DuelSomeone = () => {
   const [firstname, setfirstname] = useState(true);
   const [checkedimage, setcheckedimage] = useState([]);
   const [linkurl, setlinkurl] = useState("");
-  const thisid = JSON.parse(localStorage.getItem("nftuser"));
   const [erromessage, setErrorMessage] = useState("");
   const [inputerror, setInputError] = useState("");
   const [sizealert, setSizeAlert] = useState("");
   const [winning, setwinning] = useState("");
   const [losing, setlosing] = useState("");
   const [filesize, setfilesize] = useState();
-  const user = storagedata.username;
 
   setTimeout(() => {
     setrunfun(false);
-  }, 800);
+    setLoader(false)
+  },900);
   const handleClose = () => {
     setShow(false);
   };
@@ -57,13 +55,10 @@ const DuelSomeone = () => {
   const getuserdata = async()=> {
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
-    const localdata = JSON.parse(localStorage.getItem("nftuser"));
-    setlocaluser(localdata.username);
     userdata.sort((a, b) => a.username.localeCompare(b.username));
     const filtereduser = userdata.filter((items, index) => {
-      return items._id !== localdata._id;
+      return items._id !==storagedata._id;
     });
-
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser);
     filtereduser.map((items, index) => {
@@ -73,15 +68,8 @@ const DuelSomeone = () => {
         settargetname(items.username);
       }
     });
-    return;
   }
-
-  // if (runfun) {
-    useEffect(()=>{
-      getuserdata();
-    },[runfun])
-  // }
-
+   
   const handlefile = (e) => {
     let file = e.target.files[0].size / 1024;
     setfilesize(e.target.files[0].size / 1024);
@@ -144,7 +132,7 @@ const DuelSomeone = () => {
   };
 
   const countwinlose = async () => {
-    const res = await axios.post("/api/auth/countwinlose", { user: user });
+    const res = await axios.post("/api/auth/countwinlose",{user:storagedata.username});
     let winfiltered = res.data.filter((items, index) => {
       return items.winner === storagedata.username;
     });
@@ -152,10 +140,7 @@ const DuelSomeone = () => {
     setlosing(res.data.length - winfiltered.length);
   };
 
-  useEffect(() => {
-    getimages();
-    countwinlose();
-  },[]);
+
 
   const handleurl = () => {
     setInputError("please enter the url with https");
@@ -183,9 +168,9 @@ const DuelSomeone = () => {
     const res = await axios.post("/api/auth/sendchal", {
       playerone_url: checkedimage,
       playeronetext: textvalue,
-      playeroneuserid: thisid._id,
+      playeroneuserid:storagedata._id,
       playertwouserid: clickeduser,
-      playeronename: localuser,
+      playeronename:storagedata.username,
       playertwoname: targetname,
       playeronelink: linkurl,
     });
@@ -208,6 +193,15 @@ const DuelSomeone = () => {
     });
     setsearchfilter(result);
   };
+
+  useEffect(() => {
+    getimages();
+    countwinlose();
+  },[]);
+
+  useEffect(()=>{
+    getuserdata();
+  },[runfun])
 
   return (
     <div>
