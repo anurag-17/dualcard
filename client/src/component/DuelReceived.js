@@ -95,7 +95,6 @@ const navigate = useNavigate()
 }
 
   const AcceptChallenge = async(index)=>{
-    setAcceptLoader(true)
     if(checkedimage.length<=0){
       setErrorMessage("please select the cards")
       setTimeout(()=>{
@@ -103,6 +102,8 @@ const navigate = useNavigate()
       },2200)
           return
         }
+
+    setAcceptLoader(true)
         let acceptindex = index
         acceptchallenge = true
     const res = await axios.put("/api/auth/acceptchallenge",{Accept:acceptchallenge,challengerid:challengedata[acceptindex]._id,decline:false,playertwo_url:checkedimage,name:playertwoname})

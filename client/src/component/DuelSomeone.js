@@ -180,8 +180,7 @@ const DuelSomeone = () => {
         setErrorMessage("");
       }, 2200);
       return;
-    }
-    
+    } 
     setLoader(true);
     const res = await axios.post("/api/auth/sendchal", {
       playerone_url: checkedimage,

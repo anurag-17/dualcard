@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
+  challenges:{
+    type:Array,
+    default:"no challenges yet"
+  },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });
