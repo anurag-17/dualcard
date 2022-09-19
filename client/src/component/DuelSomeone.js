@@ -48,19 +48,18 @@ const DuelSomeone = () => {
 
   setTimeout(() => {
     setrunfun(false);
-  }, 1000);
+  }, 800);
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => setShow(true);
-  async function getuserdata() {
+
+  const getuserdata = async()=> {
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
     const localdata = JSON.parse(localStorage.getItem("nftuser"));
     setlocaluser(localdata.username);
-
     userdata.sort((a, b) => a.username.localeCompare(b.username));
-
     const filtereduser = userdata.filter((items, index) => {
       return items._id !== localdata._id;
     });
@@ -77,9 +76,11 @@ const DuelSomeone = () => {
     return;
   }
 
-  if (runfun) {
-    getuserdata();
-  }
+  // if (runfun) {
+    useEffect(()=>{
+      getuserdata();
+    },[runfun])
+  // }
 
   const handlefile = (e) => {
     let file = e.target.files[0].size / 1024;
@@ -154,7 +155,7 @@ const DuelSomeone = () => {
   useEffect(() => {
     getimages();
     countwinlose();
-  }, [image, loading, isImage, userimagedata]);
+  },[]);
 
   const handleurl = () => {
     setInputError("please enter the url with https");
