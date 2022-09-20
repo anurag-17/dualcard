@@ -9,21 +9,23 @@ const Winner = () => {
   const [images, setImages] = useState([]);
   const [aadil, setaadil] = useState([]);
   const [loader, setLoader] = useState(true);
+  const storagedata =JSON.parse(localStorage.getItem("nftuser")) 
 
   const getwinner = async () => {
-
  const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
   setTimeout(()=>{
     setLoader(false)
   },800)
     images.push(res.data[0]);
 
-    if (index === "player_1") {
+    if(index==="player_1") {
       setaadil(images[0].player_1[0].images);
   }
-  if (index === "player_2") {
+  if(index==="player_2"){
       setaadil(images[0].player_2[0].images);
   }
+ const replaceimage = await axios.put("/api/auth/updateimage",{arr:aadil,id:storagedata._id})
+ console.log(replaceimage)
   };
 
   // useEffect(() => {

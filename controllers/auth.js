@@ -190,7 +190,6 @@ exports.declineChallenge = catchAsyncError(
 )
 
 exports.challengeStatus = catchAsyncError(
-
 async(req,res,next)=>{
   const status = await Challenge.find({
     $or:[
@@ -200,7 +199,6 @@ async(req,res,next)=>{
   })
   return res.json(status)
 }
-
 )
 
 exports.getwinner  = catchAsyncError(
@@ -234,6 +232,17 @@ return res.status(200).json(counting)
 
 )
 
+exports.updateimage= catchAsyncError(
+  async(req,res,next)=>{
+const delimage = await Image.updateMany({
+  url:{$in:req.body.arr}
+},
+  {$set:{userId:req.body.id}}
+  )
+return res.status(200).json(delimage)
+  }
+
+)
 
 
 //forget password

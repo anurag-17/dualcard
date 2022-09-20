@@ -5,9 +5,9 @@ import "./DuelStatus.css";
 import { Loader } from "../component/Loader";
 
 export const DuelStatus = () => {
-  const [challengedata, setchallengedata] = useState([]);
+  const [challengedata,setchallengedata] = useState([]);
   const data = JSON.parse(localStorage.getItem("nftuser"));
-  const [loading, setLoading] = useState(true);
+  const [loading,setLoading] = useState(true);
 
   setTimeout(() => {
     setLoading(false);

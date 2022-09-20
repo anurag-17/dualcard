@@ -50,7 +50,7 @@ const DuelSomeone = () => {
   const handleClose = () => {
     setShow(false);
   };
-  const handleShow = () => setShow(true);
+  const handleShow=()=>setShow(true);
 
   const getuserdata = async()=> {
     const res = await axios.post("/api/auth/getuserdata");
@@ -69,12 +69,12 @@ const DuelSomeone = () => {
       }
     });
   }
-   
+  
   const handlefile = (e) => {
-    let file = e.target.files[0].size / 1024;
-    setfilesize(e.target.files[0].size / 1024);
-    if (file > 500) {
-      setSizeAlert("please upload image only upto 500kb");
+    let file = e.target.files[0].size/1024;
+    setfilesize(e.target.files[0].size/1024);
+    if (file>1024){
+      setSizeAlert("please upload image only upto 1mb ");
       return;
     }
     setselectedimage(e.target.files);
@@ -87,8 +87,8 @@ const DuelSomeone = () => {
           file,
           300,
           300,
-          "JPEG",
-          80,
+          "WEBP",
+          90,
           0,
           (uri) => {
             setdata({
@@ -116,7 +116,6 @@ const DuelSomeone = () => {
     const res = await axios
       .post("/api/auth/getdata", storagedata)
       .then((data) => {
-        var url = data.data[0].url;
         setuserimagedata(data.data);
       });
   }
@@ -140,13 +139,11 @@ const DuelSomeone = () => {
     setlosing(res.data.length - winfiltered.length);
   };
 
-
-
   const handleurl = () => {
     setInputError("please enter the url with https");
     setTimeout(() => {
       setInputError("");
-    }, 2200);
+    },2200);
   };
 
   const sendValue = async (e) => {
@@ -195,11 +192,10 @@ const DuelSomeone = () => {
   };
   
   useEffect(() => {
-    getuserdata();
+    getuserdata(); 
     getimages();
     countwinlose();
-  },[runfun,image,isImage]);
-
+  },[runfun,image,isImage,countwinlose,getimages,getuserdata]);
 
   return (
     <div>
@@ -440,7 +436,7 @@ const DuelSomeone = () => {
                         <Modal.Footer>
                           <button
                             className="btn btn-primary"
-                            disabled={filesize > 500}
+                            disabled={filesize>1024}
                             onClick={handlesubmit}
                           >
                             Save Changes

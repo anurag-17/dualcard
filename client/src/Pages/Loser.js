@@ -11,14 +11,14 @@ export const Loser = () => {
   const [images, setImages] = useState([]);
   const [aadil, setaadil] = useState([]);
   const [loader, setLoader] = useState(true);
-
+ const [loseid,setloseid] = useState("")
+  const storagedata =JSON.parse(localStorage.getItem("nftuser")) 
 
   const getwinner = async () => {
     const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
     if(res){
       images.push(res.data[0]);
       setLoader(false)
-    }
     if (index === "player_1") {
       setaadil(images[0].player_1[0].images);
   }
@@ -26,17 +26,23 @@ export const Loser = () => {
       setaadil(images[0].player_2[0].images);
   }
 
+  res.data.map((items,index)=>{
+    if(items.player_1_id === storagedata._id){
+      setloseid(items.player_2_id)
+    }else{
+      setloseid(items.player_1_id)
+    }
+  })
+
+  const replaceimage = await axios.put("/api/auth/updateimage",{arr:aadil,id:loseid})
+  console.log(replaceimage)
+}
 
   };
-
   // useEffect(() => {
     getwinner();
   // },[]);
-
-
-
     return (
-      
 <>
 {
   loader?<Loader/>:<>
@@ -82,9 +88,6 @@ export const Loser = () => {
     </div>
   </>
 }
-
-
 </>
-
   )
 }

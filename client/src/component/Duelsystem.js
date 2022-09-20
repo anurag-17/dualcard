@@ -12,8 +12,6 @@ import centerleft from "../images/centerleft.svg";
 
 import backgroundlines from "../images/line-back.svg";
 
-
-
 import Cardflip from './Cardflip';
 import { Link } from 'react-router-dom';
 
@@ -49,7 +47,7 @@ const Duelsystem = () => {
                      <div className='challengeselect1'>
                        <div className='chalangeitem1'>
                             <div className='select-btn'>
-                              <button className='hero-btn'>CHALLENGER  <span>A</span></button>
+                              <button className='hero-btn'>CHALLENGER<span>A</span></button>
                             </div>
                             <div className='Aimg'>
                             <img src={topleft}></img>
