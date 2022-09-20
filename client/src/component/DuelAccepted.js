@@ -41,9 +41,6 @@ export const DuelAccepted = () => {
       setotherone(items.player_1[0].name)
     }
     });
-
-
-    
   };
   
   useEffect(() => {

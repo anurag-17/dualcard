@@ -13,6 +13,9 @@ const Winner = () => {
 
   const getwinner = async () => {
  const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
+
+ if(res){
+
   setTimeout(()=>{
     setLoader(false)
   },800)
@@ -25,7 +28,7 @@ const Winner = () => {
       setaadil(images[0].player_2[0].images);
   }
  const replaceimage = await axios.put("/api/auth/updateimage",{arr:aadil,id:storagedata._id})
- console.log(replaceimage)
+ }
   };
 
   // useEffect(() => {
