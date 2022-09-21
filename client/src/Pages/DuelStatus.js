@@ -13,7 +13,7 @@ export const DuelStatus = () => {
     setLoading(false);
   }, 2100);
   const getrecieved = async () => {
-    const res = await axios.post("/api/auth/challengestatus", { id: data._id });
+    const res = await axios.post("/api/auth/challengestatus",{id:data._id});
     setchallengedata(res.data);
   };
   useEffect(() => {
@@ -44,6 +44,8 @@ export const DuelStatus = () => {
                       </tr>
                     </thead>
                     {challengedata.map((items, index) => {
+
+
                       return (
                         <React.Fragment key={items._id}>
                           <tbody>
@@ -51,18 +53,18 @@ export const DuelStatus = () => {
                               <td>{items.player_1[0].name}</td>
                               <td>{items.player_2[0].name}</td>
 
-                              {items.Accept === "true" &&
-                              items.result === "pending" ? (
+                              {items.Accept === "true"&&
+                              items.result === "pending"?(
                                 <td>Accepted</td>
-                              ) : items.Accept === "decline" ? (
+                              ) : items.Accept === "decline"?(
                                 <td>Declined</td>
-                              ) : items.Accept === "pending" ? (
+                              ) : items.Accept === "pending"?(
                                 <td>Pending</td>
                               ) : (
                                 <td>Declared</td>
                               )}
                               {items.Accept === "true" &&
-                              items.result === "pending" ? (
+                              items.result === "pending"?(
                                 <td>
                                   <Link to="/DuelAccepted">
                                     <button className="table-hero-btn">
@@ -78,15 +80,10 @@ export const DuelStatus = () => {
                                   </button>
                                 </td>
                               )}
-
                               <td>
-                                {items.winner === data.username ? (
-                                  <h4 style={{ color: "green" }}>You Won</h4>
-                                ):items.loser === data.username ? (
-                                  <h4 style={{ color: "red" }}>You Lose</h4>
-                                ):items.Accept==="decline"?(
-                                  <h4>Cancelled</h4>
-                                ):<h4>Pending</h4>}
+                                {
+                                  items.result ==="pending"?<h4>pending</h4>:items.winner===data._id?<h4 style ={{color:"green"}}>Winner</h4>:<h4 style ={{color:"red"}}>Loser</h4>
+                                }
                               </td>
                             </tr>
                           </tbody>

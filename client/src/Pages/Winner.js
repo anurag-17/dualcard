@@ -11,11 +11,10 @@ const Winner = () => {
   const [loader, setLoader] = useState(true);
   const storagedata =JSON.parse(localStorage.getItem("nftuser")) 
 
-  const getwinner = async () => {
- const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
+ const getwinner = async () => {
+ const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declare"});
 
  if(res){
-
   setTimeout(()=>{
     setLoader(false)
   },800)
@@ -30,7 +29,7 @@ const Winner = () => {
  const replaceimage = await axios.put("/api/auth/updateimage",{arr:aadil,id:storagedata._id})
  }
   };
-
+  
   // useEffect(() => {
     getwinner();
   // }, [id,index]);

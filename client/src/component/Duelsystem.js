@@ -61,7 +61,6 @@ const Duelsystem = () => {
                             <div className='Aimg'>
                             <img src={topright}></img>
                             </div>
-                         
                        </div>
                       </div> 
                 </div>
@@ -73,7 +72,7 @@ const Duelsystem = () => {
                     <div className='winnwect'>
                       <h3>Handshake Agreement On Duelcards.Io</h3>
                       <p>Challenger A Accepts Challenger B’s Duel Offer</p>
-                      <span> (Hyperlink To Challenge Rules)</span>
+                      <span>(Hyperlink To Challenge Rules)</span>
                     </div>
                     </a>
                   </div>

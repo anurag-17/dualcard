@@ -15,7 +15,8 @@ export const Loser = () => {
   const storagedata =JSON.parse(localStorage.getItem("nftuser")) 
 
   const getwinner = async () => {
-    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declared"});
+    const res = await axios.post("/api/auth/winnerchallenge",{id:id,result:"declare"});
+    console.log(res)
     if(res){
       images.push(res.data[0]);
       setLoader(false)

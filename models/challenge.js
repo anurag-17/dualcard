@@ -9,13 +9,21 @@ const challengeSchema = new mongoose.Schema({
 type:String,
 default:"pending"
   },
-  winner:{
+  player_1_decision:{
     type:String,
-    default:"pending"
+    default:null
   },
-  loser:{
+  player_2_decision:{
     type:String,
-    default:"pending"
+    default:null
+  },
+  winner:{
+ type:String,
+ defualt:"pending"
+  },
+loser:{
+ type:String,
+ defualt:"pending"
   },
   Accept: {
     type: String,

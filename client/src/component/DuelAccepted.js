@@ -13,8 +13,10 @@ export const DuelAccepted = () => {
   const navigate = useNavigate()
   const [challengedata, setchallengedata] = useState([]);
   const [challengeid, setChallengeId] = useState("");
-  const [winlose,setwinlose]  = useState("")
-  const [otherone,setotherone] = useState("")
+  // const [winlose,setwinlose]  = useState("")
+  // const [otherone,setotherone] = useState("")
+  const [player1,setplayer1] = useState("")
+  const [player2,setplayer2] = useState("")
   const [loader, setLoader] = useState(true);
   const data = JSON.parse(localStorage.getItem("nftuser"));
   const id = data._id;
@@ -33,13 +35,8 @@ export const DuelAccepted = () => {
     newres.data.map((items, index) => {
       setChallengeId(items._id);
 
-    if(items.player_1_id===data._id){
-      setwinlose(items.player_1[0].name)
-      setotherone(items.player_2[0].name)
-    }else{
-      setwinlose(items.player_2[0].name)
-      setotherone(items.player_1[0].name)
-    }
+setplayer1(items.player_1_id)
+setplayer2(items.player_2_id)
     });
   };
   
@@ -48,22 +45,49 @@ export const DuelAccepted = () => {
   },[]);
 
 
-  const handlewin= (e)=>{
+  const handlewin= async(e)=>{
     setLoader(true)
-    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared",winner:winlose,loser:otherone})
-if(res){
-setLoader(false)
-  navigate(`/winner/${e.target.name}/player_${e.target.value}`)
-}
-  }
+     if(player1===data._id){
+       const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:1})
+       if(res.data.player_1_decision||res.data.player_2_decision!==null){
+        const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",winner:player1,loser:player2})
+        navigate(`/winner/${e.target.name}/player_${e.target.value}`)
+        }else{
+          navigate("/decinfo")
+        }
 
-  const handlelose  = (e)=>{
+     }else{
+      const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:2})
+      if(res.data.player_1_decision||res.data.player_2_decision!==null){
+        const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",winner:player2,loser:player1})
+          navigate(`/winner/${e.target.name}/player_${e.target.value}`)
+        }else{
+          navigate("/decinfo")
+        }
+     } 
+     setLoader(false)
+  }
+  const handlelose  = async(e)=>{
     setLoader(true)
-    const res = axios.put("/api/auth/winnerstatus",{id:challengeid,result:"declared",winner:otherone,loser:winlose})
-    if(res){
-setLoader(false)
-      navigate(`/loser/${e.target.name}/player_${e.target.value}`)
-    }
+    if(player1===data._id){
+      const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:1})
+      if(res.data.player_1_decision||res.data.player_2_decision!==null){
+      const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"declare",decision:"loser",index:1})
+        navigate(`/loser/${e.target.name}/player_${e.target.value}`)
+      }else{
+        navigate("/decinfo")
+      }
+      console.log(res.data)
+    }else{
+     const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:2})
+     if(res.data.player_1_decision||res.data.player_2_decision!==null){
+      const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"declare",decision:"loser",index:2})
+        navigate(`/loser/${e.target.name}/player_${e.target.value}`)
+      }else{
+        navigate("/decinfo")
+      }
+    } 
+    setLoader(false)
   }
   return (
     <div>
@@ -78,8 +102,6 @@ setLoader(false)
       ) : (
             <div className="row duelat-main">
               {challengedata.map((items, index) => {
-
-              
                 return (
                   <React.Fragment key={items._id}>
                   <h1 style ={{color:"white",textAlign:"center",marginTop:"80px",marginBottom:"20px"}}>Challenge{index+1}</h1>

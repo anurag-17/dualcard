@@ -88,7 +88,7 @@ const DuelSomeone = () => {
           300,
           300,
           "WEBP",
-          90,
+          100,
           0,
           (uri) => {
             setdata({

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const{ register, login,getdata, getuserdata,sendchallange, getchallenge, getrecieved, acceptChallenge, challengeStatus, declineChallenge, getwinner, setwinner, countwinlose,updateimage}= require('../controllers/auth')
+const{ register, login,getdata, getuserdata,sendchallange, getchallenge, getrecieved, acceptChallenge, challengeStatus, declineChallenge, getwinner, setwinner, countwinlose,updateimage,setwinlose}= require('../controllers/auth')
 router.route("/register").post(register);
 
 router.route("/login").post(login);
@@ -18,6 +18,7 @@ router.route("/challengestatus").post(challengeStatus)
 router.route("/declinechallenge").put(declineChallenge)
 router.route("/winnerchallenge").post(getwinner)
 router.route("/winnerstatus").put(setwinner)
+router.route("/setwinlose").put(setwinlose)
 router.route("/countwinlose").post(countwinlose)
 router.route("/updateimage").put(updateimage)
 // router.route("/forgetpassword").post(forgetpassword);

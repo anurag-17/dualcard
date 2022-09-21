@@ -144,7 +144,6 @@ catchAsyncError(
 exports.getchallenge =
 catchAsyncError(
   async(req,res,next)=>{
-  
   const challengedata = await Challenge.find({
   $or:[
     {player_1_id:req.body.id},  
@@ -162,7 +161,6 @@ catchAsyncError(
   async(req,res,next)=>{
     const data = await Challenge.find({player_2_id:req.body.id,Accept:req.body.Accept,result:req.body.result})
     return res.json(data)
-  
   }
   )
 
@@ -208,15 +206,41 @@ exports.getwinner  = catchAsyncError(
   }
 )
 
-exports.setwinner = catchAsyncError(
+exports.setwinner=catchAsyncError(
   async(req,res,next)=>{
-    const winstatus = await challenge.findByIdAndUpdate(req.body.id,{
-      result:req.body.result,
-    
-    })
-    return res.status(200).json(winstatus)
+    if( req.body.index ===1){
+      
+      const winstatus=await challenge.findByIdAndUpdate(req.body.id,{
+        result:req.body.result,
+        player_1_decision:req.body.decision
+        
+      })
+      return res.status(200).json(winstatus)
+    }
+    else if( req.body.index ===2){
+      
+      const winstatus=await challenge.findByIdAndUpdate(req.body.id,{
+        result:req.body.result,
+        player_2_decision:req.body.decision
+        
+      })
+      return res.status(200).json(winstatus)
+    }
+  }
+
+)
+
+exports.setwinlose=catchAsyncError(
+  async(req,res,next)=>{
+    const losestatus = await challenge.findByIdAndUpdate(req.body.id,{
+    winner:req.body.winner,
+    loser:req.body.loser,
+    result:req.body.result,
+  })
+    return res.status(200).json(losestatus)
   }
 )
+
 
 exports.countwinlose = catchAsyncError(
   async(req,res,next)=>{
