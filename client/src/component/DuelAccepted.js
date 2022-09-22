@@ -79,7 +79,7 @@ setplayer2(items.player_2_id)
         const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",loser:player1,winner:player2})
       console.log(res.data)
 
-        navigate(`/winner/${e.target.name}/player_${e.target.value}`)
+        navigate(`/loser/${e.target.name}/player_${e.target.value}`)
         }else{
           navigate("/decinfo")
         }
@@ -89,7 +89,7 @@ setplayer2(items.player_2_id)
       const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",loser:player2,winner:player1})
     console.log(res.data)
 
-        navigate(`/winner/${e.target.name}/player_${e.target.value}`)
+        navigate(`/loser/${e.target.name}/player_${e.target.value}`)
       }else{
         navigate("/decinfo")
       }
