@@ -131,9 +131,9 @@ const DuelSomeone = () => {
   };
 
   const countwinlose = async () => {
-    const res = await axios.post("/api/auth/countwinlose",{user:storagedata.username});
+    const res = await axios.post("/api/auth/countwinlose",{user:storagedata._id});
     let winfiltered = res.data.filter((items, index) => {
-      return items.winner === storagedata.username;
+      return items.winner === storagedata._id
     });
     setwinning(winfiltered.length);
     setlosing(res.data.length - winfiltered.length);
