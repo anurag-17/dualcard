@@ -11,7 +11,7 @@ export const Decisioninfo = () => {
                 <div className='thnkct'>
                 <h1>Your Decision Was Recieved!</h1>
                     <h2 style = {{color:"#5892FF"}}>The Challenge is Pending</h2>
-                  
+
                 </div>
             </div>
         </div>

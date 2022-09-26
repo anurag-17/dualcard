@@ -1,11 +1,7 @@
 const User = require("../models/User");
 const Image = require("../models/Image");
-const crypto = require("crypto");
 const ErrorResponse = require("../utlis/errorresponse.js");
-const sendEmail = require("../utlis/sendEmail.js");
-const user = require("../models/User");
 const emailValidator = require("deep-email-validator");
-const bodyParser = require("body-parser");
 const Challenge = require("../models/challenge");
 const catchAsyncError = require("../Errorhandlers/catchAsyncError")
 const ErrorHandler = require("../config/errorHandler");
@@ -24,7 +20,7 @@ exports.register = catchAsyncError(
     } = req.body;
   
   
-    const { valid, reason, validators } = await isEmailValid(email);
+    const { valid, reason, validators} = await isEmailValid(email);
     
     if(!username||
       !email||

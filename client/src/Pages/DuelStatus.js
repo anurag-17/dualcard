@@ -5,7 +5,6 @@ import "./DuelStatus.css";
 import { Loader } from "../component/Loader";
 
 export const DuelStatus = () => {
-  const navigate = useNavigate()
   const [challengedata,setchallengedata] = useState([]);
   const data = JSON.parse(localStorage.getItem("nftuser"));
   const [loading,setLoading] = useState(true);

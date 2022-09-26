@@ -13,8 +13,6 @@ export const DuelAccepted = () => {
   const navigate = useNavigate()
   const [challengedata, setchallengedata] = useState([]);
   const [challengeid, setChallengeId] = useState("");
-  // const [winlose,setwinlose]  = useState("")
-  // const [otherone,setotherone] = useState("")
   const [player1,setplayer1] = useState("")
   const [player2,setplayer2] = useState("")
   const [loader, setLoader] = useState(true);
@@ -28,15 +26,14 @@ export const DuelAccepted = () => {
       result:"pending"
     });
     if(newres){
+      console.log(newres)
       setLoader(false)
     }
     setchallengedata(newres.data);
-
     newres.data.map((items, index) => {
       setChallengeId(items._id);
-
-setplayer1(items.player_1_id)
-setplayer2(items.player_2_id)
+      setplayer1(items.player_1_id)
+      setplayer2(items.player_2_id)
     });
   };
   
@@ -52,12 +49,10 @@ setplayer2(items.player_2_id)
        if(res.data.player_1_decision||res.data.player_2_decision!==null){
         const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",winner:player1,loser:player2})
       console.log(res.data)
-
         navigate(`/winner/${e.target.name}/player_${e.target.value}`)
         }else{
           navigate("/decinfo")
         }
-
      }else{
       const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:2})
       if(res.data.player_1_decision||res.data.player_2_decision!==null){
@@ -74,22 +69,27 @@ setplayer2(items.player_2_id)
   const handlelose  = async(e)=>{
     setLoader(true)
     if(player1===data._id){
-      const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:1})
+      const res=await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:1})
+      console.log(res.data)
       if(res.data.player_1_decision||res.data.player_2_decision!==null){
         const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",loser:player1,winner:player2})
       console.log(res.data)
-
         navigate(`/loser/${e.target.name}/player_${e.target.value}`)
         }else{
           navigate("/decinfo")
         }
     }else{
      const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:2})
+     console.log(res.data)
      if(res.data.player_1_decision||res.data.player_2_decision!==null){
       const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",loser:player2,winner:player1})
-    console.log(res.data)
-
+      console.log(res.data)
+      if(res.data.player_1_decision===res.data.player_2_decision){
+      const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"Manual Review",loser:player2,winner:player1})
+       navigate("/decinfo")
+      }else{
         navigate(`/loser/${e.target.name}/player_${e.target.value}`)
+      }
       }else{
         navigate("/decinfo")
       }
@@ -98,7 +98,6 @@ setplayer2(items.player_2_id)
   }
   return (
     <div>
-     
         <div className="duelacept-sec">
           <div className="container">
             <div className="section-title">

@@ -28,7 +28,6 @@ export const userReducer = (state = {}, action) => {
         loading: true,
         isAuthenticated: false,
       };
-
     case LOGIN_SUCCESS:
     case REGISTER_USER_SUCCESS:
       return {
@@ -37,7 +36,6 @@ export const userReducer = (state = {}, action) => {
         isAuthenticated: true,
         user: action.payload,
       };
-
     case LOGIN_FAIL:
     case REGISTER_USER_FAIL:
       return {
@@ -112,7 +110,6 @@ export const userReducer = (state = {}, action) => {
         ...state,
         isUpdated: false,
       };
-
     default:
       return state;
   }
