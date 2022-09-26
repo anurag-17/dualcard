@@ -60,6 +60,7 @@ function App() {
         {/* <Route path = "/duelmarket" element = {<ChallengeMarket/>}/> */}
       </Routes>
     <Footer/>
+    
     </div>
   );
 }

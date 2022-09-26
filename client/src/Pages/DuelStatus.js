@@ -83,7 +83,7 @@ export const DuelStatus = () => {
                               )}
                               <td>
                                 {
-                                  items.result ==="pending"?<h4>pending</h4>:items.winner===data._id?<h4 style ={{color:"green"}}>Winner</h4>:<h4 style ={{color:"red"}}>Loser</h4>
+                                  items.result ==="pending"?<h4>pending</h4>:items.result==="Manual Review"?<h4>Manual Review</h4>:items.winner===data._id?<h4 style ={{color:"green"}}>Winner</h4>:<h4 style ={{color:"red"}}>Loser</h4>
                                 }
                               </td>
                             </tr>

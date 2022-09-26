@@ -205,20 +205,18 @@ exports.getwinner  = catchAsyncError(
 exports.setwinner=catchAsyncError(
   async(req,res,next)=>{
     if( req.body.index ===1){
-      
       const winstatus=await challenge.findByIdAndUpdate(req.body.id,{
         result:req.body.result,
-        player_1_decision:req.body.decision
-        
+        player_1_decision:req.body.decision,
+        createdAt:req.body.createdAt
       })
       return res.status(200).json(winstatus)
     }
     else if( req.body.index ===2){
-      
       const winstatus=await challenge.findByIdAndUpdate(req.body.id,{
         result:req.body.result,
-        player_2_decision:req.body.decision
-        
+        player_2_decision:req.body.decision,
+        createdAt:req.body.createdAt
       })
       return res.status(200).json(winstatus)
     }
@@ -232,10 +230,13 @@ exports.setwinlose=catchAsyncError(
     winner:req.body.winner,
     loser:req.body.loser,
     result:req.body.result,
+    createdAt:req.body.createdAt
   })
     return res.status(200).json(losestatus)
   }
 )
+
+
 
 
 exports.countwinlose = catchAsyncError(

@@ -13,6 +13,10 @@ default:"pending"
     type:String,
     default:null
   },
+  createdAt:{
+   type:Date,
+   default:Date.now
+  },
   player_2_decision:{
     type:String,
     default:null
