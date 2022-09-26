@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./DuelStatus.css";
 import { Loader } from "../component/Loader";
 
@@ -73,9 +73,12 @@ export const DuelStatus = () => {
                               ) : (
                                 <td>
                                   
+                                  {/* <Link to = "/loser/632c2b07521e8b37eada3495/player_1"> */}
+
                                   <button disabled className="table-hero-btn">
                                     Go To Challenge
                                   </button>
+                                  {/* </Link> */}
                                 </td>
                               )}
                               <td>

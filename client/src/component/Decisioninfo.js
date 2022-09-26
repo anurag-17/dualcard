@@ -11,13 +11,7 @@ export const Decisioninfo = () => {
                 <div className='thnkct'>
                 <h1>Your Decision Was Recieved!</h1>
                     <h2 style = {{color:"#5892FF"}}>The Challenge is Pending</h2>
-                   <div className='thankbtn'>
-    <Link to = "/">
-                    <button className="go-home hero-btn">
-                        Go Home
-                        </button>
-    </Link>
-                   </div>
+
                 </div>
             </div>
         </div>

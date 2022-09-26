@@ -1,11 +1,7 @@
 const User = require("../models/User");
 const Image = require("../models/Image");
-const crypto = require("crypto");
 const ErrorResponse = require("../utlis/errorresponse.js");
-const sendEmail = require("../utlis/sendEmail.js");
-const user = require("../models/User");
 const emailValidator = require("deep-email-validator");
-const bodyParser = require("body-parser");
 const Challenge = require("../models/challenge");
 const catchAsyncError = require("../Errorhandlers/catchAsyncError")
 const ErrorHandler = require("../config/errorHandler");
@@ -24,7 +20,7 @@ exports.register = catchAsyncError(
     } = req.body;
   
   
-    const { valid, reason, validators } = await isEmailValid(email);
+    const { valid, reason, validators} = await isEmailValid(email);
     
     if(!username||
       !email||
@@ -348,7 +344,7 @@ const sendToken = (user, statusCode, res) => {
     expire: new Date(Date.now + 24 * 60 * 60 * 1000),
     httpOnly: true,
   };
-  res.status(statusCode).cookie("token", token, options).json({
+  res.status(statusCode).cookie("token",token,options).json({
     success: true,
     user,
     token,
