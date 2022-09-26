@@ -13,8 +13,6 @@ export const DuelAccepted = () => {
   const navigate = useNavigate()
   const [challengedata, setchallengedata] = useState([]);
   const [challengeid, setChallengeId] = useState("");
-  // const [winlose,setwinlose]  = useState("")
-  // const [otherone,setotherone] = useState("")
   const [player1,setplayer1] = useState("")
   const [player2,setplayer2] = useState("")
   const [loader, setLoader] = useState(true);
@@ -23,7 +21,7 @@ export const DuelAccepted = () => {
 
   const getrecieved = async () => {
     const newres = await axios.post("/api/auth/challengedata", {
-      id:id,
+      id:id,  
       Accept:true,
       result:"pending"
     });

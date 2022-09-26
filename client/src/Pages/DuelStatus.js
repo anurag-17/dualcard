@@ -44,8 +44,6 @@ export const DuelStatus = () => {
                       </tr>
                     </thead>
                     {challengedata.map((items, index) => {
-
-
                       return (
                         <React.Fragment key={items._id}>
                           <tbody>
