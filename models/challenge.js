@@ -14,8 +14,12 @@ default:"pending"
     default:null
   },
   createdAt:{
-   type:Date,
-   default:Date.now
+   type:Number,
+   default:null
+  },
+  expiresAt:{
+type:Number,
+default:null
   },
   player_2_decision:{
     type:String,

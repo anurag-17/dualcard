@@ -208,7 +208,8 @@ exports.setwinner=catchAsyncError(
       const winstatus=await challenge.findByIdAndUpdate(req.body.id,{
         result:req.body.result,
         player_1_decision:req.body.decision,
-        createdAt:req.body.createdAt
+        createdAt:req.body.createdAt,
+        expiresAt:req.body.expiresAt
       })
       return res.status(200).json(winstatus)
     }
@@ -216,7 +217,8 @@ exports.setwinner=catchAsyncError(
       const winstatus=await challenge.findByIdAndUpdate(req.body.id,{
         result:req.body.result,
         player_2_decision:req.body.decision,
-        createdAt:req.body.createdAt
+        createdAt:req.body.createdAt,
+        expiresAt:req.body.expiresAt
       })
       return res.status(200).json(winstatus)
     }
@@ -236,7 +238,16 @@ exports.setwinlose=catchAsyncError(
   }
 )
 
+exports.setexpire = catchAsyncError(
+  async(req,res,next)=>{
+    const expiry = await challenge.updateMany(
+      {expiresAt:{$lt:req.body.date}},
+      {$set:{result:"Manual Review"}}
+      )
 
+      return res.status(200).json(expiry)
+  }
+)
 
 
 exports.countwinlose = catchAsyncError(

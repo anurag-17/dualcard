@@ -16,8 +16,14 @@ export const DuelStatus = () => {
     const res = await axios.post("/api/auth/challengestatus",{id:data._id});
     setchallengedata(res.data);
   };
+
+  const getexpire = async()=>{
+    const res = await axios.put("/api/auth/setexpire",{date:Date.now()})
+  }
+
   useEffect(() => {
     getrecieved();
+    getexpire()
   });
 
   return (
@@ -70,7 +76,7 @@ export const DuelStatus = () => {
                                     </button>
                                   </Link>
                                 </td>
-                              ) : (
+                              ):(
                                 <td>
                                   
                                   {/* <Link to = "/loser/632c2b07521e8b37eada3495/player_1"> */}
@@ -83,7 +89,7 @@ export const DuelStatus = () => {
                               )}
                               <td>
                                 {
-                                  items.result ==="pending"?<h4>pending</h4>:items.result==="Manual Review"?<h4>Manual Review</h4>:items.winner===data._id?<h4 style ={{color:"green"}}>Winner</h4>:<h4 style ={{color:"red"}}>Loser</h4>
+                                  items.result==="pending"?<h4>pending</h4>:items.result==="Manual Review"?<h4>Manual Review</h4>:items.winner===data._id?<h4 style ={{color:"green"}}>Winner</h4>:<h4 style ={{color:"red"}}>Loser</h4>
                                 }
                               </td>
                             </tr>

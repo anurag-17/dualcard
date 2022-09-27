@@ -17,10 +17,11 @@ export const DuelAccepted = () => {
   const [player2,setplayer2] = useState("")
   const [loader, setLoader] = useState(true);
   const [expiredate,setexpiredate]  = useState(false)
+  const [lastdate,setLastDate] = useState()
   const data = JSON.parse(localStorage.getItem("nftuser"));
   const id = data._id;
-
-  const getrecieved = async () => {
+ 
+  const getrecieved=async()=>{
     const newres = await axios.post("/api/auth/challengedata", {
       id:id,  
       Accept:true,
@@ -30,33 +31,33 @@ export const DuelAccepted = () => {
       setLoader(false)
     }
     setchallengedata(newres.data);
-    newres.data.map((items, index) => {
-      let expire = new Date(items.createdAt).getTime()+259200000
-      
-      
-      if(expire===Date.now()){
-        setexpiredate(true)
-        console.log("done")
-      }
-      console.log(Date.now())
+  
+
+    newres.data.map((items, index)=>{
+      console.log(items)
+     setLastDate(new Date(items.createdAt).getTime()+259200000)
+//  let jsondate =new Date(expire).toJSON()
+//  console.log(jsondate)
       setChallengeId(items._id);
       setplayer1(items.player_1_id)
       setplayer2(items.player_2_id)
     });
+
   };
-  
+
   useEffect(() => {
     getrecieved();
   },[expiredate]);
 
 
-  const handlewin= async(e)=>{
-    setLoader(true)
+const handlewin=async(e)=>{
+     setLoader(true)
      if(player1===data._id){
-       const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:1,createdAt:new Date()})
+      const expiry = Date.now()+259200000
+       const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:1,expiresAt:expiry,createdAt:new Date().getTime()})
        if(res.data.player_1_decision||res.data.player_2_decision!==null){
         const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",winner:player1,loser:player2,createdAt:null})
-   if(res.data.player_1_decision===res.data.player_2_decision){
+     if(res.data.player_1_decision===res.data.player_2_decision){
       const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"Manual Review",loser:null,winner:null,createdAt:null})
        navigate("/decinfo")
       }else{
@@ -66,7 +67,8 @@ export const DuelAccepted = () => {
           navigate("/decinfo")
         }
      }else{
-      const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:2,createdAt:new Date()})
+      const expiry = Date.now()+259200000
+      const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:2,expiresAt:expiry,createdAt:new Date().getTime()})
       if(res.data.player_1_decision||res.data.player_2_decision!==null){
         const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",winner:player2,loser:player1,createdAt:null})
       console.log(res.data)
@@ -85,7 +87,8 @@ export const DuelAccepted = () => {
   const handlelose  = async(e)=>{
     setLoader(true)
     if(player1===data._id){
-      const res=await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:1,createdAt:new Date()})
+      const expiry = Date.now()+259200000
+      const res=await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:1,expiresAt:expiry,createdAt:new Date().getTime()})
       console.log(res.data)
       if(res.data.player_1_decision||res.data.player_2_decision!==null){
         const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",loser:player1,winner:player2,createdAt:null})
@@ -99,7 +102,8 @@ export const DuelAccepted = () => {
           navigate("/decinfo")
         }
     }else{
-     const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:2})
+      const expiry = Date.now()+259200000
+     const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:2,expiresAt:expiry,createdAt:new Date().getTime()})
      console.log(res.data)
      if(res.data.player_1_decision||res.data.player_2_decision!==null){
       const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",loser:player2,winner:player1,createdAt:null})
@@ -143,7 +147,6 @@ export const DuelAccepted = () => {
                             <span style ={{color:"white",marginRight:"10px"}}>Challenger</span>
                           </div>
                           <div className="dA-slider">
-
                           <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -258,7 +261,6 @@ export const DuelAccepted = () => {
                     })}
             </div>
             )}
-            
           </div>
         </div>
     </div>

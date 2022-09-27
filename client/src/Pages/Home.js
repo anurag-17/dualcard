@@ -6,7 +6,6 @@ import Roadmap from './Roadmap';
 
 
 const Home = () => {
-
   const [userdata, setUserdata] = useState([]);
   const [newuserdata, setnewuserdata] = useState([]);
   const [searchfilter,setsearchfilter] = useState([])
@@ -14,14 +13,10 @@ const Home = () => {
   const[targetname,settargetname] =useState("")
   const [firstname,setfirstname] = useState(true)
   const [runfun,setrunfun] = useState(true)
+  const data = JSON.parse(localStorage.getItem("nftuser"));
 
 
   async function getuserdata(){
-
-
-    // if(!firstname){
-    //   return
-    // }
     const res = await axios.get("/api/auth/getuserdata");
     setUserdata(res.data);
     const localdata = JSON.parse(localStorage.getItem("nftuser"));
@@ -29,14 +24,27 @@ const Home = () => {
     const filtereduser = userdata.filter((items, index) => {
       return items._id !== localdata._id;
     });
-   
     setnewuserdata(filtereduser);
     setsearchfilter(filtereduser)
+  };
+
+  const getrecieved=async()=>{
+    const newres = await axios.post("/api/auth/challengedata", {
+      id:data._id,  
+      Accept:true,
+      result:"pending"
+    });
+  newres.data.map((item,index)=>{
+  console.log(new Date(item.createdAt).getTime()+259200000)
+
+  })
+  
   };
 
   // if(runfun){
     useEffect(()=>{
       getuserdata()
+      getrecieved()
     },[])
   // }
   
