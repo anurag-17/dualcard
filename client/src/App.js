@@ -27,9 +27,18 @@ import { Loser } from './Pages/Loser';
 import Duelsystem from './component/Duelsystem';
 import { ChallengeMarket } from './component/ChallengeMarket';
 import { Decisioninfo } from './component/Decisioninfo';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
 
+  const getexpire = async()=>{
+    const res = await axios.put("/api/auth/setexpire",{date:Date.now()})
+  }
+
+  useEffect(()=>{
+    getexpire()
+  })
 
   return (
     <div className="App">

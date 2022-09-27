@@ -397,7 +397,6 @@ const DuelSomeone = () => {
                           </div>
                         </div>
                       </div>
-
                       <Modal
                         style={{ height: "800px" }}
                         show={show}

@@ -53,7 +53,8 @@ export const DuelAccepted = () => {
 const handlewin=async(e)=>{
      setLoader(true)
      if(player1===data._id){
-      const expiry = Date.now()+259200000
+      // const expiry = Date.now()+259200000
+      const expiry = Date.now()+30000
        const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:1,expiresAt:expiry,createdAt:new Date().getTime()})
        if(res.data.player_1_decision||res.data.player_2_decision!==null){
         const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",winner:player1,loser:player2,createdAt:null})
