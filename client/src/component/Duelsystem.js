@@ -56,7 +56,7 @@ const Duelsystem = () => {
                        </div>
                        <div className='chalangeitem1 challen-rights'>
                             <div className='select-btn'>
-                              <button className='hero-btn'> CHALLENGER <span>B</span></button>
+                              <button className='hero-btn'>CHALLENGER<span>B</span></button>
                             </div>
                             <div className='Aimg'>
                             <img src={topright}></img>

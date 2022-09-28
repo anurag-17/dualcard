@@ -35,8 +35,7 @@ const navigate  = useNavigate()
                     </li>  
                     <li className="nav-item" onClick={()=>navigate("/contact-us")}>                                        
                     <Link  to="ICOInformation" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Contact Us</Link>
-                    </li>                                    
-                     
+                    </li>                                                       
                 </ul>
           </div>
           <hr className='hr-line'></hr>

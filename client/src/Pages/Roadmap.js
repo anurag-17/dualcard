@@ -40,7 +40,7 @@ const Roadmap = () => {
                 <div className='yeartext'>
                   <h3>AUG <span>2023</span></h3>                  
                 </div>
-                <div className='map-des margin'>
+                <div style ={{marginBottom:"15px"}} className='map-des'>
                 <li><span>●</span> Partnered streamer announcement</li>
                   <li><span>●</span>First DuelCards challenge live on twitich.tv!</li>
                   </div>

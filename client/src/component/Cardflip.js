@@ -1,25 +1,12 @@
 import React from 'react'
 import './Cardflip.css'
-import buyimg1left from "../images/row1-left-card.svg";
-import buyimg2right from "../images/row1-right-card.svg";
-
-import secondleft from "../images/row2-left-card.svg";
-import secondright from "../images/row2-right-card.svg";
-
-import thirdleft from "../images/third-left-card.svg";
-import thirdright from "../images/row3-right-card.svg";
-
-
-import row4left from "../images/row4-left-card.svg";
-import row4right from "../images/row4-right-card.svg";
-
-import fifthleft from "../images/row5-left-card.svg";
-import fifthrights from "../images/fifth-right.svg";
-
-
-
-
-import shapeline from "../images/arrow-white.svg";
+import buyimg1 from "../Edited/1.png";
+import buyimg2 from "../Edited/2.png";
+import buyimg3 from "../Edited/3.png";
+import buyimg4 from "../Edited/4.png";
+import buyimg5 from "../Edited/5.png";
+import buyimg6 from "../images/6.jpg";
+import shapeline from "../images/shpeline.png";
 
 const Cardflip = () => {
   return (
@@ -28,13 +15,12 @@ const Cardflip = () => {
         <div className='container'>
              <div className='row'>
             <div className='challengesys-grid'>
-
               <div className='chall-sys1'>
                 <div className='row system-main'>
                   <div className='col-md-4'>
-                   <div className='shape1 dual-first'>
-                     <img src={buyimg1left}></img>
-                     <h4>Lvl 1 DuelCard</h4>
+                   <div className='shape1'>
+                     <img src={buyimg1}></img>
+                     <h4>LVL 1 DUELCARD</h4>
                    </div>
                   </div>
                   <div className='col-md-4'>
@@ -44,26 +30,29 @@ const Cardflip = () => {
                   </div>
                   <div className='col-md-4'>
                   <div className='shape2'>
-                    <img src={buyimg2right}></img>
-                    <h4>Lvl 1 DuelCard</h4>
+                    <img src={buyimg2}></img>
+                    <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>
                 </div>
               </div>
-
-
               <div className='chall-sys1'>
                 <div className='row system-main'>
                   <div className='col-md-4'>
                     <div className='shap-line'>                      
-                        <div id="wrapper"> 
-                        <div id="squareID" className="one">
-                            <div className='shape1 dualsecond'>
-                                <img  className="one" src={secondleft}></img>
+                        <div ID="wrapper"> 
+                        <div id="squareID" class="one">
+                            <div className='shape1'>
+                                <img style = {{width:"280px",position:"relative",left:"20px"}} className="one" src={buyimg2}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
-                       
+                        <div id="squareID" class="two">
+                            <div className='shape1'>
+                                <img style={{position:"relative",left:"20px"}} className="two" src={buyimg1}></img>
+                                <h4>LVL 1 DUELCARD</h4>
+                            </div>  
+                        </div>
                         </div>
                     </div>
                   </div>
@@ -74,26 +63,35 @@ const Cardflip = () => {
                   </div>
                   <div className='col-md-4'>
                   <div className='shape2'>
-                    <img src={secondright}></img>
-                    <h4>LVL 1</h4>
+                    <img src={buyimg3}></img>
+                    <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>
                 </div>
               </div>
-
-
               <div className='chall-sys1'>
                 <div className='row system-main'>
                   <div className='col-md-4'>
                   <div className='shap-line'>
-                  <div id="wrapper"> 
-                        <div id="squareID" className="one">
+                  <div ID="wrapper"> 
+                        <div id="squareID" class="one">
                             <div className='shape1'>
-                                <img  className="one" src={thirdleft}></img>
+                                <img style ={{width:"310px",position:"relative"}}className="one" src={buyimg3}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
-                       
+                        <div id="squareID" class="two">
+                            <div className='shape1'>
+                                <img className="two" src={buyimg3}></img>
+                                <h4>LVL 1 DUELCARD</h4>
+                            </div>  
+                        </div>                        
+                        <div id="squareID" class="three">
+                        <div className='shape1'>
+                                <img className="three" src={buyimg1}></img>
+                                <h4>LVL 1 DUELCARD</h4>
+                            </div>  
+                        </div>
                         </div>
                     </div>
                   </div>
@@ -104,26 +102,35 @@ const Cardflip = () => {
                   </div>
                   <div className='col-md-4'>
                   <div className='shape2'>
-                    <img src={thirdright}></img>
+                    <img style={{width:"370px",position:"relative",bottom:"25px"}} src={buyimg4}></img>
                     <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>
                 </div>
               </div>
-
-
               <div className='chall-sys1'>
                 <div className='row system-main'>
                   <div className='col-md-4'>
                   <div className='shap-line'>
-                  <div id="wrapper"> 
-                        <div id="squareID" className="one">
+                  <div ID="wrapper"> 
+                        <div id="squareID" class="one">
                             <div className='shape1'>
-                                <img  className="one" src={row4left}></img>
+                                <img  style={{width:"405px",position: "relative",bottom:"50px",right:"60px"}} className="one" src={buyimg4}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
-                    
+                        <div id="squareID" class="two">
+                            <div className='shape1'>
+                                <img style={{width:"405px",position: "relative",bottom:"50px",right:"60px"}} className="two" src={buyimg4}></img>
+                                <h4>LVL 1 DUELCARD</h4>
+                            </div>  
+                        </div>                        
+                        <div id="squareID" class="three">
+                        <div className='shape1'>
+                                <img className="three" src={buyimg1}></img>
+                                <h4>LVL 1 DUELCARD</h4>
+                            </div>  
+                        </div>
                         </div>
                     </div>
                   </div>
@@ -134,44 +141,51 @@ const Cardflip = () => {
                   </div>
                   <div className='col-md-4'>
                   <div className='shape2'>
-                    <img src={row4right}></img>
+                    <img style = {{width:"370px",position:"relative",right:"30px"}} src={buyimg5}></img>
                     <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>
                 </div>
               </div>
-
-
               <div className='chall-sys1'>
                 <div className='row system-main'>
                   <div className='col-md-4'>
                   <div className='shap-line'>
-                  <div id="wrapper"> 
-                        <div id="squareID" className="one">
+                  <div ID="wrapper"> 
+                        <div id="squareID" class="one">
                             <div className='shape1'>
-                                <img  className="one" src={fifthleft}></img>
+                                <img style = {{width:"370px",position: "relative",top:"38px",right: "44px"}}className="one" src={buyimg5}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
-                   
+                        <div id="squareID" class="two">
+                            <div className='shape1'>
+                                <img style={{marginTop:"40px",width:"370px",position:"relative",right:"44px"}} className="two" src={buyimg5}></img>
+                                <h4>LVL 1 DUELCARD</h4>
+                            </div>  
+                        </div>                        
+                        <div id="squareID" class="three">
+                        <div className='shape1'>
+                                <img style={{marginTop:"50px"}} className="three" src={buyimg1}></img>
+                                <h4>LVL 1 DUELCARD</h4>
+                            </div>  
+                        </div>
                         </div>
                     </div>
                   </div>
                   <div className='col-md-4'>
                     <div className='systemct'>
-                        <img src={shapeline}></img>
+                        <img style={{marginBottom:"80px"}} src={shapeline}></img>
                       </div>  
                   </div>
-                  <div className='col-md-4'>
+                  <div className='col-md-4' style={{marginTop:"50px"}}>
                   <div className='shape2'>
-                    <img src={fifthrights}></img>
+                    <img style = {{width:"413px",position:"relative",bottom:"55px"}} src={buyimg4}></img>
                     <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>
                 </div>
-              </div>    
-
-
+              </div>             
               </div>
             </div>
            </div>

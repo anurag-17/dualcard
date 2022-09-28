@@ -3,6 +3,9 @@ import React, {useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './Home.css';
 import Roadmap from './Roadmap';
+import img1 from "../Edited/1.png"
+import img2 from "../Edited/3.png"
+import img3 from "../Edited/4.png"
 
 
 const Home = () => {
@@ -117,8 +120,8 @@ const Home = () => {
                 <div className='buy-ct'>
                   <h3>Buy Lvl1 Duel Card</h3>
                     <div className='buy-img'>
-                      <Link to = "/shop-streamer">
-                       <img src="./NFT img.png" alt="img"/>
+                      <Link to = "/BuyDuelCard">
+                       <img className='hoverclass' src={img1} alt="img"/>
                       </Link>
                      </div>
                     
@@ -129,8 +132,8 @@ const Home = () => {
                 <div className='buy-ct'>
                   <h3>Buy Lvl2 Duel Card</h3>
                     <div className='buy-img'>
-                    <Link to = "/shop-seasonal">
-                       <img src="./NFT img2.png" alt="img"/>
+                    <Link to = "/BuyDuelCard">
+                       <img className='hoverclass' style={{width:"280px",minHeight:"400px"}} src={img2} alt="img"/>
                    </Link>
                      </div>
                 </div>
@@ -139,8 +142,8 @@ const Home = () => {
                 <div className='buy-ct'>
                   <h3>Buy Lvl3 Duel Card</h3>
                     <div className='buy-img'>
-<Link to ="/shop-universal">
-                       <img src="./NFT img3.png" alt="img"/>
+<Link to ="/BuyDuelCard">
+                       <img className='hoverclass' style={{width:"350px",position:"relative",bottom:"25px"}} src={img3} alt="img"/>
 </Link>
                      </div>
                 </div>

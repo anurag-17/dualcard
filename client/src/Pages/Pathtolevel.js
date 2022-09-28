@@ -1,6 +1,6 @@
 import React from 'react';
 import './Pathtolevel.css';
-import firstcenter from "../images/firstcenter.svg";
+import firstcenter from "../Edited/5.png";
 import shape1 from "../images/branched-arrow-green.svg";
 import shape_1 from "../images/arrow-brown.svg";
 import shape2 from "../images/arrow-yellow.svg";
@@ -17,7 +17,7 @@ const Pathtolevel = () => {
            </div>
             <div className='row'>
                 <div className='level-img'>
-                    <img src={firstcenter}></img>
+                    <img style ={{width:"350px",position:"relative",right:"25px"}} src={firstcenter}></img>
                     <h3>Level 4 Duel Card NFT (Sponsorship)</h3>                    
                 </div>
                 <div className='shap-bg'>
