@@ -33,10 +33,7 @@ const navigate  = useNavigate()
                     <li className="nav-item" onClick={()=>navigate("/AboutRules")} to='/Pathtolevel'>                                        
                     <Link  to="AboutRules" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Challenge System</Link>
                     </li>  
-                    <li className="nav-item" onClick={()=>navigate("/ICOInformation")} to='/ICOInformation'>                                        
-                    <Link  to="ICOInformation" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Duel Coins Information</Link>
-                    </li>                                    
-                    <li className="nav-item" onClick={()=>navigate("/contact-us")} to='/ICOInformation'>                                        
+                    <li className="nav-item" onClick={()=>navigate("/contact-us")}>                                        
                     <Link  to="ICOInformation" className="foot-link" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Contact Us</Link>
                     </li>                                    
                      

@@ -52,7 +52,6 @@ function App() {
         <Route path = "/winner/:id/:index" element = {<Winner/>}/>
         <Route path = "/loser/:id/:index" element = {<Loser/>}/>
         <Route path = "/DuelSomeone" element = {<ProtectedRoute><DuelSomeone/></ProtectedRoute>}/>
-        <Route path = "/ICOInformation" element = {<ICOInformation/>}/>
         <Route path = "/AboutRules" element = {<AboutRules/>}/>
         <Route path = "/Marketplace" element = {<Marketplace/>}/>
         <Route path = "/DuelReceived" element = {<ProtectedRoute><DuelReceived/></ProtectedRoute>}/>
