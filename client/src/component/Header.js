@@ -90,10 +90,7 @@ const logoutuser = () => {
                           </li>                             
                         </ul>
                     </li> 
-                    <li className="nav-item" onClick={()=>navigate("/ICOInformation")} to='/ICOInformation'>                                        
-                    <Link  to="/ICOInformation" className="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Duel Coins Info</Link>
-                    </li>                                                    
-                     
+                                                                   
                 </ul>
                 <form style={{position:"relative",right:"10%"}} className="d-flex">  
                 {
@@ -151,7 +148,6 @@ const logoutuser = () => {
                   <Nav.Link href="Marketplace">Marketplace</Nav.Link>
                   <Nav.Link href="DuelSomeone">Duel Someone</Nav.Link>
                   <Nav.Link href="AboutRules">About / Rules</Nav.Link>
-                  <Nav.Link href="ICOInformation">ICO Information</Nav.Link>
                 </Nav>
                 
                 <form className="d-flex">

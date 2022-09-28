@@ -50,13 +50,30 @@
 }
 .map-des {
     padding: 50px 0px;
+  margin: auto;
 }
-.map-des p {
-    padding: 5px 30px;
-    font-size: 10px;
+.map-des li{
+    padding: 3px 26px;
+    /* list-style:disc; */
+    font-size: 12px;
     line-height: 17px;
     color: #fff;
     font-family: 'Poppins', sans-serif;
+    text-align: center;
+    justify-content: center;
+}
+.map-des li span{
+   margin-right: 5px;
+}
+
+.margin{
+margin-top: -10px;
+margin-left: 4px;
+margin-right: 4px;
+}
+
+.map-des p{
+    font-size: 11px;
 }
 .first-tops p {
     margin-bottom: 0;

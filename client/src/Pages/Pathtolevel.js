@@ -40,7 +40,7 @@ const Pathtolevel = () => {
                   <div className='mostcarditem3'>
                     <div className='tite-shape'>
                     <img src={shape3}></img>
-                      <h3>Most Duels Accepted</h3>
+                      <h3>Most Cards Collected</h3>
                     </div>
                   </div>
                 </div>
@@ -66,10 +66,10 @@ const Pathtolevel = () => {
                 <tbody>
                   <tr>
                     <td>Lvl 1</td>
-                    <td>100</td>
+                    <td>200</td>
                     <td>-</td>
-                    <td>100</td>
-                    <td>300</td>
+                    <td>200</td>
+                    <td>600</td>
                   </tr>
                   <tr>
                     <td>Lvl 2</td>

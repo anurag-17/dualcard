@@ -127,6 +127,7 @@ const res = await axios.post("/api/auth/countwinlose",{user:user})
 })
 setwinning(winfiltered.length)
 
+
 let losefiltered = res.data.filter((items,index)=>{
   return items.loser === storagedata.username
 })
@@ -148,7 +149,6 @@ const getimages = async()=>{
   getrecieved();
 countwinlose()
   },[image,loading,isImage,userimagedata]);
-
 
   return (
    <>
@@ -370,7 +370,6 @@ errromessage&&<div style = {{position:"relative",left:"35%",bottom:"50%"}} class
                 <div className='thnkct'>
                 <h1>You haven't Received any challenges yet </h1>
                     <p>you can challenge someone</p>
-                    <p>Duel someone</p>
                    <div className='thankbtn'>
     <Link to = "/DuelSomeone">
     

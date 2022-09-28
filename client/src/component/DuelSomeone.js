@@ -209,7 +209,16 @@ const DuelSomeone = () => {
                 <h2>Commence Duel/Challenge</h2>
               </div>
               <Searchbar search={handleSearch} />
-              <div className="row">
+
+              <div>
+              <Link to="/duelstatus">
+                <h4 style={{color: "white",position:"absolute",left:"33%",marginTop:"35px"}}>
+                  Please check status for previous Duel Challenges
+                </h4>
+              </Link>
+            </div>
+
+              <div style={{marginTop:"50px"}} className="row">
                 <div className="tab-challange">
                   <div className="tab-section">
                     <Usernames onuserclick={handleuserclick} searchfilter={searchfilter}/>
@@ -447,13 +456,7 @@ const DuelSomeone = () => {
                 </div>
               </div>
             </div>
-            <div style={{ textAlign: "center", marginTop: "50px" }}>
-              <Link to="/duelstatus">
-                <h4 style={{ color: "white" }}>
-                  Please check status for previous Duel Challenges
-                </h4>
-              </Link>
-            </div>
+           
           </div>
         </>
       )}

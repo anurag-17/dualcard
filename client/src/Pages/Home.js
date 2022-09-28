@@ -357,32 +357,6 @@ searchfilter.map((items,index)=>{
             </div>
           </div>
         </div>
-
-        <div className='info-sec'>
-          <div className='container'>
-            <div className='row info-main'>
-              <div className='col-md-6'>
-                <div className='inf-ct'>
-                  <h4>DuelCoins Information</h4>
-                  <p>We are introducing a new token,DuelCoin, to help facilitate the governing smart contracts over the "Duel Challenge" System.
-                    Tokenomics and more details to the public coming soon!
-                     </p>
-                     <div className='btn-rule'>
-                      <Link to = "/ICOInformation">
-                        <button className='hero-btn'>Show more</button>
-                      </Link>
-                   </div>
-                </div>
-              </div>
-              <div className='col-md-6 rule-img3'>
-              <div className='nft-img'>
-              <img src="./NFT-img.png" alt="img"/>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
 <Roadmap/>
 
       </div>

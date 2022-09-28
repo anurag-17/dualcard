@@ -18,6 +18,7 @@ export const DuelAccepted = () => {
   const [loader, setLoader] = useState(true);
   const [expiredate,setexpiredate]  = useState(false)
   const [lastdate,setLastDate] = useState()
+  const [disable,setdisable] = useState(false)
   const data = JSON.parse(localStorage.getItem("nftuser"));
   const id = data._id;
  
@@ -52,9 +53,10 @@ export const DuelAccepted = () => {
 
 const handlewin=async(e)=>{
      setLoader(true)
+     setdisable(true)
      if(player1===data._id){
-      // const expiry = Date.now()+259200000
-      const expiry = Date.now()+30000
+      const expiry = Date.now()+259200000
+      // const expiry = Date.now()+30000
        const res = await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"winner",index:1,expiresAt:expiry,createdAt:new Date().getTime()})
        if(res.data.player_1_decision||res.data.player_2_decision!==null){
         const res = await axios.put("/api/auth/setwinlose",{id:e.target.name,result:"declare",winner:player1,loser:player2,createdAt:null})
@@ -87,6 +89,7 @@ const handlewin=async(e)=>{
   }
   const handlelose  = async(e)=>{
     setLoader(true)
+    setdisable(true)
     if(player1===data._id){
       const expiry = Date.now()+259200000
       const res=await axios.put("/api/auth/winnerstatus",{id:e.target.name,result:"pending",decision:"loser",index:1,expiresAt:expiry,createdAt:new Date().getTime()})
@@ -247,11 +250,11 @@ const handlewin=async(e)=>{
                     </div>
                     <div className="btn-duel-right winner-btn">
                       {id === challengedata[0].player_1_id ? (<>
-                        <button id = "winner-btn" value="2" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
+                        <button  id = "winner-btn" value="2" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
                         <button id = "winner-btn" onClick={handlelose} value="1" name={items._id} className="hero-btn">Loser</button></>) : ("")}
 
                       {id === challengedata[0].player_2_id ? (<>
-                        <button id = "winner-btn" value="1" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
+                        <button  id = "winner-btn" value="1" name={items._id} onClick={handlewin} className="hero-btn">Winner</button>
                         <button id = "winner-btn" value="2" name={items._id} onClick={handlelose} className="hero-btn">Loser</button>
 
                       </>
