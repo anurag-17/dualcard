@@ -5,10 +5,13 @@
 .level-img {
     max-width: 345px;
     margin: auto;
-    background-color: #282454;
+    /* background-color: #282454; */
     border-radius: 32px;
     text-align: center;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .level-img h3 {
     font-size: 18px;
@@ -19,6 +22,7 @@
 .level-img img {
     border-radius:27px;
     width: 100%;
+    text-align: center;
 }
 .table-main {
     background-color: #23194E;

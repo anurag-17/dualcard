@@ -21,7 +21,7 @@ export const DuelAccepted = () => {
   const [disable,setdisable] = useState(false)
   const data = JSON.parse(localStorage.getItem("nftuser"));
   const id = data._id;
- 
+
   const getrecieved=async()=>{
     const newres = await axios.post("/api/auth/challengedata", {
       id:id,  
