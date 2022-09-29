@@ -69,6 +69,9 @@ const DuelSomeone = () => {
       }
     });
   }
+  useEffect(()=>{
+    getuserdata(); 
+  },[runfun,loader])
   
   const handlefile = (e) => {
     let file = e.target.files[0].size/1024;
@@ -192,7 +195,6 @@ const DuelSomeone = () => {
   };
   
   useEffect(() => {
-    getuserdata(); 
     getimages();
     countwinlose();
   },[runfun,image,isImage]);

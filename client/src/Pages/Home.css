@@ -196,12 +196,12 @@ iframe {
 }
 
 .hvr-grow {
-    display: inline-block;
+    /* display: inline-block; */
     vertical-align: middle;
     transform: translateZ(0);
     backface-visibility: hidden;
     -moz-osx-font-smoothing: grayscale;
-    transition-duration: 0.3s;
+    transition-duration: 0.4s;
     transition-property: transform;
 }
 
