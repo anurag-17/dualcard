@@ -47,10 +47,7 @@ const DuelSomeone = () => {
     setrunfun(false);
     setLoader(false)
   },1000);
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleShow=()=>setShow(true);
+
 
   const getuserdata = async()=> {
     const res = await axios.post("/api/auth/getuserdata");
@@ -69,6 +66,13 @@ const DuelSomeone = () => {
       }
     });
   }
+
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow=()=>setShow(true);
+
+ 
   useEffect(()=>{
     getuserdata(); 
   },[runfun,loader])
@@ -151,6 +155,7 @@ const DuelSomeone = () => {
 
   const sendValue = async (e) => {
     e.preventDefault();
+    setLoader(true);
     if (checkedimage.length <= 0) {
       setErrorMessage("please select cards");
       setTimeout(() => {
@@ -164,7 +169,6 @@ const DuelSomeone = () => {
       }, 2200);
       return;
     }
-    setLoader(true);
     const res = await axios.post("/api/auth/sendchal", {
       playerone_url: checkedimage,
       playeronetext: textvalue,
@@ -176,8 +180,8 @@ const DuelSomeone = () => {
     });
     
     if (res) {
-      setLoader(false);
       navigate("/thankyou");
+      setLoader(false);
     }
   };
   const handleuserclick = async (name, id) => {
