@@ -120,20 +120,15 @@ const navigate = useNavigate()
      
       }
 
-const countwinlose = async()=>{
-const res = await axios.post("/api/auth/countwinlose",{user:user})
- let winfiltered = res.data.filter((items,index)=>{
-  return items.winner === storagedata.username
-})
-setwinning(winfiltered.length)
-
-
-let losefiltered = res.data.filter((items,index)=>{
-  return items.loser === storagedata.username
-})
-
-setlosing(losefiltered.length)
-}
+      const countwinlose = async () => {
+        const res = await axios.post("/api/auth/countwinlose",{user:storagedata._id});
+        let winfiltered = res.data.filter((items, index) => {
+          return items.winner === storagedata._id
+        });
+        setwinning(winfiltered.length);
+        setlosing(res.data.length - winfiltered.length);
+      };
+    
 
 const getimages = async()=>{
   let user = JSON.parse(localStorage.getItem("nftuser"))
@@ -206,12 +201,12 @@ countwinlose()
                       
                   <div className="duel-leftgreen-text mt-3">
                     <h4>
-                      <span>{winning}</span>won
+                      <span>{losing}</span>won
                     </h4>
                   </div>
                   <div className="duel-leftred-text">
                     <h4>
-                      <span>{losing}</span>lost
+                      <span>{winning}</span>lost
                     </h4>
                   </div>
                 </div>
