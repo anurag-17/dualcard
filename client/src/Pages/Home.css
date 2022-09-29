@@ -101,18 +101,6 @@ iframe {
     background: url(../images/home-img-shape.png) !important;
     height: 100vh;
 }
-/* .video-section{
-    background-image: url(../images/banner.png) !important;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100vh;
-    border-radius: 20px;
-} */
-
-
 
 /* buy start */
 .buy-section{
@@ -207,6 +195,22 @@ iframe {
     border-radius: 25px;
 }
 
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.1);
+}
 
 /* chaallange start */
 
