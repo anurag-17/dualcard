@@ -57,7 +57,7 @@ const Pathtolevel = () => {
                 <thead>
                   <tr>
                     <th></th>
-                    <th>Public Mint Supplye</th>
+                    <th>Public Mint Supply</th>
                     <th>Partnered Streamer Supply</th>
                     <th>Total Supply (Season)</th>
                     <th>Total Supply Per (12 Months)</th>
