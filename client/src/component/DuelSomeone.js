@@ -216,9 +216,9 @@ const DuelSomeone = () => {
               </div>
               <Searchbar search={handleSearch} />
 
-              <div>
+              <div style = {{display:"flex",justifyContent:"center"}}>
               <Link to="/duelstatus">
-                <h4 style={{color: "white",position:"absolute",left:"33%",marginTop:"35px"}}>
+                <h4 style={{color: "white",margin:"auto",position:"relative",top:"40px"}}>
                   Please check status for previous Duel Challenges
                 </h4>
               </Link>

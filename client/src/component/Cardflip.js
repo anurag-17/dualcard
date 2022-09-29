@@ -76,7 +76,7 @@ const Cardflip = () => {
                   <div ID="wrapper"> 
                         <div id="squareID" class="one">
                             <div className='shape1'>
-                                <img alt  style ={{width:"330px",position:"relative",top:"10px"}}className="one" src={buyimg3}></img>
+                                <img style ={{width:"330px",position:"relative",top:"10px"}}className="one" src={buyimg3}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
