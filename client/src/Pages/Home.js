@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 import Roadmap from './Roadmap';
 import img1 from "../Edited/1.png"
-import img2 from "../Edited/3.png"
-import img3 from "../Edited/4.png"
+import img2 from "../Edited/2.png"
+import img3 from "../Edited/3.png"
 
 
 const Home = () => {
@@ -121,7 +121,7 @@ const Home = () => {
                   <h3>Buy Lvl1 Duel Card</h3>
                     <div className='buy-img'>
                       <Link to = "/BuyDuelCard">
-                       <img  className='hvr-grow' src={img1} alt="img"/>
+                       <img  className='hvr-grow' style = {{width:"400px"}} src={img1} alt="img"/>
                       </Link>
                      </div>
                     
@@ -133,7 +133,7 @@ const Home = () => {
                   <h3>Buy Lvl2 Duel Card</h3>
                     <div className='buy-img'>
                     <Link to = "/BuyDuelCard">
-                       <img className='hvr-grow' style={{width:"280px",minHeight:"400px",position:"relative",top:"7px"}} src={img2} alt="img"/>
+                       <img className='hvr-grow' style = {{width:"400px"}} src={img2} alt="img"/>
                    </Link>
                      </div>
                 </div>
@@ -143,7 +143,7 @@ const Home = () => {
                   <h3 style = {{marginRight:"40px"}}>Buy Lvl3 Duel Card</h3>
                     <div className='buy-img'>
 <Link to ="/BuyDuelCard">
-                       <img className='hvr-grow' style={{width:"350px",position:"relative",bottom:"25px"}} src={img3} alt="img"/>
+                       <img className='hvr-grow' style = {{width:"400px"}} src={img3} alt="img"/>
 </Link>
                      </div>
                 </div>
