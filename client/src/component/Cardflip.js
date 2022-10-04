@@ -3,7 +3,7 @@ import './Cardflip.css'
 import buyimg1 from "../Edited/1.png";
 import buyimg2 from "../Edited/6.png";
 import buyimg3 from "../Edited/3.png";
-import buyimg4 from "../Edited/4.png";
+// import buyimg4 from "../Edited/4.png";
 import buyimg5 from "../Edited/5.png";
 import buyimg7 from "../Edited/2.png"
 import buyimg6 from "../images/fifth-right.svg";
@@ -89,7 +89,7 @@ const Cardflip = () => {
                         </div>                        
                         <div id="squareID" class="three">
                         <div className='shape1 twoflip'>
-                                <img className="three" src={buyimg1}></img>
+                                <img style = {{width:"590px",marginTop:"4px"}} className="three" src={buyimg1}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>  
                         </div>
@@ -102,8 +102,8 @@ const Cardflip = () => {
                     </div>  
                   </div>
                   <div className='col-md-4'>
-                  <div className='shape2'>
-                    <img style={{position:"relative",bottom:"18px",left:"13px"}} src={buyimg4}></img>
+                  <div style = {{width:"335px"}} className='shape2'>
+                    <img style={{position:"relative",left:"13px"}} src={buyimg3}></img>
                     <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>
@@ -116,19 +116,19 @@ const Cardflip = () => {
                   <div ID="wrapper"> 
                         <div id="squareID" class="one">
                             <div className='shape1'>
-                                <img style={{position:"relative",bottom:"36px",left:"25px"}} className="one" src={buyimg4}></img>
+                                <img style={{width:"300px",position:"relative",left:"25px"}} className="one" src={buyimg3}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
                         <div id="squareID" class="two">
                             <div  className='shape1'>
-                                <img style={{position:"relative",bottom:"36px",left:"25px"}} className="two" src={buyimg4}></img>
+                                <img style={{width:"300px",position:"relative",left:"25px"}} className="two" src={buyimg3}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>  
                         </div>                        
                         <div id="squareID" class="three">
                         <div   className='shape1 twoflip'>
-                                <img style={{width:"90%",position:"relative",bottom:"2px",left:"20px"}} className="three" src={buyimg1}></img>
+                                <img style={{width:"87%",position:"relative",bottom:"2px",left:"16px"}} className="three" src={buyimg1}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>  
                         </div>
@@ -141,8 +141,8 @@ const Cardflip = () => {
                       </div>  
                   </div>
                   <div className='col-md-4'>
-                  <div  className='shape2'>
-                    <img style = {{maxWidth:"95%",position:"relative",bottom:"20px"}} src={buyimg5}></img>
+                  <div style = {{width:"360px"}}className='shape2'>
+                    <img style = {{position:"relative",bottom:"10px",right:"30px"}} src={buyimg5}></img>
                     <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>
@@ -155,19 +155,19 @@ const Cardflip = () => {
                   <div ID="wrapper"> 
                         <div id="squareID" class="one">
                             <div className='shape1'>
-                                <img style={{position:"relative",left:"7px",bottom:"5px"}} className="one" src={buyimg5}></img>
+                                <img style={{width:"350px",position:"relative",left:"7px",bottom:"50px"}} className="one" src={buyimg5}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
                         <div id="squareID" class="two">
                             <div className='shape1'>
-                                <img style={{position:"relative",left:"7px",bottom:"5px"}}  className="two" src={buyimg5}></img>
+                                <img  style={{width:"350px",position:"relative",left:"7px",bottom:"50px"}}  className="two lastwidth" src={buyimg5}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>  
                         </div>                        
                         <div id="squareID" class="three">
                         <div className='shape1 twoflip'>
-                                <img style = {{position:"relative",left:"7px",bottom:"5px"}} className="three" src={buyimg1}></img>
+                                <img  style = {{position:"relative",left:"7px",bottom:"50px"}} className="three lastwidth" src={buyimg1}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>  
                         </div>
@@ -181,7 +181,7 @@ const Cardflip = () => {
                   </div>
                   <div className='col-md-4'>
                   <div className='shape2'>
-                    <img style = {{width:"225px"}} src={buyimg6}></img>
+                    <img style = {{width:"225px",position:"relative",bottom:"40px"}} src={buyimg6}></img>
                     <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>
