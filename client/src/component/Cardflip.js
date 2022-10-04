@@ -20,7 +20,7 @@ const Cardflip = () => {
                 <div className='row system-main'>
                   <div className='col-md-4'>
                    <div className='shape1'>
-                     <img style = {{width:"98%",maxWidth:"98%"}} src={buyimg1}></img>
+                     <img style = {{width:"98%",maxWidth:"98%",position:"relative",right:"8px"}} src={buyimg1}></img>
                      <h4>LVL 1 DUELCARD</h4>
                    </div>
                   </div>
@@ -31,7 +31,7 @@ const Cardflip = () => {
                   </div>
                   <div className='col-md-4'>
                   <div className='shape2'>
-                    <img style={{maxWidth:"70%"}} src={buyimg2}></img>
+                    <img style={{maxWidth:"68%"}} src={buyimg2}></img>
                     <h4>LVL 1 DUELCARD</h4>
                     </div>
                   </div>

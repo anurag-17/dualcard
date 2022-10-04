@@ -144,7 +144,7 @@ const Home = () => {
                   <h3 >Buy Lvl3 Duel Card</h3>
                     <div className='buy-img'>
 <Link to ="/BuyDuelCard">
-                       <img className='hvr-grow' style = {{width:"380px",position:'relative',left:"30px"}} src={img3} alt="img"/>
+                       <img className='hvr-grow' style = {{width:"370px",position:'relative',left:"30px"}} src={img3} alt="img"/>
 </Link>
                      </div>
                 </div>
