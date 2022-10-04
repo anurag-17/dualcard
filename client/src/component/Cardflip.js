@@ -176,7 +176,7 @@ const Cardflip = () => {
                   </div>
                   <div className='col-md-4'>
                     <div className='systemct'>
-                        <img src={shapeline}></img>
+                        <img style = {{position:"relative",bottom:"60px"}} src={shapeline}></img>
                       </div>  
                   </div>
                   <div className='col-md-4'>
