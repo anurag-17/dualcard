@@ -155,19 +155,19 @@ const Cardflip = () => {
                   <div ID="wrapper"> 
                         <div id="squareID" class="one">
                             <div className='shape1'>
-                                <img style={{width:"350px",position:"relative",left:"7px",bottom:"50px"}} className="one" src={buyimg5}></img>
+                                <img style={{width:"350px",position:"relative",right:"12px",bottom:"50px"}} className="one" src={buyimg5}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>
                         </div>                        
                         <div id="squareID" class="two">
                             <div className='shape1'>
-                                <img  style={{width:"350px",position:"relative",left:"7px",bottom:"50px"}}  className="two lastwidth" src={buyimg5}></img>
+                                <img  style={{width:"350px",position:"relative",right:"12px",bottom:"50px"}}  className="two lastwidth" src={buyimg5}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>  
                         </div>                        
                         <div id="squareID" class="three">
                         <div className='shape1 twoflip'>
-                                <img  style = {{position:"relative",left:"7px",bottom:"50px"}} className="three lastwidth" src={buyimg1}></img>
+                                <img  style = {{position:"relative",right:"12px",bottom:"50px"}} className="three lastwidth" src={buyimg1}></img>
                                 <h4>LVL 1 DUELCARD</h4>
                             </div>  
                         </div>
