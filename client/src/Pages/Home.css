@@ -60,7 +60,7 @@ h2{
     background-position: center;
 }
 .card-img img {
-    max-width: 70%;
+    max-width: 76%;
 }
 .card-img {
     text-align: right;
@@ -209,6 +209,7 @@ iframe {
 .hvr-grow:hover,
 .hvr-grow:focus,
 .hvr-grow:active {
+    cursor: pointer;
     transform: scale(1.1);
 }
 

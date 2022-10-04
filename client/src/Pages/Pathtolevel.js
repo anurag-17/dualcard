@@ -17,8 +17,8 @@ const Pathtolevel = () => {
            </div>
             <div className='row'>
                 <div className='level-img'>
-                    <img className="hvr-grow" style ={{width:"380px",position:"relative",right:"33px"}} src={firstcenter}></img>
-                    <h3 style = {{marginLeft:"5px"}}>Level 4 Duel Card NFT (Sponsorship)</h3>                    
+                    <img className="hvr-grow" src={firstcenter}></img>
+                    <h3 style={{fontSize:"20px"}}>Level 4 Duel Card NFT (Sponsorship)</h3>                    
                 </div>
                 <div className='shap-bg'>
                       <img src={shape1}></img>

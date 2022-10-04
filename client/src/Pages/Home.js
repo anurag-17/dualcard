@@ -6,6 +6,7 @@ import Roadmap from './Roadmap';
 import img1 from "../Edited/1.png"
 import img2 from "../Edited/2.png"
 import img3 from "../Edited/3.png"
+import mainimg from "../Edited/Main_Cards_4x.png"
 
 
 const Home = () => {
@@ -91,7 +92,7 @@ const Home = () => {
               </div>
               <div className='col-lg-6 col-md-6'>
                 <div className='card-img'>
-                  <img src="./hero-right.png" alt="img"/>
+                  <img className = "hvr-grow" src={mainimg} alt="img"/>
                 </div>
               </div>
             </div>
@@ -121,7 +122,7 @@ const Home = () => {
                   <h3>Buy Lvl1 Duel Card</h3>
                     <div className='buy-img'>
                       <Link to = "/BuyDuelCard">
-                       <img  className='hvr-grow' style = {{width:"400px"}} src={img1} alt="img"/>
+                       <img className='hvr-grow' style = {{width:"380px"}} src={img1} alt="img"/>
                       </Link>
                      </div>
                     
@@ -133,17 +134,17 @@ const Home = () => {
                   <h3>Buy Lvl2 Duel Card</h3>
                     <div className='buy-img'>
                     <Link to = "/BuyDuelCard">
-                       <img className='hvr-grow' style = {{width:"400px"}} src={img2} alt="img"/>
+                       <img className='hvr-grow' style = {{width:"380px"}} src={img2} alt="img"/>
                    </Link>
                      </div>
                 </div>
               </div>
               <div className='buy-item1'>
                 <div className='buy-ct'>
-                  <h3 style = {{marginRight:"40px"}}>Buy Lvl3 Duel Card</h3>
+                  <h3 >Buy Lvl3 Duel Card</h3>
                     <div className='buy-img'>
 <Link to ="/BuyDuelCard">
-                       <img className='hvr-grow' style = {{width:"400px"}} src={img3} alt="img"/>
+                       <img className='hvr-grow' style = {{width:"380px",position:'relative',left:"30px"}} src={img3} alt="img"/>
 </Link>
                      </div>
                 </div>
