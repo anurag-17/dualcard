@@ -61,6 +61,7 @@ h2{
 }
 .card-img img {
     max-width: 75%;
+    margin-top: 0.8rem;
 }
 .card-img {
     text-align: right;
