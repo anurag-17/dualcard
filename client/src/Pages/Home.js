@@ -6,7 +6,7 @@ import Roadmap from './Roadmap';
 import img1 from "../Edited/1.png"
 import img2 from "../Edited/2.png"
 import img3 from "../Edited/3.png"
-import mainimg from "../Edited/Main_Cards_4x.png"
+import mainimg from "../Edited/Group1.png"
 
 
 const Home = () => {
@@ -77,7 +77,7 @@ const Home = () => {
       <div className='card-section'>
         <div className='container'>
           <div className='row card-main'>
-            <div className='col-lg-6 col-md-6'>
+            <div style= {{marginTop:"-1.5rem"}} className='col-lg-6 col-md-6'>
               <div className='card-cont'>
                 <h2>Buy. Win. Profit.</h2>
                 <p>We provide Limited Edition of L1 DuelCards designed by Content Creators. Buy the L1 DuelCards and get a chance to win more NFTs by challenging your favorite content creator to a Duel. Sell your NFT cards and make profits through the marketplace!</p>

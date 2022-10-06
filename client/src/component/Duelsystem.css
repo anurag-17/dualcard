@@ -1,6 +1,7 @@
 .duel-syestem-sec{
     background-color: #121027;
     padding: 40px 0px;
+    overflow-x: hidden;
 }
 
 .shap-line {

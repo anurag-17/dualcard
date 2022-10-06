@@ -170,6 +170,25 @@
 }
 
 
+.hvr-grow {
+    /* display: inline-block; */
+    vertical-align: middle;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.4s;
+    transition-property: transform;
+}
+
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
 
 /* responsive */
 @media (max-width:1200px) {
@@ -185,22 +204,19 @@
 @media (max-width:992px) {
 .shape1 img {
     width: 100%;
-    border-radius: 10px;
-    border: 1px solid #fff;
+    max-width: 90%;
 }
 .shape1 h4 {
     left: 26%;
 }
 .shape2 img {
     width: 100%;
-    border-radius: 10px;
-    border: 1px solid #fff;
     max-width: 80%;
+    padding: 10px;
 }
 .shape1 img {
     width: 100%;
-    border-radius: 10px;
-    border: 1px solid #fff;
+    padding: 10px;
    
 }
 }
@@ -224,14 +240,10 @@
     }
     .shape1 img {
         width: 100%;
-        border-radius: 10px;
-        border: 1px solid #fff;
         max-width: 100%;
     }
     #squareID .shape1 img {
         width: 100%;
-        border-radius: 10px;
-        border: 1px solid #fff;
         max-width: 100%;
         height: 245px;
     }
@@ -242,8 +254,6 @@
     }
     .shape2 img {
         width: 100%;
-        border-radius: 10px;
-        border: 1px solid #fff;
         max-width: 100%;
     }
     .system-main {
@@ -260,8 +270,6 @@
     }
     .shape2 img {
         width: 100%;
-        border-radius: 10px;
-        border: 1px solid #fff;
         max-width: 90%;
     }
     .chall-sys1 {
@@ -279,8 +287,6 @@
 @media (max-width:667px) {
     .shape1 img {
         width: 100%;
-        border-radius: 10px;
-        border: 1px solid #fff;
         max-width: 85%;
     }
     .system-main {
@@ -325,8 +331,6 @@
     }
     .shape2 img {
         width: 100%;
-        border-radius: 10px;
-        border: 1px solid #fff;
         max-width: 75%;
     }
     .systemct {
@@ -336,8 +340,6 @@
     }
     #squareID .shape1 img {
         width: 100%;
-        border-radius: 10px;
-        border: 1px solid #fff;
         max-width: 100%;
         height: 100%;
     }
