@@ -262,8 +262,6 @@ searchfilter.map((items,index)=>{
                           aria-controls="home"
                           aria-selected="true"
                         >
-                          {" "}
-
                           <img onClick={handleuserclick}
                             src={require(`../images/tabicon-${index + 1}.png`)}
                             alt="img"
