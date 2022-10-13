@@ -7,9 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userAction";
 import { useAlert } from "react-alert";
 import { Loader } from "../component/Loader";
+import Resizer from "react-image-file-resizer";
+import img1 from "../images/Profile.png"
+
 
 export const Register = () => {
-  const { loading, isAuthenticated, user, error} = useSelector(
+  const { loading, isAuthenticated, user, error } = useSelector(
     (state) => state.user
   );
   // const [loading,setLoading] = useState(false)
@@ -20,13 +23,58 @@ export const Register = () => {
     username: "",
     email: "",
     password: "",
+    avatar: "",
   });
+
+  const [selectedimage, setSelectedImage] = useState([])
+  const [avtarpreview,setAvatarpreview] = useState(img1)
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
     setInputvalue({ ...inputvalue, [name]: value });
     console.log(inputvalue);
   };
+
+
+const handleimage = (e)=>{
+  console.log(e.target.files)
+  setSelectedImage(e.target.files)
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    if (reader.readyState === 2) {
+      // setavatarPreview(reader.result);
+      setAvatarpreview(reader.result);
+    }
+  };
+
+  reader.readAsDataURL(e.target.files[0]);
+
+}
+
+  const encodefile = (file) => {
+    if (file) {
+      try {
+        Resizer.imageFileResizer(
+          file,
+          300,
+          300,
+          "jpg",
+          100,
+          0,
+          (uri) => {
+            inputvalue.avatar = uri
+          },
+          "base64",
+          200,
+          200
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+  encodefile(selectedimage[0]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,10 +88,11 @@ export const Register = () => {
       username: "",
       email: "",
       password: "",
+      avatar: ""
     });
 
     if (error) {
-     alert(error.message)
+      alert(error.message)
     }
   };
   useEffect(() => {
@@ -107,6 +156,13 @@ export const Register = () => {
                       required
                       className={styles.input}
                     />
+<div className = {styles.file_input}>
+  <input onChange={handleimage} type="file" id="file" className = {styles.file}/>
+  <label style = {{fontSize:"25px"}} htmlFor="file">
+    Choose Avatar
+  <img style = {{width:"3.2rem",height:"3.1rem",marginLeft:"10px",borderRadius:"50%"}} src = {avtarpreview}/>
+  </label>
+</div>
 
                     <button type="submit" className={styles.green_btn}>
                       Sign Up

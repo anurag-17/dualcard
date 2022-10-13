@@ -36,7 +36,8 @@ export const Loser = () => {
   })
 
   const replaceimage = await axios.put("/api/auth/updateimage",{arr:aadil,id:loseid})
-  console.log(replaceimage)
+
+  const addwinimages = await axios.put("/api/auth/addwinimage",{arr:aadil,id:loseid})
 }
 
   };

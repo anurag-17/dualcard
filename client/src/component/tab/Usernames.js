@@ -5,7 +5,6 @@ export const Usernames = (props) => {
 const handleuserclick = (event)=>{
   props.onuserclick(event.target.value,event.target.name)
 }
-
   return (
     <ul className="nav nav-tabs" id="myTab" role="tablist">
     {props.searchfilter.map((items,index) => {
@@ -21,9 +20,8 @@ const handleuserclick = (event)=>{
           >
             {" "}
             <img
-              src={require(`../../images/tabicon-${
-                index + 1
-              }.png`)}
+            style={{width:"40px",height:"46px",borderRadius:"100%"}}
+              src={items.avatar}
               alt="img"
             />
             {items.username}

@@ -92,13 +92,13 @@ const logoutuser = () => {
                     </li> 
                                                                    
                 </ul>
-                <form style={{position:"relative",right:"10%"}} className="d-flex">  
+                <form style={{position:"relative",right:"3%"}} className="d-flex">  
                 {
                     localStorage.getItem("nftuser")?
                     <div style = {{position:"relative"}}>
                          <li className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" to="/AboutRules" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src = {tabicon} alt = "profileimage"/>
+                        <img style = {{width:"17%",borderRadius:"50%"}} src = {data.avatar} alt = "profileimage"/>
                         </Link>
                         <ul style={{backgroundColor:"#3C2485",textAlign:"center"}} className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li>

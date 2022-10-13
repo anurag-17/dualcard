@@ -22,24 +22,24 @@ const Winner = () => {
 
     if(index==="player_1") {
       setaadil(images[0].player_1[0].images);
+                                   
   }
   if(index==="player_2"){
       setaadil(images[0].player_2[0].images);
   }
  const replaceimage = await axios.put("/api/auth/updateimage",{arr:aadil,id:storagedata._id})
+
+ const addwinimages = await axios.put("/api/auth/addwinimage",{arr:aadil,id:storagedata._id})
+
  }
   };
-  
   // useEffect(() => {
     getwinner();
   // }, [id,index]);
-
-
   return (
-
     <>
     {
-      loader?<Loader/>:  <div className="body-main">
+      loader?<Loader/>:<div className="body-main">
       <div className="winner-sec">
         <div className="container">
           <div className="section-title">
@@ -54,7 +54,7 @@ const Winner = () => {
                 return (
                   <>
                     <div className="wonimg1">
-                      <img src={item} alt="img" />
+                      <img src={item} alt="img"/>
                     </div>
                    
                   </>
