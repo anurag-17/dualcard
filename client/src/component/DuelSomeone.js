@@ -77,7 +77,7 @@ const DuelSomeone = () => {
     if(runfun){
       getuserdata(); 
     }
-  })
+  },[runfun,loader])
   
   const handlefile = (e) => {
     let file = e.target.files[0].size/1024;
