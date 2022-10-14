@@ -17,14 +17,13 @@ exports.register = catchAsyncError(
       username,
       email,
       password,
+      avatar
     } = req.body;
-  
-  
+
     const { valid, reason, validators} = await isEmailValid(email);
-    
     if(!username||
       !email||
-      !password){
+      !password||!avatar){
         return next(new ErrorHandler("please fill all the inputs"))
     }
     if (password.length < 6) {
@@ -43,8 +42,8 @@ return next(new ErrorHandler("password must be 6 characters long",400))
             username,
             email,
             password,
+            avatar
           });
-  
           sendToken(user, 201, res);
         }
       });
@@ -117,7 +116,7 @@ catchAsyncError(
       player_1: [
         {
           text: req.body.playeronetext,
-          images: req.body.playerone_url,
+          images:req.body.playerone_url,
           userId:req.body.playeroneuserid,
           name:req.body.playeronename,
           link:req.body.playeronelink
@@ -273,6 +272,14 @@ const delimage = await Image.updateMany({
 return res.status(200).json(delimage)
   }
 
+)
+
+exports.addwinimage = catchAsyncError(
+  async(req,res,next)=>{
+    const winimage = await User.findByIdAndUpdate(req.body.id,{
+      wonimages:req.body.arr
+    })
+  }
 )
 
 

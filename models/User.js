@@ -17,9 +17,17 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
-  challenges:{
-    type:Array,
-    default:"no challenges yet"
+  avatar: {
+    type: String,
+    require: [true, "please upload your avatar"]
+  },
+  challenges: {
+    type: Array,
+    default: "no challenges yet"
+  },
+  wonimages:{
+    type: Array,
+    default:null
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
@@ -32,8 +40,8 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
-userSchema.methods.matchPasswords = async function(password){
-  return await bcrypt.compare(password,this.password)
+userSchema.methods.matchPasswords = async function (password) {
+  return await bcrypt.compare(password, this.password)
 }
 
 userSchema.methods.getSignedToken = function () {
@@ -48,7 +56,7 @@ userSchema.methods.getresetPasswordToken = function () {
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
-  this.resetPasswordExpire = Date.now() + 10*(60*1000);
+  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000);
   return resetToken;
 };
 

@@ -74,7 +74,9 @@ const DuelSomeone = () => {
 
  
   useEffect(()=>{
-    getuserdata(); 
+    if(runfun){
+      getuserdata(); 
+    }
   })
   
   const handlefile = (e) => {

@@ -29,6 +29,7 @@ import { ChallengeMarket } from './component/ChallengeMarket';
 import { Decisioninfo } from './component/Decisioninfo';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { CardGallery } from './Pages/CardGallery';
 
 function App() {
 
@@ -67,6 +68,7 @@ function App() {
         <Route path = "/pathtolevel" element = {<Pathtolevel/>}/>
         <Route path = "/duelsystem" element = {<Duelsystem/>}/>
         <Route path = "/decinfo" element = {<Decisioninfo/>}/>
+        <Route path = "/cardgallery" element = {<CardGallery/>}/>
         {/* <Route path = "/duelmarket" element = {<ChallengeMarket/>}/> */}
       </Routes>
     <Footer/>
