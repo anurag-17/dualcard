@@ -27,19 +27,49 @@ import { Loser } from './Pages/Loser';
 import Duelsystem from './component/Duelsystem';
 import { ChallengeMarket } from './component/ChallengeMarket';
 import { Decisioninfo } from './component/Decisioninfo';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { CardGallery } from './Pages/CardGallery';
+import { Admin } from './Admin/Admin';
 
 function App() {
+const allid = []
+const [newid, setnewid] = useState([])
+const [challengedata,setChallengeData] = useState([])
+
+const data = JSON.parse(localStorage.getItem("nftuser"))
+const id = data._id
 
   const getexpire = async()=>{
     const res = await axios.put("/api/auth/setexpire",{date:Date.now()})
   }
 
+//      const getrecieved=async()=>{
+//     const newres = await axios.post("/api/auth/challengestatus",{
+//       id:id,  
+//       Accept:"pending",
+//       result:"pending"
+//     });
+    
+//     if(newres){
+//       setChallengeData(newres.data)
+//       newres.data.map((items,index)=>{
+//       allid.push(items._id)
+//       setnewid(allid)
+//       const res =  axios.put("/api/auth/addchallenge",{arr:allid,challenges:newres.data})
+//     })
+//   }
+
+// };
+
+
+
+
+
   useEffect(()=>{
     getexpire()
-  })
+    // getrecieved()
+  },[])
 
   return (
     <div className="App">
@@ -69,6 +99,9 @@ function App() {
         <Route path = "/duelsystem" element = {<Duelsystem/>}/>
         <Route path = "/decinfo" element = {<Decisioninfo/>}/>
         <Route path = "/cardgallery" element = {<CardGallery/>}/>
+        <Route path = "/cardgallery" element = {<CardGallery/>}/>
+        <Route path = "/admin" element = {<Admin/>}/>
+
         {/* <Route path = "/duelmarket" element = {<ChallengeMarket/>}/> */}
       </Routes>
     <Footer/>

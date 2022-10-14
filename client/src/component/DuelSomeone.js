@@ -13,6 +13,8 @@ import Resizer from "react-image-file-resizer";
 import { Searchbar } from "./Searchbar";
 import { Usernames } from "./tab/Usernames";
 
+
+
 const DuelSomeone = () => {
   const navigate = useNavigate();
   const { image, loading, isImage } = useSelector((state) => state.image);
@@ -27,8 +29,8 @@ const DuelSomeone = () => {
   const [runfun, setrunfun] = useState(true);
   const [loader, setLoader] = useState(true);
   const [data, setdata] = useState({
-    image: "",
-    userId: "",
+    image:"",
+    userId:"",
   });
   const [show, setShow] = useState(false);
   const [userimagedata, setuserimagedata] = useState([]);
@@ -51,7 +53,8 @@ const DuelSomeone = () => {
 
   const getuserdata = async()=> {
     const res = await axios.post("/api/auth/getuserdata");
-    setUserdata(res.data);
+    if(res){
+      setUserdata(res.data);
     userdata.sort((a, b) => a.username.localeCompare(b.username));
     const filtereduser = userdata.filter((items, index) => {
       return items._id !==storagedata._id;
@@ -65,7 +68,12 @@ const DuelSomeone = () => {
         settargetname(items.username);
       }
     });
+    }
   }
+  console.log(newuserdata);
+
+  
+
 
   const handleClose = () => {
     setShow(false);
@@ -74,10 +82,8 @@ const DuelSomeone = () => {
 
  
   useEffect(()=>{
-    if(runfun){
       getuserdata(); 
-    }
-  },[runfun,loader])
+  })
   
   const handlefile = (e) => {
     let file = e.target.files[0].size/1024;
@@ -186,10 +192,13 @@ const DuelSomeone = () => {
       setLoader(false);
     }
   };
-  const handleuserclick = async (name, id) => {
+  const handleuserclick = async (e) => {
     setfirstname(false);
-    setclickeduser(id);
-    settargetname(name);
+    console.log(e);
+    setclickeduser(e.target.name);
+    settargetname(e.target.value);
+    console.log(targetname)
+    console.log(clickeduser);
   };
 
   const handleSearch = (searchword) => {
@@ -229,7 +238,37 @@ const DuelSomeone = () => {
               <div style={{marginTop:"50px"}} className="row">
                 <div className="tab-challange">
                   <div className="tab-section">
-                    <Usernames onuserclick={handleuserclick} searchfilter={searchfilter}/>
+                  <ul className="nav nav-tabs" id="myTab" role="tablist">
+                      {searchfilter.map((items, index) => {
+                        console.log(items)
+                        return (
+                          <li key={index} className="nav-item" role="presentation">
+                            <button
+                              value={items.username}
+                              onClick={handleuserclick}
+                              name={items._id}
+                              className="nav-link active tab-btn"
+                              id="home-tab"
+                              data-bs-toggle="tab"
+                              data-bs-target="#home"
+                              type="button"
+                              role="tab"
+                              aria-controls="home"
+                              aria-selected="true"
+                            >
+                              {" "}
+                              <img
+                                src={require(`../images/tabicon-${
+                                  index + 1
+                                }.png`)}
+                                alt="img"
+                              />
+                              {items.username}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
                     <div className="tab-content" id="myTabContent">
                       {erromessage && (
                         <div className="popup error">
