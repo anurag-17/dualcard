@@ -3,302 +3,250 @@ const Image = require("../models/Image");
 const ErrorResponse = require("../utlis/errorresponse.js");
 const emailValidator = require("deep-email-validator");
 const Challenge = require("../models/challenge");
-const catchAsyncError = require("../Errorhandlers/catchAsyncError")
+const catchAsyncError = require("../Errorhandlers/catchAsyncError");
 const ErrorHandler = require("../config/errorHandler");
-const challenge = require("../models/challenge");
+const Notifications = require("../models/Notification");
 
 async function isEmailValid(email) {
   return emailValidator.validate(email);
 }
 
-exports.register = catchAsyncError(
-   async (req,res, next) => {
-    const {
-      username,
-      email,
-      password,
-      avatar
-    } = req.body;
+exports.register = catchAsyncError(async (req, res, next) => {
+  const { username, email, password, avatar } = req.body;
 
-    const { valid, reason, validators} = await isEmailValid(email);
-    if(!username||
-      !email||
-      !password||!avatar){
-        return next(new ErrorHandler("please fill all the inputs"))
-    }
-    if (password.length < 6) {
-return next(new ErrorHandler("password must be 6 characters long",400))
-    }
-  
-      User.findOne({ email }, async (err, user) => {
-       if (user) {
-        return next(new ErrorHandler("user Already exist",400))
-        }
-        else if(!valid){
-          return next(new ErrorHandler("please enter a valid email",400))
-        }
-        else {
-          const user = await User.create({
-            username,
-            email,
-            password,
-            avatar
-          });
-          sendToken(user, 201, res);
-        }
+  const { valid, reason, validators } = await isEmailValid(email);
+  if (!username || !email || !password || !avatar) {
+    return next(new ErrorHandler("please fill all the inputs"));
+  }
+  if (password.length < 6) {
+    return next(new ErrorHandler("password must be 6 characters long", 400));
+  }
+
+  User.findOne({ email }, async (err, user) => {
+    if (user) {
+      return next(new ErrorHandler("user Already exist", 400));
+    } else if (!valid) {
+      return next(new ErrorHandler("please enter a valid email", 400));
+    } else {
+      const user = await User.create({
+        username,
+        email,
+        password,
+        avatar,
       });
-    
-  }
-)
-
-exports.login = catchAsyncError(
-  async (req, res, next) => {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      return next(new ErrorResponse("please provide email&password", 400));
+      sendToken(user, 201, res);
     }
-      const user = await User.findOne({ email }).select("+password");
-      if (!user) {
-        return res.status(500).json("invalid credentials user not found");
-      }
-      const isMatch = await user.matchPasswords(password);
-      if (!isMatch) {
-        return res.status(500).json("password is not valid please register");
-      }
-      sendToken(user, 200, res);
+  });
+});
+
+exports.login = catchAsyncError(async (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return next(new ErrorResponse("please provide email&password", 400));
   }
-) 
-
-exports.isAuthuser =
-catchAsyncError(
-  
-  async (req, res, next) => {
-    const { token } = req.cookies;
-    if (!token) {
-      return next(new ErrorResponse("plese login to access this resource", 401));
-    }
-    const decodedData = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findById(decodedData.id);
-    next();
+  const user = await User.findOne({ email }).select("+password");
+  if (!user) {
+    return res.status(500).json("invalid credentials user not found");
   }
-  )
-
-
-exports.getdata = 
-catchAsyncError(
-  async (req, res,next) => {
-    let imgdata = await Image.find({userId:req.body._id});
-    return res.status(200).json(imgdata);
+  const isMatch = await user.matchPasswords(password);
+  if (!isMatch) {
+    return res.status(500).json("password is not valid please register");
   }
-)
-
-exports.getuserdata = 
-catchAsyncError(
-  async(req, res,next) => {
-    let userdata = await User.find();
-    return res.status(200).json(userdata);
+  sendToken(user, 200, res);
+});
+exports.isAuthuser = catchAsyncError(async (req, res, next) => {
+  const { token } = req.cookies;
+  if (!token) {
+    return next(new ErrorResponse("plese login to access this resource", 401));
   }
-  )
+  const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+  req.user = await User.findById(decodedData.id);
+  next();
+});
 
-exports.sendchallange = 
+exports.getdata = catchAsyncError(async (req, res, next) => {
+  let imgdata = await Image.find({ userId: req.body._id });
+  return res.status(200).json(imgdata);
+});
 
-catchAsyncError(
-  
-  async (req, res,next) => {
-    const { recieved, accept, decline } = req.body;
-   
-    let challenge = await Challenge.create({
-      recieved:req.body.recieved,
-      player_1_id:req.body.playeroneuserid,
-      player_2_id:req.body.playertwouserid,
-      accept,
-      decline,
-      player_1: [
-        {
-          text: req.body.playeronetext,
-          images:req.body.playerone_url,
-          userId:req.body.playeroneuserid,
-          name:req.body.playeronename,
-          link:req.body.playeronelink
-        },
-      ],
-      player_2: [
-        {
-          text: req.body.playertwotext,
-          images:req.body.playertwo_url,
-          userId:req.body.playertwouserid,
-          name:req.body.playertwoname,
-          link:req.body.playertwolink
-        },
-      ],
-    });
-    return res.json(challenge)
-  }
-  )
+exports.getuserdata = catchAsyncError(async (req, res, next) => {
+  let userdata = await User.find();
+  return res.status(200).json(userdata);
+});
 
-exports.getchallenge =
-catchAsyncError(
-  async(req,res,next)=>{
-  const challengedata = await Challenge.find({
-  $or:[
-    {player_1_id:req.body.id},  
-    {player_2_id:req.body.id}
-    ],
-    Accept:req.body.Accept,
-    result:req.body.result
-  })
-  return res.json(challengedata) 
-  }
-  )
+exports.notification = catchAsyncError(async (req, res, next) => {
+  const { playeroneuserid, playertwouserid, playeronename, playertwoname } =
+    req.body;
+  // console.log(req.body);
+  let challenge = await Notifications.create({
+    playeronename: playeronename,
+    playertwoname: playertwoname,
+    playeroneuserid:playeroneuserid,
+    playertwouserid:playertwouserid,
+    messages: `${playeronename} sent a challenge`,
+  });
+});
+exports.sendchallange = catchAsyncError(async (req, res, next) => {
+  const { recieved, accept, decline } = req.body;
 
-exports.getrecieved = 
-catchAsyncError(
-  async(req,res,next)=>{
-    const data = await Challenge.find({player_2_id:req.body.id,Accept:req.body.Accept,result:req.body.result})
-    return res.json(data)
-  }
-  )
-
-exports.acceptChallenge = catchAsyncError(
-
-  async(req,res,next)=>{
-    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:req.body.Accept,  
-      player_2:[
+  let challenge = await Challenge.create({
+    recieved: req.body.recieved,
+    player_1_id: req.body.playeroneuserid,
+    player_2_id: req.body.playertwouserid,
+    accept,
+    decline,
+    player_1: [
       {
-        images:req.body.playertwo_url,
-        name:req.body.name
+        text: req.body.playeronetext,
+        images: req.body.playerone_url,
+        userId: req.body.playeroneuserid,
+        name: req.body.playeronename,
+        link: req.body.playeronelink,
       },
     ],
-  })
-    return res.status(200).json(update)
-  }
-
-) 
-
-exports.declineChallenge = catchAsyncError(
-  async(req,res,next)=>{
-    const update = await Challenge.findByIdAndUpdate(req.body.challengerid,{Accept:"decline"})
-    return res.json(update)
-  }
-)
-
-exports.challengeStatus = catchAsyncError(
-async(req,res,next)=>{
-  const status = await Challenge.find({
-    $or:[
-    {player_1_id:req.body.id},
-    {player_2_id:req.body.id}
+    player_2: [
+      {
+        text: req.body.playertwotext,
+        images: req.body.playertwo_url,
+        userId: req.body.playertwouserid,
+        name: req.body.playertwoname,
+        link: req.body.playertwolink,
+      },
     ],
-  })
-  return res.json(status)
-}
-)
+  });
+  next();
+  return res.json(challenge);
+});
 
-exports.getwinner  = catchAsyncError(
-  async(req,res,next)=>{
-     const winner = await Challenge.find({_id:req.body.id,result:req.body.result})
-     return res.status(200).json(winner)
+exports.getchallenge = catchAsyncError(async (req, res, next) => {
+  const challengedata = await Challenge.find({
+    $or: [{ player_1_id: req.body.id }, { player_2_id: req.body.id }],
+    Accept: req.body.Accept,
+    result: req.body.result,
+  });
+  return res.json(challengedata);
+});
+
+exports.getrecieved = catchAsyncError(async (req, res, next) => {
+  const data = await Challenge.find({
+    player_2_id: req.body.id,
+    Accept: req.body.Accept,
+    result: req.body.result,
+  });
+  return res.json(data);
+});
+
+exports.acceptChallenge = catchAsyncError(async (req, res, next) => {
+  const update = await Challenge.findByIdAndUpdate(req.body.challengerid, {
+    Accept: req.body.Accept,
+    player_2: [
+      {
+        images: req.body.playertwo_url,
+        name: req.body.name,
+      },
+    ],
+  });
+  return res.status(200).json(update);
+});
+
+exports.declineChallenge = catchAsyncError(async (req, res, next) => {
+  const update = await Challenge.findByIdAndUpdate(req.body.challengerid, {
+    Accept: "decline",
+  });
+  return res.json(update);
+});
+
+exports.challengeStatus = catchAsyncError(async (req, res, next) => {
+  const status = await Challenge.find({
+    $or: [{ player_1_id: req.body.id }, { player_2_id: req.body.id }],
+  });
+  return res.json(status);
+});
+
+exports.getwinner = catchAsyncError(async (req, res, next) => {
+  const winner = await Challenge.find({
+    _id: req.body.id,
+    result: req.body.result,
+  });
+  return res.status(200).json(winner);
+});
+
+exports.setwinner = catchAsyncError(async (req, res, next) => {
+  if (req.body.index === 1) {
+    const winstatus = await challenge.findByIdAndUpdate(req.body.id, {
+      result: req.body.result,
+      player_1_decision: req.body.decision,
+      createdAt: req.body.createdAt,
+      expiresAt: req.body.expiresAt,
+    });
+    return res.status(200).json(winstatus);
+  } else if (req.body.index === 2) {
+    const winstatus = await challenge.findByIdAndUpdate(req.body.id, {
+      result: req.body.result,
+      player_2_decision: req.body.decision,
+      createdAt: req.body.createdAt,
+      expiresAt: req.body.expiresAt,
+    });
+    return res.status(200).json(winstatus);
   }
-)
+});
 
-exports.setwinner=catchAsyncError(
-  async(req,res,next)=>{
-    if( req.body.index ===1){
-      const winstatus=await challenge.findByIdAndUpdate(req.body.id,{
-        result:req.body.result,
-        player_1_decision:req.body.decision,
-        createdAt:req.body.createdAt,
-        expiresAt:req.body.expiresAt
-      })
-      return res.status(200).json(winstatus)
-    }
-    else if( req.body.index ===2){
-      const winstatus=await challenge.findByIdAndUpdate(req.body.id,{
-        result:req.body.result,
-        player_2_decision:req.body.decision,
-        createdAt:req.body.createdAt,
-        expiresAt:req.body.expiresAt
-      })
-      return res.status(200).json(winstatus)
-    }
-  }
+exports.setwinlose = catchAsyncError(async (req, res, next) => {
+  const losestatus = await challenge.findByIdAndUpdate(req.body.id, {
+    winner: req.body.winner,
+    loser: req.body.loser,
+    result: req.body.result,
+    createdAt: req.body.createdAt,
+  });
+  return res.status(200).json(losestatus);
+});
 
-)
+exports.setexpire = catchAsyncError(async (req, res, next) => {
+  const expiry = await challenge.updateMany(
+    { expiresAt: { $lt: req.body.date } },
+    { $set: { result: "Manual Review" } }
+  );
 
-exports.setwinlose=catchAsyncError(
-  async(req,res,next)=>{
-    const losestatus = await challenge.findByIdAndUpdate(req.body.id,{
-    winner:req.body.winner,
-    loser:req.body.loser,
-    result:req.body.result,
-    createdAt:req.body.createdAt
-  })
-    return res.status(200).json(losestatus)
-  }
-)
+  return res.status(200).json(expiry);
+});
 
-exports.setexpire = catchAsyncError(
-  async(req,res,next)=>{
-    const expiry = await challenge.updateMany(
-      {expiresAt:{$lt:req.body.date}},
-      {$set:{result:"Manual Review"}}
-      )
+exports.countwinlose = catchAsyncError(async (req, res, next) => {
+  const counting = await Challenge.find({
+    $or: [{ winner: req.body.user }, { loser: req.body.user }],
+  });
 
-      return res.status(200).json(expiry)
-  }
-)
+  return res.status(200).json(counting);
+});
 
-
-exports.countwinlose = catchAsyncError(
-  async(req,res,next)=>{
-    const counting = await Challenge.find({ $or:[
-    {winner:req.body.user},  
-    {loser:req.body.user}
-    ]})
-
-return res.status(200).json(counting)
-
-  }
-
-)
-
-
-exports.updateimage= catchAsyncError(
-  async(req,res,next)=>{
-const delimage = await Image.updateMany({
-  url:{$in:req.body.arr}
-},
-  {$set:{userId:req.body.id}}
-  )
-return res.status(200).json(delimage)
-  }
-
-)
-
-exports.addwinimage = catchAsyncError(
-  async(req,res,next)=>{
-    const winimage = await User.findByIdAndUpdate(req.body.id,{
-      wonimages:req.body.arr
-    })
-  }
-)
-exports.addchallenge = catchAsyncError(
-  async(req,res,next)=>{
-    console.log(req.body);
-    const setchallenge = await User.updateMany({
-      _id:{$in:[req.body.arr]}
+exports.updateimage = catchAsyncError(async (req, res, next) => {
+  const delimage = await Image.updateMany(
+    {
+      url: { $in: req.body.arr },
     },
-    {$set:{challenges:req.body.challenges}}
-    )
-    return res.status(200).json(setchallenge)
-  }
-)
+    { $set: { userId: req.body.id } }
+  );
+  return res.status(200).json(delimage);
+});
 
-exports.addnewchallenge  = catchAsyncError(
-  async(req,res,next)=>{
-    const setchallenge = await get
-  }
-)
+exports.addwinimage = catchAsyncError(async (req, res, next) => {
+  const winimage = await User.findByIdAndUpdate(req.body.id, {
+    wonimages: req.body.arr,
+  });
+});
+exports.addchallenge = catchAsyncError(async (req, res, next) => {
+  console.log(req.body);
+  const setchallenge = await User.updateMany(
+    {
+      _id: { $in: [req.body.arr] },
+    },
+    { $set: { challenges: req.body.challenges } }
+  );
+  return res.status(200).json(setchallenge);
+});
+
+exports.addnewchallenge = catchAsyncError(async (req, res, next) => {
+  const setchallenge = await get;
+});
 
 //forget password
 
@@ -380,7 +328,7 @@ const sendToken = (user, statusCode, res) => {
     expire: new Date(Date.now + 24 * 60 * 60 * 1000),
     httpOnly: true,
   };
-  res.status(statusCode).cookie("token",token,options).json({
+  res.status(statusCode).cookie("token", token, options).json({
     success: true,
     user,
     token,

@@ -37,8 +37,8 @@ const allid = []
 const [newid, setnewid] = useState([])
 const [challengedata,setChallengeData] = useState([])
 
-const data = JSON.parse(localStorage.getItem("nftuser"))
-const id = data._id
+// const data = JSON.parse(localStorage.getItem("nftuser"))
+// const id = data._id
 
   const getexpire = async()=>{
     const res = await axios.put("/api/auth/setexpire",{date:Date.now()})
