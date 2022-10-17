@@ -23,7 +23,6 @@ const userSchema = new mongoose.Schema({
   },
   challenges: {
     type: Array,
-    default: "no challenges yet"
   },
   wonimages:{
     type: Array,

@@ -262,6 +262,7 @@ return res.status(200).json(counting)
 
 )
 
+
 exports.updateimage= catchAsyncError(
   async(req,res,next)=>{
 const delimage = await Image.updateMany({
@@ -281,7 +282,23 @@ exports.addwinimage = catchAsyncError(
     })
   }
 )
+exports.addchallenge = catchAsyncError(
+  async(req,res,next)=>{
+    console.log(req.body);
+    const setchallenge = await User.updateMany({
+      _id:{$in:[req.body.arr]}
+    },
+    {$set:{challenges:req.body.challenges}}
+    )
+    return res.status(200).json(setchallenge)
+  }
+)
 
+exports.addnewchallenge  = catchAsyncError(
+  async(req,res,next)=>{
+    const setchallenge = await get
+  }
+)
 
 //forget password
 
