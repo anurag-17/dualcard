@@ -6,6 +6,7 @@ import { Card } from './Card';
 export const Admin = () => {
     const [usercount,setUserCount] = useState()
     const [userdata,setuserdata] =useState([])
+    const [allchallenge, setAllchallenge] = useState([])
 
     const getuserdata = async()=>{
         const res = await axios.post("/api/auth/getuserdata");
@@ -13,8 +14,16 @@ export const Admin = () => {
         setUserCount(res.data.length)
     }
 
+    const getallchallenges = async()=>{
+
+      const res = await axios.get("/api/auth/getallchallenge")
+      setAllchallenge(res.data)
+
+    }
+
     useEffect(()=>{
-getuserdata()
+     getuserdata()
+     getallchallenges()
     },[])
 
   return (
@@ -22,7 +31,7 @@ getuserdata()
 
 <div style  = {{minHeight:"90vh",display:"flex",justifyContent:"center",alignItems:"center"}}>
 <Card user={usercount} title = "Users" subtitle = "Registered"/>
-<Card/>
+<Card  user={allchallenge.length} title  = "Challenges"/>
 <Card/>
 <Card/>
 </div>
@@ -32,9 +41,9 @@ getuserdata()
     <tr>
   <th>Users</th>
   <th>Challenges</th>
-  <th>Challenges Won</th>
-  <th>Challenges Lost</th>
   <th>Manual Reviews</th>
+  {/* <th>Challenges Won</th>
+  <th>Challenges Lost</th> */}
     </tr>
 
 </thead>
@@ -45,6 +54,16 @@ getuserdata()
         return(
             <tr>
 <td>{items.username}</td>
+<td>{items.challenges.length}</td>
+{/* {
+  allchallenge.filter((item,index)=>{
+    return item.result ==="Manual Review"
+  }).map((items,i)=>{
+    return  <td>{items.length}</td>
+  })
+} */}
+
+
 </tr>   
             )
     })
@@ -57,4 +76,3 @@ getuserdata()
     </div>
   )
 }
-

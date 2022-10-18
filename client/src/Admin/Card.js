@@ -9,7 +9,7 @@ export const Card = (props) => {
      <h3>{props.user}</h3>
     <h5 className="card-subtitle mb-2">{props.subtitle}</h5>
      <h4 style={{color:"white"}}>{props.title}</h4>
-    {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+    {/* {/ <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> /} */}
   </div>
 </div>
   )

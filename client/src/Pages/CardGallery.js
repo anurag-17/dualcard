@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './buyduelcard.css';
 import Form from 'react-bootstrap/Form';
 import img1 from "../images/1.jpg"
@@ -7,27 +7,49 @@ import img3 from "../images/3.jpg"
 import img4 from "../images/4.jpg"
 import img5 from "../images/5.jpg"
 import img6 from "../images/6.jpg"
+import axios from 'axios';
 
 export const CardGallery = () => {
+  const [image,setImage] = useState([])
 
     const userdata = JSON.parse(localStorage.getItem("nftuser"))
-    console.log(userdata.wonimages)
-   
+    // console.log(userdata.wonimages)
+
+  const getuserdata = async()=>{
+    const res = await axios.post("/api/auth/getuserdata")
+    if(res){
+    const filtereddata =  res.data.filter((items,index)=>{
+          return items._id === userdata._id
+      })
+     setImage(filtereddata)
+    }
+  }
+  
+  useEffect(()=>{
+ getuserdata()
+  },[])
+  
+  image.map((items,index)=>{
+    items.wonimages.map((item,index)=>{
+      console.log(item)
+    })
+      })
+  
   return (
     <div className=''>
     <div className='buyduelcard'>
       <div className='container'>
         <div style={{marginTop:"20px"}} className='section-title'>
-           <h2>Buy Duel Card</h2>
+           <h2>Card Gallery</h2>
         </div>
-        <div style = {{maxWidth:"25%",display:"flex",alignItems:"center"}} className='row buydel-main'>
+        <div style = {{maxWidth:"75%",alignItems:"center"}} className='row buydel-main'>
             {
-              userdata.wonimages[0]===null?    <div className=''>
+              image===null?<div className=''>
               <div style={{width:"500px",position:"relative",right:"35%"}} className='thank-sec'>
                   <div className='container'>
                       <div className='thnkct'>
                       <h1>You haven't won any challenges yet!</h1>
-                          {/* <p>Your challenge has been sent</p> */}
+                          {/* {/ <p>Your challenge has been sent</p> /} */}
                          <div className='thankbtn'>
           {/* <Link to = "/">
           
@@ -40,12 +62,14 @@ export const CardGallery = () => {
                   </div>
               </div>
           </div>:
-                userdata.wonimages.map((items,index)=>{
+                image.map((items,index)=>{
+                  return(
+                  items.wonimages.map((item,i)=>{
                     return(
                         <div className='buydue-bg'>
                         <div className='buy-cont'>
                           <div className='buyduel-img'>
-                            <img src={items} alt="img"/> 
+                            <img src={item} alt="img"/> 
                           </div>
                           {/* <div className='buy-newimg'>
                             <div className='buy-new1'> <img src="/Binancelogo.png" alt="img"/></div>
@@ -63,6 +87,8 @@ export const CardGallery = () => {
                         </div>
                       </div>
                     )
+                  })
+                )
                 })
             }
        
